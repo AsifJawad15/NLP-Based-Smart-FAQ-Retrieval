@@ -1,0 +1,7 @@
+query,expected_faq_id,is_answerable
+What steps should I follow to apply for undergraduate admission?,1,True
+Could you explain the process for registering for courses?,3,True
+Where is the examination timetable published?,5,True
+I need a copy of my academic record; how do I order one?,6,True
+volcano cryptocurrency astronomy,,False
+Who won the football tournament last night?,,False

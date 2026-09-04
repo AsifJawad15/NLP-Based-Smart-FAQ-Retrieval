@@ -1,0 +1,62 @@
+{
+  "answerable_acceptance_rate": 0.9466666666666667,
+  "answerable_queries": 150,
+  "corpus": "university",
+  "display_name": "University FAQ",
+  "false_acceptance_count": 8,
+  "false_rejection_count": 8,
+  "faq_count": 500,
+  "incorrect_retrieval_examples": [
+    {
+      "accepted": true,
+      "expected_faq_id": 47,
+      "query": "What investigations are carried out in Germanic Literature, Culture and Theory?",
+      "retrieved_faq_id": 97,
+      "retrieved_question": "what subjects will I study in Germanic Literature, Culture and Theory at UOFT?",
+      "similarity": 0.7700781709940074
+    },
+    {
+      "accepted": true,
+      "expected_faq_id": 221,
+      "query": "What investigations are carried out in Master of Applied Science (MASc)?",
+      "retrieved_faq_id": 101,
+      "retrieved_question": "what subjects will I study in Master of Applied Science (MASc) at UOFT?",
+      "similarity": 0.7098488922007014
+    },
+    {
+      "accepted": false,
+      "expected_faq_id": 238,
+      "query": "Which study areas does Finance pursue?",
+      "retrieved_faq_id": 71,
+      "retrieved_question": "can you explain the structure of Finance at UOFT?",
+      "similarity": 0.36231780854442247
+    },
+    {
+      "accepted": true,
+      "expected_faq_id": 64,
+      "query": "Which areas of learning belong to Ecology and Evolutionary Biology?",
+      "retrieved_faq_id": 48,
+      "retrieved_question": "can you explain the structure of Ecology and Evolutionary Biology at UOFT?",
+      "similarity": 0.6660564553167097
+    },
+    {
+      "accepted": true,
+      "expected_faq_id": 83,
+      "query": "What shape does Counselling & Clinical Psychology take?",
+      "retrieved_faq_id": 39,
+      "retrieved_question": "what makes the Counselling and Clinical Psychology \u2013 Field in Clinical and Counselling Psychology (OISE) program at UOFT unique?",
+      "similarity": 0.5761606801371841
+    }
+  ],
+  "mean_similarity_correct_top1": 0.7563324312334477,
+  "preprocessing_config": "lemmatized",
+  "preprocessing_options": {
+    "lemmatize": true,
+    "remove_stopwords": false
+  },
+  "threshold": 0.46,
+  "top1_accuracy": 0.8466666666666667,
+  "top3_accuracy": 0.9866666666666667,
+  "unanswerable_queries": 50,
+  "unanswerable_rejection_rate": 0.84
+}

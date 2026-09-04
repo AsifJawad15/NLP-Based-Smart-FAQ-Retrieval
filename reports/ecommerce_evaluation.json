@@ -1,0 +1,62 @@
+{
+  "answerable_acceptance_rate": 0.8266666666666667,
+  "answerable_queries": 150,
+  "corpus": "ecommerce",
+  "display_name": "E-commerce FAQ",
+  "false_acceptance_count": 2,
+  "false_rejection_count": 26,
+  "faq_count": 500,
+  "incorrect_retrieval_examples": [
+    {
+      "accepted": false,
+      "expected_faq_id": 330,
+      "query": "What should be understood about the guarantee being provided by Ather?",
+      "retrieved_faq_id": 341,
+      "retrieved_question": "What after sales services are being provided by Ather for 2-wheelers?",
+      "similarity": 0.4679964731156991
+    },
+    {
+      "accepted": false,
+      "expected_faq_id": 294,
+      "query": "What should be understood about Money on Shipment?",
+      "retrieved_faq_id": 324,
+      "retrieved_question": "I have a query about the EMI charge. What should I do?",
+      "similarity": 0.3617866125680164
+    },
+    {
+      "accepted": false,
+      "expected_faq_id": 302,
+      "query": "What steps should someone follow to settle the amount for my purchase?",
+      "retrieved_faq_id": 205,
+      "retrieved_question": "Is there a minimum purchase amount for Flipkart Quick orders?",
+      "similarity": 0.3863308933416352
+    },
+    {
+      "accepted": true,
+      "expected_faq_id": 452,
+      "query": "I need to establish what will happen if the make approved retailer who will reach me is very far from my location.",
+      "retrieved_faq_id": 449,
+      "retrieved_question": "What will happen if the Bounce authorised dealer who will contact me is very far from my location?",
+      "similarity": 0.6811235524040855
+    },
+    {
+      "accepted": false,
+      "expected_faq_id": 350,
+      "query": "What steps should someone follow to order with a Present card?",
+      "retrieved_faq_id": 327,
+      "retrieved_question": "What if the Gift Card is transferred to someone when I am expecting a refund for an order placed using the same Gift Card?",
+      "similarity": 0.37213053042567273
+    }
+  ],
+  "mean_similarity_correct_top1": 0.7399635147642317,
+  "preprocessing_config": "basic",
+  "preprocessing_options": {
+    "lemmatize": false,
+    "remove_stopwords": false
+  },
+  "threshold": 0.58,
+  "top1_accuracy": 0.9533333333333334,
+  "top3_accuracy": 0.98,
+  "unanswerable_queries": 50,
+  "unanswerable_rejection_rate": 0.96
+}
