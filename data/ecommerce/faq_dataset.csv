@@ -1,0 +1,14 @@
+id,question,answer,category,source,source_type
+1,How do I create a customer account?,Choose Create Account and enter the requested contact and login information.,accounts,project_fixture,project_team_curated
+2,I forgot my account password. How can I reset it?,Select Forgot Password on the sign-in page and follow the instructions sent to your registered contact.,accounts,project_fixture,project_team_curated
+3,How can I check whether a product is in stock?,The product page shows current availability and available variants.,products,project_fixture,project_team_curated
+4,Where can I see my order status?,Open My Orders in your account and select the order you want to track.,orders,project_fixture,project_team_curated
+5,Which payment methods can I use?,Available payment methods are displayed during checkout before you confirm the order.,payments,project_fixture,project_team_curated
+6,How can I track my delivery?,Use the tracking link in My Orders or in the shipping confirmation message.,shipping,project_fixture,project_team_curated
+7,Can I change my delivery address?,Check the order details for an address editing option before the order is dispatched.,shipping,project_fixture,project_team_curated
+8,How do I return an item?,Open the order details and choose Return if the item is eligible under the return policy.,returns_refunds,project_fixture,project_team_curated
+9,When will I receive my refund?,Refund progress and the estimated processing period are shown in the order details.,returns_refunds,project_fixture,project_team_curated
+10,Why is my discount code not working?,Check the code expiry date and eligibility conditions shown with the promotion.,promotions,project_fixture,project_team_curated
+11,How do I claim a product warranty?,Review the warranty information on the product or order page and contact the listed support provider.,warranties,project_fixture,project_team_curated
+12,How is my personal information protected?,Review the privacy policy for details about collection storage and protection of personal information.,privacy_security,project_fixture,project_team_curated
+

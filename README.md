@@ -10,13 +10,20 @@ TF-IDF baseline remains understandable and reproducible.
 
 ## Current checkpoint
 
-The repository scaffold and small development fixtures are present. Retrieval,
-full corpora, evaluation, and the teacher demonstration are added in subsequent
-checkpoints.
+The reusable TF-IDF baseline works with small University and E-commerce
+fixtures. It includes corpus discovery, schema validation, configurable
+preprocessing, cosine-similarity top-k retrieval, threshold rejection, automated
+tests, and a terminal demonstration. Full source-based corpora and formal
+evaluation are added in subsequent checkpoints.
+
+Run the small baseline with:
+
+```powershell
+python main.py
+```
 
 ## Development environment
 
 - Python 3.12
 - Project-local `.venv`
 - Windows PowerShell and VS Code
-

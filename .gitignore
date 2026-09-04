@@ -1,8 +1,8 @@
 .venv/
+.nltk_data/
 __pycache__/
 *.py[cod]
 .pytest_cache/
 .ipynb_checkpoints/
 data/staging/
 *.executed.ipynb
-

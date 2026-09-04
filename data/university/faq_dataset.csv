@@ -1,0 +1,14 @@
+id,question,answer,category,source,source_type
+1,How do I apply for undergraduate admission?,Complete the online admission form and submit the required documents through the admission portal.,admissions,project_fixture,project_team_curated
+2,Where can I see the admission requirements?,Review the programme admission page for the current academic and document requirements.,admissions,project_fixture,project_team_curated
+3,How can I register for courses?,Sign in to the student portal and use the course registration section during the registration period.,registration,project_fixture,project_team_curated
+4,Can I add a course after registration?,Use the add or drop service during the published adjustment period and follow departmental approval rules.,registration,project_fixture,project_team_curated
+5,Where can I find the examination schedule?,The examination schedule is published on the examination office page and student portal.,examinations,project_fixture,project_team_curated
+6,How do I request a transcript?,Submit a transcript request through the records office or the student portal.,grades_records,project_fixture,project_team_curated
+7,How can I pay tuition fees?,Use one of the payment methods listed in the student portal and keep the payment receipt.,tuition_payments,project_fixture,project_team_curated
+8,I forgot my student portal password. What should I do?,Use the Forgot Password option on the student portal or contact account support.,accounts_portal,project_fixture,project_team_curated
+9,How long can I borrow a library book?,Check the library borrowing policy because loan periods depend on the item and borrower type.,library,project_fixture,project_team_curated
+10,Where can I get academic counselling?,Contact the student counselling service or your assigned academic adviser.,student_services,project_fixture,project_team_curated
+11,How do I reserve a classroom?,Submit a room reservation request to the responsible academic or facilities office.,campus_facilities,project_fixture,project_team_curated
+12,Where can I view my class schedule?,Your current class schedule is available in the student portal after registration.,courses_programs,project_fixture,project_team_curated
+

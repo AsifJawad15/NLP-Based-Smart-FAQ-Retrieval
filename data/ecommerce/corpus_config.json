@@ -1,0 +1,7 @@
+{
+  "display_name": "E-commerce FAQ",
+  "remove_stopwords": false,
+  "lemmatize": false,
+  "similarity_threshold": 0.30
+}
+
