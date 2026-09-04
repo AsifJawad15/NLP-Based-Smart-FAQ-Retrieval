@@ -5,7 +5,7 @@ import unittest
 
 import pandas as pd
 
-from src.data_loader import discover_corpora, load_faq_dataset, validate_faq_data
+from src.data_loader import discover_corpora, validate_faq_data
 from src.preprocessing import preprocess_text
 from src.tfidf_retrieval import answer_query, build_tfidf_index, retrieve_tfidf
 
@@ -47,7 +47,7 @@ class DataLoaderTests(unittest.TestCase):
 class RetrievalTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        cls.data = load_faq_dataset(ROOT / "data" / "university")
+        cls.data = validate_faq_data(pd.read_csv(FIXTURES / "university_sample.csv"))
         cls.vectorizer, cls.matrix = build_tfidf_index(cls.data)
 
     def test_exact_question_is_ranked_first(self) -> None:
