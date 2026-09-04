@@ -1,51 +1,51 @@
 query,expected_faq_id,is_answerable
-"I would like guidance about the following: i am taking courses at my previous university in the summer session before attending u of t mississauga, can i receive transfer credit for these courses?",395,True
-What information is available regarding this: there is a mismatch in warranty terms between flipkart and the brand's website. what will happen to the warranty on my item now?,,False
-What information is available regarding this: what should i do if i don't receive the otp or verification code?,,False
+"I need guidance on this matter: i am taking classes at my previous university in the summer session before attending U of T Mississauga, can I get transfer credit for these classes.",395,True
+Explain how this works: there is a mismatch in guarantee terms between Flipkart and the brand's website. What will happen to the guarantee on my item now.,,False
+Describe for me should I do if I don't get the OTP or verification code.,,False
 Which candidate won the national election?,,False
-Where could a qualification in Global Professional Law from UOFT lead professionally?,102,True
+How do people who finish SURE: Summer Undergraduate Scholarly work in Engineering progress professionally?,69,True
 What is the fastest route to the airport?,,False
-I would like to know whether I may participate in the Jump Start program.,318,True
-I would like guidance about the following: what research opportunities exist in doctor of philosophy in school & clinical child psychology at uoft?,73,True
-I need information about a 3D Secure password.,,False
-Tell me about the curriculum for Political Science at UOFT.,69,True
-Could you explain this issue: how long does jump start run each day?,324,True
-I would like guidance about the following: where can we take photos after the ceremony?,281,True
-Could you explain this issue: what can i write in item reviews?,,False
-I would like to know whether I may attend university with a high school study permit.,451,True
-Could you explain the career prospects for Biotechnology graduates from UOFT?,74,True
-Is it necessary for me to have health or dental insurance coverage through U of T?,476,True
+Would it be possible to participate in the Jump Start degree?,318,True
+Give me the details of the scholarly work areas in Counselling & Clinical Psychology at UTSC.,186,True
+Give me the details of a 3D Secure passcode.,,False
+What does Teaching syllabus involve?,31,True
+Please explain long does Jump Start run each day.,324,True
+I need a clear description of can we take photos after the ceremony.,281,True
+Tell me what can I write in item ratings.,,False
+Would it be possible to attend university with a high school learn permit?,451,True
+Which professions follow on from Counselling Psychology?,156,True
+Is it necessary to have health or dental insurance coverage through U of T?,476,True
 What will the weather be tomorrow morning?,,False
 How long should I bake a chocolate cake?,,False
 Can you diagnose the pain in my shoulder?,,False
-Could you tell me who does this policy apply to?,305,True
-"Could you explain this issue: i was confirmed to start practicum at a particular organization, and it is now cancelled. what happened?",496,True
-I would like guidance about the following: what personal information does the system store?,302,True
-Could you explain this issue: can you explain the structure of mineral engineering undergraduate program at uoft?,210,True
-Is it necessary for me to need to have a driving license to ride a BGauss 2-wheeler?,,False
-Could you explain this issue: what do the different purchase statuses in 'my orders' mean?,,False
-Could you explain this issue: what does it mean when my offer of admission says that ace@utm is a condition?,362,True
+Name the person who does this policy put in an application to.,305,True
+"Please explain was confirmed to start practicum at a particular organization, and it is now cancelled. What happened.",496,True
+Clarify what personal details does the system shop.,302,True
+How is Executive Education organised?,105,True
+Is it necessary to require to have a driving license to ride a BGauss 2-wheeler?,,False
+Tell me what do the distinct purchase statuses in 'My Orders' mean.,,False
+Tell me what does it mean when my offer of entry says that ACE@UTM is a condition.,362,True
 What is the current price of Bitcoin?,,False
-"Could you explain an Unspecified credit? What does the 1**H, 2**Y, etc. mean?",389,True
-What information is available regarding this: if i have found a security bug/vulnerability/issue what should i do?,,False
-What classes make up Dalla Lana School of Public Health at UOFT?,125,True
-What information is available regarding this: how is this policy enforced? are there any penalties?,313,True
-"I want to know the research focus of Germanic Literature, Culture and Theory at UOFT.",71,True
-Where is the correct place for me to find the seller's returns policy?,,False
-I need information about who do I contact if I have questions about the smoke-free policy.,317,True
-Could you explain this issue: i might miss the application deadline; can i have an extension?,409,True
-What information is available regarding this: can the system contact me by phone?,291,True
+"Explain an Unspecified credit? What does the 1**H, 2**Y, etc. mean.",389,True
+Explain how this works: if I have found a security Bug/Vulnerability/Problem what should I do.,,False
+Which areas of learning belong to Social Work?,125,True
+Describe for me is this policy enforced? Are there any penalties.,313,True
+Which study areas does PhD in Forestry pursue?,174,True
+I am looking for the right location to locate the seller's sending items back policy.,,False
+Tell me who do I reach if I have questions about the smoke-free policy.,317,True
+Please clarify the following point: i might miss the submission cut-off date; can I have an extension.,409,True
+Explain how this works: can the system reach me by phone.,291,True
 How do I repair a leaking kitchen tap?,,False
-Am I allowed to use an item that has been given to me as a gift from a state sponsored or an NGO-funded freebie distribution programme to get discounts through exchange offers?,,False
-I would like to know whether I may ensure that I am placed in a hospital setting.,491,True
+Am I allowed to make use of an product that has been given to me as a present from a state sponsored or an NGO-funded freebie distribution degree to get discounts through exchange offers?,,False
+Would it be possible to ensure that I am placed in a hospital setting?,491,True
 Who won the latest international football tournament?,,False
-I would like guidance about the following: can you explain the structure of phd: hsr program details at uoft?,156,True
-I need information about who do I talk to if I have questions or need help with my legal status and/or study/work/co-op permit(s).,462,True
-"Is it possible for me to add a special stole, jewelry or badges to my graduation gown?",278,True
+Give me the details of the key features of Geography.,74,True
+Tell me who do I talk to if I have questions or require assistance with my legal current state and/or learn/work/co-op permit(s).,462,True
+"Is it permitted to include a special stole, jewelry or badges to my graduation gown?",278,True
 Which movie should I watch tonight?,,False
-Could you tell me whether any courses offered online?,466,True
-I would like guidance about the following: i am an international applicant. how do i know if you recognize my degree?,407,True
+I want to establish whether any classes provided online.,466,True
+I need guidance on this matter: i am an overseas applicant. How do I know if you recognize my degree.,407,True
 Can you write a poem about the moon?,,False
-What information is available regarding this: i was awarded the university of toronto international scholar award. is this scholarship offer tenable with other scholarships?,375,True
-I need information about the prerequisites for Global Executive Master of Business Administration for Healthcare and the Life Sciences (GEMBA-HLS) at UOFT.,105,True
-I would like guidance about the following: how to know if my area has self pick-up service?,,False
+Explain how this works: i was awarded the University of Toronto Overseas Scholar Award. Is this funding award offer tenable with other scholarships.,375,True
+Am I allowed to defer my fees and fee transactions until my award is credited to my student profile?,378,True
+I need a clear description of to know if my area has self pick-up service.,,False

@@ -161,6 +161,159 @@ def normalized_question(text: str) -> str:
     return re.sub(r"[^a-z0-9]+", " ", text.lower()).strip()
 
 
+# The scraped pages were decoded twice, so a few punctuation marks arrive
+# damaged. These are the only sequences observed in the raw downloads.
+MOJIBAKE_REPAIRS = {
+    "â€“": "-",
+    "â€”": "-",
+    "â€™": "'",
+    "â€œ": '"',
+    "â€": '"',
+    "Â ": " ",
+}
+
+# U+FFFD is ambiguous: the same replacement character stands for an apostrophe
+# in "program?s" and for a dash in "16 months ? 4 sessions", so the surrounding
+# characters decide which one to restore.
+REPLACEMENT = "�"
+REPLACEMENT_REPAIRS = [
+    (re.compile(REPLACEMENT + r"(?=s\b)"), "'"),
+    (re.compile(REPLACEMENT + r"(?=(?:t|re|ve|ll|d|m)\b)"), "'"),
+    (re.compile(r"\s*" + REPLACEMENT + r"\s*"), " - "),
+    (re.compile(REPLACEMENT), ""),
+]
+
+
+# Constant assistant scaffolding produced by the CPath dataset. These strings
+# are fixed, never paraphrased, so removing them literally is safe.
+ASSISTANT_BOILERPLATE = [
+    "I encourage you to explore the program details further and reach out to "
+    "the university's admissions office if you have specific questions.",
+    "I recommend reviewing these requirements carefully and ensuring you meet "
+    "all prerequisites before applying.",
+    "These courses are designed to provide you with comprehensive knowledge "
+    "and skills in your field of study.",
+    "Here are the admission requirements for this program:",
+    "The program curriculum includes the following courses:",
+]
+
+# "This information comes directly from UOFT's official website." and friends.
+PROVENANCE_PATTERN = re.compile(
+    r"\s*This information comes directly from [A-Z]+'?s? official website\.\s*",
+    re.IGNORECASE,
+)
+
+# Page headings that the source dataset wrongly used as a programme name.
+HEADING_SLOT_PATTERN = re.compile(
+    r"\b(?:program\s+details|program\s+information|programs?\s+overview|"
+    r"admissions?\s+requirements?|degree\s+requirements|course\s+descriptions?|"
+    r"course\s+details|testimonials?|prospective\s+students|final\s+year\s+average|"
+    r"transcripts?|funding|prerequisites?|applicants?|office\s+of|"
+    r"thesis\s+topic|after\s+the\s+defence|admissions|alumni|"
+    r"student\s+services|how\s+to\s+apply|fees?\s+and\s+financing|"
+    r"requirements?|advising|overview|information)\b",
+    re.IGNORECASE,
+)
+
+# Question templates whose bracketed slot should name a real programme.
+SLOT_PATTERNS = [
+    r"^what can i do with a degree in (.+?) from \w+\?*$",
+    r"^what are the admission requirements for (.+?) at \w+\?*$",
+    r"^what(?:'s| is) the admission process for (.+?) at \w+\?*$",
+    r"^what are the prerequisites for (.+?) at \w+\?*$",
+    r"^how can i apply to (.+?) at \w+\?*$",
+    r"^what subjects will i study in (.+?) at \w+\?*$",
+    r"^what courses are offered in (.+?) at \w+\?*$",
+    r"^what kind of research is done in (.+?) at \w+\?*$",
+    r"^what are the research (?:areas|strengths) (?:in|of) (.+?) at \w+\?*$",
+    r"^what are the career prospects for (.+?) graduates from \w+\?*$",
+    r"^where do (.+?) graduates from \w+ typically work\?*$",
+    r"^what career opportunities .*? (?:in|for) (.+?) at \w+\?*$",
+    r"^tell me about (?:the )?(.+?) program at \w+\?*$",
+    r"^can you explain the structure of (?:the )?(.+?) at \w+\?*$",
+    r"^what jobs can i get after (?:studying |completing )?(?:the )?(.+?) at \w+\?*$",
+    r"^tell me about the classes in (?:the )?(.+?) at \w+\?*$",
+    r"^describe the (.+?) (?:curriculum|program) at \w+\.?\?*$",
+    r"^describe the (.+?) at \w+\.?\?*$",
+    r"^what makes the (.+?) (?:program |degree )?(?:at \w+ )?unique\?*$",
+    r"^what research opportunities exist in (?:the )?(.+?) at \w+\?*$",
+    r"^what are the key features of (?:the )?(.+?) at \w+\?*$",
+]
+
+
+def repair_text(text: str) -> str:
+    """Repair the double-decoded punctuation seen in the scraped sources."""
+
+    for damaged, fixed in MOJIBAKE_REPAIRS.items():
+        text = text.replace(damaged, fixed)
+    for pattern, fixed in REPLACEMENT_REPAIRS:
+        text = pattern.sub(fixed, text)
+    return text
+
+
+def strip_assistant_boilerplate(answer: str) -> str:
+    """Remove the fixed LLM-assistant scaffolding the project plan rejects."""
+
+    cleaned = PROVENANCE_PATTERN.sub(" ", answer)
+    for phrase in ASSISTANT_BOILERPLATE:
+        cleaned = cleaned.replace(phrase, " ")
+    return clean_spaces(cleaned)
+
+
+def question_slot(question: str) -> str | None:
+    """Return the programme name a CPath question template was filled with."""
+
+    for pattern in SLOT_PATTERNS:
+        match = re.match(pattern, question.strip(), flags=re.IGNORECASE)
+        if match:
+            return match.group(1).strip()
+    return None
+
+
+# Markers that begin a scraped page footer or staff-contact block. Everything
+# from the earliest marker onwards is page furniture rather than an answer.
+FURNITURE_MARKERS = [
+    re.compile(r"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}", re.IGNORECASE),
+    re.compile(r"\b[A-Z]\d[A-Z]\s?\d[A-Z]\d\b"),  # Canadian postal code
+    re.compile(r"©"),
+    re.compile(r"\ball rights reserved\b", re.IGNORECASE),
+    re.compile(r"\bManages [A-Z]", re.IGNORECASE),
+    re.compile(r"\b\d{1,4} College Street\b", re.IGNORECASE),
+]
+
+
+def trim_page_furniture(answer: str) -> str:
+    """Cut a scraped footer or contact block off the end of an answer.
+
+    Input: one converted answer that may end in page furniture.
+    Output: the answer text up to the earliest furniture marker.
+    """
+
+    cut = len(answer)
+    for marker in FURNITURE_MARKERS:
+        match = marker.search(answer)
+        if match:
+            cut = min(cut, match.start())
+    trimmed = answer[:cut]
+
+    # Drop a trailing partial sentence left behind by the cut.
+    if cut < len(answer) and "." in trimmed:
+        trimmed = trimmed[: trimmed.rfind(".") + 1]
+    return clean_spaces(trimmed)
+
+
+def is_structural_scrape(answer: str) -> bool:
+    """Detect navigation menus and link tables that cannot be trimmed."""
+
+    if answer.count(" - ") >= 5:
+        return True
+    if len(answer.split()) > 60 and answer.count(".") <= 1:
+        return True
+    if answer.lower().count("course details") >= 3:
+        return True
+    return False
+
+
 def university_category(question: str) -> str:
     """Assign a clear course-project category using visible keyword rules."""
 
@@ -343,9 +496,9 @@ def convert_ecommerce(raw: pd.DataFrame) -> pd.DataFrame:
     excluded = re.compile(r"covid|flight|hotel|travel|insurance|loan", re.IGNORECASE)
     records: list[dict[str, object]] = []
     for _, row in raw.iterrows():
-        source_category = clean_spaces(row.get("category"))
-        question = clean_spaces(row.get("question"))
-        answer = clean_spaces(row.get("answer"))
+        source_category = repair_text(clean_spaces(row.get("category")))
+        question = repair_text(clean_spaces(row.get("question")))
+        answer = repair_text(clean_spaces(row.get("answer")))
         source = clean_spaces(row.get("faq_url"))
         q_words, a_words = len(question.split()), len(answer.split())
 
@@ -504,17 +657,20 @@ def convert_university(
     records: list[dict[str, object]] = []
     for _, row in raw.iterrows():
         question = re.sub(
-            r"^as cpath,\s*", "", clean_spaces(row.get("instruction")),
+            r"^as cpath,\s*", "", repair_text(clean_spaces(row.get("instruction"))),
             flags=re.IGNORECASE,
         )
         answer = re.sub(
             r"^as your canadian academic pathfinder,\s*", "",
-            clean_spaces(row.get("output")), flags=re.IGNORECASE,
+            repair_text(clean_spaces(row.get("output"))), flags=re.IGNORECASE,
         )
         answer = re.sub(
             r"^(?:i'm|i’m) happy to help\.\s*", "", answer,
             flags=re.IGNORECASE,
         )
+        # The plan requires the assistant framing to be removed, not just the
+        # opening "As CPath" phrase.
+        answer = trim_page_furniture(strip_assistant_boilerplate(answer))
         source = clean_spaces(row.get("source_url"))
         category = university_question_category(question)
         q_words, a_words = len(question.split()), len(answer.split())
@@ -522,6 +678,15 @@ def convert_university(
         if not category or not source.startswith("http"):
             continue
         if not 6 <= q_words <= 24 or not 15 <= a_words <= 400:
+            continue
+        # Reject questions built from a page heading instead of a programme
+        # name, which produced items such as "what subjects will I study in
+        # Final Year Average at UOFT?".
+        slot = question_slot(question)
+        if slot is None or HEADING_SLOT_PATTERN.search(slot):
+            continue
+        # Reject navigation menus, link tables, and scraped page footers.
+        if is_structural_scrape(answer):
             continue
         if bad_question.search(question) or bad_source.search(source):
             continue
@@ -537,7 +702,9 @@ def convert_university(
             content_tokens(question) & content_tokens(source.replace("-", " "))
         )
         if (
-            alignment < 2
+            # One category word is enough now that heading, boilerplate, and
+            # structural-scrape rejection carry the quality checks.
+            alignment < 1
             or question_answer_overlap < 1
             or question_source_overlap < 1
         ):
@@ -575,8 +742,8 @@ def convert_university(
     official_records: list[dict[str, object]] = []
     trusted_hosts = ("utoronto.ca", "ubc.ca", "mcgill.ca")
     for _, row in official_faqs.iterrows():
-        question = clean_spaces(row.get("question"))
-        answer = clean_spaces(row.get("answer"))
+        question = repair_text(clean_spaces(row.get("question")))
+        answer = repair_text(clean_spaces(row.get("answer")))
         source = clean_spaces(row.get("source"))
         category = clean_spaces(row.get("category"))
         if not source.lower().startswith("https://") or not any(
@@ -640,139 +807,358 @@ def select_balanced_ids(data: pd.DataFrame, count: int, seed: int) -> list[int]:
     raise ValueError(f"Could not select {count} balanced FAQ ids")
 
 
+# Content-word substitutions. Rewording the topic itself is what makes a
+# generated query a real paraphrase instead of the original question with a
+# new opening phrase.
+CONTENT_SYNONYMS = {
+    # University vocabulary
+    "admission": "entry",
+    "admissions": "entry",
+    "requirements": "criteria",
+    "requirement": "criterion",
+    "prerequisites": "entry conditions",
+    "apply": "put in an application",
+    "application": "submission",
+    "courses": "classes",
+    "course": "class",
+    "subjects": "topics",
+    "subject": "topic",
+    "programme": "degree",
+    "program": "degree",
+    "curriculum": "syllabus",
+    "structure": "organisation",
+    "study": "learn",
+    "studying": "learning",
+    "career": "professional",
+    "careers": "professions",
+    "prospects": "outlook",
+    "research": "scholarly work",
+    "graduates": "former students",
+    "graduate": "former student",
+    "tuition": "fees",
+    "scholarship": "funding award",
+    "deadline": "cut-off date",
+    "transcript": "academic record",
+    "enrol": "register",
+    "faculty": "teaching staff",
+    "thesis": "dissertation",
+    "campus": "university grounds",
+    "international": "overseas",
+    # E-commerce vocabulary
+    "order": "purchase",
+    "orders": "purchases",
+    "delivery": "shipment",
+    "shipping": "dispatch",
+    "refund": "money back",
+    "return": "send back",
+    "returns": "sending items back",
+    "cancel": "call off",
+    "cancellation": "calling off",
+    "payment": "transaction",
+    "payments": "transactions",
+    "wallet": "digital purse",
+    "account": "profile",
+    "password": "passcode",
+    "review": "rating",
+    "reviews": "ratings",
+    "warranty": "guarantee",
+    "installation": "set-up",
+    "coupon": "voucher",
+    "discount": "price reduction",
+    "seller": "vendor",
+    "product": "item",
+    "products": "items",
+    "replacement": "exchange",
+    "track": "follow",
+    "invoice": "bill",
+    "purchase": "buy",
+    # Shared verbs and nouns
+    "receive": "get",
+    "obtain": "get",
+    "need": "require",
+    "change": "modify",
+    "check": "verify",
+    "find": "locate",
+    "help": "assistance",
+    "information": "details",
+    "available": "on offer",
+    "offered": "provided",
+    "pay": "settle the amount",
+    "paying": "settling payment",
+    "using": "with",
+    "option": "choice",
+    "options": "choices",
+    "mode": "method",
+    "cost": "charge",
+    "gift": "present",
+    "store": "shop",
+    "buy": "order",
+    "use": "make use of",
+    "item": "product",
+    "items": "products",
+    "different": "distinct",
+    "cash": "money",
+    "rewards": "benefits",
+    "price": "amount",
+    "feature": "function",
+    "pick": "collect",
+    "address": "location",
+    "brand": "make",
+    "authorised": "approved",
+    "dealer": "retailer",
+    "bank": "financial institution",
+    "charges": "costs",
+    "process": "procedure",
+    "steps": "stages",
+    "issue": "problem",
+    "contact": "reach",
+    "update": "revise",
+    "select": "choose",
+    "add": "include",
+    "remove": "delete",
+    "verify": "confirm",
+    "eligible": "qualified",
+    "status": "current state",
+    "number": "identifier",
+    "details": "particulars",
+}
+
+WORD_PATTERN = re.compile(r"[A-Za-z][A-Za-z'-]*")
+
+
+def substitute_content_words(text: str) -> str:
+    """Replace known content words with plain-English equivalents.
+
+    Input: any fragment of a source FAQ question.
+    Output: the same meaning expressed with different vocabulary.
+    """
+
+    def replace(match: re.Match[str]) -> str:
+        word = match.group(0)
+        replacement = CONTENT_SYNONYMS.get(word.lower())
+        if replacement is None:
+            return word
+        if word[0].isupper():
+            return replacement[0].upper() + replacement[1:]
+        return replacement
+
+    return WORD_PATTERN.sub(replace, text)
+
+
+# Stems are rewritten structurally; the captured topic is reworded separately.
+PARAPHRASE_PATTERNS = [
+    (r"^how (?:do|can) i (.+)$", [
+        "What steps should someone follow to {0}?",
+        "What is the correct procedure to {0}?",
+        "I am trying to {0} - what is the process?",
+    ]),
+    (r"^where can i (.+)$", [
+        "Which page should someone visit to {0}?",
+        "In which place is it possible to {0}?",
+        "I am looking for the right location to {0}.",
+    ]),
+    (r"^can i (.+)$", [
+        "Is it permitted to {0}?",
+        "Am I allowed to {0}?",
+        "Would it be possible to {0}?",
+    ]),
+    (r"^what are the admission requirements for (.+?)(?: at \w+)?$", [
+        "Which entry criteria must be met for {0}?",
+        "What must an applicant satisfy before joining {0}?",
+        "Which qualifications does {0} expect?",
+    ]),
+    (r"^what(?:'s| is) the admission process for (.+?)(?: at \w+)?$", [
+        "Which stages make up entry to {0}?",
+        "How does someone work through entry to {0}?",
+        "Walk me through joining {0}.",
+    ]),
+    (r"^what are the prerequisites for (.+?)(?: at \w+)?$", [
+        "Which background knowledge is expected before {0}?",
+        "What must be completed ahead of {0}?",
+        "Which earlier work does {0} assume?",
+    ]),
+    (r"^how can i apply to (.+?)(?: at \w+)?$", [
+        "Which steps lead to a submission for {0}?",
+        "How is an application prepared for {0}?",
+        "What is involved in putting an application into {0}?",
+    ]),
+    (r"^what courses are offered in (.+?)(?: at \w+)?$", [
+        "Which classes can be taken within {0}?",
+        "What teaching is provided inside {0}?",
+        "Which units are available under {0}?",
+    ]),
+    (r"^what subjects will i study in (.+?)(?: at \w+)?$", [
+        "Which topics are covered inside {0}?",
+        "What material does {0} teach?",
+        "Which areas of learning belong to {0}?",
+    ]),
+    (r"^what kind of research is done in (.+?)(?: at \w+)?$", [
+        "Which scholarly work happens within {0}?",
+        "What investigations are carried out in {0}?",
+        "Which study areas does {0} pursue?",
+    ]),
+    (r"^what can i do with a degree in (.+?)(?: from \w+)?$", [
+        "Which professions follow on from {0}?",
+        "Where does a qualification in {0} lead?",
+        "What working life comes after {0}?",
+    ]),
+    (r"^what are the career prospects for (.+?) graduates(?: from \w+)?$", [
+        "What working outlook do former {0} students have?",
+        "Which jobs tend to follow {0}?",
+        "How do people who finish {0} progress professionally?",
+    ]),
+    (r"^where do (.+?) graduates(?: from \w+)? typically work$", [
+        "In which places do former {0} students find employment?",
+        "Which employers take on people who finish {0}?",
+        "What kind of workplace suits a {0} leaver?",
+    ]),
+    (r"^what jobs can i get after (.+?)(?: at \w+)?$", [
+        "Which roles open up once {0} is finished?",
+        "What employment follows {0}?",
+        "Which positions suit someone who completed {0}?",
+    ]),
+    (r"^can you explain the structure of (.+?)(?: at \w+)?$", [
+        "How is {0} organised?",
+        "What shape does {0} take?",
+        "Describe the way {0} is arranged.",
+    ]),
+    (r"^describe the (.+?)(?: at \w+)?$", [
+        "Give an outline of {0}.",
+        "What does {0} involve?",
+        "Summarise {0} for me.",
+    ]),
+    (r"^tell me about (?:the )?(.+?)(?: at \w+)?$", [
+        "What should someone know about {0}?",
+        "Give me an overview of {0}.",
+        "Explain {0} briefly.",
+    ]),
+    (r"^what makes (?:the )?(.+?) unique$", [
+        "What sets {0} apart from similar options?",
+        "Which features distinguish {0}?",
+        "Why would someone pick {0} over the alternatives?",
+    ]),
+    (r"^what research opportunities exist in (.+?)(?: at \w+)?$", [
+        "Which openings for scholarly work sit inside {0}?",
+        "What investigative work can be joined within {0}?",
+        "Where can study projects be found in {0}?",
+    ]),
+    (r"^why (.+)$", [
+        "For what reason {0}?",
+        "What lies behind the fact that {0}?",
+        "Explain the cause: {0}.",
+    ]),
+    (r"^when (.+)$", [
+        "At which point {0}?",
+        "What is the timing for when {0}?",
+        "Tell me the moment at which {0}.",
+    ]),
+    (r"^what (?:is|are) (.+)$", [
+        "Explain {0}.",
+        "Give me the details of {0}.",
+        "What should be understood about {0}?",
+    ]),
+    (r"^will i (.+)$", [
+        "Should I expect to {0}?",
+        "Is it the case that I would {0}?",
+        "Confirm whether someone would {0}.",
+    ]),
+    (r"^do i (.+)$", [
+        "Is it necessary to {0}?",
+        "Must someone {0}?",
+        "Am I expected to {0}?",
+    ]),
+    (r"^(?:is|are) (.+)$", [
+        "Confirm whether {0}.",
+        "Tell me if {0}.",
+        "I want to establish whether {0}.",
+    ]),
+    (r"^which (.+)$", [
+        "Identify which {0}.",
+        "Tell me which {0}.",
+        "Point me to which {0}.",
+    ]),
+    (r"^who (.+)$", [
+        "Name the person who {0}.",
+        "Tell me who {0}.",
+        "Identify who {0}.",
+    ]),
+    (r"^what (.+)$", [
+        "Tell me what {0}.",
+        "Clarify what {0}.",
+        "I need to establish what {0}.",
+    ]),
+]
+
+# Used only when no structural pattern matches. These still reword the
+# content, so they never reproduce the source question verbatim.
+STRUCTURAL_FALLBACKS = [
+    "Please clarify the following point: {0}.",
+    "I need guidance on this matter: {0}.",
+    "Explain how this works: {0}.",
+]
+
+
+def break_verbatim_reuse(candidate: str, original: str, variant: int) -> str:
+    """Reword a query that still repeats its source question word for word.
+
+    Input: a generated query, its source question, and the variant number.
+    Output: the query, restructured if it still contains the source verbatim.
+    """
+
+    if normalized_question(original) not in normalized_question(candidate):
+        return candidate
+
+    # Strip the opening interrogative so the sentence is rebuilt as a request
+    # rather than repeated as a question.
+    body = re.sub(
+        r"^(?:what|which|when|where|why|who|how|can|could|do|does|did|is|are|"
+        r"will|would|should|if)\b\s*", "", original, flags=re.IGNORECASE
+    ).strip()
+    body = re.sub(r"^(?:i|you|we|they)\b\s*", "", body, flags=re.IGNORECASE).strip()
+    body = substitute_content_words(body).rstrip("?.! ")
+    if len(body.split()) < 3:
+        body = substitute_content_words(original).rstrip("?.! ")
+
+    rebuilt = [
+        f"Please explain {body}.",
+        f"I need a clear description of {body}.",
+        f"Describe for me {body}.",
+    ][variant % 3]
+    return clean_spaces(rebuilt)
+
+
 def paraphrase_question(question: str, variant: int) -> str:
-    """Create a structurally different, deterministic evaluation query."""
+    """Create a structurally and lexically different evaluation query.
 
-    original = clean_spaces(question).rstrip("?").strip()
+    Input: one frozen FAQ question and a deterministic variant number.
+    Output: a reworded query that keeps the meaning but not the wording.
+    """
+
+    original = clean_spaces(question).rstrip("?.! ").strip()
+    # The corpus appends the institution to most generated questions; keeping
+    # it would leak an exact token into every paraphrase.
+    original = re.sub(
+        r"\s+(?:at|from)\s+(?:UOFT|UBC|MCGILL)\s*$", "", original, flags=re.IGNORECASE
+    ).strip()
     lower = original.lower()
-    patterns = [
-        (r"^how (?:do|can) i (.+)$", [
-            "What steps should I follow to {0}?",
-            "Could you explain the process for {0}?",
-            "I need help figuring out how to {0}.",
-            "Please guide me through how to {0}.",
-        ]),
-        (r"^where can i (.+)$", [
-            "Which page or place should I use to {0}?",
-            "I need to {0}; where should I go?",
-            "Where is the correct place for me to {0}?",
-        ]),
-        (r"^can i (.+)$", [
-            "Is it possible for me to {0}?",
-            "Am I allowed to {0}?",
-            "I would like to know whether I may {0}.",
-        ]),
-        (r"^what are the admission requirements for (.+)$", [
-            "What qualifications are needed to apply to {0}?",
-            "Which requirements must an applicant meet for {0}?",
-            "What do I need before applying to {0}?",
-        ]),
-        (r"^what(?:'s| is) the admission process for (.+)$", [
-            "Which steps are involved in applying to {0}?",
-            "Please explain how admission to {0} works.",
-            "How would an applicant apply for {0}?",
-        ]),
-        (r"^what courses are offered in (.+)$", [
-            "Which classes can students take in {0}?",
-            "I want to know the course choices for {0}.",
-            "What can a student study in {0}?",
-        ]),
-        (r"^what subjects will i study in (.+)$", [
-            "Which subjects are included in {0}?",
-            "Tell me about the curriculum for {0}.",
-            "What classes make up {0}?",
-        ]),
-        (r"^what kind of research is done in (.+)$", [
-            "Which research areas does {0} cover?",
-            "What research work takes place in {0}?",
-            "I want to know the research focus of {0}.",
-        ]),
-        (r"^what resources are available for students in (.+)$", [
-            "Which student support resources does {0} provide?",
-            "What help can students receive through {0}?",
-            "Tell me about resources for students in {0}.",
-        ]),
-        (r"^what can i do with a degree in (.+)$", [
-            "What career paths are available after studying {0}?",
-            "Which opportunities follow a degree in {0}?",
-            "Where could a qualification in {0} lead professionally?",
-        ]),
-        (r"^tell me about (.+)$", [
-            "Could you provide information about {0}?",
-            "I would like an overview of {0}.",
-            "What should I know about {0}?",
-        ]),
-        (r"^why (.+)$", [
-            "What is the reason that {0}?",
-            "Could you explain why {0}?",
-            "I want to understand why {0}.",
-        ]),
-        (r"^when (.+)$", [
-            "At what time or stage {0}?",
-            "Could you tell me when {0}?",
-            "I need the timing for when {0}.",
-        ]),
-        (r"^what (?:is|are) (.+)$", [
-            "Could you explain {0}?",
-            "I need information about {0}.",
-            "What should I know concerning {0}?",
-        ]),
-        (r"^will i (.+)$", [
-            "I want to know whether I will {0}.",
-            "Could you confirm if I will {0}?",
-            "Please tell me whether I can expect to {0}.",
-        ]),
-        (r"^do i (.+)$", [
-            "Is it necessary for me to {0}?",
-            "Please confirm whether I need to {0}.",
-            "Am I expected to {0}?",
-        ]),
-        (r"^is (.+)$", [
-            "Please tell me whether {0}.",
-            "Could you confirm if {0}?",
-            "I would like to know whether {0}.",
-        ]),
-        (r"^are (.+)$", [
-            "Please confirm whether {0}.",
-            "I need to know if {0}.",
-            "Could you tell me whether {0}?",
-        ]),
-        (r"^which (.+)$", [
-            "I need to know which {0}.",
-            "Could you identify which {0}?",
-            "Please tell me which {0}.",
-        ]),
-        (r"^who (.+)$", [
-            "Could you tell me who {0}?",
-            "I need information about who {0}.",
-            "Please identify who {0}.",
-        ]),
-    ]
-    for pattern, templates in patterns:
-        match = re.match(pattern, lower, flags=re.IGNORECASE)
-        if match:
-            topic = original[match.start(1) : match.end(1)]
-            return templates[variant % len(templates)].format(topic)
 
-    replacements = {
-        " get ": " receive ",
-        " buy ": " purchase ",
-        " use ": " utilize ",
-        " need ": " require ",
-        " help ": " assistance ",
-        " product ": " item ",
-        " order ": " purchase ",
-    }
-    changed = f" {original.lower()} "
-    for old, new in replacements.items():
-        changed = changed.replace(old, new)
-    changed = clean_spaces(changed)
-    fallbacks = [
-        "Could you explain this issue: {0}?",
-        "I would like guidance about the following: {0}?",
-        "What information is available regarding this: {0}?",
-    ]
-    return fallbacks[variant % len(fallbacks)].format(changed)
+    for pattern, templates in PARAPHRASE_PATTERNS:
+        match = re.match(pattern, lower, flags=re.IGNORECASE)
+        if not match:
+            continue
+        topic = original[match.start(1) : match.end(1)].strip()
+        reworded = substitute_content_words(topic)
+        return break_verbatim_reuse(
+            templates[variant % len(templates)].format(reworded), original, variant
+        )
+
+    reworded = substitute_content_words(original)
+    reworded = reworded[0].lower() + reworded[1:] if reworded else reworded
+    return break_verbatim_reuse(
+        STRUCTURAL_FALLBACKS[variant % len(STRUCTURAL_FALLBACKS)].format(reworded),
+        original,
+        variant,
+    )
 
 
 def build_query_sets(

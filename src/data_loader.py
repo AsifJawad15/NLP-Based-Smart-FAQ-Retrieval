@@ -159,7 +159,20 @@ def load_corpus_config(corpus_dir: str | Path) -> dict[str, object]:
     if not 0.0 <= threshold <= 1.0:
         raise ValueError("similarity_threshold must be between 0 and 1")
     config["similarity_threshold"] = threshold
-    config["remove_stopwords"] = bool(config["remove_stopwords"])
-    config["lemmatize"] = bool(config["lemmatize"])
+    config["remove_stopwords"] = _parse_flag(config["remove_stopwords"], "remove_stopwords")
+    config["lemmatize"] = _parse_flag(config["lemmatize"], "lemmatize")
     return config
+
+
+def _parse_flag(value: object, name: str) -> bool:
+    """Read a preprocessing switch without treating "false" as True."""
+
+    if isinstance(value, bool):
+        return value
+    normalized = str(value).strip().lower()
+    if normalized in {"true", "1", "yes"}:
+        return True
+    if normalized in {"false", "0", "no"}:
+        return False
+    raise ValueError(f"Invalid boolean for '{name}': {value!r}")
 
