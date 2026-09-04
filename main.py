@@ -8,6 +8,7 @@ Examples:
 from __future__ import annotations
 
 import argparse
+import sys
 from pathlib import Path
 
 from src.data_loader import discover_corpora, load_corpus_config, load_faq_dataset
@@ -16,6 +17,12 @@ from src.tfidf_retrieval import answer_query, build_tfidf_index
 
 BASE_DIR = Path(__file__).resolve().parent
 DATA_ROOT = BASE_DIR / "data"
+
+# A Windows console defaults to cp1252, which cannot print every character an
+# FAQ answer may contain. Replacing unprintable characters keeps the
+# demonstration running instead of raising UnicodeEncodeError mid-answer.
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(errors="replace")
 
 
 def choose_corpus(corpora: dict[str, Path]) -> tuple[str, Path]:

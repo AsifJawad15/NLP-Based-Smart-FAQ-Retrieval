@@ -184,6 +184,33 @@ REPLACEMENT_REPAIRS = [
 ]
 
 
+# Typographic punctuation is folded to ASCII so the finalized CSVs print
+# correctly on a plain Windows console during the terminal demonstration.
+PUNCTUATION_REPAIRS = {
+    "\u2011": "-",
+    "\u2012": "-",
+    "\u2013": "-",
+    "\u2014": "-",
+    "\u2015": "-",
+    "\u2018": "'",
+    "\u2019": "'",
+    "\u201a": "'",
+    "\u201c": '"',
+    "\u201d": '"',
+    "\u201e": '"',
+    "\u2026": "...",
+    "\u00a0": " ",
+    "\u00ad": "",
+    "\u2032": "'",
+    "\u2033": '"',
+    "\u00b7": "-",
+    "\u2022": "-",
+    "\u2010": "-",
+    "\u203a": ">",
+    "\u2039": "<",
+}
+
+
 # Constant assistant scaffolding produced by the CPath dataset. These strings
 # are fixed, never paraphrased, so removing them literally is safe.
 ASSISTANT_BOILERPLATE = [
@@ -248,6 +275,8 @@ def repair_text(text: str) -> str:
         text = text.replace(damaged, fixed)
     for pattern, fixed in REPLACEMENT_REPAIRS:
         text = pattern.sub(fixed, text)
+    for fancy, plain in PUNCTUATION_REPAIRS.items():
+        text = text.replace(fancy, plain)
     return text
 
 

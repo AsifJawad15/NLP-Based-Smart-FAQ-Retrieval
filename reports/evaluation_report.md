@@ -50,4 +50,4 @@ frozen into `corpus_config.json`, and then applied once to the test set.
   - Retrieved question: can you explain the structure of Ecology and Evolutionary Biology at UOFT?
 - Query: What shape does Counselling & Clinical Psychology take?
   - Expected FAQ 83, retrieved FAQ 39 (similarity 0.5762, accepted=True)
-  - Retrieved question: what makes the Counselling and Clinical Psychology – Field in Clinical and Counselling Psychology (OISE) program at UOFT unique?
+  - Retrieved question: what makes the Counselling and Clinical Psychology - Field in Clinical and Counselling Psychology (OISE) program at UOFT unique?
