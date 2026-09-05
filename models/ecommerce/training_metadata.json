@@ -1,0 +1,38 @@
+{
+  "artifact_id": "4862e9cc8d010be6fdf7607f0f91475f89b840743e45e899a75ddcf86b3c6b33",
+  "corpus": "ecommerce",
+  "corpus_sha256": "b6e1697cebf60678d51bb94586fcb81b60a820a52530cd33b92f813096bbcec8",
+  "faq_count": 500,
+  "package_versions": {
+    "gensim": "4.4.0",
+    "nltk": "3.10.3",
+    "numpy": "2.5.2",
+    "python": "3.12.7",
+    "scipy": "1.18.1"
+  },
+  "preprocessing_options": {
+    "lemmatize": false,
+    "remove_stopwords": false
+  },
+  "python_hash_seed": 42,
+  "token_count": 6665,
+  "training_settings": {
+    "alpha": 0.025,
+    "epochs": 30,
+    "hs": 0,
+    "min_alpha": 0.0001,
+    "min_count": 1,
+    "negative": 5,
+    "sample": 0,
+    "seed": 42,
+    "sg": 1,
+    "shrink_windows": false,
+    "sorted_vocab": 1,
+    "vector_size": 100,
+    "window": 5,
+    "workers": 1
+  },
+  "training_text": "faq_questions_only",
+  "vector_sha256": "817083436f9af8623bf8f116a0f90a3753e090e38de9d9a660ea66e624a92bdc",
+  "vocabulary_size": 680
+}

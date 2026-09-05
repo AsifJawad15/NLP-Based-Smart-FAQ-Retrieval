@@ -1,0 +1,38 @@
+{
+  "artifact_id": "e91b65953cda40c5bfe16c8ae201d46910620096ba3ff803291ebabfde173920",
+  "corpus": "university",
+  "corpus_sha256": "8b43d730e561dd09b71b2f2620ab87a28c5635d106b5ccbe4d67ee868216b6ec",
+  "faq_count": 500,
+  "package_versions": {
+    "gensim": "4.4.0",
+    "nltk": "3.10.3",
+    "numpy": "2.5.2",
+    "python": "3.12.7",
+    "scipy": "1.18.1"
+  },
+  "preprocessing_options": {
+    "lemmatize": false,
+    "remove_stopwords": false
+  },
+  "python_hash_seed": 42,
+  "token_count": 6257,
+  "training_settings": {
+    "alpha": 0.025,
+    "epochs": 30,
+    "hs": 0,
+    "min_alpha": 0.0001,
+    "min_count": 1,
+    "negative": 5,
+    "sample": 0,
+    "seed": 42,
+    "sg": 1,
+    "shrink_windows": false,
+    "sorted_vocab": 1,
+    "vector_size": 100,
+    "window": 5,
+    "workers": 1
+  },
+  "training_text": "faq_questions_only",
+  "vector_sha256": "c1a522c5b79fd28fe8c7c3c3a6fe856181db5c99a1c6b4b5e4df679d73125904",
+  "vocabulary_size": 859
+}

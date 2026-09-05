@@ -163,6 +163,17 @@ def select_preprocessing(
     }
 
 
+def tune_ranked_threshold(validation_data: pd.DataFrame, ranking: dict) -> dict[str, Any]:
+    """Sweep a cached ranking from any representation using Phase 1's policy."""
+
+    answerable, unanswerable = _split_masks(validation_data)
+    if not answerable.any() or not unanswerable.any():
+        raise ValueError("Threshold tuning requires answerable and unanswerable validation queries")
+    sweep = [balanced_accept_reject_score(validation_data, ranking, t) for t in THRESHOLD_STEPS]
+    best = max(sweep, key=lambda row: (row["score"], row["threshold"]))
+    return {"selected_threshold": best["threshold"], "selected_score": best["score"], "sweep": sweep}
+
+
 def tune_threshold(
     validation_data: pd.DataFrame,
     faq_data: pd.DataFrame,
@@ -191,13 +202,14 @@ def tune_threshold(
         row for row in selection["preprocessing_comparison"]
         if row["config"] == selection["selected_config"]
     )
+    threshold_result = tune_ranked_threshold(validation_data, ranking)
     sweep = [
         {
             "config": selection["selected_config"],
             "config_rank": chosen["config_rank"],
-            **balanced_accept_reject_score(validation_data, ranking, threshold),
+            **row,
         }
-        for threshold in THRESHOLD_STEPS
+        for row in threshold_result["sweep"]
     ]
     best = max(sweep, key=lambda row: (row["score"], row["threshold"]))
     return {
@@ -235,6 +247,23 @@ def evaluate_tfidf(
         test_data["query"], faq_data, vectorizer, faq_matrix, preprocessing_options,
         max(3, top_k),
     )
+    return evaluate_rankings(
+        test_data, faq_data, ranking, threshold, preprocessing_options, max_examples
+    )
+
+
+def evaluate_rankings(
+    test_data: pd.DataFrame,
+    faq_data: pd.DataFrame,
+    ranking: dict[str, np.ndarray],
+    threshold: float,
+    preprocessing_options: dict[str, bool] | None = None,
+    max_examples: int = 5,
+) -> dict[str, Any]:
+    """Apply identical retrieval and delivery metric definitions to any ranking."""
+
+    if not 0.0 <= threshold <= 1.0:
+        raise ValueError("threshold must be between 0 and 1")
     answerable, unanswerable = _split_masks(test_data)
     accepted = _accepted(ranking, threshold)
 
