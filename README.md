@@ -10,6 +10,28 @@ set and an E-commerce FAQ set — each with its own preprocessing configuration
 and its own similarity threshold. Once the data is prepared, everything runs
 offline.
 
+## Completion and verification
+
+**Phase 2's three-model experiment is complete for the undergraduate lab
+scope. Human evaluation is still pending.** The review on 5 September 2026
+verified 83 passing tests, consistent package dependencies, both corpus
+validators, and all 29 notebook code cells executing successfully.
+
+Fresh subprocess training reproduced both full-corpus Word2Vec models exactly
+at the numerical-vector level. Validation reproduced all four Word2Vec
+thresholds and sweeps; testing reproduced all six model reports, both paired
+prediction CSVs, and the comparison summary. The FAQ/query CSVs, manual
+templates, TF-IDF configurations, and Phase 1 metric values remain unchanged.
+The two baseline evaluation JSONs have gained only `model` and `model_label`
+fields since the Phase 1 checkpoint.
+
+The tests cover repeated-token weighting, OOV and zero-vector rejection,
+stable ranking and threshold boundaries, runtime/batch agreement, separate
+question-only training, persistence, stale artifacts, and empty/populated
+temporary manual evaluations. Passing these checks verifies the experiment's
+implementation; it does not establish real-user accuracy or every label's
+semantic correctness.
+
 ## Synthetic benchmark results
 
 Preprocessing and threshold were selected on validation queries only, frozen
@@ -59,8 +81,8 @@ not establish that lemmatization improves retrieval or never helps other data.
 
 Phase 2 trains one Skip-Gram Word2Vec model per domain on that domain's **FAQ
 questions only**, then compares three ways of ranking the same 200 test queries.
-Both Word2Vec models come from the same trained file and differ only in how word
-vectors are combined into one question vector.
+For each domain, both Word2Vec aggregation methods reuse the same trained file
+and differ only in how word vectors are combined into one question vector.
 
 | Metric | TF-IDF | Word2Vec mean | Word2Vec TF-IDF weighted |
 | --- | --- | --- | --- |
@@ -71,20 +93,25 @@ vectors are combined into one question vector.
 | E-commerce correct answer rate | **0.820** | 0.633 | 0.687 |
 | E-commerce threshold | 0.58 | 0.92 | 0.91 |
 
-**TF-IDF wins on both corpora, and that is reported as measured.** Two reasons:
+**TF-IDF has higher Top-1 accuracy and correct answer rate on both corpora.**
+The following observations help interpret this result; the experiment does not
+isolate a single cause:
 
-1. Each domain supplies only about 6,300-6,700 training tokens. That is far too
-   little for Word2Vec to learn reliable relationships, and the notebook's
-   nearest-neighbour output shows the mixture of sensible and noisy results.
-2. Averaging dense vectors compresses the score range. TF-IDF separates
-   answerable from unanswerable queries by 0.34-0.37 in mean cosine; the
-   Word2Vec methods manage only 0.03-0.09. The tuned threshold therefore has to
-   sit near 0.95, and correct Top-1 matches scoring just below it are rejected.
+1. University supplies 6,257 training tokens and e-commerce 6,665. This small
+   training set limits the evidence available to learn word relationships;
+   the notebook shows both plausible and noisy nearest neighbours.
+2. These trained sentence vectors produce closely grouped scores. The mean
+   best-match cosine differs between answerable and unanswerable queries by
+   0.34-0.37 for TF-IDF and only 0.03-0.09 for Word2Vec. Validation selects
+   Word2Vec thresholds of 0.91-0.95, which reject some correct Top-1 matches.
    On university, the weighted model ranks 104 of 150 answerable queries first
    but delivers only 74.
 
-IDF weighting does help over plain averaging on university Top-1 (0.693 against
-0.587), the expected direction, without closing the gap to TF-IDF.
+IDF weighting improves university Top-1 over plain averaging (0.693 against
+0.587), but reduces e-commerce Top-1 (0.740 against 0.753). It does not improve
+university correct answer rate, while it raises e-commerce correct answer rate
+from 0.633 to 0.687. Higher cosine values are neither calibrated probabilities
+nor evidence of better retrieval; compare the measured decisions and errors.
 
 Full tables, per-model sweeps and a paired per-query CSV are in
 [reports/phase2/](reports/phase2/); sections 11 to 13 of the notebook explain
@@ -97,13 +124,17 @@ python scripts/train_word2vec.py --corpus all
 # Tune both Word2Vec thresholds, then evaluate all three models
 python evaluate.py all --model all
 
+# Reproduce the comparison using frozen thresholds, without tuning
+python evaluate.py test --model all
+
 # Ask one question with a chosen model
 python main.py --corpus university --model w2v_mean --query "How do I receive university alerts?"
 ```
 
 Word2Vec thresholds live in `data/<corpus>/word2vec_config.json`, keyed to the
-trained model's artifact id, so the frozen Phase 1 `corpus_config.json` is never
-rewritten and a retrained model invalidates its old thresholds. Model binaries
+trained model's artifact id, so this Phase 2 workflow preserves the frozen
+Phase 1 `corpus_config.json`. A changed artifact id invalidates old Word2Vec
+thresholds; an identical reproducible retraining keeps them valid. Model binaries
 are Git-ignored; `models/<corpus>/training_metadata.json` is committed and
 records the corpus hash, settings, package versions and vector hash.
 Reproducibility means matching numerical vectors in the pinned environment, not
@@ -130,7 +161,7 @@ credit from arbitrary zero-score ties.
 | 1 | Regex cleaning, tokenization, optional stopword removal and lemmatization |
 | 2 | TF-IDF representation using scikit-learn |
 | 3 | Cosine similarity for retrieval, and custom Word2Vec sentence vectors (Phase 2) |
-| 4-5 | RNN/LSTM and Transformers are outside this TF-IDF project phase |
+| 4-5 | RNN/LSTM and Transformers remain outside the two completed phases |
 
 The implementation follows these topics without copying the lab code. We use
 basic WordNet lemmatization without POS tagging: WordNet defaults to nouns, so
@@ -155,12 +186,15 @@ now use basic preprocessing: downloaded NLTK corpora are needed for reproducing
 the optional comparisons, unit tests, and full notebook, but not the basic
 terminal demonstration. The NLTK **package** remains required for tokenization.
 Initial package/resource installation and source-data downloads need internet;
-after setup, demonstrations and evaluation use local files only.
+after setup, demonstrations and evaluation use local files only. The verified
+environment has NLTK 3.10.3, its local corpora, and Gensim 4.4.0 available.
+Train the local Word2Vec artifacts before running those models or the full
+notebook; their binaries are deliberately not included in a Git clone.
 
 ## Running
 
 ```powershell
-# Interactive demonstration with a corpus menu
+# Interactive demonstration with corpus and model menus
 python main.py
 
 # Non-interactive, for a scripted or repeatable demonstration
@@ -196,14 +230,22 @@ python evaluate.py manual --model all
 python -m unittest discover -s tests
 ```
 
-Every command defaults to TF-IDF. `--model` accepts `tfidf`, `w2v_mean`,
-`w2v_tfidf`, or `all`; `main.py` asks for a model interactively when the flag is
-omitted. `evaluate.py all --model all` reuses the frozen TF-IDF settings rather
+Evaluation and non-interactive query commands default to TF-IDF. Both CLIs
+accept `--model tfidf`, `w2v_mean`, or `w2v_tfidf`; only `evaluate.py` also
+accepts `--model all`. Interactive `main.py` asks for a model when omitted.
+`evaluate.py all --model all` reuses the frozen TF-IDF settings rather
 than retuning them, tunes both Word2Vec thresholds on validation queries, and
 writes every Phase 2 result under `reports/phase2/`, leaving the Phase 1 reports
 untouched. Manual mode never tunes.
 
-`evaluate.py all` runs tuning and testing in order. Tuning always writes
+Use `python evaluate.py test --model all` to regenerate the complete Phase 2
+summary. A current reporting limitation is that a run selecting one Word2Vec
+model overwrites `comparison_report.md` with that subset, while its introductory
+text still names all three models. It leaves the paired CSVs from the earlier
+full comparison in place. Rerun the full comparison before presenting reports.
+
+The default TF-IDF command `evaluate.py all` runs tuning and testing in order.
+Its tuning step writes
 `corpus_config.json` before the test set is read in that run. The tuning functions
 receive only validation data. This separation does not erase the fact that
 benchmark results have been examined while revising the methodology.
@@ -213,7 +255,10 @@ instructions are in [data/manual_evaluation/](data/manual_evaluation/). Target
 20 answerable and 10 unanswerable team-written queries per corpus; keep format
 examples out of the measured files. Manual mode uses frozen configurations and
 writes `manual_<corpus>_evaluation.json` plus `manual_evaluation_report.md`,
-separately from the synthetic reports. Empty templates produce no current scores.
+separately from the synthetic reports. With `--model all`, manual JSON reports,
+paired CSVs and `manual_comparison_report.md` instead go under `reports/phase2/`.
+Empty templates produce no current scores. Team members still need to collect
+and independently label the proposed 30 questions per domain.
 
 ## Rebuilding the corpora
 
@@ -240,12 +285,18 @@ Smart_FAQ/
 │   ├── data_loader.py          Corpus discovery, loading, schema validation
 │   ├── preprocessing.py        Normalization, optional stop words / lemmas
 │   ├── tfidf_retrieval.py      Index building, cosine ranking, thresholding
-│   └── evaluation.py           select_preprocessing, tune_threshold, evaluate_tfidf
+│   ├── evaluation.py           Shared metrics, threshold scoring, paired predictions
+│   ├── embedding_utils.py      Mean and TF-IDF-weighted sentence vectors
+│   ├── word2vec_training.py    Question-only training and artifact validation
+│   ├── word2vec_retrieval.py   Dense cosine ranking and answer delivery
+│   └── word2vec_config.py      Artifact-specific frozen thresholds
 ├── scripts/
 │   ├── prepare_datasets.py     Download, convert, validate the corpora
-│   └── setup_nltk.py           One-time NLTK resource download
+│   ├── setup_nltk.py           One-time NLTK resource download
+│   └── train_word2vec.py       Seeded subprocess training for each domain
 ├── data/<corpus>/              faq_dataset.csv, validation_queries.csv,
-│                               test_queries.csv, corpus_config.json
+│                               test_queries.csv, corpus_config.json,
+│                               word2vec_config.json
 ├── data/manual_evaluation/     Empty team-query templates and collection guide
 ├── models/<corpus>/            Word2Vec training metadata (binaries Git-ignored)
 ├── reports/                    Tuning sweeps and evaluation results
