@@ -4,6 +4,7 @@ Examples:
     python evaluate.py tune
     python evaluate.py test
     python evaluate.py all --corpus university
+    python evaluate.py manual --corpus ecommerce
 """
 
 from __future__ import annotations
@@ -19,7 +20,7 @@ from src.data_loader import (
     load_faq_dataset,
     load_query_dataset,
 )
-from src.evaluation import PREPROCESSING_CONFIGS, evaluate_tfidf, tune_threshold
+from src.evaluation import evaluate_tfidf, tune_threshold
 from src.tfidf_retrieval import build_tfidf_index
 
 
@@ -61,6 +62,13 @@ def run_tuning(corpus: str) -> None:
         result = tune_threshold(validation, faq_data)
 
         print(f"\n=== Tuning {name} on {len(validation)} validation queries ===")
+        print("  Step A: answerable validation retrieval")
+        for row in result["preprocessing_comparison"]:
+            print(
+                f"  {row['config']:<18} Top-1={row['top1_accuracy']:.3f} "
+                f"Top-3={row['top3_accuracy']:.3f}"
+            )
+        print("  Step B: threshold for the selected preprocessing")
         for row in result["per_config_best"]:
             print(
                 f"  {row['config']:<18} threshold={row['threshold']:.2f} "
@@ -89,23 +97,40 @@ def run_tuning(corpus: str) -> None:
                 "selected_config": result["selected_config"],
                 "selected_threshold": result["selected_threshold"],
                 "selected_score": result["selected_score"],
+                "preprocessing_comparison": result["preprocessing_comparison"],
                 "per_config_best": result["per_config_best"],
                 "sweep": result["sweep"],
             },
         )
 
 
-def run_testing(corpus: str) -> dict[str, dict[str, Any]]:
-    """Evaluate each corpus once using its frozen configuration."""
+def run_testing(corpus: str, *, manual: bool = False) -> dict[str, dict[str, Any]]:
+    """Evaluate synthetic benchmarks or manual queries with frozen settings.
+
+    Header-only manual templates are pending work, never zero-score results.
+    Manual reports use separate filenames and never trigger tuning.
+    """
 
     reports: dict[str, dict[str, Any]] = {}
+    pending: list[str] = []
     for name, directory in selected_corpora(corpus).items():
         config = load_corpus_config(directory)
         if "preprocessing_config" not in config:
             raise SystemExit(f"Run 'python evaluate.py tune' before testing {name}")
 
         faq_data = load_faq_dataset(directory)
-        test = load_query_dataset(directory / "test_queries.csv", set(faq_data["id"]))
+        query_path = (
+            DATA_ROOT / "manual_evaluation" / f"{name}_queries.csv"
+            if manual else directory / "test_queries.csv"
+        )
+        test = load_query_dataset(query_path, set(faq_data["id"]), allow_empty=manual)
+        if test.empty:
+            pending.append(name)
+            print(
+                f"{name}: human evaluation pending - {query_path} has headers only; "
+                "no current performance report written."
+            )
+            continue
         options = {
             "remove_stopwords": bool(config["remove_stopwords"]),
             "lemmatize": bool(config["lemmatize"]),
@@ -123,27 +148,37 @@ def run_testing(corpus: str) -> dict[str, dict[str, Any]]:
         report["display_name"] = str(config["display_name"])
         report["preprocessing_config"] = str(config["preprocessing_config"])
         report["faq_count"] = len(faq_data)
+        report["evaluation_set"] = "manual" if manual else "synthetic_benchmark"
         reports[name] = report
 
-        print(f"\n=== {config['display_name']} test results ===")
+        label = "manual evaluation" if manual else "synthetic benchmark"
+        print(f"\n=== {config['display_name']} {label} results ===")
         print(f"  FAQs indexed              : {len(faq_data)}")
         print(f"  Preprocessing             : {config['preprocessing_config']}")
         print(f"  Frozen threshold          : {report['threshold']:.2f}")
         print(f"  Top-1 accuracy            : {report['top1_accuracy']:.3f}")
         print(f"  Top-3 accuracy            : {report['top3_accuracy']:.3f}")
+        print(f"  Correct answer rate       : {report['correct_answer_rate']:.3f}")
+        print(f"  Accepted but wrong        : {report['accepted_wrong_count']}")
         print(f"  Mean similarity (correct) : {report['mean_similarity_correct_top1']:.4f}")
         print(f"  Answerable acceptance     : {report['answerable_acceptance_rate']:.3f}")
         print(f"  Unanswerable rejection    : {report['unanswerable_rejection_rate']:.3f}")
         print(f"  False acceptances         : {report['false_acceptance_count']}")
         print(f"  False rejections          : {report['false_rejection_count']}")
 
-        write_json(REPORTS_DIR / f"{name}_evaluation.json", report)
+        prefix = "manual_" if manual else ""
+        write_json(REPORTS_DIR / f"{prefix}{name}_evaluation.json", report)
 
-    write_markdown_report(reports)
+    write_markdown_report(reports, manual=manual, pending=pending)
     return reports
 
 
-def write_markdown_report(reports: dict[str, dict[str, Any]]) -> None:
+def write_markdown_report(
+    reports: dict[str, dict[str, Any]],
+    *,
+    manual: bool = False,
+    pending: list[str] | None = None,
+) -> None:
     """Write one shared Markdown summary of every evaluated corpus."""
 
     if not reports:
@@ -153,8 +188,12 @@ def write_markdown_report(reports: dict[str, dict[str, Any]]) -> None:
         ("FAQs indexed", "faq_count", "{0}"),
         ("Preprocessing", "preprocessing_config", "{0}"),
         ("Threshold", "threshold", "{0:.2f}"),
+        ("Answerable queries", "answerable_queries", "{0}"),
+        ("Unanswerable queries", "unanswerable_queries", "{0}"),
         ("Top-1 accuracy", "top1_accuracy", "{0:.3f}"),
         ("Top-3 accuracy", "top3_accuracy", "{0:.3f}"),
+        ("Correct answer rate", "correct_answer_rate", "{0:.3f}"),
+        ("Accepted but wrong", "accepted_wrong_count", "{0}"),
         ("Mean similarity of correct Top-1", "mean_similarity_correct_top1", "{0:.4f}"),
         ("Answerable acceptance rate", "answerable_acceptance_rate", "{0:.3f}"),
         ("Unanswerable rejection rate", "unanswerable_rejection_rate", "{0:.3f}"),
@@ -163,10 +202,21 @@ def write_markdown_report(reports: dict[str, dict[str, Any]]) -> None:
     ]
     names = sorted(reports)
     lines = [
-        "# Cross-Domain TF-IDF Evaluation",
+        "# Manual TF-IDF Evaluation" if manual else "# Cross-Domain TF-IDF Synthetic Benchmark",
         "",
         "Thresholds and preprocessing were selected on validation queries only,",
-        "frozen into `corpus_config.json`, and then applied once to the test set.",
+        "frozen into `corpus_config.json`, and applied here without retuning.",
+        "",
+        (
+            "These queries are supplied separately by the project team. "
+            "The evaluation command cannot verify human authorship."
+            if manual else
+            "The synthetic query sets have already been inspected during development "
+            "and review; these are reproducible benchmark results, not an untouched final assessment."
+        ),
+        "",
+        "Correct answer rate = count(correct Top-1 AND accepted) / all answerable queries. "
+        "Accepted but wrong counts answerable queries answered with a different FAQ.",
         "",
         "| Metric | " + " | ".join(reports[name]["display_name"] for name in names) + " |",
         "| --- | " + " | ".join("---" for _ in names) + " |",
@@ -174,6 +224,9 @@ def write_markdown_report(reports: dict[str, dict[str, Any]]) -> None:
     for label, key, template in rows:
         values = " | ".join(template.format(reports[name][key]) for name in names)
         lines.append(f"| {label} | {values} |")
+
+    if pending:
+        lines += ["", "Human evaluation pending (no scores): " + ", ".join(pending) + "."]
 
     for name in names:
         report = reports[name]
@@ -192,23 +245,26 @@ def write_markdown_report(reports: dict[str, dict[str, Any]]) -> None:
             ]
 
     REPORTS_DIR.mkdir(parents=True, exist_ok=True)
-    path = REPORTS_DIR / "evaluation_report.md"
+    path = REPORTS_DIR / ("manual_evaluation_report.md" if manual else "evaluation_report.md")
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
-    print(f"\nSaved {path.relative_to(BASE_DIR)}")
+    print(f"\nSaved {path}")
 
 
 def parse_args() -> argparse.Namespace:
     """Parse the requested evaluation mode and corpus."""
 
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("mode", choices=["tune", "test", "all"])
+    parser.add_argument("mode", choices=["tune", "test", "all", "manual"])
     parser.add_argument("--corpus", default="all")
     return parser.parse_args()
 
 
 if __name__ == "__main__":
     arguments = parse_args()
-    if arguments.mode in {"tune", "all"}:
-        run_tuning(arguments.corpus)
-    if arguments.mode in {"test", "all"}:
-        run_testing(arguments.corpus)
+    try:
+        if arguments.mode in {"tune", "all"}:
+            run_tuning(arguments.corpus)
+        if arguments.mode in {"test", "all", "manual"}:
+            run_testing(arguments.corpus, manual=arguments.mode == "manual")
+    except (ValueError, FileNotFoundError) as error:
+        raise SystemExit(str(error)) from error

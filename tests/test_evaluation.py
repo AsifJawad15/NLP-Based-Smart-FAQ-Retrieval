@@ -2,7 +2,9 @@
 
 from pathlib import Path
 import unittest
+from unittest.mock import patch
 
+import numpy as np
 import pandas as pd
 
 from src.data_loader import (
@@ -16,9 +18,10 @@ from src.evaluation import (
     THRESHOLD_STEPS,
     evaluate_tfidf,
     rank_queries,
+    select_preprocessing,
     tune_threshold,
 )
-from src.tfidf_retrieval import build_tfidf_index
+from src.tfidf_retrieval import answer_query, build_tfidf_index
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -72,9 +75,48 @@ class TuningTests(unittest.TestCase):
         self.assertEqual(first["selected_threshold"], second["selected_threshold"])
         self.assertEqual(first["selected_score"], second["selected_score"])
 
-    def test_every_configuration_is_swept_across_all_thresholds(self) -> None:
+    def test_only_retrieval_selected_configuration_is_threshold_swept(self) -> None:
         result = tune_threshold(self.validation, self.faq)
-        self.assertEqual(len(result["sweep"]), len(PREPROCESSING_CONFIGS) * 101)
+        self.assertEqual(len(result["preprocessing_comparison"]), 3)
+        self.assertEqual(len(result["sweep"]), 101)
+        self.assertEqual({row["config"] for row in result["sweep"]}, {result["selected_config"]})
+
+    def test_selection_prefers_correct_retrieval_over_a_high_wrong_score(self) -> None:
+        faq = self.faq.iloc[:2].copy()
+        faq["question"] = ["the", "beta gamma delta"]
+        validation = build_queries([("the beta", 2, True), ("the", pd.NA, False)])
+        result = tune_threshold(validation, faq, configs=PREPROCESSING_CONFIGS[:2])
+        self.assertEqual(result["selected_config"], "stopwords_removed")
+        comparison = result["preprocessing_comparison"]
+        self.assertEqual(comparison[0]["top1_accuracy"], 0.0)
+        self.assertEqual(comparison[1]["top1_accuracy"], 1.0)
+
+    def test_top3_breaks_top1_ties_before_simplicity(self) -> None:
+        validation = build_queries([("first", 1, True), ("second", 2, True),
+                                    ("ignore this", pd.NA, False)])
+        configs = [(name, {}) for name in ["simple", "better_top3", "worse_top1"]]
+        rankings = [
+            {"ranked_ids": np.array(ids), "has_features": np.array([True, True])}
+            for ids in [[[1, 2, 3], [4, 5, 6]],
+                        [[1, 2, 3], [3, 2, 4]],
+                        [[2, 1, 3], [3, 2, 4]]]
+        ]
+        with patch("src.evaluation.rank_queries", side_effect=rankings) as rank:
+            result = select_preprocessing(validation, self.faq, configs=configs)
+        self.assertEqual(result["selected_config"], "better_top3")
+        for call in rank.call_args_list:
+            self.assertEqual(call.args[0].tolist(), ["first", "second"])
+
+    def test_oov_queries_cannot_win_preprocessing_selection_by_id_ties(self) -> None:
+        validation = build_queries([("zzqqxx wwvvuu", 1, True)])
+        result = select_preprocessing(validation, self.faq, configs=[("basic", {})])
+        row = result["preprocessing_comparison"][0]
+        self.assertEqual((row["top1_accuracy"], row["top3_accuracy"]), (0.0, 0.0))
+
+    def test_threshold_tuning_requires_both_answerability_classes(self) -> None:
+        for label in [True, False]:
+            with self.subTest(label=label), self.assertRaisesRegex(ValueError, "answerable and unanswerable"):
+                tune_threshold(self.validation[self.validation.is_answerable == label], self.faq)
 
     def test_selected_threshold_is_within_range_and_scored(self) -> None:
         result = tune_threshold(self.validation, self.faq)
@@ -137,9 +179,70 @@ class EvaluationMetricTests(unittest.TestCase):
         self.assertAlmostEqual(report["mean_similarity_correct_top1"], 1.0)
 
     def test_false_acceptance_is_counted_at_a_permissive_threshold(self) -> None:
-        report = self.evaluate(0.0)
+        # An in-vocabulary but wrongly labelled question tests the metric;
+        # zero-feature questions must be rejected at every threshold.
+        unanswerable = build_queries([("How do I request a transcript?", pd.NA, False)])
+        report = evaluate_tfidf(unanswerable, self.faq, self.vectorizer, self.matrix, 0.0)
         self.assertEqual(report["false_acceptance_count"], 1)
         self.assertEqual(report["unanswerable_rejection_rate"], 0.0)
+
+    def test_zero_features_never_receive_retrieval_credit_or_an_answer(self) -> None:
+        query = build_queries([("zzqqxx wwvvuu", 1, True)])
+        for threshold in [0.0, 0.3, 1.0]:
+            with self.subTest(threshold=threshold):
+                report = evaluate_tfidf(query, self.faq, self.vectorizer, self.matrix, threshold)
+                for metric in ["top1_accuracy", "top3_accuracy", "correct_answer_rate",
+                               "mean_similarity_correct_top1", "answerable_acceptance_rate"]:
+                    self.assertEqual(report[metric], 0.0)
+                self.assertEqual(report["false_rejection_count"], 1)
+                self.assertIsNone(report["incorrect_retrieval_examples"][0]["retrieved_faq_id"])
+        self.assertEqual(self.evaluate(0.0)["false_acceptance_count"], 0)
+
+    def test_runtime_and_batch_agree_on_features_scores_and_acceptance(self) -> None:
+        for name, options in PREPROCESSING_CONFIGS:
+            vectorizer, matrix = build_tfidf_index(self.faq, options)
+            queries = pd.Series(["", "!!!", "the and", "zzqqxx wwvvuu", "transcript zzqqxx",
+                                 "How do I request a transcript?"])
+            ranking = rank_queries(queries, self.faq, vectorizer, matrix, options)
+            for i, query in enumerate(queries):
+                for threshold in [0.0, 0.3, 1.0]:
+                    with self.subTest(config=name, query=query, threshold=threshold):
+                        result = answer_query(query, self.faq, vectorizer, matrix,
+                                              threshold, preprocessing_options=options)
+                        expected = bool(ranking["has_features"][i] and
+                                        ranking["ranked_scores"][i, 0] >= threshold)
+                        self.assertEqual(result["found"], expected)
+                        if ranking["has_features"][i]:
+                            self.assertEqual(result["top_matches"][0]["faq_id"], ranking["ranked_ids"][i, 0])
+                            self.assertAlmostEqual(result["top_matches"][0]["similarity"], ranking["ranked_scores"][i, 0])
+                        else:
+                            self.assertEqual(result["top_matches"], [])
+
+    def test_answer_delivery_metrics_separate_wrong_answers_and_rejections(self) -> None:
+        # Four answerable queries: correct+accepted, wrong+accepted,
+        # correct+rejected, OOV+rejected. Plus one unanswerable rejection.
+        data = build_queries([("a", 1, True), ("b", 2, True), ("c", 3, True),
+                              ("d", 1, True), ("e", pd.NA, False)])
+        ranking = {
+            "ranked_ids": np.array([[1, 2, 3], [1, 2, 3], [3, 2, 1], [1, 2, 3], [1, 2, 3]]),
+            "ranked_scores": np.array([[.9, .2, .1], [.8, .3, .1], [.2, .1, 0], [0, 0, 0], [0, 0, 0]]),
+            "has_features": np.array([True, True, True, False, False]),
+        }
+        with patch("src.evaluation.rank_queries", return_value=ranking):
+            report = evaluate_tfidf(data, self.faq, self.vectorizer, self.matrix, .5)
+        self.assertEqual(report["top1_accuracy"], .5)
+        self.assertEqual(report["top3_accuracy"], .75)
+        self.assertEqual(report["correct_answer_rate"], .25)
+        self.assertEqual(report["accepted_wrong_count"], 1)
+        self.assertEqual(report["false_rejection_count"], 2)
+        self.assertEqual(report["false_acceptance_count"], 0)
+        self.assertEqual(report["unanswerable_rejection_rate"], 1.0)
+
+    def test_no_answerable_queries_have_zero_answer_delivery_metrics(self) -> None:
+        data = build_queries([("zzqqxx", pd.NA, False)])
+        report = evaluate_tfidf(data, self.faq, self.vectorizer, self.matrix, 0.0)
+        self.assertEqual(report["correct_answer_rate"], 0.0)
+        self.assertEqual(report["accepted_wrong_count"], 0)
 
     def test_false_rejection_is_counted_at_a_strict_threshold(self) -> None:
         strict = build_queries(
@@ -185,6 +288,11 @@ class EvaluationMetricTests(unittest.TestCase):
         )
         self.assertFalse(bool(ranking["has_tokens"][0]))
         self.assertTrue(bool(ranking["has_tokens"][1]))
+        ranking = rank_queries(pd.Series(["zzqqxx", "transcript"]), self.faq,
+                               self.vectorizer, self.matrix)
+        self.assertTrue(ranking["has_tokens"][0])
+        self.assertFalse(ranking["has_features"][0])
+        self.assertTrue(ranking["has_features"][1])
 
 
 class InvalidCorpusTests(unittest.TestCase):

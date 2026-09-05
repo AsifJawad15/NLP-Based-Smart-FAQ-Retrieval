@@ -1,8 +1,11 @@
 {
+  "accepted_wrong_count": 1,
   "answerable_acceptance_rate": 0.8266666666666667,
   "answerable_queries": 150,
   "corpus": "ecommerce",
+  "correct_answer_rate": 0.82,
   "display_name": "E-commerce FAQ",
+  "evaluation_set": "synthetic_benchmark",
   "false_acceptance_count": 2,
   "false_rejection_count": 26,
   "faq_count": 500,

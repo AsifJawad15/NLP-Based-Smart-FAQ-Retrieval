@@ -66,6 +66,8 @@ def retrieve_tfidf(
         return []
 
     query_vector = vectorizer.transform([processed_query])
+    if query_vector.nnz == 0:
+        return []
     similarities = cosine_similarity(query_vector, faq_matrix).ravel()
     ranked_indices = np.argsort(-similarities, kind="stable")[: min(top_k, len(faq_data))]
 

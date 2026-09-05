@@ -107,8 +107,10 @@ def _parse_answerable(value: object) -> bool:
 def load_query_dataset(
     path: str | Path,
     faq_ids: set[int] | None = None,
+    *,
+    allow_empty: bool = False,
 ) -> pd.DataFrame:
-    """Load validation/test queries and enforce answerability rules."""
+    """Load queries, allowing header-only manual templates only when requested."""
 
     query_path = Path(path)
     if not query_path.is_file():
@@ -121,6 +123,8 @@ def load_query_dataset(
 
     data = raw[QUERY_COLUMNS].copy()
     if data.empty:
+        if allow_empty:
+            return data
         raise ValueError("Query dataset must contain at least one row")
     data["query"] = data["query"].fillna("").astype(str).str.strip()
     if data["query"].eq("").any():
@@ -175,4 +179,3 @@ def _parse_flag(value: object, name: str) -> bool:
     if normalized in {"false", "0", "no"}:
         return False
     raise ValueError(f"Invalid boolean for '{name}': {value!r}")
-

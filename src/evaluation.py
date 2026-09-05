@@ -1,4 +1,4 @@
-"""Validation threshold tuning and final test-set evaluation."""
+"""Validation-only selection and evaluation with frozen configurations."""
 
 from __future__ import annotations
 
@@ -37,7 +37,9 @@ def rank_queries(
     """Rank every query once so threshold sweeps can reuse the similarities.
 
     Input: query texts, FAQ table, fitted index, preprocessing switches, top-k.
-    Output: arrays of ranked FAQ ids, ranked scores, and a has-tokens mask.
+    Output: ranked ids/scores, a has-tokens mask, and a has-features mask.
+
+    Ids in rows without features are sorting placeholders, not real matches.
     """
 
     if top_k < 1:
@@ -52,6 +54,7 @@ def rank_queries(
     has_tokens = np.array([bool(text) for text in processed], dtype=bool)
 
     query_matrix = vectorizer.transform(processed)
+    has_features = np.asarray(query_matrix.getnnz(axis=1)).ravel() > 0
     similarities = cosine_similarity(query_matrix, faq_matrix)
 
     width = min(top_k, len(faq_data))
@@ -62,6 +65,7 @@ def rank_queries(
         "ranked_ids": faq_ids[order],
         "ranked_scores": np.take_along_axis(similarities, order, axis=1),
         "has_tokens": has_tokens,
+        "has_features": has_features,
     }
 
 
@@ -69,7 +73,7 @@ def _accepted(ranking: dict[str, np.ndarray], threshold: float) -> np.ndarray:
     """Decide which queries clear the similarity threshold."""
 
     top_scores = ranking["ranked_scores"][:, 0]
-    return ranking["has_tokens"] & (top_scores >= threshold)
+    return ranking["has_features"] & (top_scores >= threshold)
 
 
 def _split_masks(query_data: pd.DataFrame) -> tuple[np.ndarray, np.ndarray]:
@@ -84,7 +88,7 @@ def balanced_accept_reject_score(
     ranking: dict[str, np.ndarray],
     threshold: float,
 ) -> dict[str, Any]:
-    """Score one threshold as the mean of accept and reject correctness.
+    """Score answerability decisions, independently of retrieval correctness.
 
     Input: query table, cached ranking, and one candidate threshold.
     Output: the acceptance rate, the rejection rate, and their average.
@@ -103,56 +107,105 @@ def balanced_accept_reject_score(
     }
 
 
-def tune_threshold(
+def select_preprocessing(
     validation_data: pd.DataFrame,
     faq_data: pd.DataFrame,
     configs: list[tuple[str, dict[str, bool]]] | None = None,
     top_k: int = 3,
 ) -> dict[str, Any]:
-    """Choose preprocessing and threshold using validation queries only.
+    """Step A: choose the representation using answerable validation queries.
 
-    Input: validation queries, FAQ table, candidate configurations, top-k.
-    Output: the selected configuration plus the full comparison sweep.
+    Prefer Top-1 accuracy, then Top-3 accuracy, then the candidate listed first.
+    No similarity threshold or unanswerable query affects this comparison.
+    At least three ranks are computed so Top-3 keeps its stated meaning.
     """
 
     # An explicitly empty list is an error, so it must not fall back silently.
     candidates = PREPROCESSING_CONFIGS if configs is None else configs
     if not candidates:
         raise ValueError("At least one preprocessing configuration is required")
+    if top_k < 1:
+        raise ValueError("top_k must be at least 1")
 
-    sweep: list[dict[str, Any]] = []
-    per_config: list[dict[str, Any]] = []
+    answerable, _ = _split_masks(validation_data)
+    queries = validation_data.loc[answerable]
+    if queries.empty:
+        raise ValueError("Preprocessing selection requires answerable validation queries")
+    expected = queries["expected_faq_id"].to_numpy(dtype="int64")
+    comparison: list[dict[str, Any]] = []
 
     for config_rank, (name, options) in enumerate(candidates):
         vectorizer, faq_matrix = build_tfidf_index(faq_data, options)
         ranking = rank_queries(
-            validation_data["query"], faq_data, vectorizer, faq_matrix, options, top_k
+            queries["query"], faq_data, vectorizer, faq_matrix, options, max(3, top_k)
         )
-        scored = [
+        ids = ranking["ranked_ids"]
+        valid = ranking["has_features"]
+        comparison.append(
             {
                 "config": name,
                 "config_rank": config_rank,
-                **balanced_accept_reject_score(validation_data, ranking, threshold),
+                "top1_accuracy": float((valid & (ids[:, 0] == expected)).mean()),
+                "top3_accuracy": float(
+                    (valid & (ids[:, :3] == expected[:, None]).any(axis=1)).mean()
+                ),
             }
-            for threshold in THRESHOLD_STEPS
-        ]
-        sweep.extend(scored)
+        )
 
-        # Ties inside one configuration are resolved towards the higher threshold.
-        per_config.append(max(scored, key=lambda row: (row["score"], row["threshold"])))
-
-    # Across configurations: highest score, then the simpler configuration,
-    # then the higher threshold.
     best = max(
-        sweep, key=lambda row: (row["score"], -row["config_rank"], row["threshold"])
+        comparison,
+        key=lambda row: (row["top1_accuracy"], row["top3_accuracy"], -row["config_rank"]),
     )
-
     return {
         "selected_config": best["config"],
         "selected_options": dict(candidates[best["config_rank"]][1]),
+        "preprocessing_comparison": comparison,
+    }
+
+
+def tune_threshold(
+    validation_data: pd.DataFrame,
+    faq_data: pd.DataFrame,
+    configs: list[tuple[str, dict[str, bool]]] | None = None,
+    top_k: int = 3,
+) -> dict[str, Any]:
+    """Choose preprocessing (Step A), then its rejection threshold (Step B).
+
+    Only validation queries are used. The threshold maximizes balanced
+    answerable acceptance/unanswerable rejection, with ties going higher.
+    """
+
+    answerable, unanswerable = _split_masks(validation_data)
+    if not answerable.any() or not unanswerable.any():
+        raise ValueError(
+            "Threshold tuning requires answerable and unanswerable validation queries"
+        )
+
+    selection = select_preprocessing(validation_data, faq_data, configs, top_k)
+    options = selection["selected_options"]
+    vectorizer, faq_matrix = build_tfidf_index(faq_data, options)
+    ranking = rank_queries(
+        validation_data["query"], faq_data, vectorizer, faq_matrix, options, top_k
+    )
+    chosen = next(
+        row for row in selection["preprocessing_comparison"]
+        if row["config"] == selection["selected_config"]
+    )
+    sweep = [
+        {
+            "config": selection["selected_config"],
+            "config_rank": chosen["config_rank"],
+            **balanced_accept_reject_score(validation_data, ranking, threshold),
+        }
+        for threshold in THRESHOLD_STEPS
+    ]
+    best = max(sweep, key=lambda row: (row["score"], row["threshold"]))
+    return {
+        **selection,
         "selected_threshold": best["threshold"],
         "selected_score": best["score"],
-        "per_config_best": per_config,
+        # Retained for callers: Step B now has only one configuration.
+        "per_config_best": [best],
         "sweep": sweep,
     }
 
@@ -167,7 +220,7 @@ def evaluate_tfidf(
     top_k: int = 3,
     max_examples: int = 5,
 ) -> dict[str, Any]:
-    """Report the frozen configuration's behaviour on a held-out query set.
+    """Report retrieval and answer-delivery metrics with a frozen configuration.
 
     Input: query table, FAQ table, fitted index, frozen threshold and switches.
     Output: the metric dictionary required by the project plan.
@@ -175,9 +228,12 @@ def evaluate_tfidf(
 
     if not 0.0 <= threshold <= 1.0:
         raise ValueError("threshold must be between 0 and 1")
+    if top_k < 1:
+        raise ValueError("top_k must be at least 1")
 
     ranking = rank_queries(
-        test_data["query"], faq_data, vectorizer, faq_matrix, preprocessing_options, top_k
+        test_data["query"], faq_data, vectorizer, faq_matrix, preprocessing_options,
+        max(3, top_k),
     )
     answerable, unanswerable = _split_masks(test_data)
     accepted = _accepted(ranking, threshold)
@@ -189,8 +245,11 @@ def evaluate_tfidf(
         dtype="float64"
     )
 
-    top1_correct = answerable & (ranked_ids[:, 0] == expected)
-    top3_correct = answerable & (ranked_ids == expected[:, None]).any(axis=1)
+    has_features = ranking["has_features"]
+    top1_correct = answerable & has_features & (ranked_ids[:, 0] == expected)
+    top3_correct = (
+        answerable & has_features & (ranked_ids[:, :3] == expected[:, None]).any(axis=1)
+    )
 
     answerable_count = int(answerable.sum())
     unanswerable_count = int(unanswerable.sum())
@@ -201,8 +260,13 @@ def evaluate_tfidf(
         {
             "query": str(test_data.iloc[position]["query"]),
             "expected_faq_id": int(expected[position]),
-            "retrieved_faq_id": int(ranked_ids[position, 0]),
-            "retrieved_question": str(questions_by_id.loc[int(ranked_ids[position, 0])]),
+            "retrieved_faq_id": (
+                int(ranked_ids[position, 0]) if has_features[position] else None
+            ),
+            "retrieved_question": (
+                str(questions_by_id.loc[int(ranked_ids[position, 0])])
+                if has_features[position] else None
+            ),
             "similarity": float(top_scores[position]),
             "accepted": bool(accepted[position]),
         }
@@ -220,6 +284,11 @@ def evaluate_tfidf(
         "top3_accuracy": (
             float(top3_correct.sum() / answerable_count) if answerable_count else 0.0
         ),
+        "correct_answer_rate": (
+            float((top1_correct & accepted).sum() / answerable_count)
+            if answerable_count else 0.0
+        ),
+        "accepted_wrong_count": int((answerable & accepted & ~top1_correct).sum()),
         "mean_similarity_correct_top1": (
             float(correct_scores.mean()) if correct_scores.size else 0.0
         ),

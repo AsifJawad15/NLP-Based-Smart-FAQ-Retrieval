@@ -1,8 +1,11 @@
 {
+  "accepted_wrong_count": 17,
   "answerable_acceptance_rate": 0.9466666666666667,
   "answerable_queries": 150,
   "corpus": "university",
+  "correct_answer_rate": 0.8333333333333334,
   "display_name": "University FAQ",
+  "evaluation_set": "synthetic_benchmark",
   "false_acceptance_count": 8,
   "false_rejection_count": 8,
   "faq_count": 500,
@@ -13,7 +16,7 @@
       "query": "What investigations are carried out in Germanic Literature, Culture and Theory?",
       "retrieved_faq_id": 97,
       "retrieved_question": "what subjects will I study in Germanic Literature, Culture and Theory at UOFT?",
-      "similarity": 0.7700781709940074
+      "similarity": 0.7770981683169131
     },
     {
       "accepted": true,
@@ -21,7 +24,7 @@
       "query": "What investigations are carried out in Master of Applied Science (MASc)?",
       "retrieved_faq_id": 101,
       "retrieved_question": "what subjects will I study in Master of Applied Science (MASc) at UOFT?",
-      "similarity": 0.7098488922007014
+      "similarity": 0.7088919077284314
     },
     {
       "accepted": false,
@@ -29,7 +32,7 @@
       "query": "Which study areas does Finance pursue?",
       "retrieved_faq_id": 71,
       "retrieved_question": "can you explain the structure of Finance at UOFT?",
-      "similarity": 0.36231780854442247
+      "similarity": 0.36021662444408514
     },
     {
       "accepted": true,
@@ -45,18 +48,18 @@
       "query": "What shape does Counselling & Clinical Psychology take?",
       "retrieved_faq_id": 39,
       "retrieved_question": "what makes the Counselling and Clinical Psychology - Field in Clinical and Counselling Psychology (OISE) program at UOFT unique?",
-      "similarity": 0.5761606801371841
+      "similarity": 0.5722115851377906
     }
   ],
-  "mean_similarity_correct_top1": 0.7563324312334477,
-  "preprocessing_config": "lemmatized",
+  "mean_similarity_correct_top1": 0.7601643335990795,
+  "preprocessing_config": "basic",
   "preprocessing_options": {
-    "lemmatize": true,
+    "lemmatize": false,
     "remove_stopwords": false
   },
   "threshold": 0.46,
-  "top1_accuracy": 0.8466666666666667,
-  "top3_accuracy": 0.9866666666666667,
+  "top1_accuracy": 0.86,
+  "top3_accuracy": 0.9933333333333333,
   "unanswerable_queries": 50,
   "unanswerable_rejection_rate": 0.84
 }

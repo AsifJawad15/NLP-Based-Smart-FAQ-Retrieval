@@ -125,7 +125,7 @@ worded questions, and lowering it surfaces more pairs that then need review.
 
 ## Evaluation query generation
 
-Paraphrases are written only after the FAQ corpus is frozen, so a query can
+Generated paraphrases are created only after the FAQ corpus is frozen, so a query can
 never influence which records were selected.
 
 The plan requires paraphrases to change sentence structure *and* wording. The
@@ -156,10 +156,32 @@ appears in both the validation and test sets.
 
 - Generated paraphrases are not always fluent. Rebuilding a question that
   repeated its source can produce phrasing such as *"Please explain does
-  'Preorder' or 'Forthcoming' mean."* The meaning is preserved and the wording
-  differs, which is what the evaluation needs, but these are not human-written
-  queries.
+  'Preorder' or 'Forthcoming' mean."* Different wording does not prove that the
+  intended meaning is preserved; these are synthetic queries whose labels and
+  semantic quality still require human review.
 - The university corpus mixes an assistant-generated dataset with scraped
   official pages. The two halves differ in tone and answer length.
 - Duplicate flagging inspects questions only, at a fixed 0.88 threshold.
 - E-commerce content is region-specific, as described above.
+
+## Separate human evaluation scaffold
+
+`data/manual_evaluation/` contains header-only university and e-commerce query
+templates plus a collection guide. No human-written performance has been
+measured. Format examples are kept in the guide, outside the measured CSVs.
+
+The target is 20 answerable and 10 unanswerable queries per domain. One person
+prepares intent descriptions; another writes the queries without viewing the
+FAQ wording. Independently check each label against the complete stored answer,
+and check unanswerable questions against the entire chosen corpus. Record the
+contributors and collection date in the guide. Do not generate this set with AI
+or copy existing synthetic validation/test queries.
+
+Manual evaluation reuses the frozen configurations, writes separate reports,
+and reports pending work instead of scores for empty templates. The existing
+synthetic test results have been inspected during development and review and
+must be described as benchmark results, not an untouched final assessment.
+
+Count/schema validation and overlap checks demonstrate structural consistency.
+They cannot certify that every answer is current or every generated paraphrase
+preserves its intended meaning; semantic review remains a separate human task.
