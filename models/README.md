@@ -16,6 +16,12 @@ hashes, preprocessing, settings, versions, and vocabulary size. Inference
 checks metadata and refuses missing, stale, or mismatched artifacts. It never
 trains automatically.
 
+The thresholds tuned for these models live in
+`data/<corpus>/word2vec_config.json`, not in `models/`, because they come from
+validation queries rather than from training. Each file records the artifact id
+it was tuned against, so inference refuses thresholds that belong to a different
+model.
+
 After cloning, run the training command before choosing a Word2Vec model. This
 uses no network after Python dependencies are installed. If retraining changes
 the artifact id, retune its thresholds before evaluation. Reproducibility means

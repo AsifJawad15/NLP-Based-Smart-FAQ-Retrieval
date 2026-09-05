@@ -1,0 +1,67 @@
+{
+  "accepted_wrong_count": 17,
+  "answerable_acceptance_rate": 0.6066666666666667,
+  "answerable_queries": 150,
+  "corpus": "university",
+  "correct_answer_rate": 0.49333333333333335,
+  "display_name": "University FAQ",
+  "evaluation_set": "synthetic_benchmark",
+  "false_acceptance_count": 12,
+  "false_rejection_count": 59,
+  "faq_count": 500,
+  "incorrect_retrieval_examples": [
+    {
+      "accepted": true,
+      "expected_faq_id": 47,
+      "query": "What investigations are carried out in Germanic Literature, Culture and Theory?",
+      "retrieved_faq_id": 197,
+      "retrieved_question": "what courses are offered in Slavic and East European Languages and Cultures at UOFT?",
+      "similarity": 0.956399923498427
+    },
+    {
+      "accepted": true,
+      "expected_faq_id": 221,
+      "query": "What investigations are carried out in Master of Applied Science (MASc)?",
+      "retrieved_faq_id": 25,
+      "retrieved_question": "what are the admission requirements for Master of Applied Science (MASc) at UOFT?",
+      "similarity": 0.9533534496359286
+    },
+    {
+      "accepted": false,
+      "expected_faq_id": 118,
+      "query": "Which areas of learning belong to Language and Literacies Education?",
+      "retrieved_faq_id": 137,
+      "retrieved_question": "how can I apply to Counselling and Clinical Psychology - Field in Clinical Psychology (UTSC) at UOFT?",
+      "similarity": 0.8776404290520734
+    },
+    {
+      "accepted": false,
+      "expected_faq_id": 238,
+      "query": "Which study areas does Finance pursue?",
+      "retrieved_faq_id": 67,
+      "retrieved_question": "what kind of research is done in Electrical and Computer Engineering at UOFT?",
+      "similarity": 0.85334011532941
+    },
+    {
+      "accepted": false,
+      "expected_faq_id": 64,
+      "query": "Which areas of learning belong to Ecology and Evolutionary Biology?",
+      "retrieved_faq_id": 127,
+      "retrieved_question": "what kind of research is done in Ecology and Evolutionary Biology at UOFT?",
+      "similarity": 0.8792458473920349
+    }
+  ],
+  "mean_similarity_correct_top1": 0.9587578238142754,
+  "model": "w2v_mean",
+  "model_label": "Word2Vec mean",
+  "preprocessing_config": "basic",
+  "preprocessing_options": {
+    "lemmatize": false,
+    "remove_stopwords": false
+  },
+  "threshold": 0.93,
+  "top1_accuracy": 0.5866666666666667,
+  "top3_accuracy": 0.6733333333333333,
+  "unanswerable_queries": 50,
+  "unanswerable_rejection_rate": 0.76
+}

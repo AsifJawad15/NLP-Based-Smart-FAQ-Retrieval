@@ -8,15 +8,31 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
 
-from src.embedding_utils import sentence_to_mean_vector
+from src.embedding_utils import sentence_to_mean_vector, sentence_to_tfidf_weighted_vector
 from src.preprocessing import preprocess_text
+from src.tfidf_retrieval import build_tfidf_index
 from src.word2vec_training import BASIC_OPTIONS
 
 
-def build_word2vec_index(faq_data: pd.DataFrame, keyed_vectors) -> dict[str, Any]:
+def _sentence_vector(tokens: list[str], index: dict[str, Any]):
+    if index["aggregation"] == "w2v_mean":
+        return sentence_to_mean_vector(tokens, index["keyed_vectors"])
+    return sentence_to_tfidf_weighted_vector(tokens, index["keyed_vectors"], index["idf_lookup"])
+
+
+def build_word2vec_index(
+    faq_data: pd.DataFrame, keyed_vectors, aggregation: str = "w2v_mean",
+) -> dict[str, Any]:
     """Build question vectors from an already trained model; do not train here."""
 
-    vectors = [sentence_to_mean_vector(preprocess_text(q, **BASIC_OPTIONS).split(), keyed_vectors)
+    if aggregation not in {"w2v_mean", "w2v_tfidf"}:
+        raise ValueError(f"Unknown Word2Vec aggregation: {aggregation}")
+    idf_lookup = {}
+    if aggregation == "w2v_tfidf":
+        vectorizer, _ = build_tfidf_index(faq_data, BASIC_OPTIONS)
+        idf_lookup = dict(zip(vectorizer.get_feature_names_out(), vectorizer.idf_))
+    index = {"keyed_vectors": keyed_vectors, "aggregation": aggregation, "idf_lookup": idf_lookup}
+    vectors = [_sentence_vector(preprocess_text(q, **BASIC_OPTIONS).split(), index)
                for q in faq_data["question"]]
     valid = np.array([vector is not None for vector in vectors], dtype=bool)
     matrix = np.zeros((len(faq_data), keyed_vectors.vector_size), dtype=np.float64)
@@ -24,7 +40,7 @@ def build_word2vec_index(faq_data: pd.DataFrame, keyed_vectors) -> dict[str, Any
         if vector is not None:
             matrix[i] = vector
     return {
-        "keyed_vectors": keyed_vectors, "faq_matrix": matrix, "valid_faqs": valid,
+        **index, "faq_matrix": matrix, "valid_faqs": valid,
         "faq_ids": faq_data["id"].to_numpy().copy(), "preprocessing_options": BASIC_OPTIONS.copy(),
     }
 
@@ -39,7 +55,7 @@ def rank_word2vec_queries(
     if not np.array_equal(index["faq_ids"], faq_data["id"].to_numpy()):
         raise ValueError("FAQ index ids/order do not match FAQ data")
     texts = [preprocess_text(str(q), **index["preprocessing_options"]) for q in queries]
-    vectors = [sentence_to_mean_vector(text.split(), index["keyed_vectors"]) for text in texts]
+    vectors = [_sentence_vector(text.split(), index) for text in texts]
     candidates = np.flatnonzero(index["valid_faqs"])
     # Retain one masked placeholder column if the corpus has no usable vectors.
     width = max(1, min(top_k, len(candidates)))

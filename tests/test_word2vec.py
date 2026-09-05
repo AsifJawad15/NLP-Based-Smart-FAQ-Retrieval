@@ -14,7 +14,7 @@ import numpy as np
 import pandas as pd
 
 from src.data_loader import load_faq_dataset
-from src.embedding_utils import sentence_to_mean_vector
+from src.embedding_utils import sentence_to_mean_vector, sentence_to_tfidf_weighted_vector
 from src.evaluation import evaluate_rankings, tune_ranked_threshold
 from src.word2vec_retrieval import (
     answer_word2vec, build_word2vec_index, rank_word2vec_queries, retrieve_word2vec,
@@ -23,6 +23,7 @@ from src.word2vec_training import BASIC_OPTIONS, load_word2vec, question_sentenc
 
 
 ROOT = Path(__file__).resolve().parents[1]
+AGGREGATIONS = ["w2v_mean", "w2v_tfidf"]
 
 
 def toy_vectors():
@@ -57,77 +58,153 @@ class MeanVectorTests(unittest.TestCase):
             sentence_to_mean_vector(["apple"], vectors)
 
 
+class WeightedVectorTests(unittest.TestCase):
+    IDF = {"apple": 1.0, "banana": 2.0}
+
+    def test_weighted_counts_each_repeated_term_once(self):
+        vector = sentence_to_tfidf_weighted_vector(
+            ["apple", "apple", "banana"], toy_vectors(), self.IDF
+        )
+        # Unique terms: apple weighs 2 * 1.0 and banana weighs 1 * 2.0, so the
+        # two contributions are equal.
+        np.testing.assert_allclose(vector, [.5, .5])
+        # Lab 3 multiplies by the count and then loops over the repeats again,
+        # which would weigh apple 4.0 against banana 2.0.
+        self.assertFalse(np.allclose(vector, np.array([4., 2.]) / 6))
+
+    def test_weighted_skips_unknown_embeddings_and_terms_without_idf(self):
+        # 'cancel' has an embedding but no corpus IDF; 'unknown' has neither.
+        vector = sentence_to_tfidf_weighted_vector(
+            ["apple", "cancel", "unknown"], toy_vectors(), self.IDF
+        )
+        np.testing.assert_allclose(vector, [1., 0.])
+
+    def test_weighted_empty_oov_zero_weight_and_cancellation_have_no_vector(self):
+        for tokens, idf in [([], self.IDF), (["unknown"], self.IDF), (["cancel"], self.IDF),
+                            (["apple"], {"apple": 0.}),
+                            (["apple", "opposite"], {"apple": 1., "opposite": 1.})]:
+            with self.subTest(tokens=tokens):
+                self.assertIsNone(sentence_to_tfidf_weighted_vector(tokens, toy_vectors(), idf))
+
+    def test_weighted_rejects_negative_or_nonfinite_idf(self):
+        for idf in [{"apple": -1.}, {"apple": float("nan")}, {"apple": float("inf")}]:
+            with self.subTest(idf=idf), self.assertRaisesRegex(ValueError, "finite and nonnegative"):
+                sentence_to_tfidf_weighted_vector(["apple"], toy_vectors(), idf)
+
+
 class DenseRetrievalTests(unittest.TestCase):
     def setUp(self):
         self.faq = toy_faq()
-        self.index = build_word2vec_index(self.faq, toy_vectors())
+        self.indexes = {
+            name: build_word2vec_index(self.faq, toy_vectors(), name) for name in AGGREGATIONS
+        }
+        self.index = self.indexes["w2v_mean"]
+
+    # The toy FAQ gives every indexed term the same IDF, so both aggregations
+    # must agree on ranking, ties, acceptance, and argument validation.
+
+    def test_unknown_aggregation_is_rejected(self):
+        with self.assertRaisesRegex(ValueError, "aggregation"):
+            build_word2vec_index(self.faq, toy_vectors(), "bag_of_words")
 
     def test_exact_noncolliding_question_and_match_contract(self):
-        result = answer_word2vec("apple", self.faq, self.index, 1.0)
-        self.assertTrue(result["found"])
-        self.assertEqual(result["best_match"]["faq_id"], 1)
-        self.assertEqual(set(result["best_match"]),
-                         {"faq_id", "question", "answer", "category", "source", "similarity"})
+        for name, index in self.indexes.items():
+            with self.subTest(aggregation=name):
+                result = answer_word2vec("apple", self.faq, index, 1.0)
+                self.assertTrue(result["found"])
+                self.assertEqual(result["best_match"]["faq_id"], 1)
+                self.assertEqual(set(result["best_match"]),
+                                 {"faq_id", "question", "answer", "category", "source", "similarity"})
 
     def test_sorting_topk_and_invalid_faq_exclusion(self):
-        matches = retrieve_word2vec("banana", self.faq, self.index, 10)
-        self.assertEqual([m["faq_id"] for m in matches], [2, 1])
-        self.assertEqual(len(retrieve_word2vec("apple", self.faq, self.index, 1)), 1)
-        self.assertEqual([m["similarity"] for m in matches], [1., 0.])
+        for name, index in self.indexes.items():
+            with self.subTest(aggregation=name):
+                matches = retrieve_word2vec("banana", self.faq, index, 10)
+                self.assertEqual([m["faq_id"] for m in matches], [2, 1])
+                self.assertEqual(len(retrieve_word2vec("apple", self.faq, index, 1)), 1)
+                self.assertEqual([m["similarity"] for m in matches], [1., 0.])
 
     def test_stable_tie_uses_original_faq_order(self):
-        matches = retrieve_word2vec("apple banana", self.faq, self.index)
-        self.assertEqual([m["faq_id"] for m in matches], [1, 2])
+        for name, index in self.indexes.items():
+            with self.subTest(aggregation=name):
+                matches = retrieve_word2vec("apple banana", self.faq, index)
+                self.assertEqual([m["faq_id"] for m in matches], [1, 2])
 
-    def test_signed_cosine_and_zero_threshold(self):
+    def test_mean_signed_cosine_cancellation_and_zero_threshold(self):
         faq = self.faq.iloc[:1]
         index = build_word2vec_index(faq, toy_vectors())
         result = answer_word2vec("opposite", faq, index, 0.0)
         self.assertEqual(result["top_matches"][0]["similarity"], -1.)
         self.assertFalse(result["found"])
+        self.assertEqual(answer_word2vec("apple opposite", self.faq, self.index, 0.)["top_matches"], [])
 
-    def test_empty_oov_and_cancellation_reject_at_zero(self):
-        for query in ["", "!!!", "unknown", "apple opposite"]:
-            result = answer_word2vec(query, self.faq, self.index, 0.0)
-            self.assertFalse(result["found"])
-            self.assertEqual(result["top_matches"], [])
+    def test_weighted_signed_cosine_and_cancellation_use_corpus_idf(self):
+        # Both questions are one term of one document, so their IDFs are equal.
+        faq = self.faq.iloc[:2].copy()
+        faq["question"] = ["apple", "opposite"]
+        index = build_word2vec_index(faq, toy_vectors(), "w2v_tfidf")
+        matches = answer_word2vec("opposite", faq, index, 0.0)["top_matches"]
+        self.assertEqual([(m["faq_id"], m["similarity"]) for m in matches], [(2, 1.), (1, -1.)])
+        self.assertEqual(answer_word2vec("apple opposite", faq, index, 0.)["top_matches"], [])
+
+    def test_weighted_ignores_query_terms_without_corpus_idf(self):
+        # 'opposite' has an embedding but never appears in the FAQ questions, so
+        # the frozen corpus IDF gives it no weight instead of being refitted.
+        index = self.indexes["w2v_tfidf"]
+        self.assertEqual(retrieve_word2vec("opposite", self.faq, index), [])
+        match = retrieve_word2vec("apple opposite", self.faq, index, 1)[0]
+        self.assertEqual((match["faq_id"], match["similarity"]), (1, 1.))
+
+    def test_empty_and_oov_queries_reject_at_zero(self):
+        for name, index in self.indexes.items():
+            for query in ["", "!!!", "unknown"]:
+                with self.subTest(aggregation=name, query=query):
+                    result = answer_word2vec(query, self.faq, index, 0.0)
+                    self.assertFalse(result["found"])
+                    self.assertEqual(result["top_matches"], [])
 
     def test_runtime_batch_and_metrics_agree(self):
         queries = pd.DataFrame({"query": ["apple unknown", "banana", "unknown"],
                                 "expected_faq_id": [1, 2, pd.NA],
                                 "is_answerable": [True, True, False]})
-        ranking = rank_word2vec_queries(queries["query"], self.faq, self.index)
-        for i, query in enumerate(queries["query"]):
-            result = answer_word2vec(query, self.faq, self.index, .5)
-            self.assertEqual(result["found"], bool(ranking["has_features"][i] and
-                                                  ranking["ranked_scores"][i, 0] >= .5))
-            if result["found"]:
-                self.assertEqual(result["best_match"]["faq_id"], ranking["ranked_ids"][i, 0])
-        report = evaluate_rankings(queries, self.faq, ranking, .5, BASIC_OPTIONS)
-        self.assertEqual(report["correct_answer_rate"], 1.)
-        self.assertEqual(report["unanswerable_rejection_rate"], 1.)
-        tuning = tune_ranked_threshold(queries, ranking)
-        self.assertEqual(tuning["selected_threshold"], 1.)
+        for name, index in self.indexes.items():
+            with self.subTest(aggregation=name):
+                ranking = rank_word2vec_queries(queries["query"], self.faq, index)
+                for i, query in enumerate(queries["query"]):
+                    result = answer_word2vec(query, self.faq, index, .5)
+                    self.assertEqual(result["found"], bool(ranking["has_features"][i] and
+                                                           ranking["ranked_scores"][i, 0] >= .5))
+                    if result["found"]:
+                        self.assertEqual(result["best_match"]["faq_id"], ranking["ranked_ids"][i, 0])
+                report = evaluate_rankings(queries, self.faq, ranking, .5, BASIC_OPTIONS)
+                self.assertEqual(report["correct_answer_rate"], 1.)
+                self.assertEqual(report["unanswerable_rejection_rate"], 1.)
+                tuning = tune_ranked_threshold(queries, ranking)
+                self.assertEqual(tuning["selected_threshold"], 1.)
 
     def test_no_usable_faqs_or_oov_queries_receive_no_metric_credit(self):
-        faq = self.faq.iloc[2:]
-        index = build_word2vec_index(faq, toy_vectors())
-        self.assertEqual(retrieve_word2vec("apple", faq, index), [])
         queries = pd.DataFrame({"query": ["unknown"], "expected_faq_id": [1], "is_answerable": [True]})
-        ranking = rank_word2vec_queries(queries["query"], self.faq, self.index)
-        report = evaluate_rankings(queries, self.faq, ranking, 0.)
-        self.assertEqual(report["top1_accuracy"], 0.)
-        self.assertEqual(report["top3_accuracy"], 0.)
-        self.assertIsNone(report["incorrect_retrieval_examples"][0]["retrieved_faq_id"])
+        for name, index in self.indexes.items():
+            with self.subTest(aggregation=name):
+                faq = self.faq.iloc[2:]
+                self.assertEqual(
+                    retrieve_word2vec("apple", faq, build_word2vec_index(faq, toy_vectors(), name)), []
+                )
+                ranking = rank_word2vec_queries(queries["query"], self.faq, index)
+                report = evaluate_rankings(queries, self.faq, ranking, 0.)
+                self.assertEqual(report["top1_accuracy"], 0.)
+                self.assertEqual(report["top3_accuracy"], 0.)
+                self.assertIsNone(report["incorrect_retrieval_examples"][0]["retrieved_faq_id"])
 
     def test_bad_order_topk_and_threshold_fail(self):
-        with self.assertRaisesRegex(ValueError, "ids/order"):
-            retrieve_word2vec("apple", self.faq.iloc[::-1], self.index)
-        with self.assertRaisesRegex(ValueError, "top_k"):
-            retrieve_word2vec("apple", self.faq, self.index, 0)
-        with self.assertRaisesRegex(ValueError, "threshold"):
-            answer_word2vec("apple", self.faq, self.index, -0.1)
-
+        for name, index in self.indexes.items():
+            with self.subTest(aggregation=name):
+                with self.assertRaisesRegex(ValueError, "ids/order"):
+                    retrieve_word2vec("apple", self.faq.iloc[::-1], index)
+                with self.assertRaisesRegex(ValueError, "top_k"):
+                    retrieve_word2vec("apple", self.faq, index, 0)
+                with self.assertRaisesRegex(ValueError, "threshold"):
+                    answer_word2vec("apple", self.faq, index, -0.1)
 
 class TrainingPersistenceTests(unittest.TestCase):
     @classmethod

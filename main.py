@@ -3,6 +3,7 @@
 Examples:
     python main.py
     python main.py --corpus university --query "How do I request a transcript?"
+    python main.py --corpus university --model w2v_mean --query "How do I receive university alerts?"
 """
 
 from __future__ import annotations
@@ -10,13 +11,24 @@ from __future__ import annotations
 import argparse
 import sys
 from pathlib import Path
+from typing import Any, Callable
 
 from src.data_loader import discover_corpora, load_corpus_config, load_faq_dataset
 from src.tfidf_retrieval import answer_query, build_tfidf_index
+from src.word2vec_config import load_word2vec_threshold
+from src.word2vec_retrieval import answer_word2vec, build_word2vec_index
+from src.word2vec_training import load_word2vec
 
 
 BASE_DIR = Path(__file__).resolve().parent
 DATA_ROOT = BASE_DIR / "data"
+
+# Ordered as they appear in the Phase 2 comparison.
+MODELS = [
+    ("tfidf", "TF-IDF, the Phase 1 baseline"),
+    ("w2v_mean", "Custom Word2Vec, mean vectors"),
+    ("w2v_tfidf", "Custom Word2Vec, TF-IDF weighted vectors"),
+]
 
 # A Windows console defaults to cp1252, which cannot print every character an
 # FAQ answer may contain. Replacing unprintable characters keeps the
@@ -25,25 +37,78 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(errors="replace")
 
 
+def choose_from_menu(labels: list[str], title: str, prompt: str) -> int:
+    """Show a numbered menu and return the selected position."""
+
+    print(title)
+    for number, label in enumerate(labels, start=1):
+        print(f"  {number}. {label}")
+
+    while True:
+        try:
+            choice = input(prompt).strip()
+        except EOFError:
+            # No interactive terminal, so fall back to the first option.
+            print("\nNo input available; using the first option.")
+            return 0
+        if choice.isdigit() and 1 <= int(choice) <= len(labels):
+            return int(choice) - 1
+        print("Please enter one of the displayed numbers.")
+
+
 def choose_corpus(corpora: dict[str, Path]) -> tuple[str, Path]:
     """Show a numbered corpus menu and return the selected item."""
 
     items = list(corpora.items())
-    print("Available corpora:")
-    for number, (key, path) in enumerate(items, start=1):
-        config = load_corpus_config(path)
-        print(f"  {number}. {config['display_name']} ({key})")
+    labels = [
+        f"{load_corpus_config(path)['display_name']} ({key})" for key, path in items
+    ]
+    return items[choose_from_menu(labels, "Available corpora:", "Select a corpus number: ")]
 
-    while True:
-        try:
-            choice = input("Select a corpus number: ").strip()
-        except EOFError:
-            # No interactive terminal, so fall back to the first corpus.
-            print("\nNo input available; using the first corpus.")
-            return items[0]
-        if choice.isdigit() and 1 <= int(choice) <= len(items):
-            return items[int(choice) - 1]
-        print("Please enter one of the displayed numbers.")
+
+def choose_model() -> str:
+    """Show a numbered retrieval-model menu and return the selected key."""
+
+    labels = [description for _key, description in MODELS]
+    position = choose_from_menu(
+        labels, "\nAvailable retrieval models:", "Select a model number: "
+    )
+    return MODELS[position][0]
+
+
+def build_answerer(
+    corpus_dir: Path, faq_data, config: dict[str, Any], model: str
+) -> tuple[Callable[[str], dict[str, Any]], float, str]:
+    """Build one model's index once and return how to answer with it.
+
+    A missing or stale Word2Vec artifact raises with its training instruction
+    rather than training silently during a demonstration.
+    """
+
+    if model == "tfidf":
+        options = {
+            "remove_stopwords": bool(config["remove_stopwords"]),
+            "lemmatize": bool(config["lemmatize"]),
+        }
+        vectorizer, faq_matrix = build_tfidf_index(faq_data, options)
+        threshold = float(config["similarity_threshold"])
+
+        def answer(query: str) -> dict[str, Any]:
+            return answer_query(
+                query, faq_data, vectorizer, faq_matrix,
+                threshold=threshold, top_k=3, preprocessing_options=options,
+            )
+
+        return answer, threshold, str(config.get("preprocessing_config", "basic"))
+
+    trained, metadata = load_word2vec(corpus_dir)
+    threshold = load_word2vec_threshold(corpus_dir, metadata, model)
+    index = build_word2vec_index(faq_data, trained.wv, model)
+
+    def answer(query: str) -> dict[str, Any]:
+        return answer_word2vec(query, faq_data, index, threshold, top_k=3)
+
+    return answer, threshold, "basic"
 
 
 def print_result(result: dict[str, object]) -> None:
@@ -71,6 +136,11 @@ def parse_args() -> argparse.Namespace:
 
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--corpus", help="Corpus key, for example 'university'")
+    parser.add_argument(
+        "--model",
+        choices=[key for key, _description in MODELS],
+        help="Retrieval model; interactive mode asks when this is omitted",
+    )
     parser.add_argument("--query", help="Answer one question and exit")
     return parser.parse_args()
 
@@ -97,32 +167,21 @@ def main() -> None:
     else:
         _corpus_key, corpus_dir = choose_corpus(corpora)
 
+    # A single-shot query keeps the Phase 1 default; the menu is interactive only.
+    model = arguments.model or ("tfidf" if arguments.query else choose_model())
+
     faq_data = load_faq_dataset(corpus_dir)
     config = load_corpus_config(corpus_dir)
-    options = {
-        "remove_stopwords": bool(config["remove_stopwords"]),
-        "lemmatize": bool(config["lemmatize"]),
-    }
-    vectorizer, faq_matrix = build_tfidf_index(faq_data, options)
-    threshold = float(config["similarity_threshold"])
+    answer, threshold, preprocessing = build_answerer(corpus_dir, faq_data, config, model)
+    description = dict(MODELS)[model]
 
     print(f"\nLoaded {len(faq_data)} FAQs from {config['display_name']}.")
-    print(f"Preprocessing: {config.get('preprocessing_config', 'basic')}, "
-          f"threshold: {threshold:.2f}")
+    print(f"Model: {description}")
+    print(f"Preprocessing: {preprocessing}, threshold: {threshold:.2f}")
 
     if arguments.query:
         print(f"\nAsk your question: {arguments.query}")
-        print_result(
-            answer_query(
-                arguments.query,
-                faq_data,
-                vectorizer,
-                faq_matrix,
-                threshold=threshold,
-                top_k=3,
-                preprocessing_options=options,
-            )
-        )
+        print_result(answer(arguments.query))
         return
 
     print("Type 'exit' to close the program.\n")
@@ -139,18 +198,11 @@ def main() -> None:
             print("Please enter a question.\n")
             continue
 
-        print_result(
-            answer_query(
-                query,
-                faq_data,
-                vectorizer,
-                faq_matrix,
-                threshold=threshold,
-                top_k=3,
-                preprocessing_options=options,
-            )
-        )
+        print_result(answer(query))
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except (ValueError, RuntimeError, FileNotFoundError) as error:
+        raise SystemExit(str(error)) from error

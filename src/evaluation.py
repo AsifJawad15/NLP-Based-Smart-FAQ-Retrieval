@@ -331,3 +331,43 @@ def evaluate_rankings(
         "false_rejection_count": int((~accepted[answerable]).sum()),
         "incorrect_retrieval_examples": incorrect_examples,
     }
+
+
+def prediction_frame(
+    test_data: pd.DataFrame,
+    ranking: dict[str, np.ndarray],
+    threshold: float,
+) -> pd.DataFrame:
+    """Expose the per-query decisions behind the aggregate metrics.
+
+    Input: query table, cached ranking, and that model's frozen threshold.
+    Output: one row per query, using the masks `evaluate_rankings` applies.
+
+    A blank predicted id means the query produced no usable vector, so its
+    similarity is a sorting placeholder rather than a real match.
+    """
+
+    if not 0.0 <= threshold <= 1.0:
+        raise ValueError("threshold must be between 0 and 1")
+
+    answerable, _ = _split_masks(test_data)
+    has_features = ranking["has_features"]
+    accepted = _accepted(ranking, threshold)
+    ranked_ids = ranking["ranked_ids"]
+    expected = pd.to_numeric(test_data["expected_faq_id"], errors="coerce").to_numpy(
+        dtype="float64"
+    )
+    top1_correct = answerable & has_features & (ranked_ids[:, 0] == expected)
+
+    predicted = pd.array(ranked_ids[:, 0], dtype="Int64")
+    predicted[~has_features] = pd.NA
+    return pd.DataFrame(
+        {
+            "predicted_faq_id": predicted,
+            "similarity": ranking["ranked_scores"][:, 0],
+            "accepted": accepted,
+            "top1_correct": top1_correct,
+            "correct_answer": top1_correct & accepted,
+        },
+        index=test_data.index,
+    )

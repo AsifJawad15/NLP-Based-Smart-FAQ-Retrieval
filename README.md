@@ -1,8 +1,9 @@
 # NLP-Based Smart FAQ Retrieval and Question Answering System
 
 A corpus-configurable FAQ retrieval engine for the CSE 4122 Natural Language
-Processing Laboratory. Phase 1 uses TF-IDF vectors and cosine similarity to
-**retrieve an existing answer**. It never generates an answer.
+Processing Laboratory. It uses TF-IDF vectors and cosine similarity to
+**retrieve an existing answer**. It never generates an answer. Phase 2 adds a
+custom Word2Vec model per domain and compares three retrieval models.
 
 The same engine runs over two independently indexed corpora — a University FAQ
 set and an E-commerce FAQ set — each with its own preprocessing configuration
@@ -54,6 +55,60 @@ Selection has two stages, both using validation data only:
 The comparison supports basic preprocessing for these validation sets; it does
 not establish that lemmatization improves retrieval or never helps other data.
 
+## Phase 2: TF-IDF against a custom Word2Vec
+
+Phase 2 trains one Skip-Gram Word2Vec model per domain on that domain's **FAQ
+questions only**, then compares three ways of ranking the same 200 test queries.
+Both Word2Vec models come from the same trained file and differ only in how word
+vectors are combined into one question vector.
+
+| Metric | TF-IDF | Word2Vec mean | Word2Vec TF-IDF weighted |
+| --- | --- | --- | --- |
+| University Top-1 accuracy | **0.860** | 0.587 | 0.693 |
+| University correct answer rate | **0.833** | 0.493 | 0.493 |
+| University threshold | 0.46 | 0.93 | 0.95 |
+| E-commerce Top-1 accuracy | **0.953** | 0.753 | 0.740 |
+| E-commerce correct answer rate | **0.820** | 0.633 | 0.687 |
+| E-commerce threshold | 0.58 | 0.92 | 0.91 |
+
+**TF-IDF wins on both corpora, and that is reported as measured.** Two reasons:
+
+1. Each domain supplies only about 6,300-6,700 training tokens. That is far too
+   little for Word2Vec to learn reliable relationships, and the notebook's
+   nearest-neighbour output shows the mixture of sensible and noisy results.
+2. Averaging dense vectors compresses the score range. TF-IDF separates
+   answerable from unanswerable queries by 0.34-0.37 in mean cosine; the
+   Word2Vec methods manage only 0.03-0.09. The tuned threshold therefore has to
+   sit near 0.95, and correct Top-1 matches scoring just below it are rejected.
+   On university, the weighted model ranks 104 of 150 answerable queries first
+   but delivers only 74.
+
+IDF weighting does help over plain averaging on university Top-1 (0.693 against
+0.587), the expected direction, without closing the gap to TF-IDF.
+
+Full tables, per-model sweeps and a paired per-query CSV are in
+[reports/phase2/](reports/phase2/); sections 11 to 13 of the notebook explain
+Skip-Gram, both aggregations, and the paired errors.
+
+```powershell
+# Train one model per corpus. Required once before any Word2Vec command.
+python scripts/train_word2vec.py --corpus all
+
+# Tune both Word2Vec thresholds, then evaluate all three models
+python evaluate.py all --model all
+
+# Ask one question with a chosen model
+python main.py --corpus university --model w2v_mean --query "How do I receive university alerts?"
+```
+
+Word2Vec thresholds live in `data/<corpus>/word2vec_config.json`, keyed to the
+trained model's artifact id, so the frozen Phase 1 `corpus_config.json` is never
+rewritten and a retrained model invalidates its old thresholds. Model binaries
+are Git-ignored; `models/<corpus>/training_metadata.json` is committed and
+records the corpus hash, settings, package versions and vector hash.
+Reproducibility means matching numerical vectors in the pinned environment, not
+identical pickle bytes.
+
 ## How it works
 
 ```text
@@ -74,7 +129,7 @@ credit from arbitrary zero-score ties.
 | --- | --- |
 | 1 | Regex cleaning, tokenization, optional stopword removal and lemmatization |
 | 2 | TF-IDF representation using scikit-learn |
-| 3 | Cosine similarity for retrieval; Word2Vec remains an optional extension |
+| 3 | Cosine similarity for retrieval, and custom Word2Vec sentence vectors (Phase 2) |
 | 4-5 | RNN/LSTM and Transformers are outside this TF-IDF project phase |
 
 The implementation follows these topics without copying the lab code. We use
@@ -132,9 +187,21 @@ python evaluate.py test
 python evaluate.py manual
 python evaluate.py manual --corpus university
 
+# Train the Phase 2 Word2Vec models, tune them, and compare all three models
+python scripts/train_word2vec.py --corpus all
+python evaluate.py all --model all
+python evaluate.py manual --model all
+
 # Unit tests
 python -m unittest discover -s tests
 ```
+
+Every command defaults to TF-IDF. `--model` accepts `tfidf`, `w2v_mean`,
+`w2v_tfidf`, or `all`; `main.py` asks for a model interactively when the flag is
+omitted. `evaluate.py all --model all` reuses the frozen TF-IDF settings rather
+than retuning them, tunes both Word2Vec thresholds on validation queries, and
+writes every Phase 2 result under `reports/phase2/`, leaving the Phase 1 reports
+untouched. Manual mode never tunes.
 
 `evaluate.py all` runs tuning and testing in order. Tuning always writes
 `corpus_config.json` before the test set is read in that run. The tuning functions
@@ -180,7 +247,9 @@ Smart_FAQ/
 ├── data/<corpus>/              faq_dataset.csv, validation_queries.csv,
 │                               test_queries.csv, corpus_config.json
 ├── data/manual_evaluation/     Empty team-query templates and collection guide
+├── models/<corpus>/            Word2Vec training metadata (binaries Git-ignored)
 ├── reports/                    Tuning sweeps and evaluation results
+├── reports/phase2/             Three-model comparison, sweeps and paired CSVs
 ├── notebooks/                  Teacher demonstration notebook
 ├── docs/DATA_SOURCES.md        Corpus sources and manual review record
 └── tests/                      Retrieval, selection, metrics, and manual-mode tests
@@ -232,7 +301,8 @@ generated paraphrase is semantically correct.
 
 ## Scope
 
-Phase 1 is TF-IDF only. Word2Vec and Transformer/BERT work will reuse these
-corpora and evaluation sets but requires separate approval. This phase
-deliberately contains no RNN/LSTM, no GUI, no Flask or Streamlit, and no
-generative answering.
+Phase 1 is TF-IDF; Phase 2 adds custom Word2Vec vectors trained on the same FAQ
+questions. Both phases retrieve stored answers only. Pretrained embeddings,
+training on answers as well as questions, and Transformer/BERT work would reuse
+these corpora and evaluation sets but require separate approval. Neither phase
+contains RNN/LSTM, a GUI, Flask or Streamlit, or generative answering.

@@ -67,7 +67,7 @@ class ManualEvaluationTests(unittest.TestCase):
         path.write_text(HEADER + '"How do I request a transcript?",6,True\nzzqqxx,,False\n', encoding="utf-8")
         with contextlib.redirect_stdout(io.StringIO()), patch.object(evaluate, "tune_threshold") as tune:
             reports = evaluate.run_testing("university", manual=True)
-        report = reports["university"]
+        report = reports["university"]["tfidf"]
         self.assertEqual(report["threshold"], .3)
         self.assertEqual(report["correct_answer_rate"], 1.0)
         self.assertEqual(report["unanswerable_rejection_rate"], 1.0)
