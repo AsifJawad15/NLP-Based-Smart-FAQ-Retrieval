@@ -27,3 +27,10 @@ uses no network after Python dependencies are installed. If retraining changes
 the artifact id, retune its thresholds before evaluation. Reproducibility means
 matching numerical vectors in the pinned environment, not identical pickle
 bytes: Gensim serialization contains lifecycle timestamps.
+
+## Pretrained vectors (Phase 2B)
+
+`models/pretrained/` holds the case-folded Google News subset used by both
+pretrained Word2Vec models. Build it once with
+`python scripts/download_pretrained_embeddings.py`; only its README and
+`pretrained_metadata.json` are committed. See `models/pretrained/README.md`.
