@@ -4,6 +4,7 @@ Examples:
     python main.py
     python main.py --corpus university --query "How do I request a transcript?"
     python main.py --corpus university --model w2v_mean --query "How do I receive university alerts?"
+    python main.py --corpus ecommerce --model pw2v_tfidf --query "What cards can I save on Flipkart?"
 """
 
 from __future__ import annotations
@@ -14,6 +15,8 @@ from pathlib import Path
 from typing import Any, Callable
 
 from src.data_loader import discover_corpora, load_corpus_config, load_faq_dataset
+from src.pretrained_embeddings import load_pretrained_threshold, load_pretrained_vectors
+from src.retrieval_models import AGGREGATIONS, MODEL_DESCRIPTIONS, MODEL_FAMILIES
 from src.tfidf_retrieval import answer_query, build_tfidf_index
 from src.word2vec_config import load_word2vec_threshold
 from src.word2vec_retrieval import answer_word2vec, build_word2vec_index
@@ -22,13 +25,10 @@ from src.word2vec_training import load_word2vec
 
 BASE_DIR = Path(__file__).resolve().parent
 DATA_ROOT = BASE_DIR / "data"
+MODELS_ROOT = BASE_DIR / "models"
 
-# Ordered as they appear in the Phase 2 comparison.
-MODELS = [
-    ("tfidf", "TF-IDF, the Phase 1 baseline"),
-    ("w2v_mean", "Custom Word2Vec, mean vectors"),
-    ("w2v_tfidf", "Custom Word2Vec, TF-IDF weighted vectors"),
-]
+# Ordered as they appear in the model comparisons.
+MODELS = list(MODEL_DESCRIPTIONS.items())
 
 # A Windows console defaults to cp1252, which cannot print every character an
 # FAQ answer may contain. Replacing unprintable characters keeps the
@@ -81,8 +81,9 @@ def build_answerer(
 ) -> tuple[Callable[[str], dict[str, Any]], float, str]:
     """Build one model's index once and return how to answer with it.
 
-    A missing or stale Word2Vec artifact raises with its training instruction
-    rather than training silently during a demonstration.
+    A missing or stale Word2Vec artifact or pretrained subset raises with the
+    command that rebuilds it, rather than training or downloading silently
+    during a demonstration.
     """
 
     if model == "tfidf":
@@ -101,9 +102,14 @@ def build_answerer(
 
         return answer, threshold, str(config.get("preprocessing_config", "basic"))
 
-    trained, metadata = load_word2vec(corpus_dir)
-    threshold = load_word2vec_threshold(corpus_dir, metadata, model)
-    index = build_word2vec_index(faq_data, trained.wv, model)
+    if MODEL_FAMILIES[model] == "pretrained_w2v":
+        vectors, metadata = load_pretrained_vectors(MODELS_ROOT)
+        threshold = load_pretrained_threshold(corpus_dir, metadata, model)
+    else:
+        trained, metadata = load_word2vec(corpus_dir, MODELS_ROOT)
+        threshold = load_word2vec_threshold(corpus_dir, metadata, model)
+        vectors = trained.wv
+    index = build_word2vec_index(faq_data, vectors, AGGREGATIONS[model])
 
     def answer(query: str) -> dict[str, Any]:
         return answer_word2vec(query, faq_data, index, threshold, top_k=3)

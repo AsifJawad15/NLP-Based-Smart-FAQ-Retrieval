@@ -1,4 +1,9 @@
-"""Word2Vec thresholds, stored apart from the frozen TF-IDF configuration."""
+"""Dense-model thresholds, stored apart from the frozen TF-IDF configuration.
+
+The defaults describe the custom Word2Vec models of Phase 2. Pretrained
+vectors reuse the same helpers with their own file name, model keys and
+tuning command, so each family's thresholds stay in a separate file.
+"""
 
 from __future__ import annotations
 
@@ -9,18 +14,20 @@ from typing import Any
 
 AGGREGATIONS = ("w2v_mean", "w2v_tfidf")
 CONFIG_NAME = "word2vec_config.json"
+TUNING_GROUP = "all"
 
 
-def config_path(corpus_dir: str | Path) -> Path:
-    return Path(corpus_dir) / CONFIG_NAME
+def config_path(corpus_dir: str | Path, config_name: str = CONFIG_NAME) -> Path:
+    return Path(corpus_dir) / config_name
 
 
-def _tuning_instruction(corpus: str) -> str:
-    return f"Run: python evaluate.py tune --corpus {corpus} --model all"
+def _tuning_instruction(corpus: str, group: str = TUNING_GROUP) -> str:
+    return f"Run: python evaluate.py tune --corpus {corpus} --model {group}"
 
 
 def save_word2vec_config(
     corpus_dir: str | Path, artifact_id: str, thresholds: dict[str, dict[str, float]],
+    *, config_name: str = CONFIG_NAME, model_keys: tuple[str, ...] = AGGREGATIONS,
 ) -> dict[str, Any]:
     """Freeze tuned thresholds beside the corpus, keyed to one model artifact.
 
@@ -28,16 +35,16 @@ def save_word2vec_config(
     merged, because a retrained model invalidates its previous sweep.
     """
 
-    unknown = set(thresholds) - set(AGGREGATIONS)
+    unknown = set(thresholds) - set(model_keys)
     if unknown:
         raise ValueError(f"Unknown Word2Vec aggregations: {sorted(unknown)}")
 
-    path = config_path(corpus_dir)
+    path = config_path(corpus_dir, config_name)
     config: dict[str, Any] = {"artifact_id": artifact_id, "preprocessing_config": "basic"}
     if path.is_file():
         existing = json.loads(path.read_text(encoding="utf-8"))
         if existing.get("artifact_id") == artifact_id:
-            config.update({k: v for k, v in existing.items() if k in AGGREGATIONS})
+            config.update({k: v for k, v in existing.items() if k in model_keys})
     for name, values in thresholds.items():
         threshold = float(values["similarity_threshold"])
         if not 0.0 <= threshold <= 1.0:
@@ -52,14 +59,16 @@ def save_word2vec_config(
 
 def load_word2vec_threshold(
     corpus_dir: str | Path, metadata: dict[str, Any], aggregation: str,
+    *, config_name: str = CONFIG_NAME, model_keys: tuple[str, ...] = AGGREGATIONS,
+    group: str = TUNING_GROUP,
 ) -> float:
     """Read one frozen threshold, refusing a sweep from a different model."""
 
-    if aggregation not in AGGREGATIONS:
+    if aggregation not in model_keys:
         raise ValueError(f"Unknown Word2Vec aggregation: {aggregation}")
     directory = Path(corpus_dir)
-    path = config_path(directory)
-    instruction = _tuning_instruction(directory.name)
+    path = config_path(directory, config_name)
+    instruction = _tuning_instruction(directory.name, group)
     if not path.is_file():
         raise FileNotFoundError(f"Word2Vec thresholds missing for {directory.name}. {instruction}")
     try:
