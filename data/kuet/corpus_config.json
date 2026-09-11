@@ -1,0 +1,12 @@
+{
+  "display_name": "KUET University",
+  "lemmatize": false,
+  "preprocessing_config": "stopwords_removed",
+  "purpose": "demo",
+  "remove_stopwords": true,
+  "similarity_threshold": 0.47,
+  "supported_models": [
+    "tfidf"
+  ],
+  "validation_score": 0.975
+}

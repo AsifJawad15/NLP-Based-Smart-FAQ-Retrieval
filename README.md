@@ -2,9 +2,9 @@
 
 A corpus-configurable FAQ retrieval engine for the CSE 4122 Natural Language
 Processing Laboratory. Every model **retrieves an existing answer**; nothing is
-generated. The same engine runs over two independently indexed corpora — a
-University FAQ set and an E-commerce FAQ set — each with its own thresholds.
-Once the data and models are prepared, everything runs offline.
+generated. The same engine runs over two research corpora and a separate
+official-source KUET demonstration corpus, each with its own frozen threshold.
+Once the data and models are prepared, retrieval and the local GUI run offline.
 
 ## Latest implementation at a glance
 
@@ -31,18 +31,21 @@ their own development paraphrases. See [Phase 3](#phase-3-siamese-rnn-and-bilstm
 | Status | Item |
 | --- | --- |
 | Done | All seven models, thresholds, seven-model comparison reports, terminal demo for every model |
-| Done | 127 unit tests passing; Phase 1, 2 and 2B reports regenerate byte-for-byte |
+| Done | Reviewed 110-FAQ KUET corpus, frozen TF-IDF configuration and separate development checks |
+| Done | Streamlit FAQ Assistant and separate seven-model Model Comparison page |
+| Done | 144 tests passing, including Streamlit AppTest and model/corpus isolation checks |
 | Pending | Human-written evaluation queries (templates are still empty) |
-| Pending | Presentation interface; the notebook covers Phases 1 and 2A only |
 
-| Dataset count | University | E-commerce |
-| --- | ---: | ---: |
-| FAQs | 500 | 500 |
-| Categories | 14 | 10 |
-| Validation queries | 50 (30 answerable, 20 unanswerable) | 50 (30 answerable, 20 unanswerable) |
-| Test queries | 200 (150 answerable, 50 unanswerable) | 200 (150 answerable, 50 unanswerable) |
-| Phase 3 training / dev paraphrases | 1,000 / 500 | 1,000 / 500 |
-| Collected human-evaluation queries | 0 | 0 |
+| Dataset count | University research | E-commerce research | KUET demo |
+| --- | ---: | ---: | ---: |
+| FAQs | 500 | 500 | 110 |
+| Categories | 14 | 10 | 11 |
+| Validation queries | 50 (30/20) | 50 (30/20) | 50 (30/20) |
+| Final test / development smoke | 200 (150/50) | 200 (150/50) | 20 (15/5) |
+| Phase 3 training / dev paraphrases | 1,000 / 500 | 1,000 / 500 | Not applicable |
+
+Counts in parentheses are answerable/unanswerable. KUET's validation and smoke
+queries are developer-authored and are not an independent human evaluation.
 
 ## Seven-model results
 
@@ -314,6 +317,18 @@ python scripts/train_sequence_models.py --corpus all --arch all   # Phase 3, abo
 
 After setup, demonstrations and evaluation use local files only.
 
+Start the localhost-only GUI from the project directory:
+
+```powershell
+.\.venv\Scripts\python.exe -m streamlit run app.py --server.address localhost
+```
+
+The **FAQ Assistant** opens on KUET and uses TF-IDF only. It shows a stored
+answer and official source only when the frozen threshold accepts the match.
+The **Model Comparison** tab runs the seven research models on one query. RNN
+and BiLSTM are labeled experimental. Heavy models load only after Compare is
+pressed, and cached indexes are invalidated when their source files change.
+
 ## Running
 
 ```powershell
@@ -321,6 +336,7 @@ After setup, demonstrations and evaluation use local files only.
 python main.py
 
 # One question with a chosen model (default model: tfidf)
+python main.py --corpus kuet --query "How many books may an undergraduate borrow?"
 python main.py --corpus university --query "How do I receive university alerts?"
 python main.py --corpus ecommerce --model pw2v_tfidf --query "What cards can I save on Flipkart?"
 
@@ -337,35 +353,60 @@ python evaluate.py all --model phase3     # all seven models -> reports/phase3/
 # Re-run a comparison with frozen thresholds, without tuning
 python evaluate.py test --model phase3
 
-# Evaluate team-written queries (reports "pending" while templates are empty)
-python evaluate.py manual --model phase3
+# KUET is explicit and writes only to reports/demo/
+python evaluate.py tune --corpus kuet --model tfidf
+python evaluate.py test --corpus kuet --model tfidf
+
+# Type questions and receive answers or None (no FAQ IDs needed)
+python evaluate.py manual --corpus university
+python evaluate.py manual --corpus university --query "How is the Curriculum and Pedagogy program structured?"
+
+# Score labeled team-written CSV queries with all seven models
+python evaluate.py human-benchmark --model phase3
 
 # Validate the finalized data, and run the unit tests
 python scripts/prepare_datasets.py validate
+python scripts/prepare_datasets.py validate --domain kuet
 python -m unittest discover -s tests
 ```
 
+Interactive `manual` testing defaults to TF-IDF and asks you to select a corpus
+when `--corpus` is omitted. Type any question; the program shows the stored answer
+or `Result: None`, similarity, acceptance threshold, and up to three ranked FAQ
+questions. Rejected candidates are marked unaccepted. Questions with no usable
+features have no candidates. Type `exit` or `quit` to finish. This mode reads no
+evaluation CSV, writes no performance report, and does not calculate accuracy.
+Similarity is a matching score, not a probability that an answer is correct.
+
 Both CLIs accept `--model tfidf`, `w2v_mean`, `w2v_tfidf`, `pw2v_mean`,
 `pw2v_tfidf`, `rnn` or `bilstm`. `evaluate.py` also accepts the groups `all`,
-`phase2b` and `phase3`. A group reuses every earlier frozen setting and tunes
+`phase2b` and `phase3` for benchmark modes; `manual` requires one model and one
+corpus. Batch `--corpus all` includes research corpora only. KUET must be
+selected explicitly, supports TF-IDF only, and rejects incompatible models
+before loading artifacts. A group reuses every earlier frozen setting and tunes
 only its newest models, so no group retunes an earlier phase or overwrites its
-reports. Manual mode never tunes. A run selecting a single dense or sequence
+reports. Neither `manual` nor `human-benchmark` tunes. A run selecting a single dense or sequence
 model rewrites that phase's `comparison_report.md` with only that model; rerun
 the full group before presenting reports.
 
-Human evaluation is pending. The header-only templates and instructions are in
+The former `evaluate.py manual` CSV workflow is now `evaluate.py human-benchmark`.
+This optional scientific benchmark is for annotators who independently establish
+correct FAQ IDs, allowing accuracy to be measured. Ordinary testers can use
+`manual` without knowing the corpus contents. Collection instructions are in
 [data/manual_evaluation/](data/manual_evaluation/): target 20 answerable and
-10 unanswerable team-written queries per corpus. Empty templates produce no
-scores.
+10 unanswerable team-written queries per corpus. Existing CSVs and `manual_*`
+report filenames are retained; header-only files produce no scores.
 
 ## Project layout
 
 ```text
 Smart_FAQ/
+├── app.py                      Streamlit FAQ Assistant and Model Comparison
 ├── main.py                     Terminal demonstration for every model
 ├── evaluate.py                 Threshold tuning, evaluation and comparison reports
 ├── src/
 │   ├── data_loader.py          Corpus discovery, loading, schema validation
+│   ├── gui_support.py          GUI corpus, cache-signature and report helpers
 │   ├── preprocessing.py        Normalization, optional stop words / lemmas
 │   ├── tfidf_retrieval.py      TF-IDF index, cosine ranking, thresholding
 │   ├── evaluation.py           Shared metrics, threshold sweep, paired predictions
@@ -388,6 +429,7 @@ Smart_FAQ/
 │   └── train_sequence_models.py Seeded RNN/BiLSTM training per domain
 ├── data/<corpus>/              FAQs, validation/test queries, every model's frozen
 │                               thresholds, Phase 3 paraphrases and pairs
+├── data/kuet/                  Official FAQs, source review, validation and smoke queries
 ├── data/manual_evaluation/     Empty team-query templates and collection guide
 ├── models/<corpus>/            Word2Vec and RNN/BiLSTM metadata (binaries Git-ignored)
 ├── models/pretrained/          Subset metadata (download and vectors Git-ignored)
@@ -395,9 +437,10 @@ Smart_FAQ/
 ├── reports/phase2/             Three-model comparison
 ├── reports/phase2b/            Five-model comparison, error cases and coverage
 ├── reports/phase3/             Seven-model comparison, audits, histories, error cases
-├── notebooks/                  Teacher notebook (Phases 1 and 2A)
+├── reports/demo/               KUET tuning and development smoke results
+├── notebooks/                  Teacher notebook and KUET demonstration
 ├── docs/DATA_SOURCES.md        Corpus sources and manual review record
-└── tests/                      127 unit tests
+└── tests/                      Unit and Streamlit AppTest coverage
 ```
 
 FAQ schema: `id,question,answer,category,source,source_type`
@@ -405,13 +448,19 @@ Query schema: `query,expected_faq_id,is_answerable`
 
 ## Data
 
-Both corpora hold 500 reviewed FAQs. The university corpus combines a screened
+Both research corpora hold 500 reviewed FAQs. The university corpus combines a screened
 subset of the [CPath dataset](https://huggingface.co/datasets/houcine-bdk/cpath-mcgill-ubc)
 with FAQs scraped from official `utoronto.ca` and `ubc.ca` pages; the e-commerce
 corpus comes from [NebulaByte/E-Commerce_FAQs](https://huggingface.co/datasets/NebulaByte/E-Commerce_FAQs).
 [docs/DATA_SOURCES.md](docs/DATA_SOURCES.md) records every source, what was
 rejected during review and why, the seven flagged duplicate pairs, and the
 measured quality of the generated paraphrases.
+
+The KUET demo contains 110 distinct English FAQs supported by official KUET,
+Central Library, Admission Portal and Academic System pages. Its companion
+[source review](data/kuet/SOURCE_REVIEW.md) records the verification date,
+official URL and reviewed section for every FAQ ID. Runtime retrieval reads the
+local CSV and does not browse the web.
 
 To rebuild the corpora from source (network needed; overwrites the finalized
 CSVs):
@@ -443,12 +492,14 @@ python scripts/prepare_datasets.py validate
   domain, some of them with wrong-sense substitutions.
 - **The university corpus mixes two source types**, and the e-commerce corpus
   is region-specific (rupees, PhonePe, SuperCoins).
+- **KUET information can change.** Admission-session facts are dated to the
+  source review. Users should follow the linked current notice for deadlines,
+  fees and eligibility. The demo covers its 110 documented intents.
 
 ## Scope
 
-Implemented: TF-IDF, custom and pretrained Word2Vec, and Siamese RNN/BiLSTM
-retrieval of stored answers, with a terminal demonstration and reproducible
-evaluation. Not implemented: training on answers, Transformer/BERT models,
-generative answering, and a graphical interface. A presentation interface is
-planned next; it can reuse `main.py:build_answerer`, which already loads any
-model with its frozen threshold without retraining.
+Implemented: TF-IDF, custom and pretrained Word2Vec, Siamese RNN/BiLSTM,
+stored-answer retrieval, the official-source KUET demo, reproducible evaluation,
+and a localhost Streamlit interface. Deferred: general e-commerce demo data and
+formal human evaluation. The project does not train on answers, generate answers,
+or include Transformer/BERT models, authentication, deployment or a feedback database.

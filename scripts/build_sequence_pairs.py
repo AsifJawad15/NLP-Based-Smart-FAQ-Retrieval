@@ -50,7 +50,9 @@ def main() -> None:
     args = parser.parse_args()
 
     sys.path.insert(0, str(ROOT))
-    from src.data_loader import discover_corpora, load_faq_dataset, load_query_dataset
+    from src.data_loader import (
+        discover_corpora, load_corpus_config, load_faq_dataset, load_query_dataset,
+    )
     from src.pretrained_embeddings import load_pretrained_vectors
     from src import sequence_data
     from src.sequence_data import (
@@ -75,6 +77,11 @@ def main() -> None:
         if args.corpus not in corpora:
             raise SystemExit(f"Unknown corpus '{args.corpus}'; found {sorted(corpora)}")
         corpora = {args.corpus: corpora[args.corpus]}
+    else:
+        corpora = {
+            name: directory for name, directory in corpora.items()
+            if load_corpus_config(directory)["purpose"] == "research"
+        }
     if not corpora:
         raise SystemExit(f"No FAQ corpora found under {args.data_root}")
 
@@ -85,6 +92,9 @@ def main() -> None:
     reports.mkdir(parents=True, exist_ok=True)
 
     for name, directory in corpora.items():
+        supported = load_corpus_config(directory)["supported_models"]
+        if not {"rnn", "bilstm"}.issubset(supported):
+            raise ValueError(f"{name} does not support sequence-model training data")
         faq = load_faq_dataset(directory)
         faq_ids = set(faq["id"])
         words = {token for question in faq["question"] for token in tokens(question) if is_content_word(token)}

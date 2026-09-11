@@ -254,7 +254,7 @@ guide. Format examples live in the guide, not in measured files. The target is
 20 answerable + 10 unanswerable questions per domain, written from intent
 descriptions without seeing FAQ wording and independently labelled by the team.
 
-`python evaluate.py manual [--corpus university|ecommerce]` uses frozen settings
+`python evaluate.py human-benchmark [--corpus university|ecommerce]` uses frozen settings
 without tuning. Header-only files print human evaluation pending and produce no
 current metrics. Populated files validate labels and FAQ references and save
 separate manual JSON/Markdown reports. The default loader continues to reject
@@ -308,8 +308,8 @@ Use the project `.venv` interpreter from `Smart_FAQ`:
 python -m unittest discover -s tests
 python scripts/prepare_datasets.py validate
 python evaluate.py all
-python evaluate.py manual
-python evaluate.py manual --corpus university
+python evaluate.py human-benchmark
+python evaluate.py human-benchmark --corpus university
 python -m compileall -q src tests scripts main.py evaluate.py
 python -m pip check
 python main.py --corpus university --query "How do I receive university alerts?"

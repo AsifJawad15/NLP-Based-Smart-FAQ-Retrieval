@@ -1,13 +1,20 @@
-# Human evaluation: pending team input
+# Optional human benchmark for dataset annotators
 
-The two CSVs intentionally contain only the shared header:
+To simply type questions and see an answer or None, run
+`python evaluate.py manual --corpus university`. No CSV or FAQ IDs are needed.
+
+This directory is for scientific scoring using independently established correct
+labels. Annotators must check the corpus to assign these labels; ordinary testers
+do not need to do this. The former `manual` CSV command is now `human-benchmark`.
+
+Keep this header when adding questions to either CSV:
 
 ```csv
 query,expected_faq_id,is_answerable
 ```
 
-No human-written performance has been measured. These templates are not part of
-the synthetic validation/test sets and are not discovered as FAQ corpora.
+These files are separate from the synthetic validation/test sets and are not
+discovered as FAQ corpora. Small trial sets do not establish overall performance.
 
 ## Collecting the questions
 
@@ -46,9 +53,10 @@ CSV fields containing commas must be quoted. Use `True` or `False` labels.
 From the Smart_FAQ project directory:
 
 ```powershell
-python evaluate.py manual
-python evaluate.py manual --corpus university
-python evaluate.py manual --corpus ecommerce
+python evaluate.py human-benchmark
+python evaluate.py human-benchmark --corpus university
+python evaluate.py human-benchmark --corpus ecommerce
+python evaluate.py human-benchmark --corpus university --model phase3
 ```
 
 Header-only files print **human evaluation pending** and produce no current
@@ -56,7 +64,9 @@ scores or reports. A populated file is checked with the normal query validator
 and evaluated using its corpus's frozen configuration. Smaller sets can be used
 while collecting data; the report includes the actual sample sizes.
 
-Outputs are `reports/manual_<corpus>_evaluation.json` and
-`reports/manual_evaluation_report.md`. Synthetic benchmark reports and corpus
+TF-IDF outputs retain `reports/manual_<corpus>_evaluation.json` and
+`reports/manual_evaluation_report.md`. Model groups write `manual_*` reports,
+including `manual_comparison_report.md`, under the corresponding phase directory
+(for example, `reports/phase3/`). Synthetic benchmark reports and corpus
 configurations are not overwritten. The command cannot establish authorship;
 only claim human-written results for questions your team actually collected.

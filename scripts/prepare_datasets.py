@@ -14,6 +14,7 @@ import random
 import re
 import sys
 from pathlib import Path
+from urllib.parse import urlparse
 
 import numpy as np
 import pandas as pd
@@ -1408,6 +1409,8 @@ def download_sources(domain: str) -> None:
     """Download selected Hugging Face sources into ignored staging CSVs."""
 
     STAGING_DIR.mkdir(parents=True, exist_ok=True)
+    if domain == "kuet":
+        raise ValueError("KUET is a curated official-source corpus; it is not downloaded here")
     domains = SOURCES if domain == "all" else {domain: SOURCES[domain]}
     for name, source in domains.items():
         print(f"Downloading {name}: {source['dataset']}")
@@ -1422,6 +1425,8 @@ def download_sources(domain: str) -> None:
 def convert_sources(domain: str) -> None:
     """Create final FAQ and query CSVs from downloaded source data."""
 
+    if domain == "kuet":
+        raise ValueError("KUET is maintained as a reviewed official-source corpus")
     requested = list(SOURCES) if domain == "all" else [domain]
     final_data: dict[str, pd.DataFrame] = {}
     for name in SOURCES:
@@ -1472,14 +1477,47 @@ def validate_final(domain: str) -> None:
         faq_data = load_faq_dataset(directory)
         faq_ids = set(faq_data["id"])
         validation = load_query_dataset(directory / "validation_queries.csv", faq_ids)
-        test = load_query_dataset(directory / "test_queries.csv", faq_ids)
+        if name == "kuet":
+            test = load_query_dataset(directory / "smoke_queries.csv", faq_ids)
+            config = json.loads((directory / "corpus_config.json").read_text(encoding="utf-8"))
+            if config.get("purpose") != "demo" or config.get("supported_models") != ["tfidf"]:
+                raise ValueError("kuet must be a demo corpus that supports TF-IDF only")
+            if not 80 <= len(faq_data) <= 200:
+                raise ValueError(f"kuet should contain about 100 FAQs, found {len(faq_data)}")
+            if (len(validation), int(validation["is_answerable"].sum())) != (50, 30):
+                raise ValueError("kuet validation split must be 30 answerable + 20 unanswerable")
+            if (len(test), int(test["is_answerable"].sum())) != (20, 15):
+                raise ValueError("kuet smoke split must be 15 answerable + 5 unanswerable")
+            if set(faq_data["source_type"]) != {"official_web"}:
+                raise ValueError("kuet source_type must be official_web for every FAQ")
+            allowed_hosts = {"www.kuet.ac.bd", "kuet.ac.bd", "library.kuet.ac.bd",
+                             "admission.kuet.ac.bd", "academic.kuet.ac.bd"}
+            bad_sources = [url for url in faq_data["source"] if urlparse(url).hostname not in allowed_hosts]
+            if bad_sources:
+                raise ValueError(f"kuet contains a non-official source: {bad_sources[0]}")
+            if faq_data["category"].nunique() < 8:
+                raise ValueError("kuet must cover at least eight useful categories")
+            review = directory / "SOURCE_REVIEW.md"
+            if not review.is_file():
+                raise ValueError("kuet SOURCE_REVIEW.md is missing")
+            reviewed: set[int] = set()
+            for start, end in re.findall(
+                r"FAQ(?:s)?\s+([0-9]+)(?:-([0-9]+))?",
+                review.read_text(encoding="utf-8"),
+            ):
+                first = int(start)
+                reviewed.update(range(first, int(end or start) + 1))
+            if not faq_ids.issubset(reviewed):
+                raise ValueError("kuet source review does not cover every FAQ id")
+        else:
+            test = load_query_dataset(directory / "test_queries.csv", faq_ids)
 
-        if len(faq_data) != 500:
-            raise ValueError(f"{name} must contain 500 FAQs, found {len(faq_data)}")
-        if (len(validation), int(validation["is_answerable"].sum())) != (50, 30):
-            raise ValueError(f"{name} validation split must be 30 answerable + 20 unanswerable")
-        if (len(test), int(test["is_answerable"].sum())) != (200, 150):
-            raise ValueError(f"{name} test split must be 150 answerable + 50 unanswerable")
+            if len(faq_data) != 500:
+                raise ValueError(f"{name} must contain 500 FAQs, found {len(faq_data)}")
+            if (len(validation), int(validation["is_answerable"].sum())) != (50, 30):
+                raise ValueError(f"{name} validation split must be 30 answerable + 20 unanswerable")
+            if (len(test), int(test["is_answerable"].sum())) != (200, 150):
+                raise ValueError(f"{name} test split must be 150 answerable + 50 unanswerable")
 
         source_questions = faq_data.set_index("id")["question"]
         for _, row in pd.concat([validation, test]).query("is_answerable").iterrows():
@@ -1487,9 +1525,13 @@ def validate_final(domain: str) -> None:
             if normalized_question(row["query"]) == normalized_question(original):
                 raise ValueError(f"Query duplicates its source FAQ: {row['query']}")
 
+        if set(validation["query"]) & set(test["query"]):
+            raise ValueError(f"{name} validation and final check queries overlap")
+
+        label = "smoke" if name == "kuet" else "test"
         print(
             f"VALID {name}: FAQs={len(faq_data)}, validation={len(validation)}, "
-            f"test={len(test)}, categories={faq_data['category'].nunique()}"
+            f"{label}={len(test)}, categories={faq_data['category'].nunique()}"
         )
 
 
@@ -1499,7 +1541,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("mode", choices=["download", "convert", "validate"])
     parser.add_argument(
-        "--domain", choices=["all", "university", "ecommerce"], default="all"
+        "--domain", choices=["all", "university", "ecommerce", "kuet"], default="all"
     )
     return parser.parse_args()
 
