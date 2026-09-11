@@ -4,6 +4,7 @@
   "content_words": 770,
   "corpus": "university",
   "coverage_limit": 0.8,
+  "distinct_substitution_pairs": 472,
   "evaluation_queries": {
     "manual": 0,
     "test": 200,
@@ -21,7 +22,7 @@
     "train": 1000
   },
   "generator_settings": {
-    "dropout_rate": 0.15,
+    "dropout_rate": 0.25,
     "duplicate_similarity": 0.88,
     "frames": [
       "{0}?",
@@ -33,27 +34,30 @@
       "{0}? Any idea?"
     ],
     "hard_negative_pool": 10,
-    "neighbour_candidates": 50000,
-    "neighbour_floor": 0.55,
-    "neighbours_kept": 5,
     "paraphrases_per_faq": 3,
+    "protected_word_count": 143,
     "seed": 42,
-    "substitution_rate": 0.75
+    "substitute_candidates": 50000,
+    "substitute_floor": 0.35,
+    "substitute_source": "WordNet synonyms ranked by pretrained cosine similarity",
+    "substitutes_kept": 5,
+    "substitution_rate": 1.0
   },
-  "introduced_template_openings": 1,
+  "introduced_template_openings": 0,
   "jaccard_limit": 0.8,
   "kept": {
     "dev": 500,
     "train": 1000
   },
-  "max_jaccard_with_any_evaluation_query": 0.6471,
+  "max_jaccard_with_any_evaluation_query": 0.7857,
   "max_len": 28,
-  "mean_source_token_coverage": 0.7527,
+  "mean_source_token_coverage": 0.7678,
   "normalized_duplicates_within_training": 0,
-  "passed": false,
+  "passed": true,
   "pretrained_artifact_id": "4dc03298b4ad947bcac7f80006b44334034f860c092148cd240dcd7a2d7b8e89",
   "removed_exact_evaluation_match": 0,
   "removed_high_overlap": 0,
+  "substitutions_made": 2517,
   "template_openings_checked": 89,
-  "words_with_neighbours": 533
+  "words_with_substitutes": 372
 }

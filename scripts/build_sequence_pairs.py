@@ -55,17 +55,20 @@ def main() -> None:
     from src import sequence_data
     from src.sequence_data import (
         audit_training_data, build_pairs, choose_max_len, generate_paraphrases,
-        is_content_word, nearest_neighbours, normalized, template_openings, tokens,
+        is_content_word, normalized, synonym_substitutes, template_openings, tokens,
     )
+    from src.sequence_models import build_vocabulary
+    from src.sequence_training import PAIRS_FILE, PARAPHRASES_FILE, TRAINING_SETTINGS
+
     generator_settings = {
         name.lower(): getattr(sequence_data, name) for name in [
-            "SEED", "PARAPHRASES_PER_FAQ", "NEIGHBOUR_CANDIDATES", "NEIGHBOUR_FLOOR",
-            "NEIGHBOURS_KEPT", "SUBSTITUTION_RATE", "DROPOUT_RATE", "HARD_NEGATIVE_POOL",
+            "SEED", "PARAPHRASES_PER_FAQ", "SUBSTITUTE_CANDIDATES", "SUBSTITUTE_FLOOR",
+            "SUBSTITUTES_KEPT", "SUBSTITUTION_RATE", "DROPOUT_RATE", "HARD_NEGATIVE_POOL",
             "DUPLICATE_SIMILARITY", "FRAMES",
         ]
     }
-    from src.sequence_models import build_vocabulary
-    from src.sequence_training import PAIRS_FILE, PARAPHRASES_FILE, TRAINING_SETTINGS
+    generator_settings["substitute_source"] = "WordNet synonyms ranked by pretrained cosine similarity"
+    generator_settings["protected_word_count"] = len(sequence_data.PROTECTED_WORDS)
 
     corpora = discover_corpora(args.data_root)
     if args.corpus != "all":
@@ -85,8 +88,10 @@ def main() -> None:
         faq = load_faq_dataset(directory)
         faq_ids = set(faq["id"])
         words = {token for question in faq["question"] for token in tokens(question) if is_content_word(token)}
-        neighbours = nearest_neighbours(words, vectors, banned)
-        paraphrases = generate_paraphrases(faq, neighbours, avoid_openings=openings)
+        substitutes = synonym_substitutes(words, vectors, banned)
+        paraphrases = generate_paraphrases(
+            faq, substitutes, keyed_vectors=vectors, avoid_openings=openings
+        )
         manual_path = args.data_root / "manual_evaluation" / f"{name}_queries.csv"
         evaluation = {
             "validation": load_query_dataset(directory / "validation_queries.csv", faq_ids),
@@ -103,12 +108,15 @@ def main() -> None:
         ))
         evaluation_tokens = [token for frame in evaluation.values() for query in frame["query"] for token in tokens(query)]
         known = [token for token in evaluation_tokens if token in vectors.key_to_index]
+        substitutions = [pair for text in kept["substitutions"] for pair in str(text).split()]
         audit.update({
             "corpus": name,
             "generator_settings": generator_settings,
             "pretrained_artifact_id": metadata["artifact_id"],
-            "words_with_neighbours": len(neighbours),
+            "words_with_substitutes": len(substitutes),
             "content_words": len(words),
+            "substitutions_made": len(substitutions),
+            "distinct_substitution_pairs": len(set(substitutions)),
             "template_openings_checked": len(openings),
             "banned_substitution_pairs": len(banned),
             "max_len": choose_max_len([*faq["question"], *kept.loc[kept["split"] == "train", "query"]]),

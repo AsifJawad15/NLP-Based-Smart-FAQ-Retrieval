@@ -239,7 +239,7 @@ def train_sequence_model(
             "dev_top1": dev_top1, "dev_top3": dev_top3,
             "validation_top1_logged_only": validation_top1,
             "validation_top3_logged_only": validation_top3,
-            "scale": float(model.scale), "bias": float(model.bias),
+            "scale": model.scale.item(), "bias": model.bias.item(),
         })
 
         key = (dev_top1, dev_top3, -dev_loss)

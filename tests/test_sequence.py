@@ -30,10 +30,12 @@ from src.sequence_data import (
     audit_training_data,
     build_pairs,
     choose_max_len,
+    fit_to_question,
     generate_paraphrases,
-    nearest_neighbours,
     normalized,
     protected_tokens,
+    synonym_substitutes,
+    synonyms,
     template_openings,
     tokens,
 )
@@ -81,17 +83,18 @@ def toy_vectors() -> KeyedVectors:
 
 
 def fixture_rows(texts, seed: int = 11):
-    """A vector for every fixture word, and a close reversed-spelling synonym for longer ones."""
+    """A vector for every fixture word, plus close vectors for up to two WordNet synonyms of each."""
 
     rng = np.random.default_rng(seed)
     words = sorted({token for text in texts for token in tokens(text)} - NONSENSE)
-    rows = []
+    base = {word: rng.normal(size=8) for word in words}
+    rows = [(word, base[word]) for word in words]
+    keys = set(words)
     for word in words:
-        vector = rng.normal(size=8)
-        rows.append((word, vector))
-        synonym = word[::-1]
-        if word.isalpha() and len(word) >= 4 and synonym != word and synonym not in words:
-            rows.append((synonym, vector + rng.normal(scale=0.05, size=8)))
+        options = sorted(candidate for candidate in synonyms(word) if candidate.isalpha() and candidate not in keys)
+        for synonym in options[:2]:
+            rows.append((synonym, base[word] + rng.normal(scale=0.05, size=8)))
+            keys.add(synonym)
     return rows
 
 
@@ -208,16 +211,42 @@ class ParaphraseAndPairTests(unittest.TestCase):
         self.faq = validate_faq_data(pd.read_csv(FIXTURES / "university_sample.csv"))
         self.vectors = fixture_vectors(self.faq["question"])
         words = {token for question in self.faq["question"] for token in tokens(question)}
-        self.neighbours = nearest_neighbours(words, self.vectors)
+        self.neighbours = synonym_substitutes(words, self.vectors)
 
-    def test_neighbours_skip_inflections_banned_pairs_and_weak_matches(self) -> None:
+    def test_substitutes_are_close_wordnet_synonyms_never_protected_or_banned(self) -> None:
         vectors = KeyedVectors(vector_size=2)
         vectors.add_vectors(
-            ["refund", "refunds", "reimbursement", "rebate", "banana"],
-            np.array([[1, 0], [1, 0.01], [1, 0.1], [1, 0.3], [0, 1]], dtype=np.float32),
+            ["purchase", "buy", "sell", "leverage", "purchased", "more", "additional"],
+            np.array([[1, 0], [0.9, 0.2], [1, 0.05], [0, 1], [1, 0.01], [0.3, 1], [0.3, 1]],
+                     dtype=np.float32),
         )
-        neighbours = nearest_neighbours(["refund"], vectors, [("refund", "rebate")])
-        self.assertEqual(neighbours, {"refund": ["reimbursement"]})
+        # 'sell' is close but not a synonym, 'leverage' is a synonym but far,
+        # 'purchased' is an inflection, and 'more' is a protected polarity word.
+        self.assertEqual(synonym_substitutes(["purchase", "more"], vectors), {"purchase": ["buy"]})
+        self.assertEqual(synonym_substitutes(["purchase"], vectors, [("purchase", "buy")]), {})
+
+    def test_context_rejects_a_synonym_from_the_wrong_sense(self) -> None:
+        vectors = KeyedVectors(vector_size=3)
+        vectors.add_vectors(
+            ["quickly", "battery", "charge", "power", "accusation"],
+            np.array([[0.5, 0.5, 0], [1, 0, 0], [1, 0.2, 0], [1, 0.1, 0], [0, 0, 1]], dtype=np.float32),
+        )
+        local = fit_to_question(
+            ["how", "quickly", "does", "battery", "charge"], {"charge": ["accusation", "power"]}, vectors
+        )
+        self.assertEqual(local, {"charge": ["power"]})
+
+    def test_quantities_and_polarity_words_are_never_substituted(self) -> None:
+        faq = pd.DataFrame({
+            "id": [1], "question": ["can i return more than one item within seven days"],
+            "answer": ["x"], "category": ["c"], "source": ["s"], "source_type": ["t"],
+        })
+        substitutes = {"return": ["repay"], "more": ["additional"], "one": ["single"],
+                       "item": ["product"], "seven": ["eight"], "days": ["years"], "within": ["inside"]}
+        for query in generate_paraphrases(faq, substitutes)["query"]:
+            words = set(tokens(query))
+            self.assertTrue({"more", "one", "seven", "days"} <= words)
+            self.assertFalse({"additional", "single", "eight", "years"} & words)
 
     def test_three_distinct_deterministic_paraphrases_per_faq(self) -> None:
         first = generate_paraphrases(self.faq, self.neighbours)

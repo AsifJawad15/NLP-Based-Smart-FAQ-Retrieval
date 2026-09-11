@@ -1,0 +1,67 @@
+{
+  "accepted_wrong_count": 9,
+  "answerable_acceptance_rate": 0.5533333333333333,
+  "answerable_queries": 150,
+  "corpus": "university",
+  "correct_answer_rate": 0.49333333333333335,
+  "display_name": "University FAQ",
+  "evaluation_set": "synthetic_benchmark",
+  "false_acceptance_count": 1,
+  "false_rejection_count": 67,
+  "faq_count": 500,
+  "incorrect_retrieval_examples": [
+    {
+      "accepted": true,
+      "expected_faq_id": 47,
+      "query": "What investigations are carried out in Germanic Literature, Culture and Theory?",
+      "retrieved_faq_id": 161,
+      "retrieved_question": "what are the research strengths of Educational Leadership and Policy at UOFT?",
+      "similarity": 0.9573651663016788
+    },
+    {
+      "accepted": true,
+      "expected_faq_id": 221,
+      "query": "What investigations are carried out in Master of Applied Science (MASc)?",
+      "retrieved_faq_id": 25,
+      "retrieved_question": "what are the admission requirements for Master of Applied Science (MASc) at UOFT?",
+      "similarity": 0.9654000985802851
+    },
+    {
+      "accepted": false,
+      "expected_faq_id": 238,
+      "query": "Which study areas does Finance pursue?",
+      "retrieved_faq_id": 67,
+      "retrieved_question": "what kind of research is done in Electrical and Computer Engineering at UOFT?",
+      "similarity": 0.8866612692709119
+    },
+    {
+      "accepted": false,
+      "expected_faq_id": 64,
+      "query": "Which areas of learning belong to Ecology and Evolutionary Biology?",
+      "retrieved_faq_id": 127,
+      "retrieved_question": "what kind of research is done in Ecology and Evolutionary Biology at UOFT?",
+      "similarity": 0.9302215593687876
+    },
+    {
+      "accepted": false,
+      "expected_faq_id": 83,
+      "query": "What shape does Counselling & Clinical Psychology take?",
+      "retrieved_faq_id": 129,
+      "retrieved_question": "what research opportunities exist in Counselling and Clinical Psychology - Field in Clinical and Counselling Psychology (OISE) at UOFT?",
+      "similarity": 0.9138250557014764
+    }
+  ],
+  "mean_similarity_correct_top1": 0.9642756942656608,
+  "model": "w2v_tfidf",
+  "model_label": "Word2Vec TF-IDF weighted",
+  "preprocessing_config": "basic",
+  "preprocessing_options": {
+    "lemmatize": false,
+    "remove_stopwords": false
+  },
+  "threshold": 0.95,
+  "top1_accuracy": 0.6933333333333334,
+  "top3_accuracy": 0.7733333333333333,
+  "unanswerable_queries": 50,
+  "unanswerable_rejection_rate": 0.98
+}

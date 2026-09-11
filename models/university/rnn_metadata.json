@@ -6,13 +6,13 @@
     "hidden_dim": 128,
     "num_layers": 1
   },
-  "artifact_id": "72fe5d67d95e502895d6bf274a11153eb1607571eee77ad4b8bd31e892dcec43",
-  "best_dev_loss": 0.13049814822276434,
-  "best_dev_top1": 0.746,
-  "best_dev_top3": 0.85,
+  "artifact_id": "ec95a124e51c44a4b98ac2979f9e19b5d3c26f154bcfdc3ec36a4cbc04662f02",
+  "best_dev_loss": 0.11759666792551676,
+  "best_dev_top1": 0.79,
+  "best_dev_top3": 0.862,
   "best_epoch": 13,
-  "corpus": "ecommerce",
-  "corpus_sha256": "b6e1697cebf60678d51bb94586fcb81b60a820a52530cd33b92f813096bbcec8",
+  "corpus": "university",
+  "corpus_sha256": "8b43d730e561dd09b71b2f2620ab87a28c5635d106b5ccbe4d67ee868216b6ec",
   "dev_pairs": 1500,
   "dev_queries": 500,
   "embedding_dim": 300,
@@ -24,12 +24,12 @@
     "torch": "2.14.0+cpu"
   },
   "pairs_dropped_without_known_words": 0,
-  "pairs_sha256": "2a1c1f031ab65757379b607e7ff482c5d449d04b699de088d27498e55c52b246",
-  "paraphrases_sha256": "e17d3d12cd9923188b3a039a59622c66a41cb1b09347424d243429fdb68f5c24",
+  "pairs_sha256": "36cd7dc8453c6f526732b0e32e1ff45f29d814e753e7ef9e41e3700471b0e5cf",
+  "paraphrases_sha256": "ca122907275ecf38ba5718f291d0b8f0daa900f76948a3f923eed33335939626",
   "pretrained_artifact_id": "4dc03298b4ad947bcac7f80006b44334034f860c092148cd240dcd7a2d7b8e89",
   "pretrained_model": "word2vec-google-news-300",
   "python_hash_seed": 42,
-  "state_sha256": "b5dca3fd12c457a39616d4c324d54551e72707a60c66d8757da2568db9fa6caf",
+  "state_sha256": "71fecca7fc6d33b2df441da661085cf111f5554a225f2b98a757dcc44548cd67",
   "train_pairs": 3000,
   "training_settings": {
     "batch_size": 32,
@@ -46,6 +46,6 @@
     "selection": "highest dev Top-1, then dev Top-3, then lowest dev loss",
     "torch_threads": 1
   },
-  "vocabulary_sha256": "792ba425f921362971da801174ae0e7d7721cc7c4a21bf25fd337c6d4b25a55d",
-  "vocabulary_size": 100013
+  "vocabulary_sha256": "e99a30ec33c20b4ec1dd8a1a6ada8a6cebec4cac2605a746dd025e2d2a4ff1fb",
+  "vocabulary_size": 100028
 }
