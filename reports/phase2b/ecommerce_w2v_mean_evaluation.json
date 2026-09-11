@@ -1,0 +1,67 @@
+{
+  "accepted_wrong_count": 16,
+  "answerable_acceptance_rate": 0.74,
+  "answerable_queries": 150,
+  "corpus": "ecommerce",
+  "correct_answer_rate": 0.6333333333333333,
+  "display_name": "E-commerce FAQ",
+  "evaluation_set": "synthetic_benchmark",
+  "false_acceptance_count": 3,
+  "false_rejection_count": 39,
+  "faq_count": 500,
+  "incorrect_retrieval_examples": [
+    {
+      "accepted": true,
+      "expected_faq_id": 182,
+      "query": "Explain the cause: do I see a 'shipment charge'.",
+      "retrieved_faq_id": 188,
+      "retrieved_question": "Why do I see a Return fee applicable to the order?",
+      "similarity": 0.945745110601624
+    },
+    {
+      "accepted": true,
+      "expected_faq_id": 439,
+      "query": "What is the correct procedure to foreclose my EMI with Bajaj Finserv?",
+      "retrieved_faq_id": 499,
+      "retrieved_question": "My payment from the 'Bajaj Finserv No Cost EMI' payment mode did not go through, but the amount has been blocked on my card. What should I do?",
+      "similarity": 0.9237436367326679
+    },
+    {
+      "accepted": false,
+      "expected_faq_id": 11,
+      "query": "In which place is it possible to verify the expiry related particulars of my Flipkart Plus membership?",
+      "retrieved_faq_id": 123,
+      "retrieved_question": "My Flipkart Plus membership is expiring soon, how can I be a part of the program again?",
+      "similarity": 0.8995146635706489
+    },
+    {
+      "accepted": true,
+      "expected_faq_id": 75,
+      "query": "I am trying to make use of a new email location to log in to my Flipkart profile - what is the process?",
+      "retrieved_faq_id": 256,
+      "retrieved_question": "Can I use my Gift Card to buy items from different sellers in the same order?",
+      "similarity": 0.9221179340960743
+    },
+    {
+      "accepted": false,
+      "expected_faq_id": 453,
+      "query": "Explain how this works: does a Present Card expire.",
+      "retrieved_faq_id": 412,
+      "retrieved_question": "How does Flipkart prevent card fraud?",
+      "similarity": 0.901894584240075
+    }
+  ],
+  "mean_similarity_correct_top1": 0.9490957031469556,
+  "model": "w2v_mean",
+  "model_label": "Word2Vec mean",
+  "preprocessing_config": "basic",
+  "preprocessing_options": {
+    "lemmatize": false,
+    "remove_stopwords": false
+  },
+  "threshold": 0.92,
+  "top1_accuracy": 0.7533333333333333,
+  "top3_accuracy": 0.86,
+  "unanswerable_queries": 50,
+  "unanswerable_rejection_rate": 0.94
+}

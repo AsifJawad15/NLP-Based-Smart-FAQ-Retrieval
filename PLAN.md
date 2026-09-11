@@ -192,3 +192,12 @@ no Git commit, push, deployment, or corpus rebuild is included.
   structure and consistency, not the semantic truth of every answer or paraphrase.
 - Phase 2 Word2Vec and later Transformer/BERT work will reuse the same corpora and evaluation sets but require separate approval and Git pushes.
 - Do not add RNN/LSTM, GUI, Flask, Streamlit, or generative-answer behavior during Phase 1.
+
+## Later phases
+
+This file records the Phase 1 plan. Phase 2 (custom Word2Vec) and Phase 2B
+(pretrained Google News Word2Vec) were later implemented as separate, approved
+phases. They reuse these corpora, query sets, metrics and threshold protocol
+without changing the frozen Phase 1 results, and each writes to its own
+`reports/` subdirectory. Phase 3 (Siamese RNN and BiLSTM encoders) is planned
+next. `README.md` summarises the measured results of every phase.

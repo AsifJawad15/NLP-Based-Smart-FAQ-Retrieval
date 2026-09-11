@@ -5,7 +5,12 @@ Examples:
     python evaluate.py test
     python evaluate.py all --corpus university
     python evaluate.py all --model all
+    python evaluate.py all --model phase2b
     python evaluate.py manual --corpus ecommerce --model all
+
+`--model all` is the Phase 2 comparison of TF-IDF with both custom Word2Vec
+models. `--model phase2b` adds both pretrained Word2Vec models. A group tunes
+only its newest models and reuses every earlier frozen setting.
 """
 
 from __future__ import annotations
@@ -30,6 +35,23 @@ from src.evaluation import (
     tune_ranked_threshold,
     tune_threshold,
 )
+from src.pretrained_embeddings import (
+    CONFIG_NAME as PRETRAINED_CONFIG_NAME,
+    folded_source_keys,
+    load_pretrained_threshold,
+    load_pretrained_vectors,
+    save_pretrained_config,
+    token_coverage,
+)
+from src.retrieval_models import (
+    AGGREGATIONS,
+    CUSTOM_COUNTERPARTS,
+    MODEL_FAMILIES,
+    MODEL_GROUPS,
+    MODEL_LABELS,
+    newest_family,
+    report_subdir,
+)
 from src.tfidf_retrieval import build_tfidf_index
 from src.word2vec_config import load_word2vec_threshold, save_word2vec_config
 from src.word2vec_retrieval import build_word2vec_index, rank_word2vec_queries
@@ -41,18 +63,20 @@ DATA_ROOT = BASE_DIR / "data"
 REPORTS_DIR = BASE_DIR / "reports"
 MODELS_ROOT = BASE_DIR / "models"
 
-MODELS = ["tfidf", "w2v_mean", "w2v_tfidf"]
-MODEL_LABELS = {
-    "tfidf": "TF-IDF",
-    "w2v_mean": "Word2Vec mean",
-    "w2v_tfidf": "Word2Vec TF-IDF weighted",
-}
+# Every individual model key, in comparison order.
+MODELS = list(MODEL_LABELS)
+
+
+def phase_dir(subdir: str) -> Path:
+    """Resolve at call time so tests can redirect REPORTS_DIR."""
+
+    return REPORTS_DIR / subdir
 
 
 def phase2_dir() -> Path:
     """Resolve at call time so tests can redirect REPORTS_DIR."""
 
-    return REPORTS_DIR / "phase2"
+    return phase_dir("phase2")
 
 
 def selected_corpora(corpus: str) -> dict[str, Path]:
@@ -69,12 +93,12 @@ def selected_corpora(corpus: str) -> dict[str, Path]:
 
 
 def selected_models(model: str) -> list[str]:
-    """Return the retrieval models to run, in a fixed comparison order."""
+    """Return one model, or a named comparison group, in a fixed order."""
 
-    if model == "all":
-        return list(MODELS)
-    if model not in MODELS:
-        raise SystemExit(f"Unknown model '{model}'; choose from {MODELS + ['all']}")
+    if model in MODEL_GROUPS:
+        return list(MODEL_GROUPS[model])
+    if model not in MODEL_LABELS:
+        raise SystemExit(f"Unknown model '{model}'; choose from {MODELS + list(MODEL_GROUPS)}")
     return [model]
 
 
@@ -135,43 +159,38 @@ def tune_tfidf(name: str, directory: Path, faq_data, validation) -> None:
     )
 
 
-def tune_word2vec(
-    name: str, directory: Path, faq_data, validation, aggregations: list[str]
-) -> dict[str, Any]:
-    """Sweep one threshold per aggregation; preprocessing is fixed to basic."""
+def _tune_dense(
+    name: str, faq_data, validation, models: list[str], keyed_vectors,
+    artifact_id: str, destination: Path, extra: dict[str, Any],
+) -> dict[str, dict[str, float]]:
+    """Sweep one threshold per dense model over the same validation queries."""
 
-    model, metadata = load_word2vec(directory, MODELS_ROOT)
     thresholds: dict[str, dict[str, float]] = {}
-    print(f"\n=== Tuning {name} Word2Vec on {len(validation)} validation queries ===")
-    print(
-        f"  model artifact {metadata['artifact_id'][:12]}, "
-        f"vocabulary {metadata['vocabulary_size']}, "
-        f"{metadata['token_count']} training tokens"
-    )
-    for aggregation in aggregations:
-        index = build_word2vec_index(faq_data, model.wv, aggregation)
+    for item in models:
+        index = build_word2vec_index(faq_data, keyed_vectors, AGGREGATIONS[item])
         ranking = rank_word2vec_queries(validation["query"], faq_data, index, top_k=3)
         result = tune_ranked_threshold(validation, ranking)
         best = next(
             row for row in result["sweep"]
             if row["threshold"] == result["selected_threshold"]
         )
-        thresholds[aggregation] = {
+        thresholds[item] = {
             "similarity_threshold": result["selected_threshold"],
             "validation_score": result["selected_score"],
         }
         print(
-            f"  {MODEL_LABELS[aggregation]:<26} threshold={best['threshold']:.2f} "
+            f"  {MODEL_LABELS[item]:<36} threshold={best['threshold']:.2f} "
             f"score={best['score']:.4f} "
             f"accept={best['answerable_acceptance_rate']:.3f} "
             f"reject={best['unanswerable_rejection_rate']:.3f}"
         )
         write_json(
-            phase2_dir() / f"{name}_{aggregation}_tuning.json",
+            destination / f"{name}_{item}_tuning.json",
             {
                 "corpus": name,
-                "model": aggregation,
-                "artifact_id": metadata["artifact_id"],
+                "model": item,
+                "artifact_id": artifact_id,
+                **extra,
                 "preprocessing_config": "basic",
                 "validation_queries": len(validation),
                 "usable_faq_vectors": int(index["valid_faqs"].sum()),
@@ -180,8 +199,47 @@ def tune_word2vec(
                 "sweep": result["sweep"],
             },
         )
+    return thresholds
+
+
+def tune_word2vec(
+    name: str, directory: Path, faq_data, validation, aggregations: list[str]
+) -> dict[str, Any]:
+    """Sweep one threshold per aggregation; preprocessing is fixed to basic."""
+
+    model, metadata = load_word2vec(directory, MODELS_ROOT)
+    print(f"\n=== Tuning {name} Word2Vec on {len(validation)} validation queries ===")
+    print(
+        f"  model artifact {metadata['artifact_id'][:12]}, "
+        f"vocabulary {metadata['vocabulary_size']}, "
+        f"{metadata['token_count']} training tokens"
+    )
+    thresholds = _tune_dense(
+        name, faq_data, validation, aggregations, model.wv,
+        metadata["artifact_id"], phase2_dir(), {},
+    )
     saved = save_word2vec_config(directory, metadata["artifact_id"], thresholds)
     print(f"  frozen into {directory / 'word2vec_config.json'}")
+    return saved
+
+
+def tune_pretrained(
+    name: str, directory: Path, faq_data, validation, models: list[str], pretrained,
+) -> dict[str, Any]:
+    """Sweep pretrained thresholds against the one shared, frozen vector subset."""
+
+    vectors, metadata = pretrained
+    print(f"\n=== Tuning {name} pretrained Word2Vec on {len(validation)} validation queries ===")
+    print(
+        f"  {metadata['pretrained_model']} subset {metadata['artifact_id'][:12]}, "
+        f"{metadata['key_count']:,} lowercase keys"
+    )
+    thresholds = _tune_dense(
+        name, faq_data, validation, models, vectors, metadata["artifact_id"],
+        phase_dir("phase2b"), {"pretrained_model": metadata["pretrained_model"]},
+    )
+    saved = save_pretrained_config(directory, metadata["artifact_id"], thresholds)
+    print(f"  frozen into {directory / PRETRAINED_CONFIG_NAME}")
     return saved
 
 
@@ -189,11 +247,17 @@ def run_tuning(corpus: str, model: str = "tfidf") -> None:
     """Tune only the requested models, using validation queries only."""
 
     models = selected_models(model)
-    if model == "all":
-        # The Phase 2 comparison reuses the frozen TF-IDF baseline unchanged.
-        models = [item for item in models if item != "tfidf"]
-        print("Reusing frozen TF-IDF settings; tuning Word2Vec thresholds only.")
+    if model in MODEL_GROUPS:
+        # A comparison group reuses every earlier model's frozen settings.
+        family = newest_family(models)
+        earlier = [MODEL_LABELS[item] for item in models if MODEL_FAMILIES[item] != family]
+        models = [item for item in models if MODEL_FAMILIES[item] == family]
+        print(
+            f"Reusing frozen {', '.join(earlier)} settings; tuning "
+            f"{', '.join(MODEL_LABELS[item] for item in models)} thresholds only."
+        )
 
+    pretrained = None
     for name, directory in selected_corpora(corpus).items():
         faq_data = load_faq_dataset(directory)
         validation = load_query_dataset(
@@ -201,9 +265,14 @@ def run_tuning(corpus: str, model: str = "tfidf") -> None:
         )
         if "tfidf" in models:
             tune_tfidf(name, directory, faq_data, validation)
-        aggregations = [item for item in models if item != "tfidf"]
-        if aggregations:
-            tune_word2vec(name, directory, faq_data, validation, aggregations)
+        custom = [item for item in models if MODEL_FAMILIES[item] == "custom_w2v"]
+        if custom:
+            tune_word2vec(name, directory, faq_data, validation, custom)
+        dense = [item for item in models if MODEL_FAMILIES[item] == "pretrained_w2v"]
+        if dense:
+            # One subset serves every corpus, so it is loaded and verified once.
+            pretrained = pretrained or load_pretrained_vectors(MODELS_ROOT, verify_vectors=True)
+            tune_pretrained(name, directory, faq_data, validation, dense, pretrained)
 
 
 def _tfidf_ranking(faq_data, config, queries):
@@ -242,17 +311,23 @@ def run_testing(
     """Evaluate every requested model on identical query rows and labels.
 
     Header-only manual templates are pending work, never zero-score results.
-    Manual reports use separate filenames and never trigger tuning.
+    Manual reports use separate filenames and never trigger tuning. Results go
+    to the newest model family's phase directory, so a later comparison never
+    overwrites an earlier phase's frozen reports.
     """
 
     models = selected_models(model)
-    baseline_only = models == ["tfidf"]
-    destination = REPORTS_DIR if baseline_only else phase2_dir()
+    subdir = report_subdir(models)
+    baseline_only = subdir is None
+    destination = REPORTS_DIR if baseline_only else phase_dir(subdir)
     prefix = "manual_" if manual else ""
 
     reports: dict[str, dict[str, dict[str, Any]]] = {}
     predictions: dict[str, pd.DataFrame] = {}
     pending: list[str] = []
+    # The pretrained subset is shared by every corpus, so it is loaded once.
+    pretrained = None
+    folded = None
 
     for name, directory in selected_corpora(corpus).items():
         config = load_corpus_config(directory)
@@ -275,8 +350,10 @@ def run_testing(
 
         # Load the trained model once; both aggregations reuse it.
         word2vec = None
-        if any(item != "tfidf" for item in models):
+        if any(MODEL_FAMILIES[item] == "custom_w2v" for item in models):
             word2vec = load_word2vec(directory, MODELS_ROOT)
+        if pretrained is None and any(MODEL_FAMILIES[item] == "pretrained_w2v" for item in models):
+            pretrained = load_pretrained_vectors(MODELS_ROOT, verify_vectors=True)
 
         reports[name] = {}
         columns: dict[str, Any] = {
@@ -285,13 +362,19 @@ def run_testing(
             "expected_faq_id": test["expected_faq_id"],
         }
         for item in models:
-            if item == "tfidf":
+            family = MODEL_FAMILIES[item]
+            if family == "tfidf":
                 ranking, options, threshold = _tfidf_ranking(faq_data, config, test["query"])
                 preprocessing = str(config["preprocessing_config"])
             else:
-                trained, metadata = word2vec
-                threshold = load_word2vec_threshold(directory, metadata, item)
-                index = build_word2vec_index(faq_data, trained.wv, item)
+                if family == "custom_w2v":
+                    trained, metadata = word2vec
+                    vectors = trained.wv
+                    threshold = load_word2vec_threshold(directory, metadata, item)
+                else:
+                    vectors, metadata = pretrained
+                    threshold = load_pretrained_threshold(directory, metadata, item)
+                index = build_word2vec_index(faq_data, vectors, AGGREGATIONS[item])
                 ranking = rank_word2vec_queries(test["query"], faq_data, index, top_k=3)
                 options = dict(BASIC_OPTIONS)
                 preprocessing = "basic"
@@ -324,9 +407,26 @@ def run_testing(
         if len(models) > 1:
             paired = pd.DataFrame(columns)
             predictions[name] = paired
-            path = phase2_dir() / f"{prefix}{name}_model_comparison.csv"
+            path = destination / f"{prefix}{name}_model_comparison.csv"
             path.parent.mkdir(parents=True, exist_ok=True)
             paired.to_csv(path, index=False)
+            print(f"  Saved {path}")
+
+            cases = pretrained_error_cases(paired, models)
+            if cases is not None:
+                path = destination / f"{prefix}{name}_error_cases.csv"
+                cases.to_csv(path, index=False)
+                print(f"  Saved {path}")
+
+        if pretrained is not None:
+            folded = folded if folded is not None else folded_source_keys(MODELS_ROOT)
+            path = destination / f"{prefix}{name}_pretrained_coverage.json"
+            write_json(
+                path,
+                pretrained_coverage(
+                    name, directory, faq_data, test, pretrained, word2vec, folded, manual=manual
+                ),
+            )
             print(f"  Saved {path}")
 
     if baseline_only:
@@ -419,21 +519,33 @@ def write_markdown_report(
     print(f"\nSaved {path}")
 
 
-def paired_cases(paired: pd.DataFrame, item: str, *, improved: bool) -> pd.DataFrame:
-    """Rows where exactly one of TF-IDF and this model delivers the answer."""
+def paired_cases(
+    paired: pd.DataFrame, item: str, *, improved: bool,
+    baseline: str = "tfidf", also_wrong: tuple[str, ...] | list[str] = (),
+) -> pd.DataFrame:
+    """Rows where exactly one of the baseline and this model delivers the answer.
 
-    baseline = paired["tfidf_correct_answer"].to_numpy(dtype=bool)
+    `also_wrong` narrows the rows to those every listed model also misses.
+    """
+
+    base = paired[f"{baseline}_correct_answer"].to_numpy(dtype=bool)
     other = paired[f"{item}_correct_answer"].to_numpy(dtype=bool)
-    return paired.loc[(other & ~baseline) if improved else (baseline & ~other)]
+    mask = (other & ~base) if improved else (base & ~other)
+    for model in also_wrong:
+        mask &= ~paired[f"{model}_correct_answer"].to_numpy(dtype=bool)
+    return paired.loc[mask]
 
 
-def _case_lines(paired: pd.DataFrame, item: str, *, improved: bool, limit: int = 5) -> list[str]:
+def _case_lines(
+    paired: pd.DataFrame, item: str, *, improved: bool, limit: int = 5,
+    baseline: str = "tfidf", also_wrong: tuple[str, ...] | list[str] = (),
+) -> list[str]:
     """Describe real paired rows, or state plainly that there are none."""
 
-    cases = paired_cases(paired, item, improved=improved)
+    cases = paired_cases(paired, item, improved=improved, baseline=baseline, also_wrong=also_wrong)
     if cases.empty:
         return ["No queries fall in this category."]
-    winner, loser = (item, "tfidf") if improved else ("tfidf", item)
+    winner, losers = (item, [baseline, *also_wrong]) if improved else (baseline, [item])
     counted = f"{len(cases)} quer{'y' if len(cases) == 1 else 'ies'}"
     lines = [
         counted if len(cases) <= limit else f"{counted}; the first {limit} are shown.",
@@ -444,12 +556,127 @@ def _case_lines(paired: pd.DataFrame, item: str, *, improved: bool, limit: int =
             f"- Query: {row['query']}",
             f"  - Expected FAQ {row['expected_faq_id']}; {MODEL_LABELS[winner]} "
             f"returned it at similarity {row[f'{winner}_similarity']:.4f}.",
-            f"  - {MODEL_LABELS[loser]} predicted FAQ "
-            f"{row[f'{loser}_predicted_faq_id']} at similarity "
-            f"{row[f'{loser}_similarity']:.4f} "
-            f"(accepted={bool(row[f'{loser}_accepted'])}).",
         ]
+        for loser in losers:
+            lines.append(
+                f"  - {MODEL_LABELS[loser]} predicted FAQ "
+                f"{row[f'{loser}_predicted_faq_id']} at similarity "
+                f"{row[f'{loser}_similarity']:.4f} "
+                f"(accepted={bool(row[f'{loser}_accepted'])})."
+            )
     return lines
+
+
+CASE_FIELDS = ["predicted_faq_id", "similarity", "accepted", "correct_answer"]
+
+
+def pretrained_error_cases(paired: pd.DataFrame, models: list[str]) -> pd.DataFrame | None:
+    """Case A, B and C rows for each pretrained model beside its custom counterpart.
+
+    A: TF-IDF and the custom model with the same aggregation both fail, and
+       the pretrained model delivers the correct answer.
+    B: TF-IDF delivers the correct answer and the pretrained model does not.
+    C: the custom model delivers the correct answer and the pretrained model does not.
+    """
+
+    pairs = [
+        (item, CUSTOM_COUNTERPARTS[item]) for item in models
+        if item in CUSTOM_COUNTERPARTS and CUSTOM_COUNTERPARTS[item] in models and "tfidf" in models
+    ]
+    if not pairs:
+        return None
+    roles = ["tfidf", "custom", "pretrained"]
+    columns = ["case", "model", "custom_model", "query", "expected_faq_id"] + [
+        f"{role}_{field}" for role in roles for field in CASE_FIELDS
+    ]
+    rows = []
+    for item, custom in pairs:
+        selections = [
+            ("A", paired_cases(paired, item, improved=True, also_wrong=[custom])),
+            ("B", paired_cases(paired, item, improved=False)),
+            ("C", paired_cases(paired, item, improved=False, baseline=custom)),
+        ]
+        for case, selected in selections:
+            for _, row in selected.iterrows():
+                record = {
+                    "case": case, "model": item, "custom_model": custom,
+                    "query": row["query"], "expected_faq_id": row["expected_faq_id"],
+                }
+                for role, key in zip(roles, ["tfidf", custom, item]):
+                    for field in CASE_FIELDS:
+                        record[f"{role}_{field}"] = row[f"{key}_{field}"]
+                rows.append(record)
+    return pd.DataFrame(rows, columns=columns)
+
+
+def pretrained_coverage(
+    name: str, directory: Path, faq_data, queries, pretrained, word2vec,
+    folded: dict[str, str], *, manual: bool,
+) -> dict[str, Any]:
+    """Describe token coverage once thresholds are frozen; never used for selection."""
+
+    vectors, metadata = pretrained
+    validation = load_query_dataset(directory / "validation_queries.csv", set(faq_data["id"]))
+    texts = {
+        "faq_questions": faq_data["question"],
+        "validation_queries": validation["query"],
+        "manual_queries" if manual else "test_queries": queries["query"],
+    }
+    sets: dict[str, dict[str, Any]] = {}
+    for label, series in texts.items():
+        sets[label] = {"pretrained": token_coverage(series, vectors, folded)}
+        if word2vec is not None:
+            sets[label]["custom_word2vec"] = token_coverage(series, word2vec[0].wv)
+    return {
+        "corpus": name,
+        "pretrained_model": metadata["pretrained_model"],
+        "pretrained_artifact_id": metadata["artifact_id"],
+        "preprocessing_config": "basic",
+        "note": "Descriptive only: computed after every threshold was frozen; no selection step reads it.",
+        "sets": sets,
+    }
+
+
+COMPARISON_INTROS = {
+    "phase2": (
+        "Phase 2 Model Comparison",
+        [
+            "TF-IDF, mean Word2Vec, and TF-IDF-weighted Word2Vec were evaluated on the",
+            "identical query rows and labels. Each model applies its own threshold,",
+            "tuned on validation queries only. TF-IDF reuses its frozen Phase 1",
+            "configuration and was not retuned for this comparison.",
+            "",
+            "Both Word2Vec models are trained on that domain's FAQ questions alone, use",
+            "basic preprocessing, and ignore word order. Their cosine similarities",
+            "occupy a different range than sparse TF-IDF cosines, which is why each",
+            "model needs its own threshold instead of a shared one.",
+            "",
+        ],
+    ),
+    "phase2b": (
+        "Phase 2B Model Comparison",
+        [
+            "TF-IDF, both custom Word2Vec models, and both pretrained Word2Vec models",
+            "were evaluated on the identical query rows and labels. Each model applies",
+            "its own threshold, tuned on validation queries only. TF-IDF and the custom",
+            "models reuse their frozen Phase 1 and Phase 2 settings.",
+            "",
+            "The pretrained models look up the same case-folded Google News vectors",
+            "(word2vec-google-news-300) and combine them with exactly the code the",
+            "custom models use, so only the source of the word vectors changes. Unknown",
+            "words are skipped, a query with no known word is rejected, and word order",
+            "is still ignored.",
+            "",
+            "Case A: TF-IDF and the custom model with the same aggregation both fail, and",
+            "the pretrained model answers. Case B: TF-IDF answers and the pretrained model",
+            "does not. Case C: the custom model answers and the pretrained model does not.",
+            "",
+            "The synthetic queries were generated from templates and inspected during",
+            "development; human evaluation is still pending.",
+            "",
+        ],
+    ),
+}
 
 
 def write_comparison_report(
@@ -460,25 +687,14 @@ def write_comparison_report(
     manual: bool = False,
     pending: list[str] | None = None,
 ) -> None:
-    """Write the Phase 2 comparison, leaving the Phase 1 reports intact."""
+    """Write one phase's comparison, leaving earlier phases' reports intact."""
 
     if not reports:
         return
 
-    lines = [
-        f"# Phase 2 Model Comparison ({'Manual' if manual else 'Synthetic Benchmark'})",
-        "",
-        "TF-IDF, mean Word2Vec, and TF-IDF-weighted Word2Vec were evaluated on the",
-        "identical query rows and labels. Each model applies its own threshold,",
-        "tuned on validation queries only. TF-IDF reuses its frozen Phase 1",
-        "configuration and was not retuned for this comparison.",
-        "",
-        "Both Word2Vec models are trained on that domain's FAQ questions alone, use",
-        "basic preprocessing, and ignore word order. Their cosine similarities",
-        "occupy a different range than sparse TF-IDF cosines, which is why each",
-        "model needs its own threshold instead of a shared one.",
-        "",
-    ]
+    subdir = report_subdir(models)
+    title, intro = COMPARISON_INTROS[subdir]
+    lines = [f"# {title} ({'Manual' if manual else 'Synthetic Benchmark'})", "", *intro]
 
     for name in sorted(reports):
         corpus_reports = reports[name]
@@ -497,9 +713,13 @@ def write_comparison_report(
         paired = predictions.get(name)
         if paired is None or "tfidf" not in present:
             continue
+        family = newest_family(present)
         for item in present:
-            if item == "tfidf":
+            # Each phase narrates only its own new models.
+            if item == "tfidf" or MODEL_FAMILIES[item] != family:
                 continue
+            counterpart = CUSTOM_COUNTERPARTS.get(item)
+            with_counterpart = counterpart in present
             lines += [
                 f"### {MODEL_LABELS[item]}: improvements over TF-IDF",
                 "",
@@ -507,18 +727,35 @@ def write_comparison_report(
                 "",
                 *_case_lines(paired, item, improved=True),
                 "",
-                f"### {MODEL_LABELS[item]}: reverse cases",
+                f"### {MODEL_LABELS[item]}: reverse cases" + (" (case B)" if with_counterpart else ""),
                 "",
                 "Queries where TF-IDF delivers the correct answer and this model does not.",
                 "",
                 *_case_lines(paired, item, improved=False),
                 "",
             ]
+            if with_counterpart:
+                custom = MODEL_LABELS[counterpart]
+                lines += [
+                    f"### {MODEL_LABELS[item]}: case A",
+                    "",
+                    f"Queries where TF-IDF and {custom} both fail and this model "
+                    "delivers the correct answer.",
+                    "",
+                    *_case_lines(paired, item, improved=True, also_wrong=[counterpart]),
+                    "",
+                    f"### {MODEL_LABELS[item]}: case C",
+                    "",
+                    f"Queries where {custom} delivers the correct answer and this model does not.",
+                    "",
+                    *_case_lines(paired, item, improved=False, baseline=counterpart),
+                    "",
+                ]
 
     if pending:
         lines += ["Human evaluation pending (no scores): " + ", ".join(pending) + ".", ""]
 
-    directory = phase2_dir()
+    directory = phase_dir(subdir)
     directory.mkdir(parents=True, exist_ok=True)
     path = directory / ("manual_comparison_report.md" if manual else "comparison_report.md")
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
@@ -528,10 +765,12 @@ def write_comparison_report(
 def parse_args() -> argparse.Namespace:
     """Parse the requested evaluation mode, corpus, and retrieval model."""
 
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
+    )
     parser.add_argument("mode", choices=["tune", "test", "all", "manual"])
     parser.add_argument("--corpus", default="all")
-    parser.add_argument("--model", default="tfidf", choices=MODELS + ["all"])
+    parser.add_argument("--model", default="tfidf", choices=MODELS + list(MODEL_GROUPS))
     return parser.parse_args()
 
 

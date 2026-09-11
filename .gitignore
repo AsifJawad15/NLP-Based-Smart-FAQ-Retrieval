@@ -7,3 +7,9 @@ __pycache__/
 data/staging/
 *.executed.ipynb
 models/**/*.model*
+models/**/*.pt
+# The pretrained download and its generated subset stay local; only the
+# subset's metadata and README are committed.
+models/pretrained/*
+!models/pretrained/README.md
+!models/pretrained/pretrained_metadata.json
