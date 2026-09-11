@@ -34,3 +34,32 @@ bytes: Gensim serialization contains lifecycle timestamps.
 pretrained Word2Vec models. Build it once with
 `python scripts/download_pretrained_embeddings.py`; only its README and
 `pretrained_metadata.json` are committed. See `models/pretrained/README.md`.
+
+## Sequence encoders (Phase 3)
+
+This is an experimental checkpoint: only e-commerce RNN/BiLSTM metadata and
+training histories are currently committed. University artifacts and frozen
+sequence thresholds are pending. The generated training data contains known
+meaning-changing substitutions; see the root [README](../README.md#phase-3-siamese-rnn-and-bilstm--work-in-progress)
+before rebuilding or interpreting development scores as model quality.
+
+Build the training data, then train both encoders for every corpus:
+
+```powershell
+python scripts/build_sequence_pairs.py --corpus all
+python scripts/train_sequence_models.py --corpus all --arch all
+```
+
+Each domain directory then holds `rnn.pt` and `bilstm.pt` (generated,
+Git-ignored) with `rnn_metadata.json` and `bilstm_metadata.json` (committed).
+A checkpoint stores only the trainable recurrent weights, the cosine scale and
+bias, and its vocabulary; the frozen embedding matrix is rebuilt from the
+pretrained subset when the model loads. Metadata records the architecture,
+hyperparameters, corpus, paraphrase and pair file hashes, the pretrained
+subset's artifact id, the best dev epoch, a hash of the saved weights and
+package versions. Loading refuses a missing, stale or mismatched checkpoint and
+names the training command; nothing trains automatically.
+
+Thresholds tuned for each encoder live in
+`data/<corpus>/sequence_rnn_config.json` and `sequence_bilstm_config.json`,
+keyed to that checkpoint's artifact id.

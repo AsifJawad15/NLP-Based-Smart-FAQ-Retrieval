@@ -4,7 +4,9 @@ A corpus-configurable FAQ retrieval engine for the CSE 4122 Natural Language
 Processing Laboratory. It uses TF-IDF vectors and cosine similarity to
 **retrieve an existing answer**. It never generates an answer. Phase 2 adds a
 custom Word2Vec model per domain and compares three retrieval models. Phase 2B
-adds pretrained Google News Word2Vec vectors and compares five.
+adds pretrained Google News Word2Vec vectors and compares five. Phase 3 adds
+Siamese RNN and BiLSTM encoders; their implementation and preliminary training
+are in progress, with no final seven-model benchmark yet.
 
 The same engine runs over two independently indexed corpora — a University FAQ
 set and an E-commerce FAQ set — each with its own preprocessing configuration
@@ -13,15 +15,34 @@ offline.
 
 ## Completion and verification
 
-**Phase 2B, the pretrained Word2Vec comparison, is complete for the
-undergraduate lab scope. Human evaluation is still pending.**
+**Phase 1 and Phase 2A are complete. Phase 2B retrieval and evaluation are
+verified; its notebook section remains unfinished. Phase 3 is a work in
+progress. Human evaluation and the presentation interface are pending.**
 
-The 11 September 2026 run verified 98 passing tests, consistent package
-dependencies and a clean byte-compilation. The pretrained subset was built from
-the checksum-verified gensim download and re-verified against its metadata.
-After Phase 2B was added, `python evaluate.py test --model all` regenerated the
-Phase 2 reports and `git diff` showed no change to any Phase 1 or Phase 2
-report, configuration, FAQ or query file.
+| Phase | Models | Current status |
+| --- | --- | --- |
+| 1 | TF-IDF | Frozen baseline with test results |
+| 2A | Custom Word2Vec mean and weighted | Trained per domain; frozen thresholds and test results |
+| 2B | Pretrained Word2Vec mean and weighted | Five-model comparison verified; notebook extension pending |
+| 3 | Siamese RNN and BiLSTM | Both e-commerce checkpoints trained; university artifacts, thresholds and final comparison pending |
+
+The 11 September 2026 publication review passed **125 tests**, `pip check`,
+both corpus validators and **all 29 notebook code cells**. It reproduced all **10 model/domain
+evaluation JSON reports** in `reports/phase2b/` exactly, using a temporary
+output directory. The pretrained subset passed full checksum verification.
+Both e-commerce sequence checkpoints loaded with matching metadata and their
+saved training histories agreed with their selected epochs. The notebook
+contains **54 cells, including 29 executable code cells**; it currently covers
+TF-IDF and custom Word2Vec only. See the Phase 3 section for the limitations
+of the preliminary sequence training.
+
+| Dataset count | University | E-commerce |
+| --- | ---: | ---: |
+| FAQs | 500 | 500 |
+| Categories | 14 | 10 |
+| Validation queries | 50 (30 answerable, 20 unanswerable) | 50 (30 answerable, 20 unanswerable) |
+| Test queries | 200 (150 answerable, 50 unanswerable) | 200 (150 answerable, 50 unanswerable) |
+| Collected human-evaluation queries | 0 | 0 |
 
 The Phase 2 review on 5 September 2026 verified 83 passing tests, both corpus
 validators, and all 29 notebook code cells executing successfully. Fresh
@@ -84,7 +105,7 @@ Selection has two stages, both using validation data only:
 The comparison supports basic preprocessing for these validation sets; it does
 not establish that lemmatization improves retrieval or never helps other data.
 
-## Phase 2: TF-IDF against a custom Word2Vec
+## Phase 2A: TF-IDF against a custom Word2Vec
 
 Phase 2 trains one Skip-Gram Word2Vec model per domain on that domain's **FAQ
 questions only**, then compares three ways of ranking the same 200 test queries.
@@ -150,8 +171,8 @@ identical pickle bytes.
 ## Phase 2B: pretrained Google News Word2Vec
 
 Phase 2B keeps both custom Word2Vec models and adds the same two aggregations
-over `word2vec-google-news-300`, vectors Google trained on about 100 billion
-words of news, and the model Lab 4 loads into PyTorch. Preprocessing, the
+over `word2vec-google-news-300`, pretrained news vectors also used by Lab 4.
+Preprocessing, the
 aggregation functions, cosine ranking, the threshold protocol, the metrics and
 the 200 test queries per domain are all unchanged; only the source of the word
 vectors differs. Each pretrained model gets its own threshold, tuned on
@@ -215,8 +236,8 @@ script keeps only lowercase single-word keys (710,048 of 3,000,000); when two
 casings fold together, the more frequent one supplies the vector. This matters:
 Google News has no lowercase `a`, `to`, `of`, `and` or `flipkart`, only `A`,
 `To`, `Of`, `And` and `Flipkart`. The 852 MB subset is memory-mapped, so no
-command loads the 3.6 GB model into memory; a single demonstration command with
-a pretrained model takes about eight seconds.
+command loads the full 3.6 GB vector matrix into memory. Startup time depends
+on the machine and filesystem cache.
 
 ```powershell
 # Once: download the model (about 1.7 GB) and build the subset
@@ -233,6 +254,86 @@ Pretrained thresholds live in `data/<corpus>/pretrained_config.json`, keyed to
 the subset's artifact id in `models/pretrained/pretrained_metadata.json`. The
 download and the generated subset are Git-ignored; see
 [models/pretrained/README.md](models/pretrained/README.md).
+
+## Phase 3: Siamese RNN and BiLSTM — work in progress
+
+Both models use the same frozen 300-dimensional pretrained word vectors as
+Phase 2B. A shared encoder reads the query and FAQ question. The RNN produces
+a 128-dimensional vector; the two-layer BiLSTM concatenates forward and backward
+states into 256 dimensions. Packed sequences prevent padding from changing
+the final state. Training uses `BCEWithLogitsLoss` on a learned scale and bias
+applied to cosine similarity, with Adam, learning rate 0.001, batch size 32,
+at most 20 epochs, seed 42 and early-stopping patience 3.
+
+Checkpoint selection uses held-out **development paraphrases**: highest Top-1,
+then Top-3, then lowest dev loss. Existing validation queries are logged only
+during training and are reserved for subsequent threshold selection. Test
+queries are not training pairs or checkpoint-selection inputs. Each loaded
+encoder builds its FAQ index once in memory.
+
+### Saved artifacts at this checkpoint
+
+| Artifact | E-commerce | University |
+| --- | --- | --- |
+| Training paraphrases | 1,000 | Not saved |
+| Development paraphrases | 500 | Not saved |
+| Training pairs | 3,000: 1,000 positive + 2,000 negative | Not saved |
+| Development pairs | 1,500: 500 positive + 1,000 negative | Not saved |
+| RNN checkpoint and metadata | Available locally; metadata committed | Not available |
+| BiLSTM checkpoint and metadata | Available locally; metadata committed | Not available |
+| Frozen sequence thresholds | Not available | Not available |
+| Final sequence test results | Not available | Not available |
+
+Every paraphrase produces one positive, one random negative and one TF-IDF
+hard negative. Near-duplicate FAQ questions are excluded as negatives.
+The saved e-commerce artifacts use a maximum sequence length of 29 tokens
+and a vocabulary of 100,013 entries, including `<PAD>` and `<UNK>`.
+
+| E-commerce model | Epochs run | Selected epoch | Dev Top-1 | Dev Top-3 |
+| --- | ---: | ---: | ---: | ---: |
+| Siamese RNN | 13 | 10 | 0.738 | 0.816 |
+| Siamese BiLSTM | 16 | 13 | 0.982 | 0.998 |
+
+These are **development-set ranking scores, not final test accuracy or
+correct-answer rates**. They cannot be compared directly with the earlier
+models' 200-query test results. Checkpoint metadata is in
+[models/ecommerce/](models/ecommerce/) and histories are in
+[reports/phase3/](reports/phase3/). Generated `.pt` binaries are Git-ignored.
+
+### Remaining work and confirmed data-quality issue
+
+- The saved e-commerce audit passes its overlap rules, with mean source-token
+  coverage 0.7601. The latest saved university audit records `passed: false`,
+  coverage 0.7527 and one introduced evaluation-template opening. The current
+  generator includes an opening-avoidance fix, but a successful regenerated
+  university dataset/audit is not included in this checkpoint.
+- **Passing the overlap audit does not establish correct training labels.**
+  Saved e-commerce rows replace `different` with `similar`, `buy` with `sell`,
+  `more` with `less`, and `one` with `three` while retaining the original FAQ
+  label. Word-vector neighbours are not necessarily interchangeable words.
+  Review and correct meaning-changing replacements, protect quantities and
+  polarity, then rebuild and retrain before freezing Phase 3 results.
+- Complete both university models, tune each model/domain threshold on the
+  existing validation set, then produce the seven-model comparison on the
+  unchanged test sets. No Phase 3 benchmark scores are claimed yet.
+- Extend the notebook with Phase 2B and Phase 3 explanations, comparisons and
+  demonstrations. Human-written evaluation remains pending for both corpora.
+
+The following is the development workflow **after training-data quality is
+resolved**; rebuilding replaces generated paraphrase and pair CSVs:
+
+```powershell
+python scripts/build_sequence_pairs.py --corpus all
+python scripts/train_sequence_models.py --corpus all --arch all
+python evaluate.py all --model phase3
+python evaluate.py manual --model phase3
+python main.py --corpus ecommerce --model bilstm --query "How can I cancel my order?"
+```
+
+Each encoder requires its own `sequence_rnn_config.json` or
+`sequence_bilstm_config.json` in the selected corpus directory. Loading checks
+the checkpoint, corpus, training-data and pretrained-vector identities; missing
+artifacts or thresholds produce an error rather than silently training.
 
 ## How it works
 
@@ -255,7 +356,7 @@ credit from arbitrary zero-score ties.
 | 1 | Regex cleaning, tokenization, optional stopword removal and lemmatization |
 | 2 | TF-IDF representation using scikit-learn |
 | 3 | Cosine similarity for retrieval, and custom Word2Vec sentence vectors (Phase 2) |
-| 4 | Pretrained Google News Word2Vec, the model Lab 4 uses (Phase 2B); RNN/LSTM encoders are planned for Phase 3 |
+| 4 | Pretrained Word2Vec (Phase 2B); Siamese RNN and BiLSTM implementations and preliminary training (Phase 3) |
 | 5 | Transformers remain outside the completed phases |
 
 The implementation follows these topics without copying the lab code. We use
@@ -282,7 +383,8 @@ the optional comparisons, unit tests, and full notebook, but not the basic
 terminal demonstration. The NLTK **package** remains required for tokenization.
 Initial package/resource installation and source-data downloads need internet;
 after setup, demonstrations and evaluation use local files only. The verified
-environment has NLTK 3.10.3, its local corpora, and Gensim 4.4.0 available.
+environment has NLTK 3.10.3, its local corpora, Gensim 4.4.0 and CPU PyTorch
+2.14.0+cpu available. The requirements include the PyTorch CPU package index.
 Train the local Word2Vec artifacts before running those models or the full
 notebook; their binaries are deliberately not included in a Git clone.
 Phase 2B also needs `python scripts/download_pretrained_embeddings.py` once,
@@ -333,15 +435,18 @@ python -m unittest discover -s tests
 ```
 
 Evaluation and non-interactive query commands default to TF-IDF. Both CLIs
-accept `--model tfidf`, `w2v_mean`, `w2v_tfidf`, `pw2v_mean` or `pw2v_tfidf`.
+accept `--model tfidf`, `w2v_mean`, `w2v_tfidf`, `pw2v_mean`, `pw2v_tfidf`,
+`rnn` or `bilstm`. The last two require completed training and frozen thresholds.
 Only `evaluate.py` also accepts the comparison groups `all` (TF-IDF and both
 custom Word2Vec models, written to `reports/phase2/`) and `phase2b` (all five
-models, written to `reports/phase2b/`). Interactive `main.py` asks for a model
+models, written to `reports/phase2b/`), plus `phase3` (all seven models,
+written to `reports/phase3/`). Interactive `main.py` asks for a model
 when omitted. A group reuses every earlier frozen setting and tunes only its
 newest models: `evaluate.py all --model all` tunes the two custom Word2Vec
 thresholds, and `evaluate.py all --model phase2b` tunes only the two pretrained
-ones. Neither retunes TF-IDF or touches the Phase 1 reports. Manual mode never
-tunes.
+ones. The `phase3` group tunes only RNN/BiLSTM thresholds. These groups do not
+retune earlier model families or overwrite their phase reports. Manual mode
+never tunes.
 
 Use `python evaluate.py test --model all` or `--model phase2b` to regenerate a
 complete comparison summary. A current reporting limitation is that a run
@@ -397,12 +502,18 @@ Smart_FAQ/
 │   ├── word2vec_retrieval.py   Dense cosine ranking and answer delivery
 │   ├── word2vec_config.py      Artifact-specific frozen dense-model thresholds
 │   ├── pretrained_embeddings.py  Streaming Google News subset, checked loader, coverage
-│   └── retrieval_models.py     Model keys, labels, families and comparison groups
+│   ├── retrieval_models.py     Model keys, labels, families and comparison groups
+│   ├── sequence_data.py        Training paraphrases, pairs and overlap audit
+│   ├── sequence_models.py      Shared RNN and BiLSTM encoders
+│   ├── sequence_training.py    Seeded training, checkpoint selection and metadata
+│   └── sequence_retrieval.py   Cached sequence vectors and cosine retrieval
 ├── scripts/
 │   ├── prepare_datasets.py     Download, convert, validate the corpora
 │   ├── setup_nltk.py           One-time NLTK resource download
 │   ├── train_word2vec.py       Seeded subprocess training for each domain
-│   └── download_pretrained_embeddings.py  Google News download and subset build
+│   ├── download_pretrained_embeddings.py  Google News download and subset build
+│   ├── build_sequence_pairs.py  Generate and audit sequence training data
+│   └── train_sequence_models.py Train RNN/BiLSTM models per domain
 ├── data/<corpus>/              faq_dataset.csv, validation_queries.csv,
 │                               test_queries.csv, corpus_config.json,
 │                               word2vec_config.json, pretrained_config.json
@@ -412,6 +523,7 @@ Smart_FAQ/
 ├── reports/                    Tuning sweeps and evaluation results
 ├── reports/phase2/             Three-model comparison, sweeps and paired CSVs
 ├── reports/phase2b/            Five-model comparison, error cases and coverage
+├── reports/phase3/             Preliminary training histories and data audits
 ├── notebooks/                  Teacher demonstration notebook
 ├── docs/DATA_SOURCES.md        Corpus sources and manual review record
 └── tests/                      Retrieval, selection, metrics, and manual-mode tests
@@ -473,9 +585,12 @@ generated paraphrase is semantically correct.
 
 ## Scope
 
-Phase 1 is TF-IDF; Phase 2 adds custom Word2Vec vectors trained on the same FAQ
+Phase 1 is TF-IDF; Phase 2A adds custom Word2Vec vectors trained on the same FAQ
 questions; Phase 2B adds pretrained Google News Word2Vec vectors. All three
-retrieve stored answers only. Phase 3, Siamese RNN and BiLSTM sentence encoders
-evaluated on the same queries, is planned next. Training on answers as well as
-questions, Transformer/BERT work, a GUI, Flask or Streamlit, and generative
-answering are not part of the completed phases.
+retrieve stored answers only. Phase 3 Siamese RNN and BiLSTM code is included
+as work in progress, with the outstanding work documented above. Training on
+answers, Transformer/BERT, and generative answering are outside the current
+implementation. A presentation interface is planned after model validation;
+no graphical interface is included yet. It can reuse `main.py:build_answerer`
+to expose domain/model selection, stored answers, sources, top matches and
+similarity thresholds without retraining during a question submission.

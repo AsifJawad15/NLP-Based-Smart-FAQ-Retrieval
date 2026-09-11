@@ -1,0 +1,59 @@
+{
+  "banned_substitution_pairs": 265,
+  "banned_substitutions_used": 0,
+  "content_words": 770,
+  "corpus": "university",
+  "coverage_limit": 0.8,
+  "evaluation_queries": {
+    "manual": 0,
+    "test": 200,
+    "validation": 50
+  },
+  "evaluation_source_token_coverage": {
+    "manual": null,
+    "test": 0.6716,
+    "validation": 0.6905
+  },
+  "evaluation_tokens_known_to_pretrained": 3573,
+  "evaluation_tokens_known_to_pretrained_but_outside_vocabulary": 19,
+  "generated": {
+    "dev": 500,
+    "train": 1000
+  },
+  "generator_settings": {
+    "dropout_rate": 0.15,
+    "duplicate_similarity": 0.88,
+    "frames": [
+      "{0}?",
+      "Could you tell me {0}?",
+      "Quick question: {0}?",
+      "Hi, {0}?",
+      "{0}? Thanks.",
+      "Help needed: {0}?",
+      "{0}? Any idea?"
+    ],
+    "hard_negative_pool": 10,
+    "neighbour_candidates": 50000,
+    "neighbour_floor": 0.55,
+    "neighbours_kept": 5,
+    "paraphrases_per_faq": 3,
+    "seed": 42,
+    "substitution_rate": 0.75
+  },
+  "introduced_template_openings": 1,
+  "jaccard_limit": 0.8,
+  "kept": {
+    "dev": 500,
+    "train": 1000
+  },
+  "max_jaccard_with_any_evaluation_query": 0.6471,
+  "max_len": 28,
+  "mean_source_token_coverage": 0.7527,
+  "normalized_duplicates_within_training": 0,
+  "passed": false,
+  "pretrained_artifact_id": "4dc03298b4ad947bcac7f80006b44334034f860c092148cd240dcd7a2d7b8e89",
+  "removed_exact_evaluation_match": 0,
+  "removed_high_overlap": 0,
+  "template_openings_checked": 89,
+  "words_with_neighbours": 533
+}
