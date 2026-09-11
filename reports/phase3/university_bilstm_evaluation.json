@@ -1,0 +1,67 @@
+{
+  "accepted_wrong_count": 1,
+  "answerable_acceptance_rate": 0.35333333333333333,
+  "answerable_queries": 150,
+  "corpus": "university",
+  "correct_answer_rate": 0.3466666666666667,
+  "display_name": "University FAQ",
+  "evaluation_set": "synthetic_benchmark",
+  "false_acceptance_count": 2,
+  "false_rejection_count": 97,
+  "faq_count": 500,
+  "incorrect_retrieval_examples": [
+    {
+      "accepted": false,
+      "expected_faq_id": 288,
+      "query": "Explain how this works: how will I get alerts.",
+      "retrieved_faq_id": 231,
+      "retrieved_question": "how can I apply to Kawaskimhon Moot at UOFT?",
+      "similarity": 0.5864342047260878
+    },
+    {
+      "accepted": false,
+      "expected_faq_id": 47,
+      "query": "What investigations are carried out in Germanic Literature, Culture and Theory?",
+      "retrieved_faq_id": 161,
+      "retrieved_question": "what are the research strengths of Educational Leadership and Policy at UOFT?",
+      "similarity": 0.5965683816060934
+    },
+    {
+      "accepted": false,
+      "expected_faq_id": 221,
+      "query": "What investigations are carried out in Master of Applied Science (MASc)?",
+      "retrieved_faq_id": 12,
+      "retrieved_question": "what are the career prospects for Doctor of Education in Counselling Psychology (Counselling & Psychotherapy Field) graduates from UOFT?",
+      "similarity": 0.5542513418813488
+    },
+    {
+      "accepted": false,
+      "expected_faq_id": 322,
+      "query": "I need guidance on this matter: can transfer students participate in the Jump Start degree.",
+      "retrieved_faq_id": 92,
+      "retrieved_question": "what are the career prospects for School and Clinical Child Psychology graduates from UOFT?",
+      "similarity": 0.4588505533780517
+    },
+    {
+      "accepted": false,
+      "expected_faq_id": 118,
+      "query": "Which areas of learning belong to Language and Literacies Education?",
+      "retrieved_faq_id": 280,
+      "retrieved_question": "Can I clap or cheer during the convocation ceremony?",
+      "similarity": 0.6759025245673442
+    }
+  ],
+  "mean_similarity_correct_top1": 0.7707487417120717,
+  "model": "bilstm",
+  "model_label": "Siamese BiLSTM",
+  "preprocessing_config": "basic",
+  "preprocessing_options": {
+    "lemmatize": false,
+    "remove_stopwords": false
+  },
+  "threshold": 0.75,
+  "top1_accuracy": 0.6333333333333333,
+  "top3_accuracy": 0.72,
+  "unanswerable_queries": 50,
+  "unanswerable_rejection_rate": 0.96
+}

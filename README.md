@@ -1,240 +1,97 @@
 # NLP-Based Smart FAQ Retrieval and Question Answering System
 
 A corpus-configurable FAQ retrieval engine for the CSE 4122 Natural Language
-Processing Laboratory. It uses TF-IDF vectors and cosine similarity to
-**retrieve an existing answer**. It never generates an answer. Phase 2 adds a
-custom Word2Vec model per domain and compares three retrieval models. Phase 2B
-adds pretrained Google News Word2Vec vectors and compares five.
+Processing Laboratory. Every model **retrieves an existing answer**; nothing is
+generated. The same engine runs over two independently indexed corpora — a
+University FAQ set and an E-commerce FAQ set — each with its own thresholds.
+Once the data and models are prepared, everything runs offline.
 
-The same engine runs over two independently indexed corpora — a University FAQ
-set and an E-commerce FAQ set — each with its own preprocessing configuration
-and its own similarity threshold. Once the data is prepared, everything runs
-offline.
+## Latest implementation at a glance
 
-## Completion and verification
+Seven retrieval models are implemented, trained where needed, tuned on
+validation queries only, and evaluated on the same 200 test queries per corpus.
 
-**Phase 2B, the pretrained Word2Vec comparison, is complete for the
-undergraduate lab scope. Human evaluation is still pending.**
+| Phase | Key | Model | How a question becomes a vector |
+| --- | --- | --- | --- |
+| 1 | `tfidf` | TF-IDF | Sparse word weights fitted on the FAQ questions |
+| 2A | `w2v_mean` | Custom Word2Vec mean | Average of Skip-Gram vectors trained on each domain's FAQ questions |
+| 2A | `w2v_tfidf` | Custom Word2Vec weighted | Same vectors, TF-IDF-weighted average |
+| 2B | `pw2v_mean` | Pretrained Word2Vec mean | Average of Google News `word2vec-google-news-300` vectors |
+| 2B | `pw2v_tfidf` | Pretrained Word2Vec weighted | Same vectors, TF-IDF-weighted average |
+| 3 | `rnn` | Siamese RNN | Frozen Google News vectors read in order by a trained vanilla RNN |
+| 3 | `bilstm` | Siamese BiLSTM | Frozen Google News vectors read in order by a trained two-layer BiLSTM |
 
-The 11 September 2026 run verified 98 passing tests, consistent package
-dependencies and a clean byte-compilation. The pretrained subset was built from
-the checksum-verified gensim download and re-verified against its metadata.
-After Phase 2B was added, `python evaluate.py test --model all` regenerated the
-Phase 2 reports and `git diff` showed no change to any Phase 1 or Phase 2
-report, configuration, FAQ or query file.
+**Headline result on the synthetic test set:** TF-IDF still delivers the most
+correct answers on university (0.833), and pretrained Word2Vec weighted narrowly
+leads on e-commerce (0.840 against 0.820 for TF-IDF, at the cost of many more
+false acceptances). The Phase 3 sequence encoders are the weakest models in this
+experiment (correct answer rate 0.347–0.533), despite near-perfect scores on
+their own development paraphrases. See [Phase 3](#phase-3-siamese-rnn-and-bilstm).
 
-The Phase 2 review on 5 September 2026 verified 83 passing tests, both corpus
-validators, and all 29 notebook code cells executing successfully. Fresh
-subprocess training reproduced both full-corpus Word2Vec models exactly at the
-numerical-vector level. Validation reproduced all four Word2Vec thresholds and
-sweeps; testing reproduced all six model reports, both paired prediction CSVs,
-and the comparison summary. The two baseline evaluation JSONs have gained only
-`model` and `model_label` fields since the Phase 1 checkpoint.
+| Status | Item |
+| --- | --- |
+| Done | All seven models, thresholds, seven-model comparison reports, terminal demo for every model |
+| Done | 127 unit tests passing; Phase 1, 2 and 2B reports regenerate byte-for-byte |
+| Pending | Human-written evaluation queries (templates are still empty) |
+| Pending | Presentation interface; the notebook covers Phases 1 and 2A only |
 
-The tests cover repeated-token weighting, OOV and zero-vector rejection,
-stable ranking and threshold boundaries, runtime/batch agreement, separate
-question-only training, persistence, stale artifacts, the streaming pretrained
-subset builder and its checked loader, Phase 2B report isolation, and
-empty/populated temporary manual evaluations. Passing these checks verifies the
-experiment's implementation; it does not establish real-user accuracy or every
-label's semantic correctness.
+| Dataset count | University | E-commerce |
+| --- | ---: | ---: |
+| FAQs | 500 | 500 |
+| Categories | 14 | 10 |
+| Validation queries | 50 (30 answerable, 20 unanswerable) | 50 (30 answerable, 20 unanswerable) |
+| Test queries | 200 (150 answerable, 50 unanswerable) | 200 (150 answerable, 50 unanswerable) |
+| Phase 3 training / dev paraphrases | 1,000 / 500 | 1,000 / 500 |
+| Collected human-evaluation queries | 0 | 0 |
 
-## Synthetic benchmark results
+## Seven-model results
 
-Preprocessing and threshold were selected on validation queries only, frozen
-into `corpus_config.json`, and applied to the synthetic test queries without
-retuning. These queries have already been inspected during development and
-review; they are a reproducible benchmark, not an untouched final assessment.
+Each model uses its own threshold, selected on validation queries only and
+frozen before the test queries were read. Test set: 150 answerable paraphrases
+and 50 unanswerable queries per corpus. The best value in each row is bold.
 
-| Metric | University FAQ | E-commerce FAQ |
-| --- | --- | --- |
-| FAQs indexed | 500 | 500 |
-| Preprocessing | basic | basic |
-| Threshold | 0.46 | 0.58 |
-| Top-1 accuracy | 0.860 | 0.953 |
-| Top-3 accuracy | 0.993 | 0.980 |
-| Correct answer rate | 0.833 | 0.820 |
-| Accepted but wrong | 17 | 1 |
-| Mean similarity of correct Top-1 | 0.760 | 0.740 |
-| Answerable acceptance rate | 0.947 | 0.827 |
-| Unanswerable rejection rate | 0.840 | 0.960 |
-| False acceptances | 8 | 2 |
-| False rejections | 8 | 26 |
+### University FAQ
 
-Test set: 200 queries per corpus (150 answerable paraphrases, 50 unanswerable).
-Full reports, including incorrect-retrieval examples, are in [reports/](reports/).
+| Metric | TF-IDF | W2V mean | W2V weighted | Pretrained mean | Pretrained weighted | Siamese RNN | Siamese BiLSTM |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Threshold | 0.46 | 0.93 | 0.95 | 0.86 | 0.80 | 0.80 | 0.75 |
+| Top-1 accuracy | 0.860 | 0.587 | 0.693 | **0.873** | 0.867 | 0.553 | 0.633 |
+| Top-3 accuracy | **0.993** | 0.673 | 0.773 | 0.953 | 0.987 | 0.593 | 0.720 |
+| Correct answer rate | **0.833** | 0.493 | 0.493 | 0.627 | 0.813 | 0.420 | 0.347 |
+| Accepted but wrong | 17 | 17 | 9 | 3 | 15 | 2 | **1** |
+| Answerable acceptance | **0.947** | 0.607 | 0.553 | 0.647 | 0.913 | 0.433 | 0.353 |
+| Unanswerable rejection | 0.840 | 0.760 | 0.980 | 0.960 | 0.880 | **1.000** | 0.960 |
+| False acceptances | 8 | 12 | 1 | 2 | 6 | **0** | 2 |
+| False rejections | **8** | 59 | 67 | 53 | 13 | 85 | 97 |
+
+### E-commerce FAQ
+
+| Metric | TF-IDF | W2V mean | W2V weighted | Pretrained mean | Pretrained weighted | Siamese RNN | Siamese BiLSTM |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Threshold | 0.58 | 0.92 | 0.91 | 0.81 | 0.76 | 0.69 | 0.70 |
+| Top-1 accuracy | **0.953** | 0.753 | 0.740 | 0.827 | 0.867 | 0.607 | 0.507 |
+| Top-3 accuracy | **0.980** | 0.860 | 0.880 | 0.913 | 0.927 | 0.707 | 0.640 |
+| Correct answer rate | 0.820 | 0.633 | 0.687 | 0.787 | **0.840** | 0.533 | 0.347 |
+| Accepted but wrong | **1** | 16 | 21 | 18 | 17 | 23 | 7 |
+| Answerable acceptance | 0.827 | 0.740 | 0.827 | 0.907 | **0.953** | 0.687 | 0.393 |
+| Unanswerable rejection | **0.960** | 0.940 | 0.920 | 0.760 | 0.520 | 0.740 | **0.960** |
+| False acceptances | **2** | 3 | 4 | 12 | 24 | 13 | **2** |
+| False rejections | 26 | 39 | 26 | 14 | **7** | 47 | 91 |
 
 **Correct answer rate** is the number of answerable queries whose correct FAQ
-is ranked first **and accepted**, divided by all answerable queries. Top-1 alone
-does not account for threshold rejection. **Accepted but wrong** counts
-answerable queries accepted with a different FAQ; false acceptance counts
-unanswerable queries that receive an answer.
+is ranked first **and accepted**, divided by all answerable queries; Top-1
+alone ignores threshold rejection. **Accepted but wrong** counts answerable
+queries answered with a different FAQ; **false acceptances** count unanswerable
+queries that receive any answer.
 
-Selection has two stages, both using validation data only:
+No model is best on every metric. Which to prefer depends on whether a wrong
+answer or a refusal costs more. These are **synthetic benchmark** results: the
+test queries were generated from templates and inspected during development,
+so they are a reproducible estimate, not a final human-rated assessment.
+Full reports are in [reports/](reports/), [reports/phase2/](reports/phase2/),
+[reports/phase2b/](reports/phase2b/) and [reports/phase3/](reports/phase3/).
 
-1. Compare answerable Top-1 accuracy, then Top-3, then prefer the simpler
-   preprocessing configuration. University basic and lemmatized both reach
-   0.900 Top-1 and 1.000 Top-3; basic wins the simplicity tie. E-commerce ties
-   across all three configurations at 0.900 Top-1 and Top-3, also selecting basic.
-2. For that configuration, sweep thresholds from 0.00 to 1.00 in 0.01 steps.
-   Maximize the mean of answerable acceptance and unanswerable rejection;
-   prefer the higher threshold on ties. This score measures answerability
-   decisions, not whether the returned FAQ is correct.
-
-The comparison supports basic preprocessing for these validation sets; it does
-not establish that lemmatization improves retrieval or never helps other data.
-
-## Phase 2: TF-IDF against a custom Word2Vec
-
-Phase 2 trains one Skip-Gram Word2Vec model per domain on that domain's **FAQ
-questions only**, then compares three ways of ranking the same 200 test queries.
-For each domain, both Word2Vec aggregation methods reuse the same trained file
-and differ only in how word vectors are combined into one question vector.
-
-| Metric | TF-IDF | Word2Vec mean | Word2Vec TF-IDF weighted |
-| --- | --- | --- | --- |
-| University Top-1 accuracy | **0.860** | 0.587 | 0.693 |
-| University correct answer rate | **0.833** | 0.493 | 0.493 |
-| University threshold | 0.46 | 0.93 | 0.95 |
-| E-commerce Top-1 accuracy | **0.953** | 0.753 | 0.740 |
-| E-commerce correct answer rate | **0.820** | 0.633 | 0.687 |
-| E-commerce threshold | 0.58 | 0.92 | 0.91 |
-
-**TF-IDF has higher Top-1 accuracy and correct answer rate on both corpora.**
-The following observations help interpret this result; the experiment does not
-isolate a single cause:
-
-1. University supplies 6,257 training tokens and e-commerce 6,665. This small
-   training set limits the evidence available to learn word relationships;
-   the notebook shows both plausible and noisy nearest neighbours.
-2. These trained sentence vectors produce closely grouped scores. The mean
-   best-match cosine differs between answerable and unanswerable queries by
-   0.34-0.37 for TF-IDF and only 0.03-0.09 for Word2Vec. Validation selects
-   Word2Vec thresholds of 0.91-0.95, which reject some correct Top-1 matches.
-   On university, the weighted model ranks 104 of 150 answerable queries first
-   but delivers only 74.
-
-IDF weighting improves university Top-1 over plain averaging (0.693 against
-0.587), but reduces e-commerce Top-1 (0.740 against 0.753). It does not improve
-university correct answer rate, while it raises e-commerce correct answer rate
-from 0.633 to 0.687. Higher cosine values are neither calibrated probabilities
-nor evidence of better retrieval; compare the measured decisions and errors.
-
-Full tables, per-model sweeps and a paired per-query CSV are in
-[reports/phase2/](reports/phase2/); sections 11 to 13 of the notebook explain
-Skip-Gram, both aggregations, and the paired errors.
-
-```powershell
-# Train one model per corpus. Required once before any Word2Vec command.
-python scripts/train_word2vec.py --corpus all
-
-# Tune both Word2Vec thresholds, then evaluate all three models
-python evaluate.py all --model all
-
-# Reproduce the comparison using frozen thresholds, without tuning
-python evaluate.py test --model all
-
-# Ask one question with a chosen model
-python main.py --corpus university --model w2v_mean --query "How do I receive university alerts?"
-```
-
-Word2Vec thresholds live in `data/<corpus>/word2vec_config.json`, keyed to the
-trained model's artifact id, so this Phase 2 workflow preserves the frozen
-Phase 1 `corpus_config.json`. A changed artifact id invalidates old Word2Vec
-thresholds; an identical reproducible retraining keeps them valid. Model binaries
-are Git-ignored; `models/<corpus>/training_metadata.json` is committed and
-records the corpus hash, settings, package versions and vector hash.
-Reproducibility means matching numerical vectors in the pinned environment, not
-identical pickle bytes.
-
-## Phase 2B: pretrained Google News Word2Vec
-
-Phase 2B keeps both custom Word2Vec models and adds the same two aggregations
-over `word2vec-google-news-300`, vectors Google trained on about 100 billion
-words of news, and the model Lab 4 loads into PyTorch. Preprocessing, the
-aggregation functions, cosine ranking, the threshold protocol, the metrics and
-the 200 test queries per domain are all unchanged; only the source of the word
-vectors differs. Each pretrained model gets its own threshold, tuned on
-validation queries only.
-
-| Metric | TF-IDF | W2V mean | W2V weighted | Pretrained mean | Pretrained weighted |
-| --- | --- | --- | --- | --- | --- |
-| University Top-1 accuracy | 0.860 | 0.587 | 0.693 | **0.873** | 0.867 |
-| University Top-3 accuracy | **0.993** | 0.673 | 0.773 | 0.953 | 0.987 |
-| University correct answer rate | **0.833** | 0.493 | 0.493 | 0.627 | 0.813 |
-| University unanswerable rejection | 0.840 | 0.760 | **0.980** | 0.960 | 0.880 |
-| University threshold | 0.46 | 0.93 | 0.95 | 0.86 | 0.80 |
-| E-commerce Top-1 accuracy | **0.953** | 0.753 | 0.740 | 0.827 | 0.867 |
-| E-commerce Top-3 accuracy | **0.980** | 0.860 | 0.880 | 0.913 | 0.927 |
-| E-commerce correct answer rate | 0.820 | 0.633 | 0.687 | 0.787 | **0.840** |
-| E-commerce unanswerable rejection | **0.960** | 0.940 | 0.920 | 0.760 | 0.520 |
-| E-commerce threshold | 0.58 | 0.92 | 0.91 | 0.81 | 0.76 |
-
-**Pretrained vectors beat the custom vectors for every aggregation and corpus**,
-in both Top-1 accuracy and correct answer rate. **Against TF-IDF the result is
-mixed**, and no model is best on every metric:
-
-- University: the pretrained models rank 131 and 130 of 150 answerable queries
-  first, against 129 for TF-IDF — a difference of one or two queries. TF-IDF
-  still delivers the most correct answers (0.833). The mean model's 0.86
-  threshold rejects 37 queries it had ranked correctly.
-- E-commerce: the weighted model delivers the most correct answers (0.840
-  against 0.820), but it also answers 24 of 50 unanswerable queries, against 2
-  for TF-IDF. Its threshold was chosen on only 20 unanswerable validation queries.
-
-Two measurements help interpret the gain over custom vectors; the experiment
-does not isolate a single cause:
-
-1. **Coverage.** A custom model knows only the words of its own FAQ questions:
-   81.8% (university) and 79.3% (e-commerce) of test-query tokens. The
-   pretrained subset knows 99.5% and 98.8%. Its unknown FAQ words are mostly
-   brand and product names (`supercoins`, `bgauss`, `finserv`, `phonepe`) and
-   numbers.
-2. **Score separation.** The gap between the mean best-match score of
-   answerable and unanswerable queries is 0.13-0.17 for the pretrained models,
-   0.03-0.09 for the custom models and 0.34-0.37 for TF-IDF.
-
-Error cases compare each pretrained model with TF-IDF and with the custom model
-that combines vectors the same way:
-
-| Model | Case A: TF-IDF and custom fail, pretrained answers | Case B: TF-IDF answers, pretrained does not | Case C: custom answers, pretrained does not |
-| --- | --- | --- | --- |
-| University, pretrained mean | 2 | 34 | 6 |
-| University, pretrained weighted | 6 | 10 | 1 |
-| E-commerce, pretrained mean | 9 | 18 | 8 |
-| E-commerce, pretrained weighted | 9 | 10 | 6 |
-
-Full tables, sweeps, paired predictions, every case row and the coverage
-reports are in [reports/phase2b/](reports/phase2b/).
-
-### How the pretrained vectors are stored
-
-Google News keys are case-sensitive, and 71% of them are phrases or symbols
-such as `New_York`. Because `preprocess_text` lowercases every token, the build
-script keeps only lowercase single-word keys (710,048 of 3,000,000); when two
-casings fold together, the more frequent one supplies the vector. This matters:
-Google News has no lowercase `a`, `to`, `of`, `and` or `flipkart`, only `A`,
-`To`, `Of`, `And` and `Flipkart`. The 852 MB subset is memory-mapped, so no
-command loads the 3.6 GB model into memory; a single demonstration command with
-a pretrained model takes about eight seconds.
-
-```powershell
-# Once: download the model (about 1.7 GB) and build the subset
-python scripts/download_pretrained_embeddings.py
-
-# Tune both pretrained thresholds, then evaluate all five models
-python evaluate.py all --model phase2b
-
-# Ask one question with a pretrained model
-python main.py --corpus ecommerce --model pw2v_tfidf --query "What cards can I save on Flipkart?"
-```
-
-Pretrained thresholds live in `data/<corpus>/pretrained_config.json`, keyed to
-the subset's artifact id in `models/pretrained/pretrained_metadata.json`. The
-download and the generated subset are Git-ignored; see
-[models/pretrained/README.md](models/pretrained/README.md).
-
-## How it works
+## Phase 1: TF-IDF
 
 ```text
 FAQ questions -> preprocess -> fit_transform()   (index built once)
@@ -244,25 +101,192 @@ Query vector  -> cosine similarity -> top-k ranking -> threshold
 
 Answers are never included in the similarity vectors — only questions are
 indexed. A query whose best similarity falls below the corpus threshold is
-rejected rather than answered. Empty and all-out-of-vocabulary queries return
-no matches, even at threshold 0.00. An OOV query also receives no Top-1/Top-3
-credit from arbitrary zero-score ties.
+rejected. Empty and all-out-of-vocabulary queries return no matches, even at
+threshold 0.00, and receive no Top-1/Top-3 credit from zero-score ties.
+
+Selection has two stages, both using validation data only:
+
+1. Compare answerable Top-1 accuracy, then Top-3, then prefer the simpler
+   preprocessing configuration. University basic and lemmatized both reach
+   0.900 Top-1 and 1.000 Top-3; basic wins the simplicity tie. E-commerce ties
+   across all three configurations at 0.900, also selecting basic.
+2. For that configuration, sweep thresholds from 0.00 to 1.00 in 0.01 steps.
+   Maximize the mean of answerable acceptance and unanswerable rejection;
+   prefer the higher threshold on ties.
+
+Every later model reuses step 2 for its own threshold. The comparison supports
+basic preprocessing for these validation sets; it does not establish that
+lemmatization never helps.
+
+## Phase 2A: custom Word2Vec
+
+One Skip-Gram Word2Vec model per domain is trained on that domain's **FAQ
+questions only** (6,257 university and 6,665 e-commerce tokens). Both
+aggregations reuse the same trained vectors.
+
+**TF-IDF beats both custom models on both corpora.** The training text is small,
+and the averaged vectors crowd scores together: the mean best-match cosine
+separates answerable from unanswerable queries by 0.34–0.37 for TF-IDF but only
+0.03–0.09 for custom Word2Vec, so validation picks thresholds of 0.91–0.95 that
+reject correct matches. On university, the weighted model ranks 104 of 150
+answerable queries first but delivers only 74.
+
+Thresholds live in `data/<corpus>/word2vec_config.json`, keyed to the trained
+model's artifact id; `models/<corpus>/training_metadata.json` records corpus
+hash, settings, package versions and vector hash. Model binaries are
+Git-ignored.
+
+## Phase 2B: pretrained Google News Word2Vec
+
+Phase 2B keeps the Phase 2A aggregation code and swaps in
+`word2vec-google-news-300`, the pretrained vectors also used by Lab 4. Only the
+source of the word vectors changes.
+
+**Pretrained vectors beat the custom vectors for every aggregation and corpus.**
+Against TF-IDF the result is mixed: on university the pretrained models rank
+131 and 130 of 150 answerable queries first against 129, but TF-IDF still
+delivers more correct answers; on e-commerce the weighted model delivers the
+most correct answers but answers 24 of 50 unanswerable queries.
+
+Two measurements help explain the gain over custom vectors:
+
+1. **Coverage.** Custom models know 81.8% (university) and 79.3% (e-commerce)
+   of test-query tokens; the pretrained subset knows 99.5% and 98.8%. Its
+   unknown words are mostly brand names (`supercoins`, `bgauss`, `phonepe`)
+   and numbers.
+2. **Score separation.** 0.13–0.17 for the pretrained models, against
+   0.03–0.09 for the custom ones.
+
+| Model | Case A: TF-IDF and custom fail, pretrained answers | Case B: TF-IDF answers, pretrained does not | Case C: custom answers, pretrained does not |
+| --- | ---: | ---: | ---: |
+| University, pretrained mean | 2 | 34 | 6 |
+| University, pretrained weighted | 6 | 10 | 1 |
+| E-commerce, pretrained mean | 9 | 18 | 8 |
+| E-commerce, pretrained weighted | 9 | 10 | 6 |
+
+**How the vectors are stored.** Google News keys are case-sensitive and 71% are
+phrases such as `New_York`. Because every token is lowercased, the build script
+keeps only lowercase single-word keys (710,048 of 3,000,000); when casings fold
+together, the more frequent one supplies the vector. Google News has no
+lowercase `a`, `to`, `of`, `and` or `flipkart`, only `A`, `To`, `Of`, `And` and
+`Flipkart`. The 852 MB subset is memory-mapped. Thresholds live in
+`data/<corpus>/pretrained_config.json`; see
+[models/pretrained/README.md](models/pretrained/README.md).
+
+## Phase 3: Siamese RNN and BiLSTM
+
+### Architecture and training
+
+Both encoders read the **same frozen** 300-dimensional Google News vectors as
+Phase 2B, so Phase 2B and Phase 3 differ only in how word vectors become one
+question vector: averaged, or read in word order.
+
+- **Shared (Siamese) encoder:** the query and the FAQ question pass through the
+  same weights. The RNN outputs its final 128-dimensional hidden state; the
+  two-layer BiLSTM concatenates its top forward and backward states (256
+  dimensions). Packed sequences keep padding out of the final state.
+- **Objective:** `BCEWithLogitsLoss` on `scale * cosine + bias`, with a learned
+  scale and bias; Adam, learning rate 0.001, batch 32, at most 20 epochs,
+  early-stopping patience 3, seed 42, one CPU thread.
+- **Vocabulary:** `<PAD>`, `<UNK>`, the 100,000 most frequent subset words and
+  any other training word the subset knows (100,028 university, 100,013
+  e-commerce entries); maximum length 28 tokens.
+- **Checkpoint selection** uses held-out **development paraphrases** only
+  (highest Top-1, then Top-3, then lowest dev loss). Validation queries are
+  logged during training but only choose thresholds afterwards. Test queries
+  never enter training or selection.
+
+### Training data
+
+Each FAQ gets three reworded questions: two for training, one for development.
+Every paraphrase yields one positive pair, one random negative and one TF-IDF
+hard negative (near-duplicate FAQ questions are never negatives): 3,000
+training and 1,500 development pairs per corpus.
+
+The generator shares no code with the one that built the test queries, and it
+must not change a question's meaning:
+
+- A word is replaced only by a **WordNet synonym** that the pretrained vectors
+  place close to it (cosine ≥ 0.35) and that fits the rest of the question
+  nearly as well as the original word (within 0.10).
+- **Never replaced:** WordNet antonyms, numbers, time and money units, polarity
+  and order words (more/less, same/different, before/after), capitalised
+  programme or brand names, and a question's first word.
+- Conversational frames ("Quick question: …?") and 25% function-word dropout
+  add variety.
+
+An earlier version used raw nearest neighbours, which swapped related but
+different words (buy/sell, more/less, one/three, seller/buyer) while keeping
+the FAQ label; those checkpoints were discarded and every model retrained.
+
+A **blocking audit** checks each corpus before pairs are written:
+
+| Audit | University | E-commerce |
+| --- | ---: | ---: |
+| Rows removed for matching or ≥ 0.8 Jaccard overlap with any evaluation query | 0 | 0 |
+| Highest Jaccard overlap with any evaluation query | 0.786 | 0.733 |
+| Introduced test-template openings | 0 | 0 |
+| Substitutions reused from the test generator | 0 | 0 |
+| Mean source-token coverage (limit 0.80) | 0.768 | 0.748 |
+| Substitutions made (distinct pairs) | 2,517 (472) | 3,153 (479) |
+
+Passing the audit shows no leakage; it does not guarantee correct labels. Some
+WordNet senses still misfire in short questions, for example battery
+*charge → accusation* and *card → scorecard*.
+
+### Results
+
+| Model | Epochs run / selected | Dev Top-1 | Dev Top-3 | Validation Top-1 (logged) | Test Top-1 | Test correct answer rate |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| University RNN | 16 / 13 | 0.790 | 0.862 | 0.700 | 0.553 | 0.420 |
+| University BiLSTM | 12 / 9 | 0.988 | 0.998 | 0.700 | 0.633 | 0.347 |
+| E-commerce RNN | 16 / 13 | 0.746 | 0.850 | 0.533 | 0.607 | 0.533 |
+| E-commerce BiLSTM | 9 / 6 | 0.976 | 0.992 | 0.567 | 0.507 | 0.347 |
+
+**The sequence encoders do not beat averaging the same pretrained vectors.**
+On both corpora they have the lowest Top-1 accuracy and correct answer rate of
+all seven models. The BiLSTM is almost perfect on development paraphrases
+(0.976–0.988 Top-1) but falls to 0.507–0.633 on the test queries. Development
+paraphrases come from the same generator as the training data, so this gap
+suggests the encoders learned that generator's style rather than general
+paraphrasing. About 1,000 positive pairs per domain is also little data for
+recurrent weights, and some training labels are noisy. The experiment does not
+isolate a single cause.
+
+The sequence models are conservative: university RNN rejects all 50
+unanswerable queries, and both BiLSTMs make only 1–7 accepted-but-wrong
+answers, but they reject far more answerable queries (85–97 false rejections
+on university). Measured against Pretrained Word2Vec mean, the model that
+averages the same vectors:
+
+| Model | Case A: TF-IDF and pretrained mean fail, sequence answers | Case B: TF-IDF answers, sequence does not | Case C: pretrained mean answers, sequence does not |
+| --- | ---: | ---: | ---: |
+| University, Siamese RNN | 0 | 62 | 35 |
+| University, Siamese BiLSTM | 0 | 73 | 43 |
+| E-commerce, Siamese RNN | 1 | 48 | 43 |
+| E-commerce, Siamese BiLSTM | 0 | 73 | 68 |
+
+Checkpoint metadata is in [models/university/](models/university/) and
+[models/ecommerce/](models/ecommerce/); training histories, audits, sweeps,
+paired predictions and error cases are in [reports/phase3/](reports/phase3/).
+Thresholds live in `data/<corpus>/sequence_rnn_config.json` and
+`sequence_bilstm_config.json`, keyed to each checkpoint's artifact id. `.pt`
+binaries are Git-ignored; loading refuses a missing, stale or mismatched
+checkpoint instead of retraining.
 
 ## Relationship to the lab topics
 
-| Lab | Topic used or deferred |
+| Lab | Topic used |
 | --- | --- |
 | 1 | Regex cleaning, tokenization, optional stopword removal and lemmatization |
 | 2 | TF-IDF representation using scikit-learn |
-| 3 | Cosine similarity for retrieval, and custom Word2Vec sentence vectors (Phase 2) |
-| 4 | Pretrained Google News Word2Vec, the model Lab 4 uses (Phase 2B); RNN/LSTM encoders are planned for Phase 3 |
-| 5 | Transformers remain outside the completed phases |
+| 3 | Cosine similarity and custom Word2Vec sentence vectors (Phase 2A) |
+| 4 | Pretrained Google News Word2Vec (Phase 2B); `nn.Embedding.from_pretrained`, vanilla RNN, stacked BiLSTM, packed sequences and `BCEWithLogitsLoss` (Phase 3) |
+| 5 | Transformers are not implemented |
 
 The implementation follows these topics without copying the lab code. We use
-basic WordNet lemmatization without POS tagging: WordNet defaults to nouns, so
-`books` becomes `book` but `running` remains `running`. The notebook explains
-raw term counts, smoothed IDF, L2 normalization, cosine similarity, and
-`fit_transform` versus `transform` with a checked numerical example.
+basic WordNet lemmatization without POS tagging: `books` becomes `book` but
+`running` remains `running`.
 
 ## Setup
 
@@ -275,18 +299,20 @@ pip install -r requirements.txt
 python scripts/setup_nltk.py
 ```
 
-`scripts/setup_nltk.py` downloads the `stopwords`, `wordnet`, and `omw-1.4`
-corpora into a project-local `.nltk_data/` folder. Both frozen configurations
-now use basic preprocessing: downloaded NLTK corpora are needed for reproducing
-the optional comparisons, unit tests, and full notebook, but not the basic
-terminal demonstration. The NLTK **package** remains required for tokenization.
-Initial package/resource installation and source-data downloads need internet;
-after setup, demonstrations and evaluation use local files only. The verified
-environment has NLTK 3.10.3, its local corpora, and Gensim 4.4.0 available.
-Train the local Word2Vec artifacts before running those models or the full
-notebook; their binaries are deliberately not included in a Git clone.
-Phase 2B also needs `python scripts/download_pretrained_embeddings.py` once,
-which downloads about 1.7 GB and writes a 0.9 GB subset.
+`requirements.txt` includes the PyTorch CPU package index (verified with
+PyTorch 2.14.0+cpu, Gensim 4.4.0 and NLTK 3.10.3). `scripts/setup_nltk.py`
+downloads `stopwords`, `wordnet` and `omw-1.4` into `.nltk_data/`; WordNet is
+required to rebuild the Phase 3 training data. Model binaries are not in a Git
+clone, so train or build them before using those models:
+
+```powershell
+python scripts/train_word2vec.py --corpus all                     # Phase 2A
+python scripts/download_pretrained_embeddings.py                  # Phase 2B, ~1.7 GB download, 0.9 GB subset
+python scripts/build_sequence_pairs.py --corpus all               # Phase 3 training data and audit
+python scripts/train_sequence_models.py --corpus all --arch all   # Phase 3, about 10 minutes on CPU
+```
+
+After setup, demonstrations and evaluation use local files only.
 
 ## Running
 
@@ -294,127 +320,84 @@ which downloads about 1.7 GB and writes a 0.9 GB subset.
 # Interactive demonstration with corpus and model menus
 python main.py
 
-# Non-interactive, for a scripted or repeatable demonstration
+# One question with a chosen model (default model: tfidf)
 python main.py --corpus university --query "How do I receive university alerts?"
-python main.py --corpus ecommerce  --query "What cards can I save on Flipkart?"
+python main.py --corpus ecommerce --model pw2v_tfidf --query "What cards can I save on Flipkart?"
 
-# A question the system correctly refuses to answer
-python main.py --corpus ecommerce --query "How do I train a puppy to sit?"
+# Failure example: the BiLSTM answers with "How can I pay for my order?" (0.757)
+# and ranks the correct "How long does it take to cancel an order?" second (0.756)
+python main.py --corpus ecommerce --model bilstm --query "How can I cancel my order?"
 
-# The same question on the university corpus is wrongly accepted at 0.470,
-# just above its 0.46 threshold. See Limitations.
-python main.py --corpus university --query "How do I train a puppy to sit?"
+# Tune thresholds on validation queries, then evaluate on the test queries
+python evaluate.py all                    # Phase 1 TF-IDF
+python evaluate.py all --model all        # Phase 2A: TF-IDF + custom Word2Vec -> reports/phase2/
+python evaluate.py all --model phase2b    # + pretrained Word2Vec -> reports/phase2b/
+python evaluate.py all --model phase3     # all seven models -> reports/phase3/
 
-# Validate the finalized data without touching the network
+# Re-run a comparison with frozen thresholds, without tuning
+python evaluate.py test --model phase3
+
+# Evaluate team-written queries (reports "pending" while templates are empty)
+python evaluate.py manual --model phase3
+
+# Validate the finalized data, and run the unit tests
 python scripts/prepare_datasets.py validate
-
-# Select preprocessing and threshold on validation data, then freeze them
-python evaluate.py tune
-
-# Apply the frozen configuration to the synthetic benchmark and write reports
-python evaluate.py test
-
-# Evaluate team-written queries, or report that the templates are still empty
-python evaluate.py manual
-python evaluate.py manual --corpus university
-
-# Train the Phase 2 Word2Vec models, tune them, and compare all three models
-python scripts/train_word2vec.py --corpus all
-python evaluate.py all --model all
-python evaluate.py manual --model all
-
-# Build the Phase 2B subset, tune both pretrained models, and compare all five
-python scripts/download_pretrained_embeddings.py
-python evaluate.py all --model phase2b
-python evaluate.py manual --model phase2b
-
-# Unit tests
 python -m unittest discover -s tests
 ```
 
-Evaluation and non-interactive query commands default to TF-IDF. Both CLIs
-accept `--model tfidf`, `w2v_mean`, `w2v_tfidf`, `pw2v_mean` or `pw2v_tfidf`.
-Only `evaluate.py` also accepts the comparison groups `all` (TF-IDF and both
-custom Word2Vec models, written to `reports/phase2/`) and `phase2b` (all five
-models, written to `reports/phase2b/`). Interactive `main.py` asks for a model
-when omitted. A group reuses every earlier frozen setting and tunes only its
-newest models: `evaluate.py all --model all` tunes the two custom Word2Vec
-thresholds, and `evaluate.py all --model phase2b` tunes only the two pretrained
-ones. Neither retunes TF-IDF or touches the Phase 1 reports. Manual mode never
-tunes.
+Both CLIs accept `--model tfidf`, `w2v_mean`, `w2v_tfidf`, `pw2v_mean`,
+`pw2v_tfidf`, `rnn` or `bilstm`. `evaluate.py` also accepts the groups `all`,
+`phase2b` and `phase3`. A group reuses every earlier frozen setting and tunes
+only its newest models, so no group retunes an earlier phase or overwrites its
+reports. Manual mode never tunes. A run selecting a single dense or sequence
+model rewrites that phase's `comparison_report.md` with only that model; rerun
+the full group before presenting reports.
 
-Use `python evaluate.py test --model all` or `--model phase2b` to regenerate a
-complete comparison summary. A current reporting limitation is that a run
-selecting a single dense model rewrites that phase's `comparison_report.md`
-with only that model, while its introductory text still names every model in
-the group. It leaves the paired CSVs from the earlier full comparison in place.
-Rerun the full comparison before presenting reports.
-
-The default TF-IDF command `evaluate.py all` runs tuning and testing in order.
-Its tuning step writes
-`corpus_config.json` before the test set is read in that run. The tuning functions
-receive only validation data. This separation does not erase the fact that
-benchmark results have been examined while revising the methodology.
-
-Human evaluation is currently pending. The header-only templates and collection
-instructions are in [data/manual_evaluation/](data/manual_evaluation/). Target
-20 answerable and 10 unanswerable team-written queries per corpus; keep format
-examples out of the measured files. Manual mode uses frozen configurations and
-writes `manual_<corpus>_evaluation.json` plus `manual_evaluation_report.md`,
-separately from the synthetic reports. With a model group, manual JSON reports,
-paired CSVs and `manual_comparison_report.md` instead go under that group's
-report directory. Empty templates produce no current scores. Team members still
-need to collect and independently label the proposed 30 questions per domain.
-
-## Rebuilding the corpora
-
-Only needed when intentionally rebuilding from source data. Download mode uses
-the network; convert mode overwrites finalized FAQ and query CSVs. Neither is
-needed to run the committed project or reproduce its benchmark.
-
-```powershell
-python scripts/prepare_datasets.py download
-python scripts/prepare_datasets.py convert
-python scripts/prepare_datasets.py validate
-```
-
-Raw downloads land in `data/staging/`, which is git-ignored. The finalized CSVs
-in `data/university/` and `data/ecommerce/` are committed.
+Human evaluation is pending. The header-only templates and instructions are in
+[data/manual_evaluation/](data/manual_evaluation/): target 20 answerable and
+10 unanswerable team-written queries per corpus. Empty templates produce no
+scores.
 
 ## Project layout
 
 ```text
 Smart_FAQ/
-├── main.py                     Terminal demonstration
-├── evaluate.py                 Threshold tuning and test evaluation
+├── main.py                     Terminal demonstration for every model
+├── evaluate.py                 Threshold tuning, evaluation and comparison reports
 ├── src/
 │   ├── data_loader.py          Corpus discovery, loading, schema validation
 │   ├── preprocessing.py        Normalization, optional stop words / lemmas
-│   ├── tfidf_retrieval.py      Index building, cosine ranking, thresholding
-│   ├── evaluation.py           Shared metrics, threshold scoring, paired predictions
+│   ├── tfidf_retrieval.py      TF-IDF index, cosine ranking, thresholding
+│   ├── evaluation.py           Shared metrics, threshold sweep, paired predictions
 │   ├── embedding_utils.py      Mean and TF-IDF-weighted sentence vectors
-│   ├── word2vec_training.py    Question-only training and artifact validation
+│   ├── word2vec_training.py    Question-only Word2Vec training and artifact checks
 │   ├── word2vec_retrieval.py   Dense cosine ranking and answer delivery
-│   ├── word2vec_config.py      Artifact-specific frozen dense-model thresholds
-│   ├── pretrained_embeddings.py  Streaming Google News subset, checked loader, coverage
-│   └── retrieval_models.py     Model keys, labels, families and comparison groups
+│   ├── word2vec_config.py      Artifact-keyed frozen thresholds
+│   ├── pretrained_embeddings.py  Google News subset builder, checked loader, coverage
+│   ├── retrieval_models.py     Model keys, labels, families and comparison groups
+│   ├── sequence_data.py        Synonym paraphrases, pairs and leakage audit
+│   ├── sequence_models.py      Vocabulary, frozen embeddings, RNN/BiLSTM encoders
+│   ├── sequence_training.py    Seeded training, dev checkpoint selection, metadata
+│   └── sequence_retrieval.py   FAQ vector index and cosine retrieval for encoders
 ├── scripts/
 │   ├── prepare_datasets.py     Download, convert, validate the corpora
 │   ├── setup_nltk.py           One-time NLTK resource download
-│   ├── train_word2vec.py       Seeded subprocess training for each domain
-│   └── download_pretrained_embeddings.py  Google News download and subset build
-├── data/<corpus>/              faq_dataset.csv, validation_queries.csv,
-│                               test_queries.csv, corpus_config.json,
-│                               word2vec_config.json, pretrained_config.json
+│   ├── train_word2vec.py       Seeded Word2Vec training per domain
+│   ├── download_pretrained_embeddings.py  Google News download and subset build
+│   ├── build_sequence_pairs.py  Phase 3 training data and blocking audit
+│   └── train_sequence_models.py Seeded RNN/BiLSTM training per domain
+├── data/<corpus>/              FAQs, validation/test queries, every model's frozen
+│                               thresholds, Phase 3 paraphrases and pairs
 ├── data/manual_evaluation/     Empty team-query templates and collection guide
-├── models/<corpus>/            Word2Vec training metadata (binaries Git-ignored)
+├── models/<corpus>/            Word2Vec and RNN/BiLSTM metadata (binaries Git-ignored)
 ├── models/pretrained/          Subset metadata (download and vectors Git-ignored)
-├── reports/                    Tuning sweeps and evaluation results
-├── reports/phase2/             Three-model comparison, sweeps and paired CSVs
+├── reports/                    Phase 1 tuning and evaluation
+├── reports/phase2/             Three-model comparison
 ├── reports/phase2b/            Five-model comparison, error cases and coverage
-├── notebooks/                  Teacher demonstration notebook
+├── reports/phase3/             Seven-model comparison, audits, histories, error cases
+├── notebooks/                  Teacher notebook (Phases 1 and 2A)
 ├── docs/DATA_SOURCES.md        Corpus sources and manual review record
-└── tests/                      Retrieval, selection, metrics, and manual-mode tests
+└── tests/                      127 unit tests
 ```
 
 FAQ schema: `id,question,answer,category,source,source_type`
@@ -426,56 +409,46 @@ Both corpora hold 500 reviewed FAQs. The university corpus combines a screened
 subset of the [CPath dataset](https://huggingface.co/datasets/houcine-bdk/cpath-mcgill-ubc)
 with FAQs scraped from official `utoronto.ca` and `ubc.ca` pages; the e-commerce
 corpus comes from [NebulaByte/E-Commerce_FAQs](https://huggingface.co/datasets/NebulaByte/E-Commerce_FAQs).
-
 [docs/DATA_SOURCES.md](docs/DATA_SOURCES.md) records every source, what was
-rejected during review and why, the adjudication of all seven flagged semantic
-duplicate pairs, and the measured quality of the generated paraphrases.
-Schema and count validation cannot establish that every source answer or
-generated paraphrase is semantically correct.
+rejected during review and why, the seven flagged duplicate pairs, and the
+measured quality of the generated paraphrases.
+
+To rebuild the corpora from source (network needed; overwrites the finalized
+CSVs):
+
+```powershell
+python scripts/prepare_datasets.py download
+python scripts/prepare_datasets.py convert
+python scripts/prepare_datasets.py validate
+```
 
 ## Limitations
 
-- **TF-IDF matches words, not meaning.** A paraphrase that shares no vocabulary
-  with its FAQ will be missed. E-commerce shows this most clearly: 26 of 150
-  answerable queries score below the threshold and are rejected.
-- **A single threshold cannot separate every case.** On the university corpus,
-  answerable scores range from 0.299 to 0.984 while unanswerable scores range
-  from 0.222 to 0.525. Those ranges overlap, so 8 false acceptances and 8 false
-  rejections remain at the validation-selected threshold.
-
-  A concrete example worth knowing before a viva: *"How do I train a puppy to
-  sit?"* scores **0.470** against the university corpus, just above its 0.46
-  threshold, and is wrongly accepted as FAQ 241, *"Do I have to be a teacher
-  to apply to OISE?"*, through shared common words such as *do*, *I*, *a*, *to*. The same
-  question is correctly rejected by the e-commerce corpus, whose threshold is
-  0.58. This is the cost of choosing a threshold that keeps the answerable
-  acceptance rate at 0.947. The pretrained mean model rejects the same question
-  on the university corpus (0.791 against its 0.86 threshold).
-- **Natural paraphrases can fail.** The notebook's *"How do I send a product
-  back and get my money returned?"* is rejected by TF-IDF at 0.335, with a
-  warranty FAQ ranked first. The pretrained weighted model does worse on it: it
-  accepts *"Do I have to return the freebie when I return a product?"* at 0.780,
-  just above its 0.76 threshold. It is a failure demonstration, not evidence of
-  successful matching.
-- **Pretrained vectors answer more unanswerable questions on e-commerce.** The
-  pretrained weighted model rejects only 26 of 50 unanswerable test queries.
-  Its threshold was tuned on 20 unanswerable validation queries, which is too
-  few to estimate that rate precisely.
-- **Every dense model still ignores word order.** Mean and TF-IDF-weighted
-  vectors are unchanged if the words of a question are shuffled.
-- **The evaluation queries are generated, not human-written.** They are
-  measurably distinct from their sources (no query reproduces its source
-  question, mean source-token overlap 0.59 and 0.77), but some are not fluent.
-  Reported accuracy should be read as an estimate on synthetic paraphrases.
-- **The university corpus mixes two source types**, which differ in tone and
-  answer length.
-- **The e-commerce corpus is region-specific** (rupees, PhonePe, SuperCoins).
+- **The evaluation queries are generated, not human-written.** They differ from
+  their sources (mean source-token overlap 0.59 and 0.77, no verbatim copies)
+  but some are not fluent. Every number above is a synthetic-benchmark estimate.
+- **TF-IDF matches words, not meaning.** E-commerce rejects 26 of 150 answerable
+  queries whose wording differs from the FAQ.
+- **One threshold cannot separate every case.** *"How do I train a puppy to
+  sit?"* scores 0.470 on the university corpus, just above the 0.46 TF-IDF
+  threshold, and is wrongly answered with FAQ 241 through shared words such as
+  *do*, *I*, *a*, *to*. The pretrained mean model rejects it (0.791 against 0.86).
+- **Natural paraphrases can fail.** *"How do I send a product back and get my
+  money returned?"* is rejected by TF-IDF at 0.335; the pretrained weighted
+  model wrongly accepts a freebie-return FAQ at 0.780.
+- **Pretrained weighted answers many unanswerable e-commerce queries** (24 of
+  50); its threshold came from only 20 unanswerable validation queries.
+- **Averaged models ignore word order**, and the sequence models that do not
+  ignore it generalize poorly from about 1,000 generated training pairs per
+  domain, some of them with wrong-sense substitutions.
+- **The university corpus mixes two source types**, and the e-commerce corpus
+  is region-specific (rupees, PhonePe, SuperCoins).
 
 ## Scope
 
-Phase 1 is TF-IDF; Phase 2 adds custom Word2Vec vectors trained on the same FAQ
-questions; Phase 2B adds pretrained Google News Word2Vec vectors. All three
-retrieve stored answers only. Phase 3, Siamese RNN and BiLSTM sentence encoders
-evaluated on the same queries, is planned next. Training on answers as well as
-questions, Transformer/BERT work, a GUI, Flask or Streamlit, and generative
-answering are not part of the completed phases.
+Implemented: TF-IDF, custom and pretrained Word2Vec, and Siamese RNN/BiLSTM
+retrieval of stored answers, with a terminal demonstration and reproducible
+evaluation. Not implemented: training on answers, Transformer/BERT models,
+generative answering, and a graphical interface. A presentation interface is
+planned next; it can reuse `main.py:build_answerer`, which already loads any
+model with its frozen threshold without retraining.

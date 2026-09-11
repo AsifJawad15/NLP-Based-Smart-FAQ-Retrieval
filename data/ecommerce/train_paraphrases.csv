@@ -1,0 +1,1501 @@
+query,expected_faq_id,split,substitutions
+Help needed: how i usage my mobile number to login on the flipkart mobile app?,1,train,use>usage
+how can i utilize my mobile number to login on flipkart mobile app? Thanks.,1,train,use>utilize
+"Hi, how can i utilization my mobile number to login on the flipkart mobile app?",1,dev,use>utilization
+Quick question: what should do if i not bring the invoice for my order?,2,train,get>bring
+"Hi, what should i do if i not come invoice for my order?",2,train,get>come
+Quick question: what should i do if not bring the invoice for my order?,2,dev,get>bring
+"Hi, how credit card no cost emi different from credit card emi payment mode?",3,train,
+"Hi, how is credit card no cost emi different from credit card emi payment mode?",3,train,
+how is credit card no cost emi different from credit card emi payment mode? Thanks.,3,dev,
+Help needed: if i have find security bug vulnerability issue should do?,4,train,found>find
+Help needed: if i have discover a security bug vulnerability issue what should i do?,4,train,found>discover
+"Hi, if i have find security bug vulnerability issue should i do?",4,dev,found>find
+Quick question: what the process paying ex showroom cost for ampere magnus ex flipkart?,5,train,price>cost
+Help needed: what is process after paying the ex showroom cost for ampere magnus ex on flipkart?,5,train,price>cost
+what is the process paying the ex showroom cost for ampere magnus ex on flipkart? Any idea?,5,dev,price>cost
+what does signify if a depot showing supercoin pay qr code? Any idea?,6,train,mean>signify store>depot displays>showing
+Could you tell me what does it imply if a depot exhibit supercoin pay qr code?,6,train,mean>imply store>depot displays>exhibit
+"Hi, what does it entail a depot exhibit supercoin pay qr code?",6,dev,mean>entail store>depot displays>exhibit
+i have requested for a rejoin my item will it occur? Any idea?,7,train,return>rejoin happen>occur
+Quick question: i have requested for a rejoin for my item will it occur?,7,train,return>rejoin happen>occur
+Quick question: i have requested for rejoin my item it materialize?,7,dev,return>rejoin happen>materialize
+Could you tell me what can i publish in product critique?,8,train,write>publish reviews>critique
+Help needed: what i publish product critique?,8,train,write>publish reviews>critique
+what can i publish in product critique? Any idea?,8,dev,write>publish reviews>critique
+Help needed: can i usage the cash on delivery payment alternative for every product buy flipkart?,9,train,use>usage option>alternative
+"Hi, can i utilize cash on delivery payment alternative for every product i buy flipkart?",9,train,use>utilize option>alternative
+can i usage the cash on delivery payment alternative every product i buy on flipkart?,9,dev,use>usage option>alternative
+Quick question: should i visit flipkart s customer care for installation once my product is delivered?,10,train,call>visit
+should i phone flipkart s customer care for installation once product is delivered? Any idea?,10,train,call>phone
+Could you tell me should phone flipkart s customer care for installation once product delivered?,10,dev,call>phone
+Quick question: where can i check the termination pertain details my flipkart plus membership?,11,train,expiry>termination related>pertain
+where can i check the termination pertain details of my flipkart plus membership? Any idea?,11,train,expiry>termination related>pertain
+where check termination pertain details of flipkart plus membership? Thanks.,11,dev,expiry>termination related>pertain
+can i nightclub my decree from different sellers to be delivered together?,12,train,club>nightclub orders>decree
+Could you tell me can i nightclub my decree from different sellers to be delivered together?,12,train,club>nightclub orders>decree
+Quick question: can i nightclub my decree different sellers delivered together?,12,dev,club>nightclub orders>decree
+how i unlink gift card which is added to my wallet?,13,train,
+Help needed: how i unlink a gift card is added to my wallet?,13,train,
+"Hi, how i unlink a gift card which added to my wallet?",13,dev,
+what is the process after paying the ex showroom cost for bgauss 2 wheeler on flipkart? Thanks.,14,train,price>cost
+what the process after paying ex showroom cost for a bgauss 2 wheeler on flipkart? Thanks.,14,train,price>cost
+what is the process after paying the ex showroom cost bgauss 2 wheeler on flipkart? Any idea?,14,dev,price>cost
+Could you tell me i not bring the gift card i arranged should do?,15,train,get>bring ordered>arranged
+Quick question: i not bring gift card i arranged for i do?,15,train,get>bring ordered>arranged
+"Hi, i did not find the gift card i arranged for what i do?",15,dev,get>find ordered>arranged
+Help needed: can cancel the decree that i paced by redeeming supercoin through the supercoin pay boast?,16,train,order>decree feature>boast
+can cancel edict that i paced redeeming supercoin through supercoin pay boast?,16,train,order>edict feature>boast
+can i cancel the edict that i paced by redeeming supercoin through the supercoin pay boast? Any idea?,16,dev,order>edict feature>boast
+Could you tell me why is the cash on delivery payment mode not accessible at my location?,17,train,available>accessible
+why is the cash on delivery payment mode not usable at my location?,17,train,available>usable
+Could you tell me why cash on delivery payment mode not useable my location?,17,dev,available>useable
+there no stamp on warranty scorecard i have how will claim warranty? Thanks.,18,train,seal>stamp card>scorecard got>have
+there is no stamp on warranty scorecard i let how will i claim warranty? Any idea?,18,train,seal>stamp card>scorecard got>let
+there is no stamp on the warranty scorecard i have i claim warranty? Any idea?,18,dev,seal>stamp card>scorecard got>have
+"Hi, can i bargain more than one ampere vehicle in my name same flipkart account?",19,train,buy>bargain
+Help needed: can i bargain more than one ampere vehicle in my name same flipkart account?,19,train,buy>bargain
+"Hi, can i steal more than one ampere vehicle in my name same flipkart account?",19,dev,buy>steal
+Help needed: how entrust the foodstuff that will be delivered superior checked and refreshing?,20,train,trust>entrust groceries>foodstuff quality>superior fresh>refreshing
+Help needed: how can i entrust that the foodstuff that be delivered are superior checked and refreshing?,20,train,trust>entrust groceries>foodstuff quality>superior fresh>refreshing
+"Hi, how can i entrust the foodstuff that will delivered are superior checked and refreshing?",20,dev,trust>entrust groceries>foodstuff quality>superior fresh>refreshing
+how i pay for order utilize bajaj finserv payment mode?,21,train,using>utilize
+how can i pay my order use the bajaj finserv payment mode? Thanks.,21,train,using>use
+how can i pay for my order utilize the bajaj finserv payment mode? Any idea?,21,dev,using>utilize
+what the process after paying the ex showroom cost for bounce 2 wheeler on flipkart? Thanks.,22,train,price>cost
+what the process after paying the ex showroom cost a bounce 2 wheeler flipkart?,22,train,price>cost
+what is the process paying the ex showroom cost for a bounce 2 wheeler on flipkart? Any idea?,22,dev,price>cost
+"Hi, what subsidies are being provide by ather to claim them?",23,train,offered>provide
+"Hi, what subsidies being provide by ather and how to claim them?",23,train,offered>provide
+what subsidies are being provide ather how to claim them?,23,dev,offered>provide
+if i invalidate or revert an item from edict will supercoins credited be subtract? Thanks.,24,train,cancel>invalidate return>revert order>edict deducted>subtract
+if i invalidate or revert an item my decree will the supercoins credited be subtract? Any idea?,24,train,cancel>invalidate return>revert order>decree deducted>subtract
+Could you tell me if i invalidate or revert an item from decree the supercoins credited be subtract?,24,dev,cancel>invalidate return>revert order>decree deducted>subtract
+Help needed: why i find a transportation charge for an item the plus badge?,25,train,see>find shipping>transportation
+why do i hear a transportation charge for item with the plus badge? Thanks.,25,train,see>hear shipping>transportation
+why do i realize a transportation charge an item with the plus badge? Thanks.,25,dev,see>realize shipping>transportation
+Quick question: i do not recall the warranty details for product i discover?,26,train,remember>recall find>discover
+i do not think warranty details for product where i get it? Any idea?,26,train,remember>think find>get
+Help needed: i not think the warranty details for my product where can determine it?,26,dev,remember>think find>determine
+can i steal more than one bgauss 2 wheeler my name same flipkart account?,27,train,buy>steal
+"Hi, can i steal more than one bgauss 2 wheeler in my name same flipkart account?",27,train,buy>steal
+can i bargain more one bgauss 2 wheeler in my name same flipkart account?,27,dev,buy>bargain
+what should do if my edict is authorized but has not shipped even?,28,train,order>edict approved>authorized yet>even
+Quick question: what should i do if my edict is authorized but has not shipped still?,28,train,order>edict approved>authorized yet>still
+what should i do if edict is sanctioned has not been shipped even? Thanks.,28,dev,order>edict approved>sanctioned yet>even
+how is bajaj finserv payment mode different from the credit card emi payment mode? Thanks.,29,train,
+Could you tell me how is bajaj finserv payment mode different from credit card emi payment mode?,29,train,
+Quick question: how bajaj finserv payment mode different the credit card emi payment mode?,29,dev,
+what is process paying the ex showroom cost an ather 2 wheeler on flipkart?,30,train,price>cost
+"Hi, what is the process after paying the ex showroom cost for ather 2 wheeler on flipkart?",30,train,price>cost
+Help needed: what is process paying the ex showroom cost for an ather 2 wheeler on flipkart?,30,dev,price>cost
+"Hi, how lasting will the benefit be unlocked component my supercoin milestones?",31,train,long>lasting part>component
+Help needed: how lengthy will the benefit unlocked as component of supercoin milestones?,31,train,long>lengthy part>component
+how lasting will benefit unlocked as portion of my supercoin milestones? Any idea?,31,dev,long>lasting part>portion
+if petition for substitute will i find? Any idea?,32,train,request>petition replacement>substitute get>find
+if i petition for substitute when will come it? Thanks.,32,train,request>petition replacement>substitute get>come
+if i asking for substitute when will i come?,32,dev,request>asking replacement>substitute get>come
+how lasting do i have to choice my freight from the selection up depot? Thanks.,33,train,long>lasting pick>choice shipment>freight pick>selection store>depot
+Could you tell me how lengthy do i to pluck up freight from the pluck up depot?,33,train,long>lengthy pick>pluck shipment>freight pick>pluck store>depot
+how lengthy do to pluck up my cargo the choice up depot? Thanks.,33,dev,long>lengthy pick>pluck shipment>cargo pick>choice store>depot
+Help needed: what are the complaint relevant warranty claim in lawsuit a refurbished product?,34,train,charges>complaint applicable>relevant case>lawsuit
+Quick question: what are the accusation relevant for warranty claim in lawsuit of a refurbished product?,34,train,charges>accusation applicable>relevant case>lawsuit
+Quick question: what are the complaint relevant for warranty claim in suit of refurbished product?,34,dev,charges>complaint applicable>relevant case>suit
+can i steal more than one bounce vehicle in my name same flipkart account?,35,train,buy>steal
+"Hi, can i bargain more than one bounce vehicle my name same flipkart account?",35,train,buy>bargain
+can i bargain more than one bounce vehicle in my name same flipkart account?,35,dev,buy>bargain
+Help needed: are there obscure charges octroi or sales tax when i patronize on flipkart?,36,train,hidden>obscure shop>patronize
+"Hi, are there any concealed charges octroi or sales tax patronize on flipkart?",36,train,hidden>concealed shop>patronize
+Help needed: are there secret charges octroi or sales tax when i patronize on flipkart?,36,dev,hidden>secret shop>patronize
+how can lend a scorecard tag to preserved scorecard? Any idea?,37,train,add>lend card>scorecard label>tag saved>preserved card>scorecard
+Could you tell me how can contribute a scorecard tag to preserved scorecard?,37,train,add>contribute card>scorecard label>tag saved>preserved card>scorecard
+Help needed: how can contribute scorecard tag to my preserved scorecard?,37,dev,add>contribute card>scorecard label>tag saved>preserved card>scorecard
+what is the advantage of purchasing a hero motocorp 2 wheeler vehicle through flipkart? Thanks.,38,train,buying>purchasing
+Quick question: what is the advantage of purchase hero motocorp 2 wheeler vehicle through flipkart?,38,train,buying>purchase
+what the advantage of purchasing a hero motocorp 2 wheeler vehicle through flipkart?,38,dev,buying>purchasing
+what subsidies are being provide by ampere how to claim?,39,train,offered>provide
+what subsidies being provide by ampere and how to claim them?,39,train,offered>provide
+"Hi, what subsidies are being provide by ampere and to claim them?",39,dev,offered>provide
+can i rejoin my ather 2 wheeler in suit i obtain a hurt vehicle? Any idea?,40,train,return>rejoin case>suit receive>obtain damaged>hurt
+Help needed: can i rejoin my ather 2 wheeler in suit i welcome a broken vehicle?,40,train,return>rejoin case>suit receive>welcome damaged>broken
+can rejoin my ather 2 wheeler suit incur a weakened vehicle?,40,dev,return>rejoin case>suit receive>incur damaged>weakened
+Could you tell me is a choice up depot alternative improved than have the loading send directly to me?,41,train,pick>choice store>depot option>alternative better>improved having>have shipment>loading sent>send
+is a choice up depot alternative improved than have the consignment send directly to me? Any idea?,41,train,pick>choice store>depot option>alternative better>improved having>have shipment>consignment sent>send
+Help needed: is a choice up depot alternative improved than have the consignment send directly to me?,41,dev,pick>choice store>depot option>alternative better>improved having>have shipment>consignment sent>send
+Quick question: i did not find warranty scorecard my product can i find warranty?,42,train,get>find card>scorecard get>find
+Quick question: i did not find a warranty scorecard with my product how can i make the warranty?,42,train,get>find card>scorecard get>make
+Quick question: i did not make a warranty scorecard with my product how can i make the warranty?,42,dev,get>make card>scorecard get>make
+can i steal more than one ather 2 wheeler through the same flipkart account?,43,train,buy>steal
+"Hi, can steal more than one ather 2 wheeler through the same flipkart account?",43,train,buy>steal
+Could you tell me can i bargain more than one ather 2 wheeler through the same flipkart account?,43,dev,buy>bargain
+Quick question: how do i make invoices previous orders without have to check my e mails?,44,train,get>make having>have
+how do i come invoices my previous orders without have to check my e mails?,44,train,get>come having>have
+how do i come invoices for my previous orders without have to check my e mails? Thanks.,44,dev,get>come having>have
+how can pay for my order use the credit card no cost emi payment mode?,45,train,using>use
+how can i pay my order utilize the credit card no cost emi payment mode?,45,train,using>utilize
+how can i pay for my order use credit card no cost emi payment mode? Thanks.,45,dev,using>use
+what is the process after paying the ex showroom cost for hero motocorp 2 wheeler on flipkart? Thanks.,46,train,price>cost
+what is the process after paying the ex showroom cost a hero motocorp 2 wheeler on flipkart? Any idea?,46,train,price>cost
+Help needed: what the process paying the ex showroom cost for a hero motocorp 2 wheeler on flipkart?,46,dev,price>cost
+what subsidies are being provide by bgauss to claim them? Thanks.,47,train,offered>provide
+Could you tell me what subsidies are being provide bgauss how to claim?,47,train,offered>provide
+"Hi, what subsidies are being provide by bgauss how claim them?",47,dev,offered>provide
+"Hi, can drop away an item i need revert at the pick depot?",48,train,off>away want>need return>revert store>depot
+Quick question: can i drop hit an item i need to revert at pick up depot?,48,train,off>hit want>need return>revert store>depot
+can i drop away an item i need revert at the pick depot?,48,dev,off>away want>need return>revert store>depot
+how can i bring new delivery address flipkart account?,49,train,add>bring
+Help needed: how can i contribute new delivery address to flipkart account?,49,train,add>contribute
+Quick question: how can i contribute a new delivery address to my flipkart account?,49,dev,add>contribute
+"Hi, will warranty be relevant for my product since i purchase it online?",50,train,applicable>relevant bought>purchase
+"Hi, will warranty be relevant for my product since purchase online?",50,train,applicable>relevant bought>purchase
+Help needed: will warranty be relevant for my product since i buy online?,50,dev,applicable>relevant bought>buy
+"Hi, how can modification the email id connected my flipkart account?",51,train,change>modification linked>connected
+Could you tell me how can i switch the email id connected with my flipkart account?,51,train,change>switch linked>connected
+"Hi, how can i alter email id connected flipkart account?",51,dev,change>alter linked>connected
+why do i hear different cost bible same championship? Thanks.,52,train,see>hear prices>cost books>bible title>championship
+"Hi, why i hear different cost for bible with the same championship?",52,train,see>hear prices>cost books>bible title>championship
+"Hi, why do i hear different cost bible with the same championship?",52,dev,see>hear prices>cost books>bible title>championship
+Could you tell me what is the credit restrict on the bajaj finserv card for shopping on flipkart?,53,train,limit>restrict
+Help needed: what the credit restrict on bajaj finserv card for shopping on flipkart?,53,train,limit>restrict
+"Hi, what the credit restrict on the bajaj finserv card for shopping on flipkart?",53,dev,limit>restrict
+"Hi, what sales services are being furnish by flipkart ather 2 wheelers?",54,train,provided>furnish
+what after sales services are being furnish by flipkart ather 2 wheelers? Thanks.,54,train,provided>furnish
+Help needed: what after sales services are being furnish by flipkart ather 2 wheelers?,54,dev,provided>furnish
+Help needed: what subsidies are being provide by bounce and how to claim them?,55,train,offered>provide
+"Hi, what subsidies are being provide bounce and how to claim?",55,train,offered>provide
+Help needed: what subsidies being provide by bounce and how to claim?,55,dev,offered>provide
+can i invalidate an order put utilize the credit card no cost emi payment alternative? Thanks.,56,train,cancel>invalidate placed>put using>utilize option>alternative
+can i invalidate an order put utilize credit card no cost emi payment alternative? Any idea?,56,train,cancel>invalidate placed>put using>utilize option>alternative
+can i invalidate an order put use the credit card no cost emi payment alternative?,56,dev,cancel>invalidate placed>put using>use option>alternative
+Quick question: i lost delivery of my order now what i do?,57,train,missed>lost today>now
+Quick question: i lost the delivery of order now what should i do?,57,train,missed>lost today>now
+Quick question: i lost delivery of my order now what should i?,57,dev,missed>lost today>now
+should i register the product with the marque to avail the warranty benefits on it? Thanks.,58,train,brand>marque
+Help needed: should register the product with the marque avail the warranty benefits on it?,58,train,brand>marque
+should register product with the marque to avail the warranty benefits on it? Thanks.,58,dev,brand>marque
+will i bring early admittance to sale as i m a flipkart plus client? Any idea?,59,train,get>bring access>admittance customer>client
+Help needed: will come early admittance to sale i m a flipkart plus client?,59,train,get>come access>admittance customer>client
+will i make early admittance to sale as i m flipkart plus client? Thanks.,59,dev,get>make access>admittance customer>client
+"Hi, my bundle indicate as delivered but i ca not see what should i do?",60,train,package>bundle shows>indicate find>see
+Quick question: my bundle indicate delivered but ca not see it what i?,60,train,package>bundle shows>indicate find>see
+my bundle indicate as delivered but i ca not determine it what i?,60,dev,package>bundle shows>indicate find>determine
+how can i implement for flipkart axis bank credit card i eligible for the card?,61,train,apply>implement
+Could you tell me how can i implement for flipkart axis bank credit card am i eligible for the card?,61,train,apply>implement
+Quick question: how can i implement flipkart axis bank credit card am i eligible for the card?,61,dev,apply>implement
+Could you tell me what charging alternative are useable with ather 2 wheelers is a distinct cost relate with?,62,train,options>alternative available>useable separate>distinct associated>relate
+Quick question: what charging alternative useable with ather 2 wheelers a split cost relate with it?,62,train,options>alternative available>useable separate>split associated>relate
+Quick question: what charging alternative accessible with ather 2 wheelers is unconnected cost relate with it?,62,dev,options>alternative available>accessible separate>unconnected associated>relate
+"Hi, on what products i make the alternative of supercoins price?",63,train,get>make option>alternative
+Could you tell me on what products will i bring alternative supercoins price?,63,train,get>bring option>alternative
+on what products i make the alternative of supercoins price?,63,dev,get>make option>alternative
+Could you tell me can i alter address the selection up of item s in my edict?,64,train,change>alter pick>selection order>edict
+Quick question: can i alteration the address for choice up the of item s my edict?,64,train,change>alteration pick>choice order>edict
+can i modification address for choice up the item s in edict? Any idea?,64,dev,change>modification pick>choice order>edict
+Could you tell me can person else collect an order on my behalf pluck depot?,65,train,someone>person pick>pluck store>depot
+can person else collect an order on my behalf from pluck depot?,65,train,someone>person pick>pluck store>depot
+"Hi, can person else collect an order on behalf from a pluck up depot?",65,dev,someone>person pick>pluck store>depot
+Quick question: how do i claim warranty services for refurbished products?,66,train,
+Could you tell me how do i claim warranty services for refurbished products?,66,train,
+Help needed: how claim warranty services refurbished products?,66,dev,
+"Hi, what are the benefits of purchase an item with a plus badge?",67,train,buying>purchase
+Quick question: what are benefits purchase an item with a plus badge?,67,train,buying>purchase
+what are benefits of purchase an item with a plus badge? Thanks.,67,dev,buying>purchase
+can i order a product is out of stock or temporarily unavailable? Any idea?,68,train,
+"Hi, can order product that is out of stock or temporarily unavailable?",68,train,
+Could you tell me can i order a product out stock temporarily unavailable?,68,dev,
+Could you tell me what can do the balance in my pocketbook is not sufficient to wage order?,69,train,wallet>pocketbook enough>sufficient pay>wage
+what can i do if the balance in my pocketbook not decent give for my order? Thanks.,69,train,wallet>pocketbook enough>decent pay>give
+what can do if the balance in my pocketbook not decent to salary for order?,69,dev,wallet>pocketbook enough>decent pay>salary
+what advantage of purchase a bgauss 2 wheeler vehicle through flipkart? Any idea?,70,train,buying>purchase
+what is advantage purchasing bgauss 2 wheeler vehicle through flipkart? Any idea?,70,train,buying>purchasing
+what the advantage purchase a bgauss 2 wheeler vehicle through flipkart? Any idea?,70,dev,buying>purchase
+Help needed: some of my supercoins expiring how can i redeem them?,71,train,
+"Hi, some of my supercoins are expiring can i redeem them?",71,train,
+Could you tell me some of my supercoins are expiring how i redeem them?,71,dev,
+how protracted will it get repay from flipkart my phonepe pocketbook? Any idea?,72,train,long>protracted take>get refund>repay wallet>pocketbook
+how lengthy it get a repay from flipkart my phonepe pocketbook? Any idea?,72,train,long>lengthy take>get refund>repay wallet>pocketbook
+how protracted it bring for repay from flipkart phonepe pocketbook? Thanks.,72,dev,long>protracted take>bring refund>repay wallet>pocketbook
+Help needed: how to fuck if my region has ego selection up service?,73,train,know>fuck area>region self>ego pick>selection
+how to fuck if region has ego pluck service? Any idea?,73,train,know>fuck area>region self>ego pick>pluck
+Help needed: how love if my region ego selection up service?,73,dev,know>love area>region self>ego pick>selection
+"Hi, how will i claim warranty for refurbished products?",74,train,
+Help needed: how claim warranty for refurbished products?,74,train,
+Help needed: how will claim warranty for refurbished products?,74,dev,
+Could you tell me how can i apply new email address log in to flipkart account?,75,train,use>apply
+Help needed: how can utilization a new email address to log in to my flipkart account?,75,train,use>utilization
+Help needed: how i utilization a new email address to log in to my flipkart account?,75,dev,use>utilization
+Help needed: how do acknowledge my edict has been official?,76,train,know>acknowledge order>edict confirmed>official
+"Hi, how do i acknowledge decree has official?",76,train,know>acknowledge order>decree confirmed>official
+"Hi, how do recognize my edict has been official?",76,dev,know>recognize order>edict confirmed>official
+how i track order for bounce 2 wheeler after finish payment on flipkart? Any idea?,77,train,completing>finish
+Help needed: how i track my order for the bounce 2 wheeler after finish payment on flipkart?,77,train,completing>finish
+Could you tell me how can i track my order for bounce 2 wheeler after finish my payment on flipkart?,77,dev,completing>finish
+Quick question: what is advantage of purchase an ather 2 wheeler vehicle through flipkart?,78,train,buying>purchase
+Could you tell me what is the advantage purchase an ather 2 wheeler vehicle through flipkart?,78,train,buying>purchase
+Help needed: what is the advantage of purchasing an ather 2 wheeler vehicle through flipkart?,78,dev,buying>purchasing
+which third party collaborator shop can utilize supercoin pay boast? Thanks.,79,train,partner>collaborator stores>shop use>utilize feature>boast
+Quick question: which are the third party collaborator shop where i can usage supercoin pay boast?,79,train,partner>collaborator stores>shop use>usage feature>boast
+which are the third party collaborator shop i utilize supercoin pay boast? Any idea?,79,dev,partner>collaborator stores>shop use>utilize feature>boast
+Quick question: what should i do if i determine the bundle wide or tampered on delivery?,80,train,find>determine package>bundle open>wide
+what should i if get bundle wide or tampered on delivery?,80,train,find>get package>bundle open>wide
+Quick question: what should i do get the bundle wide tampered on delivery?,80,dev,find>get package>bundle open>wide
+Quick question: how i acknowledge that freight has hit pick up depot?,81,train,know>acknowledge shipment>freight reached>hit store>depot
+Quick question: how will i acknowledge that my freight has hit the pick up depot?,81,train,know>acknowledge shipment>freight reached>hit store>depot
+Help needed: how will i recognize that my loading has hit the pick up depot?,81,dev,know>recognize shipment>loading reached>hit store>depot
+what date does the warranty service implement for refurbished product buy flipkart?,82,train,apply>implement purchased>buy
+Help needed: what date does warranty service utilize for my refurbished product buy on flipkart?,82,train,apply>utilize purchased>buy
+Could you tell me what date does warranty service implement for my refurbished product buy on flipkart?,82,dev,apply>implement purchased>buy
+"Hi, where can interpret more detailed terms and weather of the flipkart plus curriculum?",83,train,read>interpret conditions>weather program>curriculum
+Could you tell me where can i interpret more detailed terms circumstance of the flipkart plus curriculum?,83,train,read>interpret conditions>circumstance program>curriculum
+where can i interpret more detailed terms circumstance of the flipkart plus plan?,83,dev,read>interpret conditions>circumstance program>plan
+Quick question: who are all entitled this gstin boast?,84,train,eligible>entitled feature>boast
+Could you tell me who are entitled for this gstin boast?,84,train,eligible>entitled feature>boast
+who are all entitled gstin boast? Thanks.,84,dev,eligible>entitled feature>boast
+Quick question: can i apply my preserved cards fashioning a payment on flipkart s mobile website app?,85,train,use>apply saved>preserved making>fashioning site>website
+"Hi, can usage preserved cards for make a payment flipkart s mobile website app?",85,train,use>usage saved>preserved making>make site>website
+Quick question: can i utilization my preserved cards make payment on flipkart s mobile website app?,85,dev,use>utilization saved>preserved making>make site>website
+Help needed: what is average price of one service for bgauss 2 wheeler?,86,train,cost>price
+what is average price of one service for a bgauss 2 wheeler? Any idea?,86,train,cost>price
+what is the average price of one service for a bgauss 2 wheeler? Any idea?,86,dev,cost>price
+are other future third party provide that can be redeemed through flipkart plus plan?,87,train,upcoming>future offers>provide program>plan
+"Hi, are there any other forthcoming third party provide that can be redeemed through flipkart plus plan?",87,train,upcoming>forthcoming offers>provide program>plan
+Help needed: are any other future third party provide can redeemed through flipkart plus plan?,87,dev,upcoming>future offers>provide program>plan
+Help needed: i requested a substitute when will take it?,88,train,replacement>substitute get>take
+i have requested a substitute will i make it? Thanks.,88,train,replacement>substitute get>make
+i requested a substitute will i take it? Any idea?,88,dev,replacement>substitute get>take
+what are benefits prefer selection up depot alternative for delivery? Any idea?,89,train,choosing>prefer pick>selection store>depot option>alternative
+what are the benefits of opt choice up depot alternative for delivery? Any idea?,89,train,choosing>opt pick>choice store>depot option>alternative
+Could you tell me what are the benefits of prefer selection up depot alternative delivery?,89,dev,choosing>prefer pick>selection store>depot option>alternative
+Help needed: from when warranty for my product relevant?,90,train,applicable>relevant
+from is the warranty for my product relevant? Any idea?,90,train,applicable>relevant
+Quick question: from when is the warranty for product relevant?,90,dev,applicable>relevant
+Could you tell me is requisite an account patronize on flipkart?,91,train,necessary>requisite shop>patronize
+is required to have an account patronize on flipkart? Thanks.,91,train,necessary>required shop>patronize
+"Hi, is it essential to have account to patronize on flipkart?",91,dev,necessary>essential shop>patronize
+will i come a wall mount my telly in the corner? Thanks.,92,train,get>come television>telly box>corner
+will i find a wall mount for telly the corner? Thanks.,92,train,get>find television>telly box>corner
+Could you tell me will i take wall mount for telly the corner?,92,dev,get>take television>telly box>corner
+what are the benefits of the credit card no cost emi payment mode? Thanks.,93,train,
+Quick question: what benefits the credit card no cost emi payment mode?,93,train,
+Quick question: what are benefits the credit card no cost emi payment mode?,93,dev,
+Could you tell me there have been past reports batteries spotting flame how do i love that bgauss 2 wheelers are dependable?,94,train,recent>past catching>spotting fire>flame know>love safe>dependable
+Quick question: there been past reports of batteries spotting firing how do i acknowledge that bgauss 2 wheelers are dependable?,94,train,recent>past catching>spotting fire>firing know>acknowledge safe>dependable
+there have been past reports of batteries spotting flame how i acknowledge bgauss 2 wheelers are dependable? Thanks.,94,dev,recent>past catching>spotting fire>flame know>acknowledge safe>dependable
+Could you tell me i am able to watch some supercoins rewards am i not able to steal them?,95,train,see>watch buy>steal
+Help needed: i able to watch supercoins rewards but why i not able to bargain them?,95,train,see>watch buy>bargain
+Help needed: i able watch some supercoins rewards but why i not able steal them?,95,dev,see>watch buy>steal
+Could you tell me can i invalidate a component of my flipkart quick order after have put?,96,train,cancel>invalidate part>component placed>put
+can invalidate a portion my flipkart quick order after i have put it? Any idea?,96,train,cancel>invalidate part>portion placed>put
+can invalidate a component of my flipkart quick order after have put it? Any idea?,96,dev,cancel>invalidate part>component placed>put
+Help needed: my freight is weakened at the ego pickup depot what do i?,97,train,shipment>freight damaged>weakened self>ego store>depot
+Help needed: my freight is broken at ego pickup depot what do i do?,97,train,shipment>freight damaged>broken self>ego store>depot
+Help needed: my consignment broken at the ego pickup depot what do i do?,97,dev,shipment>consignment damaged>broken self>ego store>depot
+i forfeited my warranty scorecard how can i find warranty? Any idea?,98,train,lost>forfeited card>scorecard get>find
+Quick question: i forfeited warranty scorecard how i bring warranty?,98,train,lost>forfeited card>scorecard get>bring
+i lose warranty scorecard how can i come warranty? Any idea?,98,dev,lost>lose card>scorecard get>come
+how i shift the password for my flipkart account? Thanks.,99,train,change>shift
+how can alteration password for my flipkart account? Any idea?,99,train,change>alteration
+how can alter password flipkart account? Thanks.,99,dev,change>alter
+"Hi, can assume the loading after opening and checking the contents inside?",100,train,take>assume shipment>loading
+can get the cargo opening and checking contents inside? Any idea?,100,train,take>get shipment>cargo
+can i bring the loading after opening and checking the contents inside?,100,dev,take>bring shipment>loading
+why ca not find bajaj finserv as a payment mode some items? Any idea?,101,train,see>find
+why ca not i watch bajaj finserv as a payment mode some items? Thanks.,101,train,see>watch
+why ca not i find bajaj finserv as a payment mode for some items? Thanks.,101,dev,see>find
+Could you tell me i buy a bgauss 2 wheeler but need have a different model what i?,102,train,bought>buy want>need
+i purchase a bgauss 2 wheeler but i wish to have a different model what should i do? Thanks.,102,train,bought>purchase want>wish
+Could you tell me i have buy a bgauss 2 wheeler but i wish to have a different model i?,102,dev,bought>buy want>wish
+will flipkart plus membership be car revived if i have attained 200 supercoins in the previous year? Thanks.,103,train,auto>car renewed>revived earned>attained
+"Hi, will my flipkart plus membership car revived if i attained 200 supercoins the previous year?",103,train,auto>car renewed>revived earned>attained
+Could you tell me will my flipkart plus membership be car revived if i have attained 200 supercoins the previous year?,103,dev,auto>car renewed>revived earned>attained
+Help needed: can i invalidate emi after i ve put order use bajaj finserv payment alternative?,104,train,cancel>invalidate placed>put using>use option>alternative
+Quick question: can invalidate my emi i ve put order utilize bajaj finserv payment alternative?,104,train,cancel>invalidate placed>put using>utilize option>alternative
+Could you tell me can i invalidate my emi i ve put the order use bajaj finserv payment alternative?,104,dev,cancel>invalidate placed>put using>use option>alternative
+how much time does it get for the freight to accomplish a pickup depot?,105,train,take>get shipment>freight reach>accomplish store>depot
+Could you tell me how much time does it carry for the cargo to accomplish a pickup depot?,105,train,take>carry shipment>cargo reach>accomplish store>depot
+how much time does it get for the freight to achieve a pickup depot? Any idea?,105,dev,take>get shipment>freight reach>achieve store>depot
+how do sign up for an lengthened warranty for my product? Thanks.,106,train,extended>lengthened
+Help needed: how do i sign up for an prolong warranty for product?,106,train,extended>prolong
+how i sign up an lengthened warranty my product? Any idea?,106,dev,extended>lengthened
+"Hi, what i do if i not make the otp or verification code?",107,train,get>make
+Quick question: what i do if not take the otp or verification code?,107,train,get>take
+what should i do if do not come the otp verification code? Any idea?,107,dev,get>come
+Help needed: how is a business day different regular day?,108,train,
+Help needed: how is a business day different a regular day?,108,train,
+Could you tell me how is a business day different from a regular day?,108,dev,
+"Hi, what are the benefits of bajaj finserv payment mode?",109,train,
+Quick question: what are benefits of bajaj finserv payment mode?,109,train,
+what are the benefits of bajaj finserv payment mode? Any idea?,109,dev,
+i have buy an ather 2 wheeler wish to have a different model what should i do? Thanks.,110,train,bought>buy want>wish
+i have buy an ather 2 wheeler i need have a different model what i do? Any idea?,110,train,bought>buy want>need
+Quick question: i have buy an ather 2 wheeler but i need to a different model what do?,110,dev,bought>buy want>need
+Help needed: can i redeem all of accessible supercoins while utilize the supercoin pay boast?,111,train,available>accessible using>utilize feature>boast
+"Hi, can redeem all my accessible supercoins while use the supercoin pay boast?",111,train,available>accessible using>use feature>boast
+Could you tell me can i redeem all of my accessible supercoins while use the supercoin pay boast?,111,dev,available>accessible using>use feature>boast
+Could you tell me how protracted does it carry to invalidate an edict?,112,train,long>protracted take>carry cancel>invalidate order>edict
+Could you tell me how prolonged it carry invalidate decree?,112,train,long>prolonged take>carry cancel>invalidate order>decree
+Quick question: how lasting does it hold to invalidate an edict?,112,dev,long>lasting take>hold cancel>invalidate order>edict
+Quick question: my order has hit the nearest delivery hub but why is not away for delivery still?,113,train,reached>hit out>away yet>still
+Could you tell me my order has hit nearest delivery hub but why is not it away delivery still?,113,train,reached>hit out>away yet>still
+my order hit the nearest delivery hub but why is not it away for delivery even? Any idea?,113,dev,reached>hit out>away yet>even
+what do if there is a divergence in the warranty refer flipkart physical warranty scorecard i come?,114,train,difference>divergence mentioned>refer card>scorecard got>come
+what should i do if there is a divergence in warranty refer on flipkart the physical warranty scorecard come?,114,train,difference>divergence mentioned>refer card>scorecard got>come
+"Hi, what should i there is a divergence the warranty refer on flipkart the physical warranty scorecard i have?",114,dev,difference>divergence mentioned>refer card>scorecard got>have
+Help needed: why i want to verify my mobile number or email address log into my flipkart account?,115,train,need>want
+Quick question: why do i want to verify my mobile number or email address log into my flipkart account?,115,train,need>want
+why do want to verify my mobile number or email address log flipkart account?,115,dev,need>want
+what does permanently discontinued or out print imply? Thanks.,116,train,mean>imply
+Help needed: what does permanently discontinued or out of print think?,116,train,mean>think
+Could you tell me what does permanently discontinued or out of print imply?,116,dev,mean>imply
+how can i track order for ampere magnus ex finish my payment on flipkart? Any idea?,117,train,completing>finish
+how can i track my order ampere magnus ex finish my payment on flipkart?,117,train,completing>finish
+Help needed: how can track order for ampere magnus ex after finish payment on flipkart?,117,dev,completing>finish
+Could you tell me i have buy bounce 2 wheeler but i need to have a different model what should do?,118,train,bought>buy want>need
+i have purchase bounce 2 wheeler but i need to have a different model should i? Any idea?,118,train,bought>purchase want>need
+i have buy the bounce 2 wheeler but wish have a different model what i? Any idea?,118,dev,bought>buy want>wish
+why has the flipkart plus membership standard alter 300 to 200 supercoins? Thanks.,119,train,criteria>standard changed>alter
+why has the flipkart plus membership standard shift from 300 to 200 supercoins? Thanks.,119,train,criteria>standard changed>shift
+Quick question: why has the flipkart plus membership standard alter from 300 200 supercoins?,119,dev,criteria>standard changed>alter
+Could you tell me what befall to cashback i rejoin product?,120,train,happen>befall return>rejoin
+what will materialize cashback if i revert a product? Thanks.,120,train,happen>materialize return>revert
+"Hi, what will occur to cashback if rejoin a product?",120,dev,happen>occur return>rejoin
+"Hi, the delivery of my order delayed what should i do?",121,train,
+the delivery of my order delayed what should do? Any idea?,121,train,
+Help needed: the delivery of my order is delayed what should i do?,121,dev,
+there is a mismatch in warranty terms between flipkart and marque s site what will materialize to the warranty on my product today?,122,train,brand>marque website>site happen>materialize now>today
+Help needed: there is a mismatch in warranty terms between flipkart and the marque s site what will befall to the warranty on my product today?,122,train,brand>marque website>site happen>befall now>today
+there is a mismatch in warranty terms between flipkart and the marque s site what will occur to the warranty on my product today? Thanks.,122,dev,brand>marque website>site happen>occur now>today
+Quick question: my flipkart plus membership is expiring shortly how can i a portion of plan again?,123,train,soon>shortly part>portion program>plan
+Could you tell me my flipkart plus membership is expiring shortly can i be portion plan again?,123,train,soon>shortly part>portion program>plan
+my flipkart plus membership is expiring shortly how can i be a component of the plan again? Thanks.,123,dev,soon>shortly part>component program>plan
+Help needed: why ca not track my edict still though it has been shipped?,124,train,order>edict even>still
+Quick question: why ca not track my edict yet though been shipped?,124,train,order>edict even>yet
+Could you tell me why ca not i track my edict yet though it has been shipped?,124,dev,order>edict even>yet
+how can i track my order the ather 2 wheeler after finish my payment on flipkart?,125,train,completing>finish
+how can i track my order the ather 2 wheeler after finish my payment on flipkart? Any idea?,125,train,completing>finish
+how can i track my order for the ather 2 wheeler after finish my payment flipkart?,125,dev,completing>finish
+what is advantage purchasing ampere magnus ex through flipkart? Thanks.,126,train,buying>purchasing
+"Hi, what the advantage purchasing ampere magnus ex through flipkart?",126,train,buying>purchasing
+Quick question: what is the advantage of purchasing ampere magnus ex through flipkart?,126,dev,buying>purchasing
+Help needed: do i have to manually unlock a scratch card as component of supercoin pay?,127,train,part>component
+do to manually unlock scratch card as component supercoin pay?,127,train,part>component
+Quick question: do i have manually unlock a scratch card component supercoin pay?,127,dev,part>component
+are accelerated delivery alternative wish same day in a day usable on rejoin asking?,128,train,faster>accelerated options>alternative like>wish available>usable return>rejoin requests>asking
+are accelerated delivery alternative wish same day in a day useable on revert asking? Thanks.,128,train,faster>accelerated options>alternative like>wish available>useable return>revert requests>asking
+Could you tell me are accelerated delivery choice wish same day in a day usable on rejoin asking?,128,dev,faster>accelerated options>choice like>wish available>usable return>rejoin requests>asking
+Quick question: why am i unable to order products wish telly air conditioner refrigerator laundry machine furniture microwave treadmill etc at my location?,129,train,like>wish television>telly washing>laundry
+Quick question: why i unable to order products wish video air conditioner refrigerator rinse machine furniture microwave treadmill etc at my location?,129,train,like>wish television>video washing>rinse
+Quick question: why i unable order products wish video air conditioner refrigerator rinse machine furniture microwave treadmill etc at location?,129,dev,like>wish television>video washing>rinse
+how i claim warranty for product?,130,train,
+Could you tell me how can i claim warranty my product?,130,train,
+how claim warranty for my product? Any idea?,130,dev,
+Help needed: what is otp or verification code?,131,train,
+Help needed: what an otp or verification code?,131,train,
+what is an otp verification code? Any idea?,131,dev,
+Quick question: what should i do if a service centre deny my asking to renovate the product?,132,train,denied>deny request>asking repair>renovate
+what should i do if a service centre deny my asking to fix the product? Any idea?,132,train,denied>deny request>asking repair>fix
+what i do a service centre deny my asking to fix the product? Thanks.,132,dev,denied>deny request>asking repair>fix
+i prefer to save my card at the time payment but my card was not saved why?,133,train,opted>prefer
+Quick question: i had choose to save my card at the time of payment card was not saved why?,133,train,opted>choose
+"Hi, i prefer save my card at the time of payment but my card was not saved why?",133,dev,opted>prefer
+what is the advantage of purchase a bounce 2 wheeler on flipkart?,134,train,buying>purchase
+Could you tell me what the advantage of purchase bounce 2 wheeler flipkart?,134,train,buying>purchase
+Help needed: what is advantage of purchase a bounce 2 wheeler on flipkart?,134,dev,buying>purchase
+can i transfer partially utilized gift card person?,135,train,used>utilized someone>person
+can transfer partially utilized gift card to person? Any idea?,135,train,used>utilized someone>person
+can i transfer partially utilize gift card to person? Thanks.,135,dev,used>utilize someone>person
+"Hi, my phonepe wallet is not activated do bring a repay credited to it?",136,train,get>bring refund>repay
+Quick question: my phonepe wallet is not activated how do i find repay credited to?,136,train,get>find refund>repay
+Quick question: my phonepe wallet is not activated how do i make repay credited to?,136,dev,get>make refund>repay
+why ca not i bring some items shipped to my location? Any idea?,137,train,get>bring
+why ca not i take some items shipped to location? Thanks.,137,train,get>take
+Help needed: why ca not i find items shipped to my location?,137,dev,get>find
+"Hi, will my product be installed the brand or flipkart if it is installed by flipkart will involve the warranty the product?",138,train,affect>involve
+Quick question: will my product be installed the brand flipkart if is installed by flipkart will impact the warranty the product?,138,train,affect>impact
+"Hi, will my product installed the brand or flipkart if it installed by flipkart will it impact the warranty of product?",138,dev,affect>impact
+can i employ a corporate email id to sign up?,139,train,use>employ
+Help needed: can utilize corporate email id to sign?,139,train,use>utilize
+can i apply a corporate email id sign? Thanks.,139,dev,use>apply
+Quick question: what flipkart buyer protection?,140,train,
+"Hi, what flipkart buyer protection?",140,train,
+what flipkart buyer protection? Thanks.,140,dev,
+how can i track my order the bgauss 2 wheeler after finish my payment on flipkart?,141,train,completing>finish
+how can i track my order for bgauss 2 wheeler finish my payment flipkart?,141,train,completing>finish
+"Hi, how can track order the bgauss 2 wheeler finish my payment on flipkart?",141,dev,completing>finish
+Could you tell me what is the average price of one service for an ather 2 wheeler?,142,train,cost>price
+Quick question: what is the average price of one service for an ather 2 wheeler?,142,train,cost>price
+"Hi, what is the average price of one service for an ather 2 wheeler?",142,dev,cost>price
+"Hi, are there certain things on flipkart i can not bargain through gift cards?",143,train,buy>bargain
+Help needed: are certain things on flipkart which can not bargain through gift cards?,143,train,buy>bargain
+are there certain things on flipkart which i not bargain through gift cards? Any idea?,143,dev,buy>bargain
+Could you tell me how i acknowledge position of my repayment?,144,train,know>acknowledge status>position refund>repayment
+how can i acknowledge the position my repay?,144,train,know>acknowledge status>position refund>repay
+Could you tell me how can recognize the position repay?,144,dev,know>recognize status>position refund>repay
+"Hi, what i do if consignment is not at the selection up depot?",145,train,shipment>consignment pick>selection store>depot
+what should i do my loading is not at selection up depot? Thanks.,145,train,shipment>loading pick>selection store>depot
+Help needed: what my consignment is not the selection up depot?,145,dev,shipment>consignment pick>selection store>depot
+i wish check warranty details the product but not the warranty scorecard should do?,146,train,want>wish card>scorecard
+Help needed: i wish to check my warranty details for the product but not have the warranty scorecard what should i do?,146,train,want>wish card>scorecard
+i wishing to check my warranty details for product but not have the warranty scorecard what should i?,146,dev,want>wishing card>scorecard
+Could you tell me what does badge plus signify?,147,train,mean>signify
+Help needed: what does the badge plus entail?,147,train,mean>entail
+what badge plus signify?,147,dev,mean>signify
+what does the label imported beside a product signify? Any idea?,148,train,tag>label mean>signify
+what does the label imported beside a product imply? Thanks.,148,train,tag>label mean>imply
+Help needed: what does label imported beside a product entail?,148,dev,tag>label mean>entail
+Could you tell me how can i pay with a saved credit debit card?,149,train,
+Help needed: how can i pay with a saved credit debit card?,149,train,
+Help needed: how can pay with saved credit debit card?,149,dev,
+Quick question: what after sales services being furnish flipkart for ampere 2 wheelers?,150,train,provided>furnish
+what after sales services are being offer by flipkart for ampere 2 wheelers? Thanks.,150,train,provided>offer
+what after sales services are being furnish by flipkart for ampere 2 wheelers?,150,dev,provided>furnish
+how will the supercoins gain estimate if i opt to buy a product utilize supercoins price? Any idea?,151,train,earned>gain calculated>estimate choose>opt using>utilize
+how will the supercoins gain be estimate if i opt to buy a product use supercoins price?,151,train,earned>gain calculated>estimate choose>opt using>use
+"Hi, how will the supercoins gain estimate if opt to buy product use supercoins price?",151,dev,earned>gain calculated>estimate choose>opt using>use
+can items returned time period cite in the seller s returns policy?,152,train,mentioned>cite
+can items be returned the time period cite in the seller s returns policy?,152,train,mentioned>cite
+can items be returned after the time period refer in the seller s returns policy? Thanks.,152,dev,mentioned>refer
+"Hi, how does the choice depot alternative on flipkart operate?",153,train,pick>choice store>depot option>alternative work>operate
+how does the choice depot alternative on flipkart operate? Any idea?,153,train,pick>choice store>depot option>alternative work>operate
+how the choice up depot alternative flipkart operate? Any idea?,153,dev,pick>choice store>depot option>alternative work>operate
+i realize that the warranty terms for product transformed on flipkart from when i purchase the product will involve my warranty?,154,train,see>realize changed>transformed bought>purchase affect>involve
+Could you tell me i hear that the warranty terms my product have transformed on flipkart when i purchase the product will this impact my warranty?,154,train,see>hear changed>transformed bought>purchase affect>impact
+"Hi, i find the warranty terms for my product have shift on flipkart from when i buy the product will this involve my warranty?",154,dev,see>find changed>shift bought>buy affect>involve
+Help needed: do want to verify my mobile number email address every time i log in?,155,train,need>want
+"Hi, do ask verify my mobile number or email address every time i log in?",155,train,need>ask
+do i want verify mobile number or email address every time i log in? Any idea?,155,dev,need>want
+how can i position an order? Any idea?,156,train,place>position
+how can i spot order? Thanks.,156,train,place>spot
+how can i spot order? Any idea?,156,dev,place>spot
+Quick question: what does transfer gift card in my wallet do?,157,train,
+what does transfer gift card in wallet do? Any idea?,157,train,
+Help needed: what does transfer gift card my wallet do?,157,dev,
+Could you tell me how much electricity is mandatory charge battery of an ather vehicle?,158,train,required>mandatory
+how much electricity necessitate to charge the battery of an ather vehicle? Thanks.,158,train,required>necessitate
+Quick question: how much electricity is necessary charge the battery of an ather vehicle?,158,dev,required>necessary
+Quick question: if i prefer supercoins price alternative will yet be eligible to avail bank provide other provide?,159,train,choose>prefer option>alternative still>yet offers>provide offers>provide
+Could you tell me if i opt supercoins price alternative i nonetheless be eligible to avail bank provide other provide?,159,train,choose>opt option>alternative still>nonetheless offers>provide offers>provide
+"Hi, if i opt supercoins price alternative i yet be eligible to avail bank provide other provide?",159,dev,choose>opt option>alternative still>yet offers>provide offers>provide
+Could you tell me i hear the cancel button but ca not click on why?,160,train,see>hear
+Could you tell me i find cancel button but i ca not click on it?,160,train,see>find
+Quick question: i hear the cancel button i ca not click on it why?,160,dev,see>hear
+can i resist the flipkart quick order the time of delivery? Any idea?,161,train,reject>resist
+Quick question: can refuse the flipkart quick order at the time delivery?,161,train,reject>refuse
+can i eliminate the flipkart quick order at the time of delivery? Thanks.,161,dev,reject>eliminate
+is there a filter accessible through only find items with a plus badge? Thanks.,162,train,available>accessible see>find
+Quick question: is a filter useable through can only watch items with a plus badge?,162,train,available>useable see>watch
+is there a filter accessible through which can only watch items with a plus badge?,162,dev,available>accessible see>watch
+can i bring more items after i have put a flipkart quick order? Any idea?,163,train,add>bring placed>put
+Quick question: can i bring more items i have put a flipkart quick order?,163,train,add>bring placed>put
+Could you tell me can bring more items after i have put a flipkart quick order?,163,dev,add>bring placed>put
+"Hi, how do i give utilize a credit or debit card?",164,train,pay>give using>utilize
+how do i give utilize a credit or debit card? Thanks.,164,train,pay>give using>utilize
+Help needed: how do i give utilize credit or debit card?,164,dev,pay>give using>utilize
+what is the average price of one service bounce 2 wheelers? Any idea?,165,train,cost>price
+"Hi, what the average price one service for bounce 2 wheelers?",165,train,cost>price
+what is the average price of one service for bounce 2 wheelers?,165,dev,cost>price
+will i make the accessible bank provide on flipkart platform if i opt to redeem supercoins through supercoin pay? Any idea?,166,train,get>make available>accessible offers>provide choose>opt
+will i bring the accessible bank provide on flipkart platform opt to redeem supercoins through supercoin pay? Thanks.,166,train,get>bring available>accessible offers>provide choose>opt
+Quick question: will come the accessible bank provide flipkart platform if i opt to redeem supercoins through supercoin pay?,166,dev,get>come available>accessible offers>provide choose>opt
+what do if i have matter with my product after the reappearance period? Thanks.,167,train,issue>matter return>reappearance
+what should i do if i have an subject my product after the revert period?,167,train,issue>subject return>revert
+Quick question: what should i do if i an matter with my product after the revert period?,167,dev,issue>matter return>revert
+Quick question: can opt to not take few items my flipkart quick order the time of delivery?,168,train,choose>opt accept>take
+can i opt to not swallow a few items from my flipkart quick order at the time of delivery? Any idea?,168,train,choose>opt accept>swallow
+"Hi, can i prefer to not admit a few items flipkart quick order at the time of delivery?",168,dev,choose>prefer accept>admit
+can bargain more than one hero motocorp in my name through flipkart account?,169,train,buy>bargain
+can i bargain more than one hero motocorp in my name through flipkart account?,169,train,buy>bargain
+"Hi, can i steal more than one hero motocorp in name through flipkart account?",169,dev,buy>steal
+Help needed: what is gstin invoicing boast?,170,train,feature>boast
+"Hi, what is gstin invoicing boast?",170,train,feature>boast
+what is gstin invoicing boast? Thanks.,170,dev,feature>boast
+Quick question: how do i create payment utilize a preserved card?,171,train,make>create using>utilize saved>preserved
+Help needed: how do i get a payment use preserved card?,171,train,make>get using>use saved>preserved
+Could you tell me how do i create payment use a preserved card?,171,dev,make>create using>use saved>preserved
+in city can purchase ampere magnus ex be make?,172,train,cities>city made>make
+Quick question: in which metropolis can the purchase of ampere magnus ex be make?,172,train,cities>metropolis made>make
+"Hi, in which city can the purchase of ampere magnus ex be make?",172,dev,cities>city made>make
+Quick question: why is my favored store not demonstrate for supercoin pay on the flipkart app?,173,train,preferred>favored showing>demonstrate
+Help needed: why is my choose store not indicate up for supercoin pay the flipkart app?,173,train,preferred>choose showing>indicate
+why is my favored store not display for supercoin pay on the flipkart app?,173,dev,preferred>favored showing>display
+what are modes repayment usable cancellation? Any idea?,174,train,refund>repayment available>usable
+Help needed: what are the modes of repayment accessible after cancellation?,174,train,refund>repayment available>accessible
+what are modes of repayment useable after cancellation?,174,dev,refund>repayment available>useable
+how do i liaison seller s partnered messenger service supplier?,175,train,contact>liaison courier>messenger providers>supplier
+"Hi, how do i liaison seller s partnered messenger service supplier?",175,train,contact>liaison courier>messenger providers>supplier
+how do liaison seller s partnered messenger service supplier? Thanks.,175,dev,contact>liaison courier>messenger providers>supplier
+Quick question: is flipkart advantage the same as plus?,176,train,
+Quick question: is flipkart advantage the same plus?,176,train,
+is flipkart advantage same as plus? Any idea?,176,dev,
+Help needed: what does out stock think?,177,train,mean>think
+Could you tell me what does out of stock imply?,177,train,mean>imply
+what does out of stock entail? Any idea?,177,dev,mean>entail
+Could you tell me how can i racetrack order for the hero motocorp 2 wheeler after finish my payment on flipkart?,178,train,track>racetrack completing>finish
+Could you tell me how can i racetrack my order for the hero motocorp 2 wheeler after finish my payment on flipkart?,178,train,track>racetrack completing>finish
+how i racetrack order hero motocorp 2 wheeler after finish my payment flipkart? Any idea?,178,dev,track>racetrack completing>finish
+"Hi, what is a renovate product how do i describe it on flipkart?",179,train,refurbished>renovate identify>describe
+Help needed: what is a renovate product and how do i describe it on flipkart?,179,train,refurbished>renovate identify>describe
+Could you tell me what is a renovate product and do i describe it flipkart?,179,dev,refurbished>renovate identify>describe
+can redeem my on the path supercoins to avail rebate on product?,180,train,way>path discounts>rebate
+can i redeem my on the path supercoins to avail rebate on product?,180,train,way>path discounts>rebate
+"Hi, can i redeem on the path supercoins to avail rebate product?",180,dev,way>path discounts>rebate
+how will i find my repay for rejoin an item paid for with cash on delivery? Any idea?,181,train,get>find refund>repay returning>rejoin
+how bring repay rejoin an item i paid for cash delivery? Any idea?,181,train,get>bring refund>repay returning>rejoin
+Quick question: how come my repay for reverting an item i paid for cash delivery?,181,dev,get>come refund>repay returning>reverting
+Could you tell me why do watch a delivery charge?,182,train,see>watch
+why do i realize a delivery charge?,182,train,see>realize
+Could you tell me why do i hear a delivery charge?,182,dev,see>hear
+Could you tell me what is flipkart plus curriculum?,183,train,program>curriculum
+what flipkart plus plan? Thanks.,183,train,program>plan
+what is flipkart plus curriculum? Any idea?,183,dev,program>curriculum
+Help needed: why do i find different cost for the same product?,184,train,see>find prices>cost
+Quick question: why i find different cost for the same product?,184,train,see>find prices>cost
+"Hi, why do i find different cost for the same product?",184,dev,see>find prices>cost
+Could you tell me what is no cost emi and how i avail it?,185,train,
+what no cost emi and how i avail it? Any idea?,185,train,
+"Hi, what no cost emi how avail?",185,dev,
+do i want to have a driving permission to drive a bounce 2 wheeler? Thanks.,186,train,need>want license>permission
+do i ask to have a driving permission to drive a bounce 2 wheeler? Thanks.,186,train,need>ask license>permission
+Quick question: do want to driving permission to drive a bounce 2 wheeler?,186,dev,need>want license>permission
+do want be flipkart plus member to avail supercoins price? Thanks.,187,train,need>want
+do i want be a flipkart plus member to avail the supercoins price? Thanks.,187,train,need>want
+Could you tell me do want to be a flipkart plus member avail the supercoins price?,187,dev,need>want
+Help needed: why do i look return fee relevant to the decree?,188,train,see>look applicable>relevant order>decree
+Quick question: why do i look a return fee relevant the edict?,188,train,see>look applicable>relevant order>edict
+Quick question: why do i find return fee relevant the decree?,188,dev,see>find applicable>relevant order>decree
+Quick question: can i prefer a desirable time slot the delivery of flipkart quick orders?,189,train,choose>prefer preferred>desirable
+can i prefer opt time slot for the delivery of flipkart quick orders? Thanks.,189,train,choose>prefer preferred>opt
+Help needed: can opt a opt time slot the delivery flipkart quick orders?,189,dev,choose>opt preferred>opt
+do have give additional for items with the plus badge? Any idea?,190,train,pay>give extra>additional
+Help needed: do i have to give additional items with the plus badge?,190,train,pay>give extra>additional
+do i have to give additional for items with the plus badge?,190,dev,pay>give extra>additional
+Help needed: what does preorder forthcoming signify?,191,train,mean>signify
+Quick question: what does preorder or forthcoming imply?,191,train,mean>imply
+Quick question: what preorder forthcoming think?,191,dev,mean>think
+Could you tell me is it needed to register phonepe to usage it on flipkart?,192,train,necessary>needed use>usage
+is it essential to register phonepe employ it on flipkart? Thanks.,192,train,necessary>essential use>employ
+Quick question: is it requisite register with phonepe to apply it on flipkart?,192,dev,necessary>requisite use>apply
+why is refurbished category not viewable for on flipkart app? Any idea?,193,train,visible>viewable
+Could you tell me why the refurbished category not viewable for me on my flipkart app?,193,train,visible>viewable
+Quick question: why is the refurbished category not viewable me on flipkart app?,193,dev,visible>viewable
+Help needed: what are the thorough terms and circumstance for supercoins rewards?,194,train,complete>thorough conditions>circumstance
+what are the thorough terms and circumstance supercoins rewards? Any idea?,194,train,complete>thorough conditions>circumstance
+"Hi, what are the thorough terms and circumstance for supercoins rewards?",194,dev,complete>thorough conditions>circumstance
+Help needed: if i invalidate rejoin an item from my decree will materialize to my on the means supercoins?,195,train,cancel>invalidate return>rejoin order>decree happen>materialize way>means
+"Hi, if i invalidate or revert an item from my edict what will materialize on the means supercoins?",195,train,cancel>invalidate return>revert order>edict happen>materialize way>means
+Quick question: if i invalidate revert an item from decree what will materialize my on the means supercoins?,195,dev,cancel>invalidate return>revert order>decree happen>materialize way>means
+can i alter my select time slot for the delivery of flipkart quick orders? Any idea?,196,train,modify>alter chosen>select
+Quick question: can i alter choose time slot delivery of flipkart quick orders?,196,train,modify>alter chosen>choose
+can i alter choose time slot for the delivery flipkart quick orders?,196,dev,modify>alter chosen>choose
+"Hi, can employ international number sign up?",197,train,use>employ
+Could you tell me can i apply an international number to sign up?,197,train,use>apply
+can i utilize international number sign up? Any idea?,197,dev,use>utilize
+Could you tell me how does instant cashback operate?,198,train,work>operate
+Help needed: how does instant cashback operate?,198,train,work>operate
+"Hi, how does instant cashback operate?",198,dev,work>operate
+Help needed: what if i do not wish my cards to be imported?,199,train,want>wish
+Help needed: what if do not need my cards to be imported?,199,train,want>need
+what if i do not wishing my cards to imported?,199,dev,want>wishing
+Help needed: what after sales services are being offer by flipkart for hero motocorp 2 wheelers?,200,train,provided>offer
+Quick question: what after sales services being furnish by flipkart for hero motocorp 2 wheelers?,200,train,provided>furnish
+Help needed: what sales services are being offer by flipkart for hero motocorp 2 wheelers?,200,dev,provided>offer
+Could you tell me what is the intent of scratch scorecard supercoin pay?,201,train,purpose>intent card>scorecard
+what is the aim of the scratch scorecard in supercoin pay?,201,train,purpose>aim card>scorecard
+what intent the scratch scorecard in supercoin pay? Any idea?,201,dev,purpose>intent card>scorecard
+Help needed: i ve even not obtain the repay in bank account?,202,train,still>even received>obtain refund>repay
+"Hi, i ve nonetheless not obtain the repayment in bank account?",202,train,still>nonetheless received>obtain refund>repayment
+i ve even not obtain the repay in my bank account? Any idea?,202,dev,still>even received>obtain refund>repay
+i complaint about the messenger administrator who get to render my edict? Thanks.,203,train,courier>messenger executive>administrator came>get deliver>render order>edict
+Could you tell me i have a complaint about the messenger administrator come to render my edict?,203,train,courier>messenger executive>administrator came>come deliver>render order>edict
+Could you tell me i complaint about messenger administrator who get to render my edict?,203,dev,courier>messenger executive>administrator came>get deliver>render order>edict
+can reactivate my dormant flipkart account? Any idea?,204,train,inactive>dormant
+"Hi, can i reactivate my dormant flipkart account?",204,train,inactive>dormant
+Help needed: can i reactivate my dormant flipkart account?,204,dev,inactive>dormant
+Quick question: is there a minimum purchase amount for flipkart quick decree?,205,train,orders>decree
+Could you tell me is a minimum purchase amount for flipkart quick decree?,205,train,orders>decree
+is there minimum purchase amount for flipkart quick decree?,205,dev,orders>decree
+Help needed: what are emi plans useable i pay use the bajaj finserv payment mode?,206,train,available>useable using>use
+what emi plans useable if i pay utilize the bajaj finserv payment mode? Thanks.,206,train,available>useable using>utilize
+Help needed: what are the emi plans useable if i pay utilize the bajaj finserv payment mode?,206,dev,available>useable using>utilize
+Could you tell me what accessories will be role ather 2 wheelers do i have to compensate individually for accessories?,207,train,part>role pay>compensate separately>individually
+Quick question: what accessories will be role of ather 2 wheelers do have to compensate individually for accessories?,207,train,part>role pay>compensate separately>individually
+"Hi, what accessories be component of ather 2 wheelers do i have compensate individually for accessories?",207,dev,part>component pay>compensate separately>individually
+Quick question: how do i renew my benefits as component of supercoin milestones?,208,train,part>component
+Could you tell me how do i renew my benefits as portion of supercoin milestones?,208,train,part>portion
+how do i renew my benefits as portion of supercoin milestones?,208,dev,part>portion
+Could you tell me when is a reappearance an item not viable?,209,train,return>reappearance possible>viable
+Help needed: when is a revert of an item not potential?,209,train,return>revert possible>potential
+Help needed: when a revert an item not practicable?,209,dev,return>revert possible>practicable
+Quick question: what the amount i can patronize cash on delivery payment alternative?,210,train,shop>patronize option>alternative
+Could you tell me what is the amount can patronize for with cash delivery payment alternative?,210,train,shop>patronize option>alternative
+what is the amount can patronize with cash on delivery payment alternative?,210,dev,shop>patronize option>alternative
+Could you tell me how can i deactivate my account?,211,train,
+how i deactivate my account?,211,train,
+how can i deactivate account?,211,dev,
+is there a gift wrap option useable for flipkart quick orders?,212,train,available>useable
+is a gift wrap option useable for flipkart quick orders? Any idea?,212,train,available>useable
+is there gift wrap option useable for flipkart quick orders? Any idea?,212,dev,available>useable
+i typed wrong scorecard number fault when adding scorecard how do i correct it?,213,train,incorrect>wrong card>scorecard mistake>fault card>scorecard
+"Hi, i typed an wrong scorecard number by fault when adding my scorecard how correct it?",213,train,incorrect>wrong card>scorecard mistake>fault card>scorecard
+i typed wrong scorecard number error when adding my scorecard how do correct it? Thanks.,213,dev,incorrect>wrong card>scorecard mistake>error card>scorecard
+Could you tell me what are papers mandatory for the whole process of purchasing a bgauss 2 wheeler on flipkart?,214,train,documents>papers required>mandatory entire>whole buying>purchasing
+"Hi, what are the papers mandatory for whole process purchase a bgauss 2 wheeler on flipkart?",214,train,documents>papers required>mandatory entire>whole buying>purchase
+"Hi, what the papers need the whole process of purchase a bgauss 2 wheeler on flipkart?",214,dev,documents>papers required>need entire>whole buying>purchase
+"Hi, can i usage more less supercoins what is cite portion of the supercoins price buy a product?",215,train,use>usage mentioned>cite part>portion
+Could you tell me can i apply more less supercoins than is refer portion of the supercoins price to buy a product?,215,train,use>apply mentioned>refer part>portion
+Help needed: can i apply more less supercoins what is cite as component of the supercoins price to buy product?,215,dev,use>apply mentioned>cite part>component
+Quick question: in case i do not want a few items from the flipkart quick order how i invalidate it?,216,train,need>want cancel>invalidate
+Could you tell me in case do not ask few items from the flipkart quick order how do invalidate?,216,train,need>ask cancel>invalidate
+Quick question: in case i not ask a few items from flipkart quick order how invalidate it?,216,dev,need>ask cancel>invalidate
+"Hi, can i alteration delivery address after i have put a flipkart quick order?",217,train,change>alteration placed>put
+can i modification the delivery address after i have put a flipkart quick order?,217,train,change>modification placed>put
+Quick question: can shift the delivery address i have put flipkart quick order?,217,dev,change>shift placed>put
+what benefits that a flipkart plus member receive? Any idea?,218,train,gets>receive
+what are the benefits a flipkart plus member receive? Thanks.,218,train,gets>receive
+Help needed: what are benefits that a flipkart plus member receive?,218,dev,gets>receive
+Quick question: how will my order be delivered?,219,train,
+how order delivered? Any idea?,219,train,
+how will order delivered?,219,dev,
+why is my scorecard being preserved on flipkart? Any idea?,220,train,card>scorecard saved>preserved
+Could you tell me why is my scorecard being rescued on flipkart?,220,train,card>scorecard saved>rescued
+why is my scorecard being preserved on flipkart? Thanks.,220,dev,card>scorecard saved>preserved
+why is the alternative to bargain a bgauss 2 wheeler not accessible at my pincode? Thanks.,221,train,option>alternative buy>bargain available>accessible
+Could you tell me why is the alternative to bargain a bgauss 2 wheeler not accessible at my pincode?,221,train,option>alternative buy>bargain available>accessible
+Could you tell me why the alternative to bargain a bgauss 2 wheeler not useable at my pincode?,221,dev,option>alternative buy>bargain available>useable
+what in app provide for supercoin pay? Any idea?,222,train,offers>provide
+Quick question: what are in app provide for supercoin pay?,222,train,offers>provide
+what are in app provide for supercoin pay?,222,dev,offers>provide
+how can i revert or exchange an item? Any idea?,223,train,return>revert
+how i revert or exchange an item? Thanks.,223,train,return>revert
+Help needed: how can i revert or exchange an item?,223,dev,return>revert
+is the delivery flipkart quick free or chargeable?,224,train,
+Could you tell me is delivery for flipkart quick free or chargeable?,224,train,
+Could you tell me is the delivery for flipkart quick free or chargeable?,224,dev,
+what plus zone? Thanks.,225,train,
+what is plus zone? Thanks.,225,train,
+Help needed: what is plus zone?,225,dev,
+how promptly i make my order delivered? Thanks.,226,train,quickly>promptly get>make
+Quick question: how promptly can i come my order delivered?,226,train,quickly>promptly get>come
+how speedily can i find my order delivered? Thanks.,226,dev,quickly>speedily get>find
+how can i track application position from my flipkart account? Thanks.,227,train,status>position
+Could you tell me how can track my application position from my flipkart account?,227,train,status>position
+Could you tell me how i track my application position from my flipkart account?,227,dev,status>position
+do i want have driving permit drive a bgauss 2 wheeler? Any idea?,228,train,need>want license>permit ride>drive
+do i ask to a driving permit drive a bgauss 2 wheeler? Any idea?,228,train,need>ask license>permit ride>drive
+Could you tell me do want to have a driving permit to drive a bgauss 2 wheeler?,228,dev,need>want license>permit ride>drive
+Quick question: how can i check the details of supercoins rewards i have utilize already?,229,train,used>utilize
+"Hi, how check details of supercoins rewards i utilized already?",229,train,used>utilized
+how can check details of supercoins rewards i have utilized already? Thanks.,229,dev,used>utilized
+do i have to revert the freebie when i reappearance product? Thanks.,230,train,return>revert return>reappearance
+Quick question: do i have to reappearance freebie when i reappearance a product?,230,train,return>reappearance return>reappearance
+Could you tell me do i have rejoin the freebie i revert a product?,230,dev,return>rejoin return>revert
+"Hi, why are quicker delivery alternative not usable at my location?",231,train,faster>quicker options>alternative available>usable
+why quicker delivery alternative not useable my location?,231,train,faster>quicker options>alternative available>useable
+why accelerated delivery choice not accessible at location? Any idea?,231,dev,faster>accelerated options>choice available>accessible
+Quick question: i m come an mistake message that tell you ve surpass maximum number of effort to enroll exact confirmation code can i log in to my flipkart account now?,232,train,getting>come error>mistake says>tell exceeded>surpass attempts>effort enter>enroll correct>exact verification>confirmation
+i m come an mistake message tell you ve outstrip the maximum number of effort to enroll proper confirmation code how i log in to my flipkart account now? Any idea?,232,train,getting>come error>mistake says>tell exceeded>outstrip attempts>effort enter>enroll correct>proper verification>confirmation
+Help needed: i m come an fault message that tell you ve surpass the maximum number effort enroll proper confirmation code can log to flipkart account now?,232,dev,getting>come error>fault says>tell exceeded>surpass attempts>effort enter>enroll correct>proper verification>confirmation
+can i make my order delivered quicker?,233,train,get>make faster>quicker
+can i come order delivered quicker?,233,train,get>come faster>quicker
+Quick question: can i make my order delivered quicker?,233,dev,get>make faster>quicker
+do i want to install the phonepe app to apply the wallet alternative my flipkart account?,234,train,need>want use>apply option>alternative
+Could you tell me do ask to install phonepe app to apply the wallet alternative my flipkart account?,234,train,need>ask use>apply option>alternative
+do ask install the phonepe app to usage wallet alternative my flipkart account?,234,dev,need>ask use>usage option>alternative
+in which all city can the purchase an ather 2 wheeler be make? Thanks.,235,train,cities>city made>make
+in which all metropolis can the purchase of an ather 2 wheeler be make?,235,train,cities>metropolis made>make
+Quick question: in which all city can purchase of an ather 2 wheeler make?,235,dev,cities>city made>make
+"Hi, i have gain 200 supercoins already last year but even did not receive membership notification do do?",236,train,earned>gain still>even
+Quick question: i have attained 200 supercoins already last year but even did not receive membership notification do i do?,236,train,earned>attained still>even
+"Hi, i have gain 200 supercoins already last year yet did not receive membership notification do i do?",236,dev,earned>gain still>yet
+Could you tell me what is the buyer protection policy?,237,train,
+what is the buyer protection policy? Thanks.,237,train,
+what is the buyer protection policy? Any idea?,237,dev,
+Quick question: the delivery time cite for a bgauss 2 wheeler is too long is there anyway to make the 2 wheeler accelerated?,238,train,mentioned>cite get>make faster>accelerated
+Could you tell me the delivery time refer for a bgauss 2 wheeler too long is there anyway to come the 2 wheeler accelerated?,238,train,mentioned>refer get>come faster>accelerated
+Quick question: the delivery time cite for a bgauss 2 wheeler too long there anyway to come 2 wheeler accelerated?,238,dev,mentioned>cite get>come faster>accelerated
+Could you tell me can bargain flipkart plus membership?,239,train,buy>bargain
+Could you tell me can i bargain flipkart plus membership?,239,train,buy>bargain
+"Hi, can i bargain flipkart plus membership?",239,dev,buy>bargain
+Help needed: how i track flipkart quick order?,240,train,
+how can i track flipkart quick order? Any idea?,240,train,
+Help needed: how i track my flipkart quick order?,240,dev,
+"Hi, i have an axis bank buzz credit card can i yet use for the flipkart axis bank credit card?",241,train,still>yet apply>use
+i have an axis bank buzz credit card can i yet utilize for the flipkart axis bank credit card? Any idea?,241,train,still>yet apply>utilize
+i have axis bank buzz credit card i nonetheless employ the flipkart axis bank credit card? Any idea?,241,dev,still>nonetheless apply>employ
+Could you tell me is the cost for ampere magnus ex inclusive of subsidy?,242,train,price>cost
+is the cost for ampere magnus ex inclusive of subsidy? Any idea?,242,train,price>cost
+"Hi, is the cost for ampere magnus ex inclusive subsidy?",242,dev,price>cost
+what order amount lesser than the gift card value? Any idea?,243,train,
+Quick question: what if order amount is lesser than the gift card value?,243,train,
+what if my order amount is lesser than gift card value? Any idea?,243,dev,
+Help needed: i arranged a amiss item can i reappearance it?,244,train,ordered>arranged wrong>amiss return>reappearance
+Help needed: i arranged a awry item can i rejoin it?,244,train,ordered>arranged wrong>awry return>rejoin
+Could you tell me i arranged erroneous item can i reappearance it?,244,dev,ordered>arranged wrong>erroneous return>reappearance
+Quick question: is a accusation for pickup of products from a pickup store?,245,train,charge>accusation
+is there a accusation pickup of products from a pickup store?,245,train,charge>accusation
+is there a accusation for pickup of products from pickup store? Thanks.,245,dev,charge>accusation
+Quick question: i always login utilize my telephone number but lately squandered my call have disregarded the password to flipkart account how i access it?,246,train,using>utilize phone>telephone recently>lately lost>squandered phone>call forgotten>disregarded
+i always login utilize my telephone number but i lately lose call i have also disregarded password my flipkart account do i access it? Any idea?,246,train,using>utilize phone>telephone recently>lately lost>lose phone>call forgotten>disregarded
+i always login utilize telephone number but i lately missed my telephone i have also disregarded the password my flipkart account how i access it? Any idea?,246,dev,using>utilize phone>telephone recently>lately lost>missed phone>telephone forgotten>disregarded
+Quick question: the address while ordering ampere 2 wheeler on flipkart is different the one my address validation aadhar card should i do today?,247,train,proof>validation now>today
+"Hi, the address while ordering ampere 2 wheeler on flipkart is different from the one on my address validation aadhar card what should do today?",247,train,proof>validation now>today
+the address while ordering ampere 2 wheeler on flipkart different the one on my address validation aadhar card what should today? Any idea?,247,dev,proof>validation now>today
+Could you tell me can i bargain products on flipkart by redeeming supercoins?,248,train,buy>bargain
+Quick question: can bargain products on flipkart by redeeming supercoins?,248,train,buy>bargain
+Quick question: can i bargain products on flipkart by redeeming supercoins?,248,dev,buy>bargain
+is cost for a bgauss 2 wheeler inclusive of subsidy?,249,train,price>cost
+is the cost for a bgauss 2 wheeler inclusive of subsidy? Any idea?,249,train,price>cost
+is the cost for bgauss 2 wheeler inclusive of subsidy? Any idea?,249,dev,price>cost
+Quick question: what is the warranty being provide ampere?,250,train,offered>provide
+what is warranty being provide ampere? Any idea?,250,train,offered>provide
+Help needed: what warranty being provide ampere?,250,dev,offered>provide
+Help needed: how bring my repayment rejoin an item paid for use cash on delivery mode?,251,train,get>bring refund>repayment returning>rejoin using>use
+how will i find my repayment for reverting an item paid utilize cash on delivery mode? Any idea?,251,train,get>find refund>repayment returning>reverting using>utilize
+Help needed: how i come my repay reverting an item i paid for utilize cash on delivery mode?,251,dev,get>come refund>repay returning>reverting using>utilize
+Help needed: will delivery be try again if i m not able compile my order the first time?,252,train,tried>try collect>compile
+Quick question: will the delivery be try again i m not able to gather order the first time?,252,train,tried>try collect>gather
+Could you tell me will the delivery try again i m not able to compile my order the first time?,252,dev,tried>try collect>compile
+the address while ordering bgauss 2 wheeler on flipkart is different the one on address validation aadhaar card what should today? Thanks.,253,train,proof>validation now>today
+"Hi, the address while ordering bgauss 2 wheeler flipkart is different from the one on my address validation aadhaar card what should i do today?",253,train,proof>validation now>today
+the address while ordering bgauss 2 wheeler flipkart different from the one on address validation aadhaar card should i do today? Thanks.,253,dev,proof>validation now>today
+Could you tell me i wish know the cvv number on scorecard?,254,train,want>wish card>scorecard
+Quick question: i need to know the cvv number on the scorecard?,254,train,want>need card>scorecard
+Could you tell me i wish to know the cvv number the scorecard?,254,dev,want>wish card>scorecard
+is the cost bounce 2 wheeler inclusive subsidy?,255,train,price>cost
+Could you tell me is the cost bounce 2 wheeler inclusive subsidy?,255,train,price>cost
+is the cost a bounce 2 wheeler inclusive subsidy? Thanks.,255,dev,price>cost
+"Hi, can apply my gift card to bargain items from different sellers in the same order?",256,train,use>apply buy>bargain
+"Hi, can i utilize my gift card bargain items from different sellers in the same order?",256,train,use>utilize buy>bargain
+can i apply my gift card bargain items from different sellers in same order? Any idea?,256,dev,use>apply buy>bargain
+can supercoins rewards be cancelled or rejoin? Thanks.,257,train,returned>rejoin
+Could you tell me can supercoins rewards be cancelled or rejoin?,257,train,returned>rejoin
+can supercoins rewards be cancelled or rejoin?,257,dev,returned>rejoin
+what is convey delivery? Any idea?,258,train,express>convey
+what is convey delivery? Thanks.,258,train,express>convey
+what convey delivery?,258,dev,express>convey
+the address while ordering bounce vehicle on flipkart is different from the one on my address validation aadhar card what should do today?,259,train,proof>validation now>today
+the address while ordering bounce vehicle on flipkart is different the one my address validation aadhar card what should i do today?,259,train,proof>validation now>today
+Could you tell me the address while ordering bounce vehicle on flipkart different the one on address validation aadhar card should i do today?,259,dev,proof>validation now>today
+Could you tell me what the interest rates for credit scorecard emi plans?,260,train,card>scorecard
+what are the interest rates for the credit scorecard emi plans? Any idea?,260,train,card>scorecard
+what interest rates for the credit scorecard emi plans? Any idea?,260,dev,card>scorecard
+what after sales services are being offer by flipkart for bgauss 2 wheelers? Any idea?,261,train,provided>offer
+Help needed: what after sales services are being offer by flipkart for bgauss 2 wheelers?,261,train,provided>offer
+what sales services are being offer flipkart bgauss 2 wheelers?,261,dev,provided>offer
+Could you tell me what cash and coins for rewards curriculum?,262,train,program>curriculum
+what is cash and coins for rewards curriculum? Thanks.,262,train,program>curriculum
+Help needed: what is cash and coins for rewards curriculum?,262,dev,program>curriculum
+Quick question: how does warranty operate on replacement products?,263,train,work>operate
+how does warranty operate on replacement products? Thanks.,263,train,work>operate
+Could you tell me how does warranty operate on replacement products?,263,dev,work>operate
+Help needed: how can i collect my loading from the pick up depot?,264,train,shipment>loading store>depot
+"Hi, how i collect my cargo from the pick up depot?",264,train,shipment>cargo store>depot
+how i collect cargo from the pick depot? Thanks.,264,dev,shipment>cargo store>depot
+Help needed: the address while ordering ather 2 wheeler on flipkart is different from one on my address validation aadhaar card what today?,265,train,proof>validation now>today
+the address while ordering ather 2 wheeler on flipkart is different from the one on my address validation aadhaar card what should i today?,265,train,proof>validation now>today
+Help needed: the address while ordering ather 2 wheeler on flipkart is different one on address validation aadhaar card what should do today?,265,dev,proof>validation now>today
+what is credit card no cost emi? Thanks.,266,train,
+what is credit card no cost emi? Any idea?,266,train,
+Quick question: what credit card no cost emi?,266,dev,
+Quick question: will hero motocorp traverse sell up sell i call the marque accredited dealer?,267,train,cross>traverse visit>call brand>marque authorised>accredited
+will hero motocorp traverse sell up sell when sojourn marque accredited dealer?,267,train,cross>traverse visit>sojourn brand>marque authorised>accredited
+will hero motocorp traverse sell up sell when i sojourn the marque accredited dealer? Thanks.,267,dev,cross>traverse visit>sojourn brand>marque authorised>accredited
+Could you tell me where can i check details my supercoins?,268,train,
+Quick question: where can i check details supercoins?,268,train,
+where can i check the details of my supercoins? Any idea?,268,dev,
+Help needed: when repayment granted?,269,train,refunds>repayment given>granted
+when are repayment present?,269,train,refunds>repayment given>present
+when are repayment granted? Thanks.,269,dev,refunds>repayment given>granted
+"Hi, why did not my order stipulate free delivery?",270,train,qualify>stipulate
+Could you tell me why did not my order stipulate for free delivery?,270,train,qualify>stipulate
+Quick question: why did not my order stipulate for free delivery?,270,dev,qualify>stipulate
+Could you tell me do sellers flipkart ship internationally?,271,train,
+"Hi, do sellers on flipkart ship internationally?",271,train,
+do sellers flipkart ship internationally?,271,dev,
+"Hi, how do i salvage scorecard s on flipkart?",272,train,save>salvage card>scorecard
+how do i salvage my scorecard s on flipkart?,272,train,save>salvage card>scorecard
+"Hi, how i spare my scorecard s on flipkart?",272,dev,save>spare card>scorecard
+Help needed: can i opt a different model the bounce 2 wheeler marque accredited dealer perform quiz ride?,273,train,choose>opt brand>marque authorised>accredited doing>perform test>quiz drive>ride
+can i opt a different model of bounce 2 wheeler at the marque accredited dealer after perform the quiz push? Thanks.,273,train,choose>opt brand>marque authorised>accredited doing>perform test>quiz drive>push
+can i prefer a different model of the bounce 2 wheeler at the marque accredited dealer after perform the quiz ride? Thanks.,273,dev,choose>prefer brand>marque authorised>accredited doing>perform test>quiz drive>ride
+Quick question: how can love if depot i at has the alternative of utilize supercoin pay boast?,274,train,know>love store>depot option>alternative using>utilize feature>boast
+how i love if depot i at has the alternative use supercoin pay boast? Thanks.,274,train,know>love store>depot option>alternative using>use feature>boast
+"Hi, how i recognize if the depot i am the alternative of use supercoin pay boast?",274,dev,know>recognize store>depot option>alternative using>use feature>boast
+can prefer phonepe pocketbook a repay alternative? Thanks.,275,train,choose>prefer wallet>pocketbook refund>repay option>alternative
+"Hi, can i prefer phonepe pocketbook a repay alternative?",275,train,choose>prefer wallet>pocketbook refund>repay option>alternative
+Could you tell me can i prefer phonepe pocketbook a repay alternative?,275,dev,choose>prefer wallet>pocketbook refund>repay option>alternative
+what occur if i m not able to choice up my consignment inside 5 days from the pickup depot for reason? Thanks.,276,train,happens>occur pick>choice shipment>consignment within>inside store>depot
+Help needed: what occur if m not able to choice up my freight inside 5 days the pickup depot for some reason?,276,train,happens>occur pick>choice shipment>freight within>inside store>depot
+Help needed: what occur i m not able to choice up my freight inside 5 days from pickup depot for some reason?,276,dev,happens>occur pick>choice shipment>freight within>inside store>depot
+the address while ordering the hero motocorp 2 wheeler flipkart is different from the one on address validation aadhaar card should i do today?,277,train,proof>validation now>today
+"Hi, the address while ordering the hero motocorp 2 wheeler on flipkart is different the one my address validation aadhaar card what should i today?",277,train,proof>validation now>today
+the address while ordering the hero motocorp 2 wheeler flipkart is different from one address validation aadhaar card what i do today? Thanks.,277,dev,proof>validation now>today
+Could you tell me is credit card no cost emi payment mode accessible on flipkart s site and mobile app?,278,train,available>accessible website>site
+Could you tell me is credit card no cost emi payment mode useable on flipkart s site mobile app?,278,train,available>useable website>site
+Could you tell me is credit card no cost emi payment mode usable on flipkart s site and mobile app?,278,dev,available>usable website>site
+is the cost an ather 2 wheeler inclusive of subsidy?,279,train,price>cost
+is the cost for ather 2 wheeler inclusive of subsidy?,279,train,price>cost
+is the cost for an ather 2 wheeler inclusive of subsidy?,279,dev,price>cost
+where i see a scratch scorecard after utilize supercoin pay boast for an order? Thanks.,280,train,find>see card>scorecard using>utilize feature>boast
+where will i obtain a scratch scorecard after use supercoin pay boast for an order? Thanks.,280,train,find>obtain card>scorecard using>use feature>boast
+where will discover a scratch scorecard after utilize supercoin pay boast for an order? Any idea?,280,dev,find>discover card>scorecard using>utilize feature>boast
+what are the repayment timelines if i cancel or rejoin a product?,281,train,refund>repayment return>rejoin
+"Hi, what are the repayment timelines if cancel or revert a product?",281,train,refund>repayment return>revert
+what are repayment timelines if i cancel revert a product? Any idea?,281,dev,refund>repayment return>revert
+"Hi, my order position indicate out for delivery but i have not let it even when will i get?",282,train,status>position shows>indicate got>let yet>even
+my order position demonstrate out delivery but i have not get it even when will i get it? Thanks.,282,train,status>position shows>demonstrate got>get yet>even
+my order position indicate out for delivery but i have not get still when will i get it?,282,dev,status>position shows>indicate got>get yet>still
+what do the different decree statuses in my orders signify? Thanks.,283,train,order>decree mean>signify
+what do different decree statuses in my orders imply?,283,train,order>decree mean>imply
+Help needed: what the different decree statuses in my orders signify?,283,dev,order>decree mean>signify
+"Hi, can foreclose emis for products buy utilize credit card no cost emi payment mode?",284,train,purchased>buy using>utilize
+can i foreclose emis products buy use the credit card no cost emi payment mode? Thanks.,284,train,purchased>buy using>use
+can i foreclose emis for products buy use the credit card no cost emi payment mode? Any idea?,284,dev,purchased>buy using>use
+Quick question: what are the papers need for the whole process purchase an ather 2 wheeler on flipkart?,285,train,documents>papers required>need entire>whole buying>purchase
+Could you tell me what papers needed the whole process purchase ather 2 wheeler on flipkart?,285,train,documents>papers required>needed entire>whole buying>purchase
+what are papers needed for whole process of purchase ather 2 wheeler on flipkart? Thanks.,285,dev,documents>papers required>needed entire>whole buying>purchase
+Help needed: how recognize a third party collaborator depot accepts supercoin pay if there is no qr code scanner accessible?,286,train,know>recognize partner>collaborator store>depot available>accessible
+how do i recognize third party collaborator depot accepts supercoin pay there is no qr code scanner usable? Any idea?,286,train,know>recognize partner>collaborator store>depot available>usable
+"Hi, how do i fuck if a third party collaborator depot accepts supercoin pay if is no qr code scanner useable?",286,dev,know>fuck partner>collaborator store>depot available>useable
+i have not obtain the reimbursement of my messenger complaint what should? Any idea?,287,train,received>obtain courier>messenger charges>complaint
+i not obtain the reimbursement of my messenger complaint what should i do? Thanks.,287,train,received>obtain courier>messenger charges>complaint
+Quick question: i not obtain the reimbursement of my messenger complaint what should i?,287,dev,received>obtain courier>messenger charges>complaint
+Help needed: what is a pluck depot?,288,train,pick>pluck store>depot
+"Hi, what is choice depot?",288,train,pick>choice store>depot
+what a pluck up depot? Thanks.,288,dev,pick>pluck store>depot
+will take the alternative to test push a bgauss 2 wheeler how many times be permit to get a test push in same order? Any idea?,289,train,get>take option>alternative drive>push allowed>permit take>get drive>push
+will i come the alternative to test ride bgauss 2 wheeler how many times i be let to hold a test push the same order? Thanks.,289,train,get>come option>alternative drive>ride allowed>let take>hold drive>push
+will i come the alternative to test push a bgauss 2 wheeler many times be let to carry test push in the same order? Thanks.,289,dev,get>come option>alternative drive>push allowed>let take>carry drive>push
+i choose the incorrect emi project while make payment use bajaj finserv no cost emi alternative can i shift now? Any idea?,290,train,chose>choose wrong>incorrect plan>project making>make using>use option>alternative change>shift
+i prefer the misguided emi project while make the payment use bajaj finserv no cost emi alternative i modification it now? Thanks.,290,train,chose>prefer wrong>misguided plan>project making>make using>use option>alternative change>modification
+i select the erroneous emi project while make the payment use bajaj finserv no cost emi alternative can i alter it now?,290,dev,chose>select wrong>erroneous plan>project making>make using>use option>alternative change>alter
+what are the papers mandatory for whole process of purchasing a bounce 2 wheeler on flipkart? Any idea?,291,train,documents>papers required>mandatory entire>whole buying>purchasing
+"Hi, what are the papers necessary the whole process purchasing a bounce 2 wheeler on flipkart?",291,train,documents>papers required>necessary entire>whole buying>purchasing
+what are the papers needed for the whole process of purchase bounce 2 wheeler on flipkart? Thanks.,291,dev,documents>papers required>needed entire>whole buying>purchase
+Help needed: what are the boundary bargain gift cards?,292,train,limits>boundary buy>bargain
+what are the restrict bargain gift cards?,292,train,limits>restrict buy>bargain
+what are the boundary to bargain gift cards?,292,dev,limits>boundary buy>bargain
+Quick question: why been inquire to ship the item?,293,train,asked>inquire
+Quick question: why have i been inquire ship the item?,293,train,asked>inquire
+Could you tell me why have i been inquire to ship the item?,293,dev,asked>inquire
+"Hi, what is cash on delivery?",294,train,
+"Hi, what cash on delivery?",294,train,
+what is cash on delivery? Thanks.,294,dev,
+"Hi, will i come the alternative to test ride a bounce 2 wheeler how many times i be let to hold test push in the same order?",295,train,get>come option>alternative drive>ride allowed>let take>hold drive>push
+"Hi, will i take the alternative to test ride a bounce 2 wheeler how many times will i be let to hold a test ride in the same order?",295,train,get>take option>alternative drive>ride allowed>let take>hold drive>ride
+Help needed: will i come the alternative to test ride a bounce 2 wheeler how many times be let get a test ride in same order?,295,dev,get>come option>alternative drive>ride allowed>let take>get drive>ride
+"Hi, how ensure is the payment through supercoin pay?",296,train,secure>ensure
+how assure is the payment through supercoin pay?,296,train,secure>assure
+how procure is payment through supercoin pay?,296,dev,secure>procure
+Quick question: how protracted the battery last for bgauss 2 wheelers?,297,train,long>protracted
+"Hi, how protracted battery last for bgauss 2 wheelers?",297,train,long>protracted
+how prolonged does the battery last bgauss 2 wheelers? Any idea?,297,dev,long>prolonged
+Could you tell me do have to give anything spare to buy or apply a gift card?,298,train,pay>give extra>spare use>apply
+"Hi, do to give anything special to buy or apply a gift card?",298,train,pay>give extra>special use>apply
+"Hi, do i have to give anything special to buy apply a gift card?",298,dev,pay>give extra>special use>apply
+can cancel or rejoin a payoff as component cash and coins for rewards plan?,299,train,return>rejoin reward>payoff part>component program>plan
+"Hi, can i cancel or rejoin a payoff as component of the cash and coins rewards for plan?",299,train,return>rejoin reward>payoff part>component program>plan
+Could you tell me can i cancel or rejoin payoff component of the cash and coins for rewards plan?,299,dev,return>rejoin reward>payoff part>component program>plan
+can i meld the balance my gift cards with cash on delivery to give for order? Any idea?,300,train,combine>meld pay>give
+Help needed: can i unite balance my gift cards cash on delivery compensate for order?,300,train,combine>unite pay>compensate
+"Hi, can i merge the balance on gift cards cash on delivery to compensate for an order?",300,dev,combine>merge pay>compensate
+will i come the alternative to test push an ather 2 wheeler how many times will i be permit to get a test push in same order? Any idea?,301,train,get>come option>alternative drive>push allowed>permit take>get drive>push
+will i take alternative test push an ather 2 wheeler how many times be let to bring a test ride the same order? Any idea?,301,train,get>take option>alternative drive>push allowed>let take>bring drive>ride
+will i find alternative test ride an ather 2 wheeler how many times will i permit to carry test ride in the same order?,301,dev,get>find option>alternative drive>ride allowed>permit take>carry drive>ride
+how i wage my decree? Any idea?,302,train,pay>wage order>decree
+Quick question: how i compensate my decree?,302,train,pay>compensate order>decree
+Could you tell me how can i salary for my edict?,302,dev,pay>salary order>edict
+how promptly does the battery bgauss 2 wheelers accusation again?,303,train,quickly>promptly charge>accusation
+how speedily battery bgauss 2 wheelers accusation again?,303,train,quickly>speedily charge>accusation
+Quick question: how promptly does the battery bgauss 2 wheelers accusation again?,303,dev,quickly>promptly charge>accusation
+Quick question: i ve forfeited gift card pin what can do?,304,train,lost>forfeited
+Could you tell me i ve missed my gift card pin can do?,304,train,lost>missed
+i ve forfeited gift card pin what can i? Thanks.,304,dev,lost>forfeited
+what is the pickup process? Any idea?,305,train,
+what is pickup process? Thanks.,305,train,
+what the pickup process? Any idea?,305,dev,
+will my freight be dependable at the pickup depot? Any idea?,306,train,shipment>freight safe>dependable store>depot
+will my freight dependable at the pickup depot? Any idea?,306,train,shipment>freight safe>dependable store>depot
+Help needed: will my cargo secure the pickup depot?,306,dev,shipment>cargo safe>secure store>depot
+Help needed: will i take alternative to test push hero motocorp 2 wheeler how many times will i be let to bring a test ride the same edict?,307,train,get>take option>alternative drive>push allowed>let take>bring drive>ride order>edict
+will i make the alternative to test push hero motocorp 2 wheeler how many times i be let to get a test push in same edict? Thanks.,307,train,get>make option>alternative drive>push allowed>let take>get drive>push order>edict
+will i come the alternative test ride hero motocorp 2 wheeler many times will i be let bring test push in the same edict?,307,dev,get>come option>alternative drive>ride allowed>let take>bring drive>push order>edict
+why ca not i look credit card no cost emi as a payment mode for some items?,308,train,see>look
+Quick question: why ca not i find credit card no cost emi as a payment mode some items?,308,train,see>find
+Could you tell me why ca not look credit card no cost emi as a payment mode some items?,308,dev,see>look
+will ather traverse sell up sell i sojourn marque accredited dealer? Any idea?,309,train,cross>traverse visit>sojourn brand>marque authorised>accredited
+Could you tell me will ather traverse sell up sell i sojourn the marque accredited dealer?,309,train,cross>traverse visit>sojourn brand>marque authorised>accredited
+Could you tell me will ather traverse sell up sell when i sojourn marque accredited dealer?,309,dev,cross>traverse visit>sojourn brand>marque authorised>accredited
+Help needed: if i combine my flipkart accounts will my supercoins also meld?,310,train,merge>combine merge>meld
+if i unify my flipkart accounts my supercoins also meld? Any idea?,310,train,merge>unify merge>meld
+if meld my flipkart accounts will my supercoins combine? Any idea?,310,dev,merge>meld merge>combine
+can take the repayment for item any other mode if have paid utilize the bajaj finserv payment alternative? Thanks.,311,train,get>take refund>repayment using>utilize option>alternative
+can i make the repayment for item to any other mode if i have paid use bajaj finserv payment alternative? Any idea?,311,train,get>make refund>repayment using>use option>alternative
+can i find the repayment for the item any other mode if have paid use bajaj finserv payment alternative? Thanks.,311,dev,get>find refund>repayment using>use option>alternative
+Could you tell me what is the approximate delivery time?,312,train,estimated>approximate
+what is the approximate delivery time? Any idea?,312,train,estimated>approximate
+what is the approximate delivery time? Thanks.,312,dev,estimated>approximate
+will i take alternative quiz drive ampere magnus ex how many times i be permit get quiz rides as component an edict?,313,train,get>take option>alternative test>quiz ride>drive allowed>permit take>get test>quiz part>component order>edict
+will i make alternative to quiz drive for ampere magnus ex how many times will i be permit to carry quiz rides as component of an edict? Any idea?,313,train,get>make option>alternative test>quiz ride>drive allowed>permit take>carry test>quiz part>component order>edict
+will i take the alternative to quiz drive ampere magnus ex how many times will i be permit bring quiz rides as component of an edict? Thanks.,313,dev,get>take option>alternative test>quiz ride>drive allowed>permit take>bring test>quiz part>component order>edict
+"Hi, can i utilization credit debit card to give on flipkart through flipkart app?",314,train,use>utilization pay>give
+Help needed: can i employ credit debit card to give flipkart through flipkart app?,314,train,use>employ pay>give
+can i employ credit debit card to give on flipkart through the flipkart app? Thanks.,314,dev,use>employ pay>give
+"Hi, will bounce traverse sell up sell when i sojourn the marque accredited dealer?",315,train,cross>traverse visit>sojourn brand>marque authorised>accredited
+Quick question: will bounce traverse sell up sell call marque accredited dealer?,315,train,cross>traverse visit>call brand>marque authorised>accredited
+Help needed: will bounce traverse sell up sell i call the marque accredited dealer?,315,dev,cross>traverse visit>call brand>marque authorised>accredited
+Help needed: what are the cities nation that have third party partner shop to redeem supercoin pay boast?,316,train,states>nation stores>shop feature>boast
+Help needed: what are cities nation that third party partner shop to redeem the supercoin pay boast?,316,train,states>nation stores>shop feature>boast
+what are the cities nation third party partner shop to redeem the supercoin pay boast? Any idea?,316,dev,states>nation stores>shop feature>boast
+Quick question: how is the return fee ascertain?,317,train,determined>ascertain
+how the return fee dictated? Thanks.,317,train,determined>dictated
+how is the return fee decide? Any idea?,317,dev,determined>decide
+Quick question: how i give for my cash on delivery order if i opt to choice up the product the choice up depot?,318,train,pay>give choose>opt pick>choice pick>choice store>depot
+Quick question: how do i give for my cash on delivery order i opt to choice up product the selection up depot?,318,train,pay>give choose>opt pick>choice pick>selection store>depot
+Quick question: how do i give my cash on delivery order if i opt selection the product from the choice depot?,318,dev,pay>give choose>opt pick>selection pick>choice store>depot
+"Hi, how does the 3d secure password lend security to my online transactions?",319,train,add>lend
+how does 3d secure password lend security online transactions?,319,train,add>lend
+how the 3d secure password lend security to my online transactions?,319,dev,add>lend
+how much electricity is mandatory to charge the battery of a bgauss vehicle?,320,train,required>mandatory
+Help needed: how much electricity is needed to charge the battery of a bgauss vehicle?,320,train,required>needed
+Could you tell me how much electricity is needed charge the battery of a bgauss vehicle?,320,dev,required>needed
+Quick question: what all marque are portion supercoin pay curriculum?,321,train,brands>marque part>portion program>curriculum
+"Hi, what all marque are component of the supercoin pay curriculum?",321,train,brands>marque part>component program>curriculum
+Help needed: what marque portion of the supercoin pay curriculum?,321,dev,brands>marque part>portion program>curriculum
+Could you tell me if repayment amount outstrip 20 000 i find the alternative for phonepe upi connected account and other recorded account neft or imps?,322,train,refund>repayment exceeds>outstrip get>find option>alternative linked>connected registered>recorded
+Help needed: if repay amount surpass 20 000 will i make the alternative phonepe upi connected account and other recorded account for neft or imps?,322,train,refund>repay exceeds>surpass get>make option>alternative linked>connected registered>recorded
+if repayment amount outstrip 20 000 come the alternative for phonepe upi connected account other recorded account for neft or imps? Any idea?,322,dev,refund>repayment exceeds>outstrip get>come option>alternative linked>connected registered>recorded
+"Hi, is my freight secure at selection up depot?",323,train,shipment>freight safe>secure pick>selection store>depot
+is my cargo dependable the choice up depot?,323,train,shipment>cargo safe>dependable pick>choice store>depot
+is my loading dependable at choice up depot? Thanks.,323,dev,shipment>loading safe>dependable pick>choice store>depot
+i a question the emi accusation what should i do? Any idea?,324,train,query>question charge>accusation
+Could you tell me i have a question about the emi accusation what should i?,324,train,query>question charge>accusation
+i have a question emi accusation what should do?,324,dev,query>question charge>accusation
+"Hi, what papers mandatory for the whole process of purchase a hero motocorp 2 wheeler on flipkart?",325,train,documents>papers required>mandatory entire>whole buying>purchase
+what are the papers necessary the whole process of purchasing a hero motocorp 2 wheeler on flipkart? Thanks.,325,train,documents>papers required>necessary entire>whole buying>purchasing
+Help needed: what are the papers mandatory the whole process of purchase hero motocorp 2 wheeler flipkart?,325,dev,documents>papers required>mandatory entire>whole buying>purchase
+how can i apply a gift card? Thanks.,326,train,use>apply
+"Hi, how i usage a gift card?",326,train,use>usage
+how i usage a gift card?,326,dev,use>usage
+Help needed: what if the gift card is transferred person when i am anticipate a refund for an order put use same gift card?,327,train,someone>person expecting>anticipate placed>put using>use
+what if gift card transferred to person when i am anticipate a refund for an order put use the same gift card? Any idea?,327,train,someone>person expecting>anticipate placed>put using>use
+Help needed: what if the gift card transferred to person when anticipate a refund for an order put use the same gift card?,327,dev,someone>person expecting>anticipate placed>put using>use
+is credit card no cost emi payment mode useable on flipkart s windows ios apps? Thanks.,328,train,available>useable
+is credit card no cost emi payment mode accessible on flipkart s windows and ios apps?,328,train,available>accessible
+is credit card no cost emi payment mode accessible on flipkart s windows ios apps? Any idea?,328,dev,available>accessible
+Quick question: what the papers necessary the whole process of purchasing ampere magnus ex flipkart?,329,train,documents>papers required>necessary entire>whole buying>purchasing
+"Hi, what are the papers need whole process of purchase an ampere magnus ex on flipkart?",329,train,documents>papers required>need entire>whole buying>purchase
+Help needed: what are papers need the whole process of purchase an ampere magnus ex on flipkart?,329,dev,documents>papers required>need entire>whole buying>purchase
+what is warranty being provide ather?,330,train,offered>provide
+"Hi, what is the warranty being provide by ather?",330,train,offered>provide
+what is the warranty being provide by ather? Any idea?,330,dev,offered>provide
+can revert a product and need for a repay i have buy it redeeming my supercoins to avail rebate through supercoin pay boast? Thanks.,331,train,return>revert ask>need refund>repay purchased>buy discount>rebate feature>boast
+can revert a product and need for a repay if i have buy by redeeming supercoins to avail rebate through supercoin pay boast? Any idea?,331,train,return>revert ask>need refund>repay purchased>buy discount>rebate feature>boast
+"Hi, can i revert a product and need for a repay if i have buy it redeeming my supercoins to avail rebate through supercoin pay boast?",331,dev,return>revert ask>need refund>repay purchased>buy discount>rebate feature>boast
+can i restart an unfinished application?,332,train,resume>restart incomplete>unfinished
+can i restart unfinished application? Thanks.,332,train,resume>restart incomplete>unfinished
+can restart an unfinished application? Thanks.,332,dev,resume>restart incomplete>unfinished
+how protracted the battery last for bounce 2 wheelers? Thanks.,333,train,long>protracted
+how protracted does the battery last for bounce 2 wheelers? Thanks.,333,train,long>protracted
+Help needed: how lasting the battery last for bounce 2 wheelers?,333,dev,long>lasting
+Help needed: what warranty being provide bgauss?,334,train,offered>provide
+what is the warranty being provide by bgauss?,334,train,offered>provide
+Quick question: what the warranty being provide by bgauss?,334,dev,offered>provide
+"Hi, where can i discover the seller s returns policy?",335,train,find>discover
+Could you tell me where can i determine the seller s returns policy?,335,train,find>determine
+where can i obtain the seller s returns policy? Any idea?,335,dev,find>obtain
+"Hi, i prefer the misguided emi program while make the payment utilize credit card no cost emi alternative can i alter it now?",336,train,chose>prefer wrong>misguided plan>program making>make using>utilize option>alternative change>alter
+i prefer the misguided emi program while make the payment use credit card no cost emi alternative can shift it now?,336,train,chose>prefer wrong>misguided plan>program making>make using>use option>alternative change>shift
+"Hi, i choose erroneous emi program while make payment utilize credit card no cost emi alternative can i alter it now?",336,dev,chose>choose wrong>erroneous plan>program making>make using>utilize option>alternative change>alter
+Could you tell me how can realize tier of renovate product?,337,train,understand>realize grade>tier refurbished>renovate
+"Hi, how can interpret the tier of renovate product?",337,train,understand>interpret grade>tier refurbished>renovate
+Could you tell me how can i infer the tier of a renovate product?,337,dev,understand>infer grade>tier refurbished>renovate
+Help needed: what is warranty being provide by bounce?,338,train,offered>provide
+what is warranty being provide by bounce? Any idea?,338,train,offered>provide
+Could you tell me what is the warranty being provide by bounce?,338,dev,offered>provide
+Could you tell me if i have paid for my order use the bajaj finserv no cost emi payment alternative i bring a complete repayment if the item is cancelled rejoin?,339,train,using>use option>alternative get>bring refund>repayment returned>rejoin
+Quick question: if have paid my order use bajaj finserv no cost emi payment alternative will find complete repay if the item is cancelled rejoin?,339,train,using>use option>alternative get>find refund>repay returned>rejoin
+Quick question: if i have paid for my order utilize bajaj finserv no cost emi payment alternative make a complete repay if the item is cancelled rejoin?,339,dev,using>utilize option>alternative get>make refund>repay returned>rejoin
+Help needed: what bajaj finserv payment mode?,340,train,
+"Hi, what is bajaj finserv payment mode?",340,train,
+what is bajaj finserv payment mode? Any idea?,340,dev,
+what after sales services being furnish ather for 2 wheelers?,341,train,provided>furnish
+Help needed: what after sales services are being offer by ather 2 wheelers?,341,train,provided>offer
+what after sales services being offer by ather 2 wheelers?,341,dev,provided>offer
+how does supercoin pay boast operate on flipkart platform? Any idea?,342,train,feature>boast work>operate
+how supercoin pay boast operate on flipkart platform? Thanks.,342,train,feature>boast work>operate
+how does supercoin pay boast operate on flipkart platform? Thanks.,342,dev,feature>boast work>operate
+can make repay for item through other mode if i have paid use the credit card no cost emi payment alternative? Thanks.,343,train,get>make refund>repay using>use option>alternative
+"Hi, can find the repay the item through any other mode if paid use the credit card no cost emi payment alternative?",343,train,get>find refund>repay using>use option>alternative
+Help needed: can i make the repay the item through any other mode i have paid utilize credit card no cost emi payment alternative?,343,dev,get>make refund>repay using>utilize option>alternative
+Help needed: will i gain cashback if i have utilize person else s flipkart axis bank credit card?,344,train,earn>gain used>utilize someone>person
+Help needed: will gain cashback if i have utilized person else s flipkart axis bank credit card?,344,train,earn>gain used>utilized someone>person
+Could you tell me will i gain cashback if i utilized person else s flipkart axis bank credit card?,344,dev,earn>gain used>utilized someone>person
+Could you tell me why am i not able to watch the alternative to steal a bounce 2 wheeler for my pincode?,345,train,see>watch option>alternative buy>steal
+Help needed: why am i not able look the alternative to steal a bounce 2 wheeler for my pincode?,345,train,see>look option>alternative buy>steal
+Quick question: why am i not able to find the alternative to bargain bounce 2 wheeler for pincode?,345,dev,see>find option>alternative buy>bargain
+will i make supercoins for use cash coins for rewards? Any idea?,346,train,get>make using>use
+will i find supercoins for utilize cash and coins rewards?,346,train,get>find using>utilize
+"Hi, will i take supercoins for utilize cash and coins for rewards?",346,dev,get>take using>utilize
+Quick question: will i make a complete repay if item cancelled or rejoin if i have paid for the order use credit card no cost emi payment alternative?,347,train,get>make refund>repay returned>rejoin using>use option>alternative
+Could you tell me will i make a complete repay the item is cancelled rejoin i paid for the order use credit card no cost emi payment alternative?,347,train,get>make refund>repay returned>rejoin using>use option>alternative
+will i make a complete repay if the item is cancelled rejoin if i have paid the order use the credit card no cost emi payment alternative? Any idea?,347,dev,get>make refund>repay returned>rejoin using>use option>alternative
+"Hi, can i produce the payment use prepaid mode of payment and gift card as component of the cash and coins rewards?",348,train,make>produce using>use part>component
+can i create the payment use prepaid mode of payment and gift card as portion of the cash coins for rewards? Thanks.,348,train,make>create using>use part>portion
+can i produce payment use prepaid mode payment gift card as portion of the cash coins for rewards?,348,dev,make>produce using>use part>portion
+"Hi, can filter my search for renovate products in terms of product class?",349,train,refurbished>renovate grades>class
+"Hi, can i filter my search renovate products in terms of product class?",349,train,refurbished>renovate grades>class
+Help needed: can i filter search renovate products in terms of product class?,349,dev,refurbished>renovate grades>class
+how can i steal use a gift card?,350,train,buy>steal using>use
+how can i steal utilize a gift card? Any idea?,350,train,buy>steal using>utilize
+how can bargain use a gift card? Any idea?,350,dev,buy>bargain using>use
+"Hi, how do returns operate?",351,train,work>operate
+Help needed: how do returns operate?,351,train,work>operate
+how do returns operate? Thanks.,351,dev,work>operate
+Quick question: can i employ a preserved card produce an emi payment?,352,train,use>employ saved>preserved make>produce
+Could you tell me can i usage a preserved card to get an emi payment?,352,train,use>usage saved>preserved make>get
+Help needed: can i apply preserved card get an emi payment?,352,dev,use>apply saved>preserved make>get
+how rapidly does the battery ather 2 wheelers charge again?,353,train,quickly>rapidly
+how rapidly does the battery for ather 2 wheelers charge again? Thanks.,353,train,quickly>rapidly
+Quick question: how promptly does the battery for ather 2 wheelers charge again?,353,dev,quickly>promptly
+Quick question: i have gain supercoins from last dealings how can redeem them?,354,train,earned>gain transactions>dealings
+i have gain some supercoins from last dealings can i redeem them? Thanks.,354,train,earned>gain transactions>dealings
+Help needed: i have gain some supercoins from last dealings can i redeem them?,354,dev,earned>gain transactions>dealings
+Could you tell me how i erase my preserved scorecard?,355,train,delete>erase saved>preserved card>scorecard
+how can i edit preserved scorecard? Thanks.,355,train,delete>edit saved>preserved card>scorecard
+Quick question: how can edit my preserved scorecard?,355,dev,delete>edit saved>preserved card>scorecard
+"Hi, will ampere traverse sell upsell when i call the marque accredited dealer?",356,train,cross>traverse visit>call brand>marque authorised>accredited
+"Hi, will ampere traverse sell upsell when i sojourn the marque accredited dealer?",356,train,cross>traverse visit>sojourn brand>marque authorised>accredited
+"Hi, will ampere traverse sell upsell i call the marque accredited dealer?",356,dev,cross>traverse visit>call brand>marque authorised>accredited
+Help needed: what happens the unused balance in my gift card after expires?,357,train,
+Could you tell me what happens to the unused balance in my gift card after it expires?,357,train,
+Could you tell me what happens to the unused balance in my gift card it expires?,357,dev,
+"Hi, what are the pre necessity for use preserved card boast?",358,train,requisites>necessity using>use saved>preserved feature>boast
+"Hi, what are the pre necessity for utilize the preserved card boast?",358,train,requisites>necessity using>utilize saved>preserved feature>boast
+Quick question: what are the pre necessity for use the preserved card boast?,358,dev,requisites>necessity using>use saved>preserved feature>boast
+Help needed: will bgauss traverse sell upsell when i sojourn marque accredited dealer?,359,train,cross>traverse visit>sojourn brand>marque authorised>accredited
+will bgauss traverse sell upsell when i sojourn the marque accredited dealer? Any idea?,359,train,cross>traverse visit>sojourn brand>marque authorised>accredited
+will bgauss traverse sell upsell when i sojourn the marque accredited dealer?,359,dev,cross>traverse visit>sojourn brand>marque authorised>accredited
+"Hi, when benefits unlocked as portion supercoin milestones will there deduction of supercoins?",360,train,part>portion
+when benefits are unlocked role supercoin milestones will there be deduction supercoins? Any idea?,360,train,part>role
+"Hi, when benefits are unlocked as role supercoin milestones will there deduction of supercoins?",360,dev,part>role
+"Hi, how i make 3d secure password for my credit debit card?",361,train,get>make
+Help needed: how can i make the 3d secure password for my credit debit card?,361,train,get>make
+"Hi, how make the 3d secure password for my credit debit card?",361,dev,get>make
+Help needed: how lengthy does the battery last for ather 2 wheelers?,362,train,long>lengthy
+Quick question: how prolonged does the battery last for ather 2 wheelers?,362,train,long>prolonged
+how protracted does the battery last for ather 2 wheelers?,362,dev,long>protracted
+Quick question: can i redeem supercoins for gold silver products jewellery bar coin?,363,train,
+can i redeem supercoins for gold and silver products jewellery bar coin? Any idea?,363,train,
+Could you tell me can i redeem supercoins for gold silver products jewellery bar coin?,363,dev,
+can i modification the mode of payment once have put flipkart quick order?,364,train,change>modification placed>put
+Could you tell me can shift the mode payment once i have put a flipkart quick order?,364,train,change>shift placed>put
+Quick question: can i modification the mode of payment once i have put a flipkart quick order?,364,dev,change>modification placed>put
+what sales services are being offer by bgauss 2 wheelers?,365,train,provided>offer
+"Hi, what sales services being furnish by bgauss for 2 wheelers?",365,train,provided>furnish
+Could you tell me what after sales services are being offer by bgauss for 2 wheelers?,365,dev,provided>offer
+my gift card has invalid can extend its validity?,366,train,expired>invalid
+my gift card has invalid you extend its validity? Thanks.,366,train,expired>invalid
+Could you tell me my gift card has invalid can you extend its validity?,366,dev,expired>invalid
+Quick question: what are papers required to exhaustive this application?,367,train,documents>papers complete>exhaustive
+what are the papers required to exhaustive this application? Thanks.,367,train,documents>papers complete>exhaustive
+Help needed: what the papers required to exhaustive this application?,367,dev,documents>papers complete>exhaustive
+what after sales services being furnish bounce for 2 wheelers? Any idea?,368,train,provided>furnish
+what after sales services are being furnish by bounce for 2 wheelers? Any idea?,368,train,provided>furnish
+what after sales services are being furnish by bounce 2 wheelers?,368,dev,provided>furnish
+what is warranty being provide by hero motocorp? Thanks.,369,train,offered>provide
+what is the warranty being provide by hero motocorp? Thanks.,369,train,offered>provide
+what is the warranty being provide by hero motocorp? Any idea?,369,dev,offered>provide
+what is the credit restrict on the credit card no cost emi card shopping on flipkart?,370,train,limit>restrict
+Help needed: what is the credit restrict on the credit card no cost emi card for shopping on flipkart?,370,train,limit>restrict
+what is the credit restrict on the credit card no cost emi card for shopping on flipkart? Thanks.,370,dev,limit>restrict
+in which all city can i purchase a bounce 2 wheeler? Thanks.,371,train,cities>city
+in which all city can i purchase bounce 2 wheeler? Thanks.,371,train,cities>city
+Quick question: in which all city can i purchase a bounce 2 wheeler?,371,dev,cities>city
+Could you tell me is a restrict on many gift cards i can apply in a single edict?,372,train,limit>restrict use>apply order>edict
+Quick question: is there restrict on how many gift cards apply single edict?,372,train,limit>restrict use>apply order>edict
+"Hi, is there a restrict on how many gift cards apply single decree?",372,dev,limit>restrict use>apply order>decree
+is bajaj finserv payment mode usable on both the site and app?,373,train,available>usable website>site
+is bajaj finserv payment mode usable on both the site and app? Thanks.,373,train,available>usable website>site
+"Hi, is bajaj finserv payment mode usable on both the site and app?",373,dev,available>usable website>site
+can i submit my papers online for ampere magnus ex and not call the marque accredited dealer? Any idea?,374,train,documents>papers visit>call brand>marque authorised>accredited
+Could you tell me can i submit papers online for ampere magnus ex and not call the marque accredited dealer?,374,train,documents>papers visit>call brand>marque authorised>accredited
+can i submit my papers online for ampere magnus ex and not call the marque accredited dealer?,374,dev,documents>papers visit>call brand>marque authorised>accredited
+Quick question: can i take a new gift card for the rest balance if my gift card invalid?,375,train,get>take remaining>rest expired>invalid
+Help needed: can i make a new gift card for the left balance my gift card has invalid?,375,train,get>make remaining>left expired>invalid
+can i come new gift card for the left balance if my gift card invalid? Any idea?,375,dev,get>come remaining>left expired>invalid
+Could you tell me what all scorecard data flipkart store?,376,train,card>scorecard information>data
+Help needed: what scorecard data does flipkart store?,376,train,card>scorecard information>data
+Quick question: what all scorecard data does flipkart store?,376,dev,card>scorecard information>data
+Help needed: can i submit papers online for bgauss 2 wheeler not call the marque accredited dealer?,377,train,documents>papers visit>call brand>marque authorised>accredited
+Could you tell me can i submit papers online for a bgauss 2 wheeler and not call the marque accredited dealer?,377,train,documents>papers visit>call brand>marque authorised>accredited
+Could you tell me can i submit my papers online for a bgauss 2 wheeler and not call the marque accredited dealer?,377,dev,documents>papers visit>call brand>marque authorised>accredited
+can i steal another gift card the gift card i have? Any idea?,378,train,buy>steal
+can bargain another gift card with gift card have? Thanks.,378,train,buy>bargain
+can i steal another gift card with the gift card have? Thanks.,378,dev,buy>steal
+how can i tag my rescued cards?,379,train,label>tag saved>rescued
+Quick question: how can tag my rescued cards?,379,train,label>tag saved>rescued
+"Hi, how can tag my preserved cards?",379,dev,label>tag saved>preserved
+can submit papers online a bounce 2 wheeler not call the marque accredited dealer? Thanks.,380,train,documents>papers visit>call brand>marque authorised>accredited
+Could you tell me can submit papers online for a bounce 2 wheeler and not call the marque accredited dealer?,380,train,documents>papers visit>call brand>marque authorised>accredited
+Could you tell me can i submit my papers online bounce 2 wheeler and not call the marque accredited dealer?,380,dev,documents>papers visit>call brand>marque authorised>accredited
+"Hi, can i transfer supercoins to different flipkart account?",381,train,
+Could you tell me can i transfer supercoins to different flipkart account?,381,train,
+can i transfer supercoins to different flipkart account? Thanks.,381,dev,
+Help needed: can i utilization any debit card to give decree?,382,train,use>utilization pay>give order>decree
+Could you tell me can i employ debit card to give my decree?,382,train,use>employ pay>give order>decree
+"Hi, can i utilize any debit card give for my decree?",382,dev,use>utilize pay>give order>decree
+what are the accessories will be component of bounce 2 wheeler? Any idea?,383,train,part>component
+what the accessories that be component of a bounce 2 wheeler? Any idea?,383,train,part>component
+what are the accessories will be role a bounce 2 wheeler? Thanks.,383,dev,part>role
+can i redeem supercoins to avail discount flipkart gift card?,384,train,
+Quick question: can redeem supercoins to avail discount for flipkart gift card?,384,train,
+can redeem supercoins avail discount for flipkart gift card? Thanks.,384,dev,
+Help needed: what the emi plans usable i pay utilize the credit card no cost emi payment mode?,385,train,available>usable using>utilize
+Quick question: what are the emi plans usable if i pay use the credit card no cost emi payment mode?,385,train,available>usable using>use
+Quick question: what are the emi plans usable if i pay use credit card no cost emi payment mode?,385,dev,available>usable using>use
+do want a driving permit to drive ampere magnus ex?,386,train,need>want license>permit ride>drive
+do want to have driving permit drive ampere magnus ex?,386,train,need>want license>permit ride>drive
+Quick question: do i want to have a driving permit to drive ampere magnus ex?,386,dev,need>want license>permit ride>drive
+can redeem supercoins to avail discounts for products on shopsy? Any idea?,387,train,
+can i redeem supercoins avail discounts for products on shopsy? Thanks.,387,train,
+can i redeem supercoins to avail discounts products shopsy? Thanks.,387,dev,
+i did not take exact cashback as per my transactions on flipkart i? Any idea?,388,train,get>take correct>exact
+i not make the proper cashback as per transactions on flipkart what should i do? Thanks.,388,train,get>make correct>proper
+Could you tell me i not make proper cashback as per my transactions on flipkart what should i?,388,dev,get>make correct>proper
+Could you tell me can i present my papers online for ather 2 wheeler not call the marque accredited dealer?,389,train,submit>present documents>papers visit>call brand>marque authorised>accredited
+Help needed: can present my papers online for an ather 2 wheeler and not call the marque accredited dealer?,389,train,submit>present documents>papers visit>call brand>marque authorised>accredited
+"Hi, can i present my papers online for an ather 2 wheeler not call the marque accredited dealer?",389,dev,submit>present documents>papers visit>call brand>marque authorised>accredited
+when do supercoins expire? Any idea?,390,train,
+"Hi, when do supercoins expire?",390,train,
+Could you tell me when do supercoins expire?,390,dev,
+which credit cards are entitled for emi? Thanks.,391,train,eligible>entitled
+"Hi, which credit cards are entitled emi?",391,train,eligible>entitled
+"Hi, which credit cards are entitled for emi?",391,dev,eligible>entitled
+why am i not able to look the alternative to bargain an ampere 2 wheeler for my pincode? Thanks.,392,train,see>look option>alternative buy>bargain
+why am i not able to look alternative to bargain an ampere 2 wheeler for my pincode? Any idea?,392,train,see>look option>alternative buy>bargain
+Quick question: why am i not able to look the alternative to bargain an ampere 2 wheeler my pincode?,392,dev,see>look option>alternative buy>bargain
+Help needed: can i purchase payoff use cash and coins alternative from desktop?,393,train,rewards>payoff using>use option>alternative
+can i purchase payoff utilize cash coins alternative from desktop? Any idea?,393,train,rewards>payoff using>utilize option>alternative
+Quick question: can i purchase payoff use cash and coins alternative from desktop?,393,dev,rewards>payoff using>use option>alternative
+what is scorecard tag?,394,train,card>scorecard label>tag
+what is a scorecard tag? Thanks.,394,train,card>scorecard label>tag
+Could you tell me what is a scorecard tag?,394,dev,card>scorecard label>tag
+Could you tell me do want have a driving permit to ride hero motocorp 2 wheelers?,395,train,need>want license>permit drive>ride
+do ask to have a driving permit to ride hero motocorp 2 wheelers? Any idea?,395,train,need>ask license>permit drive>ride
+"Hi, do i want to have a driving permit to ride hero motocorp 2 wheelers?",395,dev,need>want license>permit drive>ride
+Quick question: who can avail cash and coins for rewards?,396,train,
+Could you tell me who all can avail cash coins for rewards?,396,train,
+who can avail cash coins for rewards?,396,dev,
+how can i order for gigantic quantities of product as portion of corporate order? Any idea?,397,train,large>gigantic part>portion
+how i order for sizable quantities of the product as portion of a corporate order? Thanks.,397,train,large>sizable part>portion
+Help needed: how can i order for sizable quantities of product as role a corporate order?,397,dev,large>sizable part>role
+Quick question: the alternative to bargain an ather 2 wheeler is not useable at my pincode?,398,train,option>alternative buy>bargain available>useable
+"Hi, the alternative to bargain an ather 2 wheeler not useable at pincode?",398,train,option>alternative buy>bargain available>useable
+Could you tell me the alternative to bargain an ather 2 wheeler is not accessible at my pincode?,398,dev,option>alternative buy>bargain available>accessible
+"Hi, can opt the number of supercoins that can be redeemed a purchase as component cash and coins for rewards plan?",399,train,choose>opt part>component program>plan
+Quick question: can i opt the number of supercoins that be redeemed purchase component of cash coins for rewards plan?,399,train,choose>opt part>component program>plan
+Help needed: can i opt the number of supercoins that can be redeemed for a purchase as component of cash and coins for rewards plan?,399,dev,choose>opt part>component program>plan
+what flipkart axis bank credit card? Any idea?,400,train,
+Help needed: what flipkart axis bank credit card?,400,train,
+what is flipkart axis bank credit card? Thanks.,400,dev,
+Help needed: can refurbished products searched their product name?,401,train,
+can refurbished products be searched their product name? Thanks.,401,train,
+Could you tell me can refurbished products be searched their product name?,401,dev,
+Quick question: how can i give if order amount is more than the value my gift card?,402,train,pay>give
+Help needed: how can i give if the order amount is more than the value of my gift card?,402,train,pay>give
+Quick question: how can salary if the order amount is more than the value of gift card?,402,dev,pay>salary
+can i scan any qr code in the depot to initiate payment an order use supercoin pay boast? Any idea?,403,train,store>depot using>use feature>boast
+Could you tell me can i scan any qr code in depot to initiate the payment for an order utilize supercoin pay boast?,403,train,store>depot using>utilize feature>boast
+Could you tell me can i scan any qr code in depot to initiate payment for order utilize supercoin pay boast?,403,dev,store>depot using>utilize feature>boast
+Could you tell me what after sales services are being offer by ampere for 2 wheelers?,404,train,provided>offer
+what sales services are being offer by ampere for 2 wheelers?,404,train,provided>offer
+Help needed: what after sales services being offer by ampere for 2 wheelers?,404,dev,provided>offer
+"Hi, what supercoins rewards usable on supercoin zone and how can i avail?",405,train,available>usable
+what are supercoins rewards useable on the supercoin zone and how can avail? Any idea?,405,train,available>useable
+what are supercoins rewards usable the supercoin zone and how can i avail them?,405,dev,available>usable
+Could you tell me can prepare the payment through cash upi payment mode to avail benefits as component of supercoin pay at third party partner depot?,406,train,make>prepare part>component store>depot
+Could you tell me can i prepare payment through cash or upi payment mode to avail benefits as portion of supercoin pay at a third party partner depot?,406,train,make>prepare part>portion store>depot
+can i produce payment through cash upi payment mode to avail benefits as portion of supercoin pay at a third party partner depot? Thanks.,406,dev,make>produce part>portion store>depot
+when and how many times does an ather vehicle expect servicing?,407,train,require>expect
+Help needed: when and how many times does an ather vehicle involve servicing?,407,train,require>involve
+"Hi, when and how many times does an ather vehicle involve servicing?",407,dev,require>involve
+can supercoin pay boast utilized patronize online?,408,train,feature>boast used>utilized shop>patronize
+can supercoin pay boast be utilize to patronize online? Thanks.,408,train,feature>boast used>utilize shop>patronize
+Could you tell me can supercoin pay boast utilize to patronize online?,408,dev,feature>boast used>utilize shop>patronize
+"Hi, how my emi debited?",409,train,
+how emi debited? Any idea?,409,train,
+Quick question: how is my emi debited?,409,dev,
+what charging alternative are accessible with bgauss 2 wheelers?,410,train,options>alternative available>accessible
+what charging alternative are useable with bgauss 2 wheelers? Thanks.,410,train,options>alternative available>useable
+Could you tell me what charging choice are useable with bgauss 2 wheelers?,410,dev,options>choice available>useable
+is installation provide for all products?,411,train,offered>provide
+is installation provide for all products? Any idea?,411,train,offered>provide
+Could you tell me is installation provide for products?,411,dev,offered>provide
+how does flipkart forestall scorecard sham? Any idea?,412,train,prevent>forestall card>scorecard fraud>sham
+Help needed: how flipkart forestall scorecard sham?,412,train,prevent>forestall card>scorecard fraud>sham
+how does flipkart preclude scorecard sham? Thanks.,412,dev,prevent>preclude card>scorecard fraud>sham
+"Hi, what accessories will be portion of bgauss 2 wheelers do have to salary individually for accessories?",413,train,part>portion pay>salary separately>individually
+Help needed: what accessories will be component bgauss 2 wheelers do i salary individually for accessories?,413,train,part>component pay>salary separately>individually
+what accessories will be portion of bgauss 2 wheelers do i have to give individually for accessories? Thanks.,413,dev,part>portion pay>give separately>individually
+Quick question: is the warranty being provide flipkart for ampere magnus ex?,414,train,offered>provide
+Help needed: is the warranty being provide by flipkart for ampere magnus ex?,414,train,offered>provide
+is the warranty being provide flipkart for ampere magnus ex?,414,dev,offered>provide
+"Hi, what are the different payment choice usable for flipkart quick?",415,train,options>choice available>usable
+what are the different payment choice usable for flipkart quick?,415,train,options>choice available>usable
+"Hi, what different payment choice usable flipkart quick?",415,dev,options>choice available>usable
+do i ask to have a driving permit to drive an ather 2 wheeler? Any idea?,416,train,need>ask license>permit
+do ask to have driving permit to drive an ather 2 wheeler? Any idea?,416,train,need>ask license>permit
+do want to have a driving permit to drive an ather 2 wheeler? Thanks.,416,dev,need>want license>permit
+what is supercoins price? Thanks.,417,train,
+Could you tell me what is supercoins price?,417,train,
+"Hi, what is supercoins price?",417,dev,
+Quick question: how do i salary utilize flipkart s credit card emi alternative?,418,train,pay>salary using>utilize option>alternative
+how salary use flipkart s credit card emi alternative?,418,train,pay>salary using>use option>alternative
+Quick question: how i salary use flipkart s credit card emi alternative?,418,dev,pay>salary using>use option>alternative
+Help needed: how much electricity is need to charge the battery ampere magnus ex?,419,train,required>need
+"Hi, how much electricity necessary to charge the battery of ampere magnus ex?",419,train,required>necessary
+Help needed: how much electricity mandatory charge the battery of ampere magnus ex?,419,dev,required>mandatory
+"Hi, where can i discover the code rewards claimed component of the cash and coins rewards?",420,train,find>discover part>component
+where can i obtain the code for the rewards claimed as portion the cash and coins for rewards?,420,train,find>obtain part>portion
+where can i see the code for the rewards claimed as portion of cash and coins for rewards?,420,dev,find>see part>portion
+Quick question: is phonepe pocketbook useable on flipkart s windows ios apps overly?,421,train,wallet>pocketbook available>useable too>overly
+Help needed: is phonepe pocketbook accessible flipkart s windows and ios apps overly?,421,train,wallet>pocketbook available>accessible too>overly
+is phonepe pocketbook useable flipkart s windows and ios apps overly? Any idea?,421,dev,wallet>pocketbook available>useable too>overly
+Quick question: how much electricity is necessary to charge the battery of bounce vehicle?,422,train,required>necessary
+how much electricity is necessitate charge battery of a bounce vehicle?,422,train,required>necessitate
+how much electricity mandatory to charge the battery of a bounce vehicle? Thanks.,422,dev,required>mandatory
+"Hi, what is the divergence between the supercoins price alternative usable on the product page and supercoin pay flipkart platform?",423,train,difference>divergence option>alternative available>usable
+Quick question: what is divergence between the supercoins price alternative usable on the product page and supercoin pay on flipkart platform?,423,train,difference>divergence option>alternative available>usable
+what is the divergence between the supercoins price alternative accessible on the product page supercoin pay on flipkart platform? Thanks.,423,dev,difference>divergence option>alternative available>accessible
+Quick question: how can i come a bajaj finserv emi scorecard?,424,train,get>come card>scorecard
+how can come a bajaj finserv emi scorecard? Any idea?,424,train,get>come card>scorecard
+how can i bring a bajaj finserv emi scorecard?,424,dev,get>bring card>scorecard
+the alternative bargain a hero motocorp 2 wheeler not usable at pincode i do?,425,train,option>alternative buy>bargain available>usable
+the alternative steal a hero motocorp 2 wheeler not useable my pincode what should i do?,425,train,option>alternative buy>steal available>useable
+the alternative to steal a hero motocorp 2 wheeler not accessible at my pincode what should i do?,425,dev,option>alternative buy>steal available>accessible
+how supercoins price compute?,426,train,calculated>compute
+"Hi, how is supercoins price estimate?",426,train,calculated>estimate
+Help needed: how is supercoins price compute?,426,dev,calculated>compute
+"Hi, what can i purchase utilize flipkart axis bank credit card?",427,train,using>utilize
+Could you tell me what i purchase utilize flipkart axis bank credit card?,427,train,using>utilize
+what can i purchase use flipkart axis bank credit card? Thanks.,427,dev,using>use
+Quick question: how lengthy does the ampere magnus ex s battery last?,428,train,long>lengthy
+Could you tell me how prolonged does the ampere magnus ex s battery last?,428,train,long>prolonged
+how lengthy does the ampere magnus ex s battery last? Thanks.,428,dev,long>lengthy
+is the warranty being provide by flipkart for bounce 2 wheelers?,429,train,offered>provide
+Help needed: is the warranty being provide by flipkart for bounce 2 wheelers?,429,train,offered>provide
+Could you tell me is the warranty being provide by flipkart for bounce 2 wheelers?,429,dev,offered>provide
+can i transfer ownership of my flipkart axis bank credit card? Any idea?,430,train,
+"Hi, can transfer ownership of my flipkart axis bank credit card?",430,train,
+"Hi, can transfer ownership flipkart axis bank credit card?",430,dev,
+Quick question: how refurbished products categorised flipkart?,431,train,
+how refurbished products categorised on flipkart?,431,train,
+Help needed: how are refurbished products categorised on flipkart?,431,dev,
+how i see the provide in supercoin zone? Thanks.,432,train,find>see offers>provide
+how do get the provide in supercoin zone?,432,train,find>get offers>provide
+how do i obtain the provide in supercoin zone? Thanks.,432,dev,find>obtain offers>provide
+how can i foreclose my emi for an item i purchase utilize credit card no cost emi?,433,train,bought>purchase using>utilize
+Help needed: how i foreclose my emi for an item i purchase use the credit card no cost emi?,433,train,bought>purchase using>use
+Quick question: how can foreclose my emi for item purchase use the credit card no cost emi?,433,dev,bought>purchase using>use
+Help needed: what accessories will furnish with magnus ex?,434,train,provided>furnish
+"Hi, what accessories will furnish with magnus ex?",434,train,provided>furnish
+what accessories will be furnish with magnus ex? Any idea?,434,dev,provided>furnish
+is the warranty of ather 2 wheelers being provide by flipkart?,435,train,offered>provide
+is the warranty ather 2 wheelers being provide flipkart? Any idea?,435,train,offered>provide
+is the warranty of ather 2 wheelers being provide flipkart? Any idea?,435,dev,offered>provide
+Quick question: do i want to create a out payment buy item utilize the bajaj finserv emi payment mode?,436,train,need>want make>create down>out using>utilize
+do i want to get a out payment to buy an item use the bajaj finserv emi payment mode?,436,train,need>want make>get down>out using>use
+do i ask to get a out payment to buy item utilize the bajaj finserv emi payment mode? Any idea?,436,dev,need>ask make>get down>out using>utilize
+Help needed: there have been past reports of batteries spotting burn how do i know ather products dependable?,437,train,recent>past catching>spotting fire>burn safe>dependable
+Quick question: there have been past reports batteries spotting flame how do i know that ather products are dependable?,437,train,recent>past catching>spotting fire>flame safe>dependable
+Could you tell me there have been past reports of batteries spotting flame how do i know ather products are dependable?,437,dev,recent>past catching>spotting fire>flame safe>dependable
+Could you tell me how i redeem supercoins rewards?,438,train,
+how i redeem supercoins rewards?,438,train,
+how can redeem supercoins rewards?,438,dev,
+how can i foreclose my emi bajaj finserv? Thanks.,439,train,
+Help needed: how can i foreclose my emi bajaj finserv?,439,train,
+how can i foreclose my emi with bajaj finserv? Thanks.,439,dev,
+what will befall if ather marque accredited dealer who liaison me is really furthest from my location? Thanks.,440,train,happen>befall brand>marque authorised>accredited contact>liaison very>really far>furthest
+Could you tell me what will befall if ather marque accredited dealer who will liaison really furthest from my location?,440,train,happen>befall brand>marque authorised>accredited contact>liaison very>really far>furthest
+Help needed: what will materialize ather marque accredited dealer who will touch me is really furthest location?,440,dev,happen>materialize brand>marque authorised>accredited contact>touch very>really far>furthest
+Help needed: is the warranty bgauss 2 wheelers being provide by flipkart?,441,train,offered>provide
+Could you tell me is the warranty for bgauss 2 wheelers being provide by flipkart?,441,train,offered>provide
+Help needed: is the warranty for bgauss 2 wheelers being provide by flipkart?,441,dev,offered>provide
+for how lasting is a payment code as component supercoin pay legitimate once it engender?,442,train,long>lasting part>component valid>legitimate generated>engender
+Help needed: for how prolonged is a payment code as component of supercoin pay legitimate once it engender?,442,train,long>prolonged part>component valid>legitimate generated>engender
+for how prolonged is a payment code as a component supercoin pay legitimate once it is engender? Thanks.,442,dev,long>prolonged part>component valid>legitimate generated>engender
+what befall if bgauss marque accredited dealer who will liaison is really furthest from my location? Thanks.,443,train,happen>befall brand>marque authorised>accredited contact>liaison very>really far>furthest
+"Hi, what will materialize bgauss marque accredited dealer who will touch me is really furthest from my location?",443,train,happen>materialize brand>marque authorised>accredited contact>touch very>really far>furthest
+Could you tell me what will materialize bgauss marque accredited dealer who will liaison me is really furthest from my location?,443,dev,happen>materialize brand>marque authorised>accredited contact>liaison very>really far>furthest
+Help needed: is it indispensable to register on twid innotarget fashalot retail private limited at the third party partner store to employ supercoin pay boast?,444,train,necessary>indispensable use>employ feature>boast
+is it essential to register twid innotarget fashalot retail private limited or at third party partner store utilize supercoin pay boast?,444,train,necessary>essential use>utilize feature>boast
+Could you tell me is requisite to register on twid innotarget fashalot retail private limited or at third party partner store to utilize supercoin pay boast?,444,dev,necessary>requisite use>utilize feature>boast
+how can i usage profit?,445,train,use>usage earnings>profit
+Could you tell me how i employ net?,445,train,use>employ earnings>net
+how can utilize the profit? Thanks.,445,dev,use>utilize earnings>profit
+what will occur ampere accredited trader who will liaison me is really furthest from location? Any idea?,446,train,happen>occur authorised>accredited dealer>trader contact>liaison very>really far>furthest
+Quick question: what befall if the ampere accredited trader will liaison me is really furthest from my location?,446,train,happen>befall authorised>accredited dealer>trader contact>liaison very>really far>furthest
+"Hi, what will materialize the ampere accredited trader who will liaison me is really furthest from my location?",446,dev,happen>materialize authorised>accredited dealer>trader contact>liaison very>really far>furthest
+what supercoin pay boast?,447,train,feature>boast
+Could you tell me what supercoin pay boast?,447,train,feature>boast
+"Hi, what is supercoin pay boast?",447,dev,feature>boast
+will the card number and cvv stay the same for both the physical and virtual card?,448,train,remain>stay
+"Hi, will the card number cvv continue the same for both the physical and the virtual card?",448,train,remain>continue
+will the card number cvv continue same for both the physical and the virtual card?,448,dev,remain>continue
+"Hi, what occur if the bounce accredited trader who touch me is really furthest from my location?",449,train,happen>occur authorised>accredited dealer>trader contact>touch very>really far>furthest
+Help needed: what will occur if the bounce accredited trader who will liaison is really furthest from my location?,449,train,happen>occur authorised>accredited dealer>trader contact>liaison very>really far>furthest
+"Hi, what occur if bounce accredited trader who will liaison is really furthest from my location?",449,dev,happen>occur authorised>accredited dealer>trader contact>liaison very>really far>furthest
+what supercoin zone? Thanks.,450,train,
+Quick question: what is supercoin zone?,450,train,
+what is supercoin zone? Thanks.,450,dev,
+"Hi, if have preserved card on flipkart will i be able utilization a new card for my next payment?",451,train,saved>preserved use>utilization
+if i have a preserved card on flipkart will i be able apply a new card for my next payment?,451,train,saved>preserved use>apply
+if i have preserved card on flipkart will i be able to employ a new card for my next payment?,451,dev,saved>preserved use>employ
+"Hi, what will materialize marque accredited dealer who will touch me is really furthest from my location?",452,train,happen>materialize brand>marque authorised>accredited contact>touch very>really far>furthest
+what materialize if the marque accredited dealer will liaison is really furthest location?,452,train,happen>materialize brand>marque authorised>accredited contact>liaison very>really far>furthest
+what will materialize if marque accredited dealer who will liaison me is really furthest my location? Thanks.,452,dev,happen>materialize brand>marque authorised>accredited contact>liaison very>really far>furthest
+Could you tell me does gift card expire?,453,train,
+Help needed: does a gift card expire?,453,train,
+Quick question: does a gift card expire?,453,dev,
+when will i come the physical scorecard? Thanks.,454,train,get>come card>scorecard
+when will i come the physical scorecard? Any idea?,454,train,get>come card>scorecard
+when will i make physical scorecard?,454,dev,get>make card>scorecard
+what charging alternative are accessible with ampere magnus ex is there a distinct cost relate with? Thanks.,455,train,options>alternative available>accessible separate>distinct associated>relate
+what charging alternative are accessible with ampere magnus ex a distinct cost relate it? Any idea?,455,train,options>alternative available>accessible separate>distinct associated>relate
+what charging alternative are usable with ampere magnus ex is there a unconnected cost relate with? Any idea?,455,dev,options>alternative available>usable separate>unconnected associated>relate
+Help needed: is it indispensable me be certified the same touch number at the third party partner depot for me usage supercoin pay boast?,456,train,necessary>indispensable registered>certified contact>touch store>depot use>usage feature>boast
+Could you tell me is it essential for to be recorded with same touch number at the third party partner depot for me to utilize supercoin pay boast?,456,train,necessary>essential registered>recorded contact>touch store>depot use>utilize feature>boast
+Help needed: is requisite for me to be certified with the same touch number the third party partner depot for apply supercoin pay boast?,456,dev,necessary>requisite registered>certified contact>touch store>depot use>apply feature>boast
+how will i take the pin for the scorecard?,457,train,get>take card>scorecard
+how will i find pin the scorecard? Any idea?,457,train,get>find card>scorecard
+how will i find the pin the scorecard? Any idea?,457,dev,get>find card>scorecard
+"Hi, when and many times does ampere magnus ex necessitate servicing?",458,train,require>necessitate
+when and how many times does ampere magnus ex involve servicing? Thanks.,458,train,require>involve
+Could you tell me when and how many times does ampere magnus ex involve servicing?,458,dev,require>involve
+what supercoin milestones? Any idea?,459,train,
+what supercoin milestones?,459,train,
+Could you tell me what supercoin milestones?,459,dev,
+"Hi, can bargain rewards utilize only prepaid mode of payment and redemption supercoins as component of cash and coins for rewards plan?",460,train,buy>bargain using>utilize part>component program>plan
+can i bargain rewards utilize only prepaid mode payment and redemption of supercoins as component of cash and coins for rewards plan?,460,train,buy>bargain using>utilize part>component program>plan
+Help needed: can bargain rewards use only prepaid mode of payment and redemption of supercoins portion of cash and coins for rewards plan?,460,dev,buy>bargain using>use part>portion program>plan
+Could you tell me how i become a seller and begin selling products on flipkart?,461,train,start>begin
+Quick question: how can i become seller commence selling products on flipkart?,461,train,start>commence
+Quick question: how can become a seller and begin selling products on flipkart?,461,dev,start>begin
+can apply item that has present to me as a gift from country sponsored ngo funded freebie distribution programme to bring rebate through exchange provide? Thanks.,462,train,use>apply given>present state>country get>bring discounts>rebate offers>provide
+Could you tell me can utilization an item that has been present to me as a gift from a country sponsored or an ngo funded freebie distribution programme find rebate through exchange provide?,462,train,use>utilization given>present state>country get>find discounts>rebate offers>provide
+"Hi, can utilization item has been present to as a gift a nation sponsored an ngo funded freebie distribution programme to make rebate through exchange provide?",462,dev,use>utilization given>present state>nation get>make discounts>rebate offers>provide
+Could you tell me do i ask get out payment to buy an item use credit card no cost emi payment mode?,463,train,need>ask make>get down>out using>use
+do want to produce a behind payment to buy an item use the credit card no cost emi payment mode?,463,train,need>want make>produce down>behind using>use
+"Hi, do ask to give a behind payment to buy an item use the credit card no cost emi payment mode?",463,dev,need>ask make>give down>behind using>use
+Help needed: will flipkart deliver the hero motocorp 2 wheeler to my family?,464,train,home>family
+will flipkart deliver the hero motocorp 2 wheeler to my family?,464,train,home>family
+Quick question: will flipkart deliver the hero motocorp 2 wheeler to my house?,464,dev,home>house
+is any yearly fee? Any idea?,465,train,annual>yearly
+Could you tell me is yearly fee?,465,train,annual>yearly
+is there any yearly fee?,465,dev,annual>yearly
+Could you tell me how cost of renovate products decided?,466,train,prices>cost refurbished>renovate
+how cost renovate products decided? Any idea?,466,train,prices>cost refurbished>renovate
+how are cost of renovate products decided? Any idea?,466,dev,prices>cost refurbished>renovate
+"Hi, what save card boast?",467,train,feature>boast
+what is save card boast? Any idea?,467,train,feature>boast
+Quick question: what is the save card boast?,467,dev,feature>boast
+Could you tell me do i make save tire with hero motocorp 2 wheeler?,468,train,get>make spare>save tyre>tire
+Quick question: do i find a extra tire with hero motocorp 2 wheeler?,468,train,get>find spare>extra tyre>tire
+Help needed: do i take a extra tire hero motocorp 2 wheeler?,468,dev,get>take spare>extra tyre>tire
+"Hi, what cards can i spare on flipkart?",469,train,save>spare
+Could you tell me what cards can salvage on flipkart?,469,train,save>salvage
+what cards i salvage on flipkart? Any idea?,469,dev,save>salvage
+will flipkart render ampere magnus ex family? Thanks.,470,train,deliver>render home>family
+will flipkart render ampere magnus ex to abode?,470,train,deliver>render home>abode
+Quick question: will flipkart render ampere magnus ex my dwelling?,470,dev,deliver>render home>dwelling
+Help needed: what is a 3d secure password?,471,train,
+"Hi, what is 3d secure password?",471,train,
+Could you tell me what is a 3d secure password?,471,dev,
+will flipkart render ather 2 wheeler at house? Thanks.,472,train,deliver>render home>house
+will flipkart render ather 2 wheeler at my abode?,472,train,deliver>render home>abode
+will flipkart render the ather 2 wheeler at my abode?,472,dev,deliver>render home>abode
+can i give with any credit card?,473,train,pay>give
+can give with credit card? Any idea?,473,train,pay>give
+"Hi, can i salary credit card?",473,dev,pay>salary
+when and how many times do bounce vehicles necessitate servicing? Thanks.,474,train,require>necessitate
+Help needed: when and many times do bounce vehicles necessitate servicing?,474,train,require>necessitate
+when many times do bounce vehicles necessitate servicing?,474,dev,require>necessitate
+Help needed: how many cards can i salvage on flipkart?,475,train,save>salvage
+how many cards preserve on flipkart?,475,train,save>preserve
+"Hi, how many cards can i preserve on flipkart?",475,dev,save>preserve
+Help needed: how speedily does the battery ampere magnus ex accusation again?,476,train,quickly>speedily charge>accusation
+"Hi, how promptly does the battery for ampere magnus ex accusation again?",476,train,quickly>promptly charge>accusation
+Help needed: how speedily does the battery for ampere magnus ex accusation again?,476,dev,quickly>speedily charge>accusation
+how can i pay the great measure? Thanks.,477,train,outstanding>great bill>measure
+Help needed: how can i pay the great measure?,477,train,outstanding>great bill>measure
+Could you tell me how pay the great measure?,477,dev,outstanding>great bill>measure
+what types of products be usable under flipkart refurbished zone? Thanks.,478,train,available>usable
+"Hi, what types of products will be usable under flipkart refurbished zone?",478,train,available>usable
+"Hi, what types products will useable under flipkart refurbished zone?",478,dev,available>useable
+what materialize my axis bank buzz credit card if i implement for the flipkart axis bank credit card? Any idea?,479,train,happen>materialize apply>implement
+Quick question: what will befall my axis bank buzz credit card if implement for the flipkart axis bank credit card?,479,train,happen>befall apply>implement
+Help needed: what will befall to my axis bank buzz credit card if i use the flipkart axis bank credit card?,479,dev,happen>befall apply>use
+what charging alternative are usable with bounce 2 wheelers? Any idea?,480,train,options>alternative available>usable
+what charging choice are useable with bounce 2 wheelers? Any idea?,480,train,options>choice available>useable
+Quick question: what charging choice are usable with bounce 2 wheelers?,480,dev,options>choice available>usable
+Help needed: my payment utilize the credit card no cost emi payment mode did not go through but the amount has been closed my card should i do?,481,train,using>utilize blocked>closed
+Could you tell me my payment use credit card no cost emi payment mode did not go through but amount has obstructed on my card what should i do?,481,train,using>use blocked>obstructed
+"Hi, my payment utilize the credit card no cost emi payment mode did not go through but the amount been obstructed on my card should i do?",481,dev,using>utilize blocked>obstructed
+will flipkart deliver the bounce 2 wheeler at my house? Thanks.,482,train,home>house
+"Hi, will flipkart deliver the bounce 2 wheeler at house?",482,train,home>house
+will flipkart deliver bounce 2 wheeler at house? Any idea?,482,dev,home>house
+can i bargain listed rewards utilize prepaid mode payment by redeeming supercoins as component cash and coins rewards?,483,train,buy>bargain using>utilize part>component
+can i bargain all the listed rewards use prepaid mode payment redeeming supercoins as component cash and coins rewards? Any idea?,483,train,buy>bargain using>use part>component
+Help needed: can i bargain the listed rewards utilize prepaid mode of payment and by redeeming supercoins as portion cash and coins rewards?,483,dev,buy>bargain using>utilize part>portion
+will flipkart deliver the bgauss 2 wheeler to abode? Thanks.,484,train,home>abode
+Quick question: will flipkart deliver the bgauss 2 wheeler to house?,484,train,home>house
+will flipkart deliver the bgauss 2 wheeler to my abode?,484,dev,home>abode
+Help needed: i did not find otp while paying through the credit card no cost emi payment mode what i do?,485,train,get>find
+"Hi, i did not take an otp while paying through the credit card no cost emi payment mode what should i do?",485,train,get>take
+i not make an otp while paying through the credit card no cost emi payment mode should do? Any idea?,485,dev,get>make
+"Hi, when and many times does a bgauss vehicle involve servicing?",486,train,require>involve
+Help needed: when and how many times does a bgauss vehicle involve servicing?,486,train,require>involve
+"Hi, when many times does a bgauss vehicle necessitate servicing?",486,dev,require>necessitate
+Help needed: while transacting on flipkart platform portion of supercoin pay can i redeem supercoins along a prepaid payment mode offer by any bank?,487,train,part>portion provided>offer
+while transacting flipkart platform portion of supercoin pay can i redeem supercoins along prepaid payment mode furnish by any bank? Thanks.,487,train,part>portion provided>furnish
+while transacting on flipkart platform as portion of supercoin pay can redeem supercoins along with prepaid payment mode offer by any bank? Thanks.,487,dev,part>portion provided>offer
+do come a save tire a bgauss 2 wheeler?,488,train,get>come spare>save tyre>tire
+Quick question: do bring a save tire bgauss 2 wheeler?,488,train,get>bring spare>save tyre>tire
+do i come a extra tire with bgauss 2 wheeler?,488,dev,get>come spare>extra tyre>tire
+Help needed: can i edit my preserved cards?,489,train,delete>edit saved>preserved
+can i erase my preserved cards?,489,train,delete>erase saved>preserved
+"Hi, can erase preserved cards?",489,dev,delete>erase saved>preserved
+is there battery subscription model for ampere magnus ex?,490,train,
+is there a battery subscription model for ampere magnus ex? Thanks.,490,train,
+Quick question: is there a battery subscription model for ampere magnus ex?,490,dev,
+will i have to utilize the same touch number to make a phonepe account as the one connected to my flipkart account? Thanks.,491,train,use>utilize contact>touch create>make linked>connected
+will i have apply the same touch number produce a phonepe account as the one connected to my flipkart account? Thanks.,491,train,use>apply contact>touch create>produce linked>connected
+"Hi, will i have to apply same touch number to produce a phonepe account as the one connected my flipkart account?",491,dev,use>apply contact>touch create>produce linked>connected
+how do i touch ather for 2 wheeler pertain question? Thanks.,492,train,contact>touch related>pertain queries>question
+"Hi, how do i touch ather for 2 wheeler pertain question?",492,train,contact>touch related>pertain queries>question
+Could you tell me how do touch ather 2 wheeler pertain question?,492,dev,contact>touch related>pertain queries>question
+"Hi, i did not take otp while i was paying through the bajaj finserv no cost emi payment mode what should do?",493,train,get>take
+i did not take the otp while was paying through the bajaj finserv no cost emi payment mode what should i do? Any idea?,493,train,get>take
+i not make the otp while i was paying through the bajaj finserv no cost emi payment mode should i do?,493,dev,get>make
+Help needed: is battery subscription model for bounce 2 wheelers?,494,train,
+Quick question: is there a battery subscription model bounce 2 wheelers?,494,train,
+"Hi, is a battery subscription model for bounce 2 wheelers?",494,dev,
+Quick question: i had amount the flipkart money section would wish to transfer it to my bank i ask establish the phonepe contribute to do?,495,train,like>wish need>ask install>establish add>contribute
+"Hi, i had amount in the flipkart money section and would wish transfer to my bank will i want to establish the phonepe bring do?",495,train,like>wish need>want install>establish add>bring
+Quick question: i had some amount in flipkart money section and wish to transfer it to my bank i ask to establish the phonepe bring to do this?,495,dev,like>wish need>ask install>establish add>bring
+Quick question: do i make a extra tire with ampere magnus ex?,496,train,get>make spare>extra tyre>tire
+"Hi, do i make a save tire ampere magnus ex?",496,train,get>make spare>save tyre>tire
+Quick question: do take a extra tire ampere magnus ex?,496,dev,get>take spare>extra tyre>tire
+what is flipkart s credit card emi payment alternative? Thanks.,497,train,option>alternative
+"Hi, what flipkart s credit card emi payment alternative?",497,train,option>alternative
+"Hi, what is flipkart s credit card emi payment alternative?",497,dev,option>alternative
+Could you tell me do i make save tire with an ather 2 wheeler?,498,train,get>make spare>save tyre>tire
+Quick question: do i make a save tire with an ather 2 wheeler?,498,train,get>make spare>save tyre>tire
+do i find a save tire ather 2 wheeler? Any idea?,498,dev,get>find spare>save tyre>tire
+my payment from the bajaj finserv no cost emi payment mode did not go through but the amount been closed card what should i do? Any idea?,499,train,blocked>closed
+my payment from bajaj finserv no cost emi payment mode did not go through but the amount has obstruct on my card what should i do?,499,train,blocked>obstruct
+my payment from the bajaj finserv no cost emi payment mode not go through but the amount has been closed my card what should i do? Thanks.,499,dev,blocked>closed
+Could you tell me how promptly the battery for a bounce 2 wheeler accusation?,500,train,quickly>promptly charge>accusation
+Help needed: how promptly does battery for a bounce 2 wheeler accusation?,500,train,quickly>promptly charge>accusation
+how promptly battery for a bounce 2 wheeler accusation? Thanks.,500,dev,quickly>promptly charge>accusation

@@ -1,0 +1,1501 @@
+query,expected_faq_id,split,substitutions
+what courses are provide master of visual studies in studio art at uoft? Any idea?,1,train,offered>provide
+what courses are provide in master of visual studies in studio art at uoft? Thanks.,1,train,offered>provide
+what courses are provide in master of visual studies in studio art at uoft?,1,dev,offered>provide
+Could you tell me what courses are provide in master visual studies in curatorial studies at uoft?,2,train,offered>provide
+what courses are provide in master of visual studies in curatorial studies at uoft? Any idea?,2,train,offered>provide
+Could you tell me what courses provide in master of visual studies in curatorial studies at uoft?,2,dev,offered>provide
+describe phd in architecture landscape and design curriculum at uoft? Thanks.,3,train,
+describe the phd in architecture landscape design curriculum at uoft?,3,train,
+Could you tell me describe the phd in architecture landscape and design curriculum uoft?,3,dev,
+Quick question: can you explain the structure of adult education community development uoft?,4,train,
+Help needed: can you explain the structure of adult education and community development at uoft?,4,train,
+Help needed: can you explain the structure of adult education community development uoft?,4,dev,
+"Hi, can explain the structure teaching uoft?",5,train,
+Help needed: can you explain structure of teaching at uoft?,5,train,
+Help needed: can you explain the structure teaching at uoft?,5,dev,
+"Hi, can you explain structure of global professional law at uoft?",6,train,
+Quick question: can you explain structure global professional law at uoft?,6,train,
+"Hi, can you explain the structure of global professional law at uoft?",6,dev,
+can you explain structure of germanic literature culture and theory at uoft?,7,train,
+can explain the structure of germanic literature culture and theory at uoft? Any idea?,7,train,
+Help needed: can you explain the structure of germanic literature culture and theory uoft?,7,dev,
+Quick question: can you explain the structure of curriculum and pedagogy at uoft?,8,train,
+Quick question: can you explain structure of curriculum pedagogy uoft?,8,train,
+"Hi, can you explain the structure of curriculum and pedagogy at uoft?",8,dev,
+"Hi, can you explain the structure of spanish at uoft?",9,train,
+can you explain the structure of spanish uoft?,9,train,
+can you explain structure of spanish at uoft?,9,dev,
+Could you tell me where do master of education in counselling psychology global mental health counselling psychology field graduates from uoft typically work?,10,train,
+Help needed: where do master of education in counselling psychology global mental health counselling psychology field graduates uoft typically work?,10,train,
+Quick question: where master education in counselling psychology global mental health counselling psychology field graduates uoft typically work?,10,dev,
+Help needed: what topic will i survey in global professional law uoft?,11,train,subjects>topic study>survey
+what topic will i survey in global professional law at uoft? Any idea?,11,train,subjects>topic study>survey
+Could you tell me what topic survey global professional law at uoft?,11,dev,subjects>topic study>survey
+what are the vocation prognosis for doctor of education in counselling psychology counselling psychotherapy field graduates from uoft? Any idea?,12,train,career>vocation prospects>prognosis
+Quick question: what are the vocation prognosis for doctor of education in counselling psychology counselling psychotherapy field graduates from uoft?,12,train,career>vocation prospects>prognosis
+what are the vocation prognosis doctor education counselling psychology counselling psychotherapy field graduates uoft?,12,dev,career>vocation prospects>prognosis
+"Hi, what makes counselling and clinical psychology field in clinical psychology utsc curriculum at uoft unusual?",13,train,program>curriculum unique>unusual
+what makes the counselling and clinical psychology field in clinical psychology utsc curriculum at uoft unusual? Any idea?,13,train,program>curriculum unique>unusual
+what makes the counselling and clinical psychology field clinical psychology utsc curriculum at uoft unequaled? Any idea?,13,dev,program>curriculum unique>unequaled
+can you explain the structure of educational leadership and policy at uoft? Thanks.,14,train,
+can explain the structure of educational leadership policy at uoft? Thanks.,14,train,
+can you explain the structure of educational leadership and policy uoft? Any idea?,14,dev,
+Could you tell me what research chance exist in master education counselling psychology global mental health counselling psychology field at uoft?,15,train,opportunities>chance
+Could you tell me what research chance exist master of education counselling psychology global mental health counselling psychology field uoft?,15,train,opportunities>chance
+what research chance exist in master of education in counselling psychology global mental health counselling psychology field at uoft?,15,dev,opportunities>chance
+Help needed: can explain the structure germanic languages and literatures at uoft?,16,train,
+can explain structure germanic languages literatures at uoft? Any idea?,16,train,
+Could you tell me can you explain the structure of germanic languages and literatures at uoft?,16,dev,
+can explain the structure of health informatics at uoft? Any idea?,17,train,
+Help needed: can explain the structure of health informatics at uoft?,17,train,
+can explain structure health informatics at uoft?,17,dev,
+Quick question: what topic will i survey master of architecture post professional uoft?,18,train,subjects>topic study>survey
+Could you tell me what topic i survey in master of architecture post professional uoft?,18,train,subjects>topic study>survey
+what topic will i survey in master of architecture post professional at uoft? Thanks.,18,dev,subjects>topic study>survey
+can you explain the structure of school and clinical child psychology at uoft? Any idea?,19,train,
+Help needed: can you explain the structure of school and clinical child psychology at uoft?,19,train,
+Could you tell me can you explain the structure of school clinical child psychology at uoft?,19,dev,
+Help needed: what topic will i study in adult education and community development uoft?,20,train,subjects>topic
+Help needed: what topic will i study in adult education and community development at uoft?,20,train,subjects>topic
+what topic will i study adult education and community development at uoft?,20,dev,subjects>topic
+Help needed: can explain structure of political science at uoft?,21,train,
+Quick question: can you explain the structure of political science uoft?,21,train,
+can you explain the structure of political science at uoft? Any idea?,21,dev,
+Could you tell me what subjects i study in curriculum and pedagogy at uoft?,22,train,
+Quick question: what subjects i study in curriculum and pedagogy uoft?,22,train,
+what subjects will i study curriculum and pedagogy at uoft? Any idea?,22,dev,
+Help needed: can you explain the structure immunology uoft?,23,train,
+Could you tell me can explain the structure of immunology at uoft?,23,train,
+"Hi, can you explain structure immunology at uoft?",23,dev,
+what research chance exist in master of education in counselling psychology global mental health counselling psychology field dual degree programs at uoft?,24,train,opportunities>chance
+"Hi, what research chance exist in master education in counselling psychology global mental health counselling psychology field dual degree programs at uoft?",24,train,opportunities>chance
+what research chance exist in master education in counselling psychology global mental health counselling psychology field dual degree programs uoft? Any idea?,24,dev,opportunities>chance
+what are the admission prerequisite master of applied science masc at uoft? Thanks.,25,train,requirements>prerequisite
+what the admission prerequisite for master of applied science masc at uoft?,25,train,requirements>prerequisite
+what are the admission prerequisite for master of applied science masc at uoft?,25,dev,requirements>prerequisite
+what are the vocation prognosis master forest conservation alumna uoft? Thanks.,26,train,career>vocation prospects>prognosis graduates>alumna
+what the vocation prognosis master of forest conservation alumnus uoft? Any idea?,26,train,career>vocation prospects>prognosis graduates>alumnus
+Could you tell me what are the vocation prognosis for master of forest conservation alum from uoft?,26,dev,career>vocation prospects>prognosis graduates>alum
+"Hi, what makes the global executive master business administration for healthcare the life sciences gemba hls plan uoft unequaled?",27,train,program>plan unique>unequaled
+Could you tell me what makes the global executive master of business administration for healthcare and the life sciences gemba hls plan at uoft singular?,27,train,program>plan unique>singular
+what makes global executive master of business administration for healthcare the life sciences gemba hls plan uoft singular? Any idea?,27,dev,program>plan unique>singular
+can explain the structure of comparative literature uoft? Any idea?,28,train,
+Help needed: can explain structure comparative literature at uoft?,28,train,
+Could you tell me can you explain the structure of comparative literature at uoft?,28,dev,
+Help needed: what can i do with a degree in mechanical engineering from uoft?,29,train,
+"Hi, what can i a degree in mechanical engineering from uoft?",29,train,
+what do with degree in mechanical engineering from uoft? Any idea?,29,dev,
+Could you tell me can you explain structure health administration at uoft?,30,train,
+"Hi, can you explain the structure of health administration at uoft?",30,train,
+Help needed: can you explain structure health administration at uoft?,30,dev,
+"Hi, describe the teaching curriculum at uoft?",31,train,
+"Hi, describe the teaching curriculum uoft?",31,train,
+Help needed: describe the teaching curriculum at uoft?,31,dev,
+can you explain structure of drama theatre performance studies at uoft? Thanks.,32,train,
+"Hi, can you explain structure drama theatre and performance studies at uoft?",32,train,
+Could you tell me can you explain structure drama theatre and performance studies at uoft?,32,dev,
+can you explain structure of child study education at uoft? Thanks.,33,train,
+Help needed: can you explain the structure of child study and education at uoft?,33,train,
+Could you tell me can you explain structure child study and education at uoft?,33,dev,
+Quick question: what courses are provide in doctor of education in counselling psychology counselling psychotherapy field at uoft?,34,train,offered>provide
+"Hi, what courses are provide in doctor education in counselling psychology counselling psychotherapy field at uoft?",34,train,offered>provide
+Help needed: what courses are provide in doctor of education in counselling psychology counselling psychotherapy field at uoft?,34,dev,offered>provide
+Could you tell me what courses provide in doctor of education in counselling psychology school psychology field at uoft?,35,train,offered>provide
+Could you tell me what courses are provide in doctor of education counselling psychology school psychology field at uoft?,35,train,offered>provide
+"Hi, what courses provide in doctor of education in counselling psychology school psychology field at uoft?",35,dev,offered>provide
+can explain the structure of half time program uoft?,36,train,
+Help needed: can you explain the structure of half time program at uoft?,36,train,
+can you explain the structure of half time program uoft? Thanks.,36,dev,
+where doctor education in counselling psychology school psychology field graduates from uoft typically work? Any idea?,37,train,
+where do doctor education in counselling psychology school psychology field graduates from uoft typically work? Thanks.,37,train,
+"Hi, where do doctor education in counselling psychology school psychology field graduates from uoft typically work?",37,dev,
+"Hi, what subjects i study in spanish at uoft?",38,train,
+Could you tell me what subjects will i study in spanish at uoft?,38,train,
+Could you tell me what subjects study in spanish at uoft?,38,dev,
+what makes counselling and clinical psychology field in clinical counselling psychology oise curriculum uoft unparalleled? Thanks.,39,train,program>curriculum unique>unparalleled
+what makes the counselling and clinical psychology field in clinical and counselling psychology oise curriculum at uoft singular? Any idea?,39,train,program>curriculum unique>singular
+Quick question: what makes the counselling clinical psychology field in clinical and counselling psychology oise curriculum at uoft singular?,39,dev,program>curriculum unique>singular
+Could you tell me can you explain the structure one year mmpa at uoft?,40,train,
+Quick question: can you explain the structure of one year mmpa at uoft?,40,train,
+Help needed: can you explain the structure of one year mmpa at uoft?,40,dev,
+Quick question: can explain the structure of anthropology at uoft?,41,train,
+Quick question: can you explain the structure anthropology uoft?,41,train,
+"Hi, can you explain the structure anthropology uoft?",41,dev,
+what subjects will study in bachelor of arts visual studies uoft? Thanks.,42,train,
+Help needed: what subjects i study in bachelor of arts visual studies at uoft?,42,train,
+Could you tell me what subjects will study in bachelor of arts visual studies at uoft?,42,dev,
+what topic i study in electrical and computer engineering uoft? Thanks.,43,train,subjects>topic
+what topic will study in electrical and computer engineering uoft?,43,train,subjects>topic
+what topic will i study in electrical and computer engineering at uoft?,43,dev,subjects>topic
+"Hi, what topic will i study in master of forest conservation uoft?",44,train,subjects>topic
+what topic study in master of forest conservation uoft? Thanks.,44,train,subjects>topic
+what topic will i study in master of forest conservation at uoft? Thanks.,44,dev,subjects>topic
+what topic i study political science at uoft? Thanks.,45,train,subjects>topic
+"Hi, what topic i study in political science uoft?",45,train,subjects>topic
+Help needed: what topic will i study in political science at uoft?,45,dev,subjects>topic
+can you explain the structure of higher education at uoft? Thanks.,46,train,
+Quick question: can you explain the structure of higher education at uoft?,46,train,
+can explain the structure higher education at uoft?,46,dev,
+what sort of research come germanic literature culture and theory at uoft? Thanks.,47,train,kind>sort done>come
+Could you tell me what sort research come in germanic literature culture and theory uoft?,47,train,kind>sort done>come
+"Hi, what sort of research come in germanic literature culture theory at uoft?",47,dev,kind>sort done>come
+"Hi, can you explain structure of ecology and evolutionary biology uoft?",48,train,
+can you explain the structure of ecology and evolutionary biology at uoft? Any idea?,48,train,
+can explain the structure of ecology evolutionary biology at uoft? Thanks.,48,dev,
+what research chance exist doctor of philosophy in school clinical child psychology uoft?,49,train,opportunities>chance
+Quick question: what research chance exist in doctor of philosophy in school clinical child psychology uoft?,49,train,opportunities>chance
+what research chance exist in doctor of philosophy in school clinical child psychology at uoft? Thanks.,49,dev,opportunities>chance
+what are the vocation prognosis for biotechnology alumnus from uoft? Thanks.,50,train,career>vocation prospects>prognosis graduates>alumnus
+Could you tell me what are the vocation prognosis for biotechnology alumnus uoft?,50,train,career>vocation prospects>prognosis graduates>alumnus
+what are the vocation prognosis for biotechnology alumnus from uoft? Any idea?,50,dev,career>vocation prospects>prognosis graduates>alumnus
+Quick question: can you explain the structure of medical science uoft?,51,train,
+Quick question: can you explain structure of medical science at uoft?,51,train,
+"Hi, can explain the structure of medical science at uoft?",51,dev,
+Could you tell me what sort of research is come in child study and education at uoft?,52,train,kind>sort done>come
+Quick question: what sort of research is come in child study education at uoft?,52,train,kind>sort done>come
+what sort of research come child study and education at uoft? Any idea?,52,dev,kind>sort done>come
+Help needed: what jobs can i bring after phd in architecture landscape and design at uoft?,53,train,get>bring
+what jobs can i bring phd in architecture landscape and design at uoft?,53,train,get>bring
+what jobs can i find after phd in architecture landscape and design at uoft?,53,dev,get>find
+what sort research is come in master urban design post professional at uoft? Any idea?,54,train,kind>sort done>come
+what sort of research is come in master urban design post professional uoft? Thanks.,54,train,kind>sort done>come
+what sort of research is come in master urban design post professional at uoft? Thanks.,54,dev,kind>sort done>come
+"Hi, what topic will i survey in canadian law in a global context at uoft?",55,train,subjects>topic study>survey
+what topic i survey in canadian law in global context uoft? Any idea?,55,train,subjects>topic study>survey
+Could you tell me what topic will i survey in canadian law in global context uoft?,55,dev,subjects>topic study>survey
+Could you tell me what topic will survey in master of urban design post professional at uoft?,56,train,subjects>topic study>survey
+what topic will i survey in master of urban design post professional at uoft? Any idea?,56,train,subjects>topic study>survey
+Could you tell me what topic i survey master of urban design post professional at uoft?,56,dev,subjects>topic study>survey
+Quick question: where master of visual studies in studio art alumna from uoft typically work?,57,train,graduates>alumna
+Quick question: where do master of visual studies studio art alumnus from uoft typically work?,57,train,graduates>alumnus
+Could you tell me where master of visual studies in studio art alum from uoft typically work?,57,dev,graduates>alum
+Could you tell me can you explain the structure of molecular genetics at uoft?,58,train,
+"Hi, can explain the structure of molecular genetics at uoft?",58,train,
+Help needed: can explain structure of molecular genetics at uoft?,58,dev,
+Help needed: can you explain the structure of financial economics at uoft?,59,train,
+can you explain the structure of financial economics uoft? Thanks.,59,train,
+"Hi, can you explain structure of financial economics at uoft?",59,dev,
+can explain structure of master of urban design post professional at uoft?,60,train,
+can you explain structure of master urban design post professional at uoft? Any idea?,60,train,
+can you explain the structure of master of urban design post professional at uoft? Any idea?,60,dev,
+Quick question: what subjects will i study in anthropology uoft?,61,train,
+Quick question: what subjects will i study in anthropology at uoft?,61,train,
+what subjects will i study anthropology at uoft?,61,dev,
+what topic i study in biotechnology at uoft?,62,train,subjects>topic
+Quick question: what topic will i study in biotechnology at uoft?,62,train,subjects>topic
+Help needed: what topic will i study in biotechnology uoft?,62,dev,subjects>topic
+Could you tell me what can i do a degree in global professional law from uoft?,63,train,
+"Hi, what can do with a degree global professional law uoft?",63,train,
+Quick question: what do a degree in global professional law from uoft?,63,dev,
+what subjects will i study in ecology and evolutionary biology uoft? Any idea?,64,train,
+what subjects will i study in ecology and evolutionary biology at uoft? Thanks.,64,train,
+what subjects will i study in ecology and evolutionary biology uoft? Thanks.,64,dev,
+"Hi, can explain the structure of english at uoft?",65,train,
+"Hi, can you explain structure of english at uoft?",65,train,
+can you explain the structure of english at uoft? Thanks.,65,dev,
+what are the requirement for global executive master business administration for healthcare and life sciences gemba hls at uoft?,66,train,prerequisites>requirement
+Could you tell me what are the requirement for global executive master business administration for healthcare and the life sciences gemba hls uoft?,66,train,prerequisites>requirement
+Help needed: what requirement global executive master of business administration healthcare and the life sciences gemba hls at uoft?,66,dev,prerequisites>requirement
+"Hi, what sort of research is come in electrical and computer engineering at uoft?",67,train,kind>sort done>come
+what sort of research come electrical and computer engineering at uoft? Any idea?,67,train,kind>sort done>come
+what sort of research come in electrical and computer engineering at uoft?,67,dev,kind>sort done>come
+Could you tell me what the vocation prognosis for master of urban design post professional alumnus from uoft?,68,train,career>vocation prospects>prognosis graduates>alumnus
+"Hi, what are the vocation prognosis for master of urban design post professional alumnus uoft?",68,train,career>vocation prospects>prognosis graduates>alumnus
+what vocation prognosis master urban design post professional alumnus from uoft? Any idea?,68,dev,career>vocation prospects>prognosis graduates>alumnus
+Help needed: what are the vocation prognosis sure summer undergraduate research in engineering alumnus mcgill?,69,train,career>vocation prospects>prognosis graduates>alumnus
+Could you tell me what are the vocation prognosis for sure summer undergraduate research in engineering alumnus from mcgill?,69,train,career>vocation prospects>prognosis graduates>alumnus
+Quick question: what are the vocation prognosis sure summer undergraduate research in engineering alumnus from mcgill?,69,dev,career>vocation prospects>prognosis graduates>alumnus
+Quick question: what can with a degree in aerospace science engineering from uoft?,70,train,
+Quick question: what can i degree aerospace science and engineering from uoft?,70,train,
+what can do a degree in aerospace science engineering from uoft?,70,dev,
+Help needed: can you explain the structure finance at uoft?,71,train,
+can you explain the structure of finance uoft? Thanks.,71,train,
+can you explain the structure of finance at uoft? Any idea?,71,dev,
+Help needed: describe the one year mmpa program uoft?,72,train,curriculum>program
+Quick question: describe the one year mmpa program at uoft?,72,train,curriculum>program
+"Hi, describe the one year mmpa program uoft?",72,dev,curriculum>program
+Quick question: can explain the structure of biotechnology uoft?,73,train,
+can you explain the structure biotechnology at uoft? Thanks.,73,train,
+Help needed: can you explain the structure of biotechnology uoft?,73,dev,
+what are fundamental boast of geography at uoft? Thanks.,74,train,key>fundamental features>boast
+what are fundamental boast geography at uoft?,74,train,key>fundamental features>boast
+Could you tell me what the important boast of geography uoft?,74,dev,key>important features>boast
+can explain the structure of master applied science masc uoft?,75,train,
+Quick question: can you explain the structure master of applied science masc at uoft?,75,train,
+Help needed: can you explain structure of master of applied science masc at uoft?,75,dev,
+can you explain structure of developmental psychology and education uoft?,76,train,
+can explain the structure developmental psychology and education at uoft? Thanks.,76,train,
+can explain structure of developmental psychology and education uoft?,76,dev,
+where master of education developmental psychology education graduates from uoft typically work? Any idea?,77,train,
+Quick question: where master of education in developmental psychology education graduates from uoft typically work?,77,train,
+Quick question: where do master of education in developmental psychology education graduates from uoft typically work?,77,dev,
+can you explain the structure geography at uoft? Thanks.,78,train,
+Quick question: can explain the structure of geography uoft?,78,train,
+can you explain the structure of geography at uoft? Any idea?,78,dev,
+"Hi, can you explain the structure of sure summer undergraduate research in engineering mcgill?",79,train,
+can you explain the structure of sure summer undergraduate research in engineering at mcgill? Thanks.,79,train,
+can you explain the structure sure summer undergraduate research in engineering at mcgill? Thanks.,79,dev,
+Help needed: what topic i survey in dalla lana school of public health at uoft?,80,train,subjects>topic study>survey
+Could you tell me what topic will survey in dalla lana school of public health uoft?,80,train,subjects>topic study>survey
+what topic will i survey in dalla lana school of public health at uoft? Any idea?,80,dev,subjects>topic study>survey
+Could you tell me what topic will survey in social justice education uoft?,81,train,subjects>topic study>survey
+what topic will i survey in social justice education at uoft? Any idea?,81,train,subjects>topic study>survey
+Quick question: what topic survey in social justice education at uoft?,81,dev,subjects>topic study>survey
+Could you tell me can you explain structure of master of science in forestry uoft?,82,train,
+"Hi, can you explain the structure of master science in forestry at uoft?",82,train,
+"Hi, can explain the structure of master science in forestry at uoft?",82,dev,
+Could you tell me can explain the structure of counselling clinical psychology at utsc at uoft?,83,train,
+can you explain the structure of counselling clinical psychology utsc at uoft? Any idea?,83,train,
+Could you tell me can you explain the structure of counselling clinical psychology utsc at uoft?,83,dev,
+Help needed: what jobs can i bring canadian law in a global context at uoft?,84,train,get>bring
+Help needed: what jobs can make after canadian law in a global context at uoft?,84,train,get>make
+Help needed: what jobs can i bring canadian law a global context at uoft?,84,dev,get>bring
+Help needed: what can do with a degree in physical therapy uoft?,85,train,
+what can i do degree physical therapy from uoft?,85,train,
+what can do with a degree in physical therapy uoft? Any idea?,85,dev,
+what topic will i report public policy uoft?,86,train,subjects>topic study>report
+what topic will i report in public policy at uoft?,86,train,subjects>topic study>report
+Help needed: what topic will i survey in public policy at uoft?,86,dev,subjects>topic study>survey
+what are admission demand counselling psychology uoft? Thanks.,87,train,requirements>demand
+Help needed: what are the admission prerequisite for counselling psychology at uoft?,87,train,requirements>prerequisite
+Could you tell me what are the admission demand counselling psychology at uoft?,87,dev,requirements>demand
+Could you tell me what can i with a degree in art history uoft?,88,train,
+what can i do with degree in art history from uoft?,88,train,
+what can i with degree in art history from uoft? Any idea?,88,dev,
+"Hi, what can i do with a degree financial economics uoft?",89,train,
+"Hi, what can i do with a degree in financial economics from uoft?",89,train,
+Help needed: what i do a degree in financial economics from uoft?,89,dev,
+Quick question: what can with a degree health administration uoft?,90,train,
+what i do with a degree health administration from uoft? Thanks.,90,train,
+what can i do with degree in health administration from uoft? Thanks.,90,dev,
+Quick question: can you explain the structure museum studies uoft?,91,train,
+"Hi, can you explain the structure museum studies at uoft?",91,train,
+"Hi, can you explain the structure of museum studies at uoft?",91,dev,
+"Hi, what are vocation prognosis for school and clinical child psychology graduates uoft?",92,train,career>vocation prospects>prognosis
+Help needed: what are the vocation prognosis for school and clinical child psychology graduates from uoft?,92,train,career>vocation prospects>prognosis
+Help needed: what vocation prognosis for school clinical child psychology graduates from uoft?,92,dev,career>vocation prospects>prognosis
+"Hi, what are the vocation prognosis for speech language pathology practitioner graduates uoft?",93,train,career>vocation prospects>prognosis
+what vocation prognosis for speech language pathology practitioner graduates from uoft?,93,train,career>vocation prospects>prognosis
+Could you tell me what vocation prognosis for speech language pathology practitioner graduates from uoft?,93,dev,career>vocation prospects>prognosis
+what are the vocation prognosis social work graduates from uoft?,94,train,career>vocation prospects>prognosis
+what are the vocation prognosis for social work graduates from uoft?,94,train,career>vocation prospects>prognosis
+Quick question: what are the vocation prognosis social work graduates from uoft?,94,dev,career>vocation prospects>prognosis
+Help needed: how can i implement to postdoctoral studies in school architecture at mcgill?,95,train,apply>implement
+how implement to postdoctoral studies the school of architecture mcgill?,95,train,apply>implement
+Quick question: how can implement postdoctoral studies in the school of architecture mcgill?,95,dev,apply>implement
+can explain the structure global affairs at uoft?,96,train,
+can you explain the structure of global affairs uoft?,96,train,
+can explain structure of global affairs uoft? Any idea?,96,dev,
+what subjects will i study in germanic literature culture and theory at uoft? Any idea?,97,train,
+Quick question: what subjects i study in germanic literature culture and theory at uoft?,97,train,
+what subjects i study germanic literature culture and theory uoft? Any idea?,97,dev,
+what can i do with a degree in executive education from uoft? Any idea?,98,train,
+Quick question: what can i do a degree executive education from uoft?,98,train,
+what can i a degree in executive education from uoft? Any idea?,98,dev,
+Help needed: can you explain structure of occupational therapy at uoft?,99,train,
+Quick question: can you explain the structure occupational therapy uoft?,99,train,
+can explain structure occupational therapy at uoft?,99,dev,
+Help needed: can you explain the structure genetic counselling at uoft?,100,train,
+Could you tell me can explain the structure genetic counselling at uoft?,100,train,
+"Hi, can you explain the structure of genetic counselling at uoft?",100,dev,
+Quick question: what subjects will study in master of applied science masc uoft?,101,train,
+what subjects will i study in master of applied science masc uoft?,101,train,
+Quick question: what subjects will i study in master of applied science masc at uoft?,101,dev,
+Could you tell me can you explain structure urban innovation at uoft?,102,train,
+can explain the structure urban innovation at uoft? Any idea?,102,train,
+can explain the structure of urban innovation at uoft? Any idea?,102,dev,
+Could you tell me what subjects will i study in european eurasian studies at uoft?,103,train,
+Quick question: what subjects will i study in european and eurasian studies uoft?,103,train,
+what subjects will study in european and eurasian studies at uoft?,103,dev,
+Could you tell me what i do with a degree industrial engineering undergraduate program from uoft?,104,train,
+Quick question: what can i do with degree in industrial engineering undergraduate program uoft?,104,train,
+Help needed: what can do a degree in industrial engineering undergraduate program uoft?,104,dev,
+Help needed: can you explain the structure of executive education at uoft?,105,train,
+can you explain the structure of executive education at uoft? Thanks.,105,train,
+Quick question: can explain the structure of executive education at uoft?,105,dev,
+Could you tell me can you explain the structure social justice education at uoft?,106,train,
+can you explain the structure of social justice education at uoft? Any idea?,106,train,
+can you explain structure of social justice education at uoft? Thanks.,106,dev,
+Quick question: what sort research is come in european and eurasian studies at uoft?,107,train,kind>sort done>come
+Help needed: what sort research is come in european and eurasian studies uoft?,107,train,kind>sort done>come
+Could you tell me what sort of research is come in european and eurasian studies uoft?,107,dev,kind>sort done>come
+"Hi, describe the health administration program at uoft?",108,train,curriculum>program
+describe the health administration program at uoft? Thanks.,108,train,curriculum>program
+describe the health administration program at uoft? Any idea?,108,dev,curriculum>program
+Help needed: what makes the master business administration extended full time mba curriculum at uoft singular?,109,train,program>curriculum unique>singular
+Could you tell me what makes the master business administration extended full time mba curriculum at uoft unparalleled?,109,train,program>curriculum unique>unparalleled
+what makes the master business administration extended full time mba curriculum at uoft singular? Any idea?,109,dev,program>curriculum unique>singular
+Quick question: what sort of research is come in english uoft?,110,train,kind>sort done>come
+Could you tell me what sort of research is come in english uoft?,110,train,kind>sort done>come
+"Hi, what sort of research is come in english at uoft?",110,dev,kind>sort done>come
+can you explain structure of music at uoft?,111,train,
+can you explain the structure music uoft?,111,train,
+can you explain the structure of music at uoft? Thanks.,111,dev,
+what sort research done in teaching at uoft? Thanks.,112,train,kind>sort
+Quick question: what sort of research is done in teaching at uoft?,112,train,kind>sort
+what sort of research is done in teaching uoft? Any idea?,112,dev,kind>sort
+Quick question: where master of business administration extended full time mba alumnus uoft typically work?,113,train,graduates>alumnus
+Could you tell me where master of business administration extended full time mba alumnus uoft typically work?,113,train,graduates>alumnus
+where do master of business administration extended full time mba alumnus from uoft typically work? Thanks.,113,dev,graduates>alumnus
+Quick question: what sort of research is come in anthropology uoft?,114,train,kind>sort done>come
+Quick question: what sort of research come in anthropology at uoft?,114,train,kind>sort done>come
+what sort of research is come in anthropology at uoft? Any idea?,114,dev,kind>sort done>come
+Could you tell me what topic will study in buddy program at mcgill?,115,train,subjects>topic
+what topic will i study in buddy program at mcgill?,115,train,subjects>topic
+Could you tell me what topic i study buddy program at mcgill?,115,dev,subjects>topic
+"Hi, can you explain the structure of physics uoft?",116,train,
+"Hi, can you explain the structure of physics at uoft?",116,train,
+can you explain the structure of physics at uoft? Thanks.,116,dev,
+what can i with degree in management and professional accounting uoft?,117,train,
+Help needed: what can i do degree in management and professional accounting from uoft?,117,train,
+Quick question: what can with a degree management and professional accounting from uoft?,117,dev,
+what subjects study in language literacies education at uoft? Thanks.,118,train,
+Help needed: what subjects will i study in language literacies education at uoft?,118,train,
+Could you tell me what subjects will i study in language and literacies education at uoft?,118,dev,
+Help needed: what sort of research is come in master landscape architecture at uoft?,119,train,kind>sort done>come
+what sort of research is come in master landscape architecture at uoft? Thanks.,119,train,kind>sort done>come
+Quick question: what sort of research is come in master of landscape architecture uoft?,119,dev,kind>sort done>come
+can you explain structure mineral engineering undergraduate program at uoft? Any idea?,120,train,
+can you explain the structure of mineral engineering undergraduate program uoft? Any idea?,120,train,
+Help needed: can explain structure of mineral engineering undergraduate program at uoft?,120,dev,
+"Hi, what sort of research come in master of science in forestry at uoft?",121,train,kind>sort done>come
+what sort of research come in master of science forestry at uoft? Any idea?,121,train,kind>sort done>come
+Help needed: what sort of research is come in master of science in forestry at uoft?,121,dev,kind>sort done>come
+what topic will report in educational leadership and policy at uoft?,122,train,subjects>topic study>report
+what topic will i survey in educational leadership and policy at uoft?,122,train,subjects>topic study>survey
+Could you tell me what topic will i report in educational leadership and policy at uoft?,122,dev,subjects>topic study>report
+Quick question: what makes the slavic and east european languages and cultures plan at uoft unparalleled?,123,train,program>plan unique>unparalleled
+what makes slavic and east european languages cultures curriculum at uoft unusual?,123,train,program>curriculum unique>unusual
+"Hi, what makes the slavic and east european languages and cultures plan at uoft unusual?",123,dev,program>plan unique>unusual
+"Hi, can you explain the structure buddy program at mcgill?",124,train,
+Could you tell me can explain the structure of buddy program at mcgill?,124,train,
+Help needed: can you explain the structure of buddy program at mcgill?,124,dev,
+Quick question: what topic will i survey social work at uoft?,125,train,subjects>topic study>survey
+what topic will i survey social work at uoft?,125,train,subjects>topic study>survey
+what topic will i survey in social work at uoft? Any idea?,125,dev,subjects>topic study>survey
+where do counselling and clinical psychology field clinical psychology utsc alumna uoft typically work? Any idea?,126,train,graduates>alumna
+Could you tell me where do counselling clinical psychology field in clinical psychology utsc alumna uoft typically work?,126,train,graduates>alumna
+"Hi, where do counselling and clinical psychology field in clinical psychology utsc alumna from uoft typically work?",126,dev,graduates>alumna
+"Hi, what sort of research is come in ecology and evolutionary biology at uoft?",127,train,kind>sort done>come
+Could you tell me what sort research come in ecology evolutionary biology at uoft?,127,train,kind>sort done>come
+"Hi, what sort of research is come ecology and evolutionary biology uoft?",127,dev,kind>sort done>come
+Help needed: what are the vocation prognosis for medical science graduates from uoft?,128,train,career>vocation prospects>prognosis
+Help needed: what are the vocation prognosis for medical science graduates uoft?,128,train,career>vocation prospects>prognosis
+what are vocation prognosis medical science graduates uoft? Thanks.,128,dev,career>vocation prospects>prognosis
+Quick question: what research chance exist in counselling and clinical psychology field in clinical and counselling psychology oise at uoft?,129,train,opportunities>chance
+Help needed: what research chance exist in counselling clinical psychology field clinical counselling psychology oise at uoft?,129,train,opportunities>chance
+Could you tell me what research chance exist in counselling and clinical psychology field in clinical counselling psychology oise at uoft?,129,dev,opportunities>chance
+Quick question: what i do a degree in innovation law and technology uoft?,130,train,
+"Hi, what can i with a degree in innovation law technology from uoft?",130,train,
+Help needed: what do with degree in innovation law and technology from uoft?,130,dev,
+Quick question: what jobs i find after counselling clinical psychology at utsc at uoft?,131,train,get>find
+what jobs can i make after counselling clinical psychology at utsc at uoft?,131,train,get>make
+Quick question: what jobs can find counselling clinical psychology at utsc at uoft?,131,dev,get>find
+what topic will study in drama theatre and performance studies at uoft?,132,train,subjects>topic
+Quick question: what topic will i study drama theatre and performance studies at uoft?,132,train,subjects>topic
+"Hi, what topic will study drama theatre performance studies at uoft?",132,dev,subjects>topic
+Quick question: what research region in sure summer undergraduate research in engineering at mcgill?,133,train,areas>region
+Help needed: what are the research region in sure summer undergraduate research in engineering at mcgill?,133,train,areas>region
+what are research region sure summer undergraduate research in engineering at mcgill? Any idea?,133,dev,areas>region
+"Hi, can explain the structure of international human rights program at uoft?",134,train,
+"Hi, can explain structure of international human rights program at uoft?",134,train,
+Could you tell me can you explain the structure international human rights program at uoft?,134,dev,
+Could you tell me what courses provide master of business administration extended full time mba uoft?,135,train,offered>provide
+"Hi, what courses provide in master business administration extended full time mba at uoft?",135,train,offered>provide
+"Hi, what courses are provide in master of business administration extended full time mba at uoft?",135,dev,offered>provide
+Quick question: what jobs can i take laws law in action within schools uoft?,136,train,get>take
+Could you tell me what jobs can i make after laws law in action within schools at uoft?,136,train,get>make
+Could you tell me what jobs can i find after laws law in action within schools at uoft?,136,dev,get>find
+how can i utilize to counselling and clinical psychology field clinical psychology utsc at uoft? Any idea?,137,train,apply>utilize
+how can i employ to counselling clinical psychology field in clinical psychology utsc uoft? Thanks.,137,train,apply>employ
+Help needed: how can implement to counselling and clinical psychology field in clinical psychology utsc uoft?,137,dev,apply>implement
+Help needed: what can i do a degree in urban design from uoft?,138,train,
+what can i do a degree urban design from uoft? Thanks.,138,train,
+what can i a degree in urban design from uoft?,138,dev,
+what sort of research is come in medical science at uoft? Thanks.,139,train,kind>sort done>come
+what sort research come in medical science uoft? Thanks.,139,train,kind>sort done>come
+Help needed: what sort of research is come medical science uoft?,139,dev,kind>sort done>come
+what can i degree in urban innovation uoft? Any idea?,140,train,
+"Hi, what i do with degree in urban innovation from uoft?",140,train,
+Quick question: what i a degree in urban innovation from uoft?,140,dev,
+Help needed: what topic will i study in applied computing uoft?,141,train,subjects>topic
+what topic will i study in applied computing at uoft? Thanks.,141,train,subjects>topic
+Could you tell me what topic will study applied computing uoft?,141,dev,subjects>topic
+Could you tell me what sort of research is come in health administration at uoft?,142,train,kind>sort done>come
+Quick question: what sort of research is come in health administration at uoft?,142,train,kind>sort done>come
+"Hi, what sort of research is come in health administration at uoft?",142,dev,kind>sort done>come
+Help needed: can you explain the structure urban design at uoft?,143,train,
+Help needed: can explain the structure of urban design uoft?,143,train,
+Quick question: can you explain the structure of urban design at uoft?,143,dev,
+Could you tell me can you explain the structure of applied computing uoft?,144,train,
+can you explain structure of applied computing at uoft?,144,train,
+Could you tell me can you explain structure applied computing at uoft?,144,dev,
+can you explain the structure of forest conservation uoft? Thanks.,145,train,
+Help needed: can you explain the structure of forest conservation at uoft?,145,train,
+can you explain the structure of forest conservation uoft?,145,dev,
+what subjects study occupational therapy uoft?,146,train,
+what subjects will i study occupational therapy uoft? Thanks.,146,train,
+Quick question: what subjects will study in occupational therapy at uoft?,146,dev,
+what subjects i survey minors and certificates at uoft? Any idea?,147,train,study>survey
+"Hi, what subjects will i survey in minors certificates uoft?",147,train,study>survey
+Could you tell me what subjects survey minors certificates at uoft?,147,dev,study>survey
+Quick question: what sort of research is come in health informatics at uoft?,148,train,kind>sort done>come
+"Hi, what sort of research is come in health informatics at uoft?",148,train,kind>sort done>come
+Quick question: what sort of research is come health informatics at uoft?,148,dev,kind>sort done>come
+what topic will i survey in two year mmpa at uoft? Any idea?,149,train,subjects>topic study>survey
+what topic will i survey in two year mmpa at uoft? Thanks.,149,train,subjects>topic study>survey
+"Hi, what topic i survey two year mmpa at uoft?",149,dev,subjects>topic study>survey
+Could you tell me what sort of research come art history at uoft?,150,train,kind>sort done>come
+what sort of research is come in art history at uoft? Any idea?,150,train,kind>sort done>come
+Help needed: what sort of research is come in art history at uoft?,150,dev,kind>sort done>come
+describe the health informatics curriculum at uoft? Any idea?,151,train,
+Could you tell me describe the health informatics curriculum at uoft?,151,train,
+Help needed: describe the health informatics curriculum uoft?,151,dev,
+what sort research come school and clinical child psychology at uoft? Thanks.,152,train,kind>sort done>come
+Help needed: what sort of research come in school and clinical child psychology at uoft?,152,train,kind>sort done>come
+Help needed: what sort of research is come in school and clinical child psychology at uoft?,152,dev,kind>sort done>come
+Quick question: can you explain structure application deadlines closing dates at uoft?,153,train,
+Help needed: can you explain structure of application deadlines closing dates at uoft?,153,train,
+Quick question: can explain structure of application deadlines closing dates at uoft?,153,dev,
+can you explain the structure health policy management and evaluation at uoft? Any idea?,154,train,
+Quick question: can you explain the structure of health policy management and evaluation uoft?,154,train,
+can you explain structure of health policy management and evaluation at uoft?,154,dev,
+Quick question: what are vocation prognosis for drama theatre and performance studies alum from uoft?,155,train,career>vocation prospects>prognosis graduates>alum
+Could you tell me what are the vocation prognosis for drama theatre and performance studies alumnus uoft?,155,train,career>vocation prospects>prognosis graduates>alumnus
+Could you tell me what the vocation prognosis for drama theatre and performance studies alumna from uoft?,155,dev,career>vocation prospects>prognosis graduates>alumna
+Help needed: what can i do with a degree in counselling psychology from uoft?,156,train,
+what can i do a degree in counselling psychology uoft? Any idea?,156,train,
+what can i do a degree in counselling psychology from uoft? Thanks.,156,dev,
+Quick question: what are the admission demand for industrial engineering uoft?,157,train,requirements>demand
+Quick question: what are admission prerequisite for industrial engineering uoft?,157,train,requirements>prerequisite
+what are the admission demand for industrial engineering at uoft? Any idea?,157,dev,requirements>demand
+Could you tell me what are admission prerequisite two year mmpa at uoft?,158,train,requirements>prerequisite
+what the admission prerequisite for two year mmpa at uoft? Thanks.,158,train,requirements>prerequisite
+Quick question: what are admission demand for two year mmpa at uoft?,158,dev,requirements>demand
+Quick question: what sort research is come in molecular genetics uoft?,159,train,kind>sort done>come
+"Hi, what sort research is come molecular genetics at uoft?",159,train,kind>sort done>come
+Quick question: what sort of research come molecular genetics uoft?,159,dev,kind>sort done>come
+Could you tell me what the vocation prognosis germanic languages and literatures alumna from uoft?,160,train,career>vocation prospects>prognosis graduates>alumna
+what are the vocation prognosis for germanic languages literatures alumna from uoft? Thanks.,160,train,career>vocation prospects>prognosis graduates>alumna
+Could you tell me what are the vocation prognosis for germanic languages and literatures alumnus from uoft?,160,dev,career>vocation prospects>prognosis graduates>alumnus
+what are the research strengths of educational leadership policy at uoft?,161,train,
+Could you tell me what are research strengths of educational leadership and policy at uoft?,161,train,
+"Hi, what are the research strengths of educational leadership and policy at uoft?",161,dev,
+what the admission prerequisite for global professional law uoft? Thanks.,162,train,requirements>prerequisite
+what are admission prerequisite for global professional law uoft? Thanks.,162,train,requirements>prerequisite
+what are the admission prerequisite for global professional law at uoft? Thanks.,162,dev,requirements>prerequisite
+Could you tell me what subjects i study in child study and education at uoft?,163,train,
+Help needed: what subjects will i study child study and education at uoft?,163,train,
+Could you tell me what subjects will study in child study and education at uoft?,163,dev,
+Help needed: what are the admission demand for mechanical engineering at uoft?,164,train,requirements>demand
+what are the admission demand for mechanical engineering at uoft? Any idea?,164,train,requirements>demand
+what are the admission demand for mechanical engineering uoft?,164,dev,requirements>demand
+"Hi, what can i do a degree in health informatics from uoft?",165,train,
+"Hi, what i with a degree in health informatics from uoft?",165,train,
+Quick question: what can i do with a degree in health informatics uoft?,165,dev,
+Quick question: what topic study in ihrp clinic course at uoft?,166,train,subjects>topic
+what topic study in ihrp clinic course at uoft?,166,train,subjects>topic
+Quick question: what topic will study ihrp clinic course at uoft?,166,dev,subjects>topic
+"Hi, what sort of research is done professional development uoft?",167,train,kind>sort
+what sort of research is done in professional development at uoft? Any idea?,167,train,kind>sort
+Could you tell me what sort of research is done in professional development at uoft?,167,dev,kind>sort
+Help needed: can you explain the structure art history at uoft?,168,train,
+Could you tell me can explain the structure of art history at uoft?,168,train,
+Quick question: can you explain structure of art history at uoft?,168,dev,
+Quick question: what do with a degree engineering science undergraduate program uoft?,169,train,
+Could you tell me what i do with a degree in engineering science undergraduate program from uoft?,169,train,
+Could you tell me what can i do with degree in engineering science undergraduate program from uoft?,169,dev,
+what sort of research is come in zheming taro cai at uoft?,170,train,kind>sort done>come
+"Hi, what sort of research is come zheming taro cai at uoft?",170,train,kind>sort done>come
+what sort of research is come zheming taro cai at uoft?,170,dev,kind>sort done>come
+Quick question: what sort research is come in applied computing at uoft?,171,train,kind>sort done>come
+Could you tell me what sort of research is come in applied computing at uoft?,171,train,kind>sort done>come
+what sort of research is come in applied computing at uoft?,171,dev,kind>sort done>come
+what subjects study higher education at uoft? Thanks.,172,train,
+Could you tell me what subjects will i study in higher education at uoft?,172,train,
+what subjects will i study in higher education at uoft? Thanks.,172,dev,
+Quick question: what are admission prerequisite for master of landscape architecture uoft?,173,train,requirements>prerequisite
+what are the admission prerequisite for master of landscape architecture at uoft? Thanks.,173,train,requirements>prerequisite
+Quick question: what are the admission prerequisite for master of landscape architecture uoft?,173,dev,requirements>prerequisite
+what sort of research is come phd forestry uoft? Any idea?,174,train,kind>sort done>come
+what sort of research is come in phd in forestry at uoft?,174,train,kind>sort done>come
+what sort research is come phd in forestry at uoft?,174,dev,kind>sort done>come
+Could you tell me what sort of research is come in history at uoft?,175,train,kind>sort done>come
+what sort research is come in history at uoft? Thanks.,175,train,kind>sort done>come
+what sort of research is come history at uoft? Any idea?,175,dev,kind>sort done>come
+Quick question: can you explain the structure of management phd at uoft?,176,train,
+Could you tell me can you explain structure of management phd uoft?,176,train,
+Could you tell me can you explain the structure of management phd at uoft?,176,dev,
+Help needed: what are admission prerequisite for spanish at uoft?,177,train,requirements>prerequisite
+Could you tell me what are the admission demand spanish at uoft?,177,train,requirements>demand
+what are the admission demand for spanish at uoft? Any idea?,177,dev,requirements>demand
+Could you tell me what sort of research is come geography at uoft?,178,train,kind>sort done>come
+what sort of research is come in geography at uoft?,178,train,kind>sort done>come
+Quick question: what sort research is come geography uoft?,178,dev,kind>sort done>come
+what can i do with degree in history from uoft? Thanks.,179,train,
+Help needed: what can i do with a degree in history from uoft?,179,train,
+Could you tell me what do with a degree history from uoft?,179,dev,
+can you explain structure linguistics at uoft?,180,train,
+Help needed: can you explain structure of linguistics at uoft?,180,train,
+can you explain the structure of linguistics uoft? Any idea?,180,dev,
+Could you tell me can you explain the structure of astronomy and astrophysics at uoft?,181,train,
+Help needed: can you explain the structure astronomy astrophysics uoft?,181,train,
+"Hi, can explain the structure of astronomy astrophysics uoft?",181,dev,
+what topic i study capstone at uoft? Any idea?,182,train,subjects>topic
+Help needed: what topic i study in capstone at uoft?,182,train,subjects>topic
+Quick question: what topic will i study in capstone at uoft?,182,dev,subjects>topic
+"Hi, what sort of research is come dentistry specialty training at uoft?",183,train,kind>sort done>come
+Help needed: what sort research is come in dentistry specialty training at uoft?,183,train,kind>sort done>come
+what sort of research is come in dentistry with specialty training uoft? Thanks.,183,dev,kind>sort done>come
+what topic i study in counselling psychology at uoft?,184,train,subjects>topic
+Help needed: what topic will i study counselling psychology at uoft?,184,train,subjects>topic
+Help needed: what topic i study in counselling psychology at uoft?,184,dev,subjects>topic
+Could you tell me what topic will i survey fase technical emphases at uoft?,185,train,subjects>topic study>survey
+what topic will i survey fase technical emphases at uoft? Thanks.,185,train,subjects>topic study>survey
+Help needed: what topic will i survey fase technical emphases at uoft?,185,dev,subjects>topic study>survey
+Help needed: what the research region in counselling clinical psychology at utsc at uoft?,186,train,areas>region
+Quick question: what are the research region in counselling clinical psychology at utsc at uoft?,186,train,areas>region
+Could you tell me what are the research region counselling clinical psychology at utsc uoft?,186,dev,areas>region
+Help needed: what are admission prerequisite master of architecture post professional uoft?,187,train,requirements>prerequisite
+Help needed: what are the admission prerequisite master of architecture post professional at uoft?,187,train,requirements>prerequisite
+"Hi, what admission prerequisite for master of architecture post professional at uoft?",187,dev,requirements>prerequisite
+can explain the structure of phd in forestry at uoft? Any idea?,188,train,
+"Hi, can you explain the structure of phd in forestry at uoft?",188,train,
+Could you tell me can you explain the structure phd in forestry at uoft?,188,dev,
+"Hi, can you explain the structure of chemistry at uoft?",189,train,
+can you explain the structure of chemistry uoft?,189,train,
+Help needed: can you explain the structure chemistry at uoft?,189,dev,
+what makes postdoctoral studies in school of architecture curriculum at mcgill unequaled? Any idea?,190,train,program>curriculum unique>unequaled
+Help needed: what makes the postdoctoral studies in the school architecture curriculum at mcgill unequaled?,190,train,program>curriculum unique>unequaled
+what makes the postdoctoral studies in the school of architecture curriculum at mcgill unequaled?,190,dev,program>curriculum unique>unequaled
+Help needed: what are admission prerequisite canadian law in a global context at uoft?,191,train,requirements>prerequisite
+Quick question: what are the admission demand for canadian law a global context uoft?,191,train,requirements>demand
+Quick question: what admission prerequisite for canadian law in a global context at uoft?,191,dev,requirements>prerequisite
+"Hi, what research opportunities exist in postdoctoral studies in the school of architecture mcgill?",192,train,
+what research opportunities exist in postdoctoral studies in the school of architecture mcgill?,192,train,
+Could you tell me what research opportunities exist in postdoctoral studies in the school architecture at mcgill?,192,dev,
+can you explain structure of civil engineering undergraduate program uoft? Thanks.,193,train,
+"Hi, can explain the structure of civil engineering undergraduate program at uoft?",193,train,
+Could you tell me can you explain the structure civil engineering undergraduate program at uoft?,193,dev,
+what sort of research is come in master of forest conservation at uoft? Thanks.,194,train,kind>sort done>come
+what sort of research is come in master of forest conservation uoft?,194,train,kind>sort done>come
+Could you tell me what sort of research is come in master of forest conservation at uoft?,194,dev,kind>sort done>come
+Quick question: can you explain structure pro bono students canada pbsc at uoft?,195,train,
+Help needed: can you explain structure of pro bono students canada pbsc at uoft?,195,train,
+can you explain structure of pro bono students canada pbsc at uoft? Any idea?,195,dev,
+what the admission prerequisite for phd in architecture landscape and design at uoft? Thanks.,196,train,requirements>prerequisite
+Could you tell me what are the admission prerequisite for phd architecture landscape design uoft?,196,train,requirements>prerequisite
+Help needed: what are admission prerequisite for phd architecture landscape and design at uoft?,196,dev,requirements>prerequisite
+what courses are provide slavic east european languages cultures at uoft? Any idea?,197,train,offered>provide
+Quick question: what courses provide in slavic and east european languages and cultures at uoft?,197,train,offered>provide
+what courses are provide in slavic east european languages cultures at uoft? Any idea?,197,dev,offered>provide
+what can i do with degree in civil engineering undergraduate program uoft?,198,train,
+what can i do a degree in civil engineering undergraduate program from uoft? Any idea?,198,train,
+what can i do with a degree in civil engineering undergraduate program from uoft? Thanks.,198,dev,
+"Hi, what sort of research is come in astronomy and astrophysics at uoft?",199,train,kind>sort done>come
+"Hi, what sort of research come in astronomy and astrophysics at uoft?",199,train,kind>sort done>come
+what sort of research is come astronomy and astrophysics at uoft? Thanks.,199,dev,kind>sort done>come
+Quick question: what subjects will i study in industrial engineering undergraduate program at uoft?,200,train,
+"Hi, what subjects will i study industrial engineering undergraduate program at uoft?",200,train,
+what subjects will study in industrial engineering undergraduate program at uoft? Any idea?,200,dev,
+what subjects i study in engineering science undergraduate program at uoft? Thanks.,201,train,
+Quick question: what subjects will study in engineering science undergraduate program at uoft?,201,train,
+Quick question: what subjects will i study engineering science undergraduate program uoft?,201,dev,
+Quick question: what can i do with a degree museum studies uoft?,202,train,
+"Hi, what can i do with a degree museum studies from uoft?",202,train,
+what can i do with a degree in museum studies from uoft? Any idea?,202,dev,
+what sort of research is come in political science at uoft? Any idea?,203,train,kind>sort done>come
+Quick question: what sort of research is come political science at uoft?,203,train,kind>sort done>come
+"Hi, what sort research come political science at uoft?",203,dev,kind>sort done>come
+Quick question: what topic will study in pharmaceutical sciences at uoft?,204,train,subjects>topic
+what topic will i study in pharmaceutical sciences at uoft? Any idea?,204,train,subjects>topic
+Quick question: what topic will i study in pharmaceutical sciences at uoft?,204,dev,subjects>topic
+"Hi, what can i do with a degree mineral engineering undergraduate program uoft?",205,train,
+Quick question: what i do with a degree in mineral engineering undergraduate program from uoft?,205,train,
+Quick question: what can do a degree in mineral engineering undergraduate program from uoft?,205,dev,
+Quick question: what are the admission prerequisite physical therapy uoft?,206,train,requirements>prerequisite
+"Hi, what are admission demand physical therapy at uoft?",206,train,requirements>demand
+Quick question: what are the admission demand for physical therapy at uoft?,206,dev,requirements>demand
+what sort of research is come in chemical engineering undergraduate program at uoft? Thanks.,207,train,kind>sort done>come
+what sort research come in chemical engineering undergraduate program at uoft? Thanks.,207,train,kind>sort done>come
+Could you tell me what sort of research come chemical engineering undergraduate program at uoft?,207,dev,kind>sort done>come
+"Hi, what can i do with a degree in forest conservation from uoft?",208,train,
+what i do with a degree in forest conservation from uoft?,208,train,
+"Hi, what i do with a degree in forest conservation from uoft?",208,dev,
+what are the admission demand for one year mmpa uoft? Any idea?,209,train,requirements>demand
+Could you tell me what are the admission demand for one year mmpa at uoft?,209,train,requirements>demand
+Could you tell me what admission demand for one year mmpa uoft?,209,dev,requirements>demand
+Could you tell me what can do with a degree global affairs uoft?,210,train,
+Quick question: what can i do a degree in global affairs from uoft?,210,train,
+Could you tell me what can i do a degree global affairs from uoft?,210,dev,
+Quick question: what can i do with a degree public policy uoft?,211,train,
+"Hi, what i do with a degree in public policy uoft?",211,train,
+Quick question: what can i with a degree public policy uoft?,211,dev,
+what are the vocation prognosis for bachelor of arts visual studies alumna from uoft? Any idea?,212,train,career>vocation prospects>prognosis graduates>alumna
+Help needed: what are the vocation prognosis bachelor of arts visual studies alumna uoft?,212,train,career>vocation prospects>prognosis graduates>alumna
+Could you tell me what are vocation prognosis bachelor of arts visual studies alumna from uoft?,212,dev,career>vocation prospects>prognosis graduates>alumna
+"Hi, what are the vocation prognosis pro bono students canada pbsc alumnus uoft?",213,train,career>vocation prospects>prognosis graduates>alumnus
+what are the vocation prognosis for pro bono students canada pbsc alumnus from uoft? Any idea?,213,train,career>vocation prospects>prognosis graduates>alumnus
+what the vocation prognosis pro bono students canada pbsc alumnus uoft? Thanks.,213,dev,career>vocation prospects>prognosis graduates>alumnus
+what topic survey in health policy management and evaluation uoft? Thanks.,214,train,subjects>topic study>survey
+what topic will i survey in health policy management and evaluation at uoft? Thanks.,214,train,subjects>topic study>survey
+Could you tell me what topic i survey in health policy management evaluation at uoft?,214,dev,subjects>topic study>survey
+"Hi, what subjects will i study in civil engineering undergraduate program at uoft?",215,train,
+"Hi, what subjects i study in civil engineering undergraduate program uoft?",215,train,
+"Hi, what subjects i study in civil engineering undergraduate program at uoft?",215,dev,
+Help needed: what are the admission prerequisite for laws law in action within schools at uoft?,216,train,requirements>prerequisite
+Quick question: what are admission prerequisite laws law in action within schools uoft?,216,train,requirements>prerequisite
+what the admission prerequisite for laws law action within schools at uoft?,216,dev,requirements>prerequisite
+Help needed: can you explain the structure of electrical computer engineering undergraduate program uoft?,217,train,
+Help needed: can you explain structure of electrical computer engineering undergraduate program at uoft?,217,train,
+Quick question: can you explain the structure electrical computer engineering undergraduate program at uoft?,217,dev,
+what subjects study in electrical computer engineering undergraduate program at uoft? Any idea?,218,train,
+what subjects will i study electrical computer engineering undergraduate program at uoft? Thanks.,218,train,
+Help needed: what subjects will study in electrical computer engineering undergraduate program at uoft?,218,dev,
+"Hi, what sort of research is come in innovation law and technology at uoft?",219,train,kind>sort done>come
+Could you tell me what sort research come in innovation law and technology at uoft?,219,train,kind>sort done>come
+"Hi, what sort research come in innovation law and technology uoft?",219,dev,kind>sort done>come
+what sort of research is come in global professional law at uoft? Any idea?,220,train,kind>sort done>come
+what sort of research is come in global professional law at uoft? Thanks.,220,train,kind>sort done>come
+Help needed: what sort of research is come in global professional law at uoft?,220,dev,kind>sort done>come
+Quick question: what sort of research is done in master of applied science masc at uoft?,221,train,kind>sort
+what sort of research is done in master of applied science masc at uoft? Any idea?,221,train,kind>sort
+"Hi, what sort of research is done master applied science masc at uoft?",221,dev,kind>sort
+Quick question: what are the vocation prognosis for speech language pathology research graduates from uoft?,222,train,career>vocation prospects>prognosis
+what are the vocation prognosis for speech language pathology research graduates from uoft? Thanks.,222,train,career>vocation prospects>prognosis
+"Hi, what are the vocation prognosis for speech language pathology research graduates uoft?",222,dev,career>vocation prospects>prognosis
+can you explain the structure of katie filek at uoft? Any idea?,223,train,
+can explain the structure of katie filek at uoft? Thanks.,223,train,
+Help needed: can you explain the structure of katie filek at uoft?,223,dev,
+what are research region in electrical computer engineering undergraduate program at uoft? Thanks.,224,train,areas>region
+what the research region in electrical computer engineering undergraduate program at uoft?,224,train,areas>region
+Quick question: what the research region in electrical computer engineering undergraduate program uoft?,224,dev,areas>region
+Could you tell me what sort research come in anishinaabe law camp uoft?,225,train,kind>sort done>come
+what sort of research is come anishinaabe law camp uoft?,225,train,kind>sort done>come
+"Hi, what sort of research is come in anishinaabe law camp uoft?",225,dev,kind>sort done>come
+can you explain the structure zheming taro cai at uoft? Any idea?,226,train,
+can explain structure of zheming taro cai at uoft?,226,train,
+Help needed: can explain the structure of zheming taro cai at uoft?,226,dev,
+Could you tell me what can i with a degree in katie filek from uoft?,227,train,
+Quick question: what can do with a degree in katie filek from uoft?,227,train,
+Could you tell me what i do with a degree katie filek uoft?,227,dev,
+Quick question: what are the vocation prognosis for genetic counselling graduates uoft?,228,train,career>vocation prospects>prognosis
+what are the vocation prognosis for genetic counselling graduates from uoft? Any idea?,228,train,career>vocation prospects>prognosis
+what are vocation prognosis genetic counselling graduates from uoft?,228,dev,career>vocation prospects>prognosis
+what research chance exist in graduate courses auditing non degree students visitors at uoft? Thanks.,229,train,opportunities>chance
+Could you tell me what research chance exist in graduate courses auditing non degree students visitors uoft?,229,train,opportunities>chance
+Quick question: what research chance exist in graduate courses auditing non degree students visitors at uoft?,229,dev,opportunities>chance
+"Hi, what can i do with a degree in child study and education from uoft?",230,train,
+Quick question: what can i do with a degree child study and education from uoft?,230,train,
+Could you tell me what i do with degree in child study education from uoft?,230,dev,
+Could you tell me how can i implement to kawaskimhon moot at uoft?,231,train,apply>implement
+how can i use kawaskimhon moot uoft? Thanks.,231,train,apply>use
+Quick question: how can use to kawaskimhon moot uoft?,231,dev,apply>use
+"Hi, what can i do with a degree in anishinaabe law camp from uoft?",232,train,
+Quick question: what i do a degree anishinaabe law camp from uoft?,232,train,
+Help needed: what can i do with a degree in anishinaabe law camp from uoft?,232,dev,
+what subjects will study in english at uoft?,233,train,
+what subjects will study in english uoft?,233,train,
+Quick question: what subjects will study in english at uoft?,233,dev,
+Quick question: can explain the structure of materials engineering undergraduate program at uoft?,234,train,
+can you explain the structure of materials engineering undergraduate program uoft? Any idea?,234,train,
+Could you tell me can you explain structure of materials engineering undergraduate program uoft?,234,dev,
+Could you tell me what sort of research is come in music at uoft?,235,train,kind>sort done>come
+what sort research is come in music at uoft?,235,train,kind>sort done>come
+"Hi, what sort of research is come in music at uoft?",235,dev,kind>sort done>come
+what i do with a degree communications mcgill?,236,train,
+what can i do with a degree communications mcgill? Any idea?,236,train,
+what i do a degree communications mcgill? Thanks.,236,dev,
+what sort of research come physics at uoft? Thanks.,237,train,kind>sort done>come
+Quick question: what sort of research come physics uoft?,237,train,kind>sort done>come
+Could you tell me what sort of research is come in physics at uoft?,237,dev,kind>sort done>come
+what sort of research is come in finance at uoft? Any idea?,238,train,kind>sort done>come
+what sort of research come finance at uoft? Any idea?,238,train,kind>sort done>come
+what sort research is come in finance uoft?,238,dev,kind>sort done>come
+"Hi, what do with a degree in chemistry from uoft?",239,train,
+what can i do a degree in chemistry from uoft? Any idea?,239,train,
+Quick question: what can do a degree in chemistry from uoft?,239,dev,
+what curriculum study should i implement? Thanks.,240,train,program>curriculum apply>implement
+what curriculum study should i use to? Thanks.,240,train,program>curriculum apply>use
+"Hi, what curriculum of study should i implement to?",240,dev,program>curriculum apply>implement
+do i have to be a instructor to use to oise?,241,train,teacher>instructor apply>use
+Could you tell me do i have to be a instructor to use to oise?,241,train,teacher>instructor apply>use
+do i be instructor to employ to oise? Thanks.,241,dev,teacher>instructor apply>employ
+Could you tell me i m an international applicant there extra application prerequisite i want to love?,242,train,additional>extra requirements>prerequisite need>want know>love
+i m an international applicant extra application prerequisite i ask to love? Thanks.,242,train,additional>extra requirements>prerequisite need>ask know>love
+i m international applicant are there extra application prerequisite i want acknowledge?,242,dev,additional>extra requirements>prerequisite need>want know>acknowledge
+what is the difference between particular pupil and a regular pupil? Thanks.,243,train,special>particular student>pupil student>pupil
+Help needed: what is the difference between a extra pupil and a regular pupil?,243,train,special>extra student>pupil student>pupil
+what the difference between a extra pupil and a regular pupil? Thanks.,243,dev,special>extra student>pupil student>pupil
+can courses i thorough as a extra student credited to degree plan and fees i give? Any idea?,244,train,complete>thorough special>extra program>plan pay>give
+Quick question: can courses i thorough as extra student be credited to a degree curriculum fees i give?,244,train,complete>thorough special>extra program>curriculum pay>give
+can courses i thorough as a exceptional student be credited a degree plan and fees i salary? Thanks.,244,dev,complete>thorough special>exceptional program>plan pay>salary
+Quick question: should talk with an oise professor before submitting my application?,245,train,speak>talk
+Quick question: should i talk with oise professor before submitting my application?,245,train,speak>talk
+should i talk with an oise professor before submitting my application?,245,dev,speak>talk
+Help needed: i m presently enrolled in postgraduate curriculum can i transfer to oise come credit for studies?,246,train,currently>presently graduate>postgraduate program>curriculum get>come
+i m presently enrolled postgraduate curriculum can i transfer to oise and take credit my studies? Any idea?,246,train,currently>presently graduate>postgraduate program>curriculum get>take
+"Hi, i m presently enrolled in a postgraduate curriculum transfer to oise and come credit for my studies?",246,dev,currently>presently graduate>postgraduate program>curriculum get>come
+does the government canada s cap on survey licence international students use to oise curriculum? Any idea?,247,train,study>survey permits>licence apply>use programs>curriculum
+Could you tell me does the government of canada s cap on survey license for international students implement to oise curriculum?,247,train,study>survey permits>license apply>implement programs>curriculum
+does the government of canada s cap on survey licence for international students use to oise curriculum? Thanks.,247,dev,study>survey permits>licence apply>use programs>curriculum
+"Hi, the online admission application wo not get me use to the plan i need s erroneous?",248,train,let>get apply>use program>plan want>need wrong>erroneous
+the online admission application wo not allow me use the curriculum i need what s incorrect?,248,train,let>allow apply>use program>curriculum want>need wrong>incorrect
+the online admission application wo not allow me use curriculum need what s misguided?,248,dev,let>allow apply>use program>curriculum want>need wrong>misguided
+Help needed: i wishing to utilize to several curriculum can i?,249,train,want>wishing apply>utilize programs>curriculum
+"Hi, i wish to implement to several curriculum can i?",249,train,want>wish apply>implement programs>curriculum
+i wishing to use to several curriculum? Thanks.,249,dev,want>wishing apply>use programs>curriculum
+can i use the correct same curriculum twice?,250,train,apply>use exact>correct program>curriculum
+"Hi, can use to the correct same curriculum twice?",250,train,apply>use exact>correct program>curriculum
+can use to correct same plan twice?,250,dev,apply>use exact>correct program>plan
+i applied last year i m current onetime oise student i to re present papers?,251,train,former>onetime submit>present documents>papers
+i applied last year m a current or onetime oise student do i have to re present papers? Any idea?,251,train,former>onetime submit>present documents>papers
+i applied last year i m a current onetime oise student do i to re take papers? Any idea?,251,dev,former>onetime submit>take documents>papers
+Help needed: how much is fee to employ and do have to pay it?,252,train,apply>employ
+Help needed: how much is the fee to use do i to pay it?,252,train,apply>use
+how much is the fee enforce do i have to pay it? Thanks.,252,dev,apply>enforce
+Quick question: what just is 10 day period i have present endorse papers?,253,train,exactly>just submit>present supporting>endorse documents>papers
+what just is the 10 day period i have to take my endorse papers? Any idea?,253,train,exactly>just submit>take supporting>endorse documents>papers
+Help needed: what just is 10 day period have to take my encouraging papers?,253,dev,exactly>just submit>take supporting>encouraging documents>papers
+Could you tell me what i ca not take an official copy?,254,train,get>take transcript>copy
+Quick question: what if i ca not find an official copy?,254,train,get>find transcript>copy
+Could you tell me what if i ca not take official copy?,254,dev,get>take transcript>copy
+Help needed: i opt to take an official copy rather of uploading an unconfirmed one that alright?,255,train,prefer>opt submit>take transcript>copy instead>rather unofficial>unconfirmed okay>alright
+Help needed: i opt to take official copy rather of uploading an informal one is that alright?,255,train,prefer>opt submit>take transcript>copy instead>rather unofficial>informal okay>alright
+Help needed: i choose to take an official copy rather of uploading an unconfirmed one is that alright?,255,dev,prefer>choose submit>take transcript>copy instead>rather unofficial>unconfirmed okay>alright
+Could you tell me my ongoing copy demonstrate courses in advancement should i take another copy when new class become usable?,256,train,current>ongoing transcript>copy shows>demonstrate progress>advancement submit>take transcript>copy grades>class available>usable
+Quick question: my ongoing copy indicate courses in advancement i present another copy new class become usable?,256,train,current>ongoing transcript>copy shows>indicate progress>advancement submit>present transcript>copy grades>class available>usable
+Help needed: my ongoing copy indicate courses advancement present another copy when new class become usable?,256,dev,current>ongoing transcript>copy shows>indicate progress>advancement submit>present transcript>copy grades>class available>usable
+"Hi, my degree includes transfer credit exchange report is copy for want?",257,train,study>report transcript>copy needed>want
+Help needed: my degree includes transfer credit exchange survey is a copy that required?,257,train,study>survey transcript>copy needed>required
+Help needed: my degree includes transfer credit exchange survey a copy that necessary?,257,dev,study>survey transcript>copy needed>necessary
+Quick question: a umpire i wish does not institution or organization email speech should i?,258,train,referee>umpire want>wish address>speech
+Quick question: a umpire i desire not have an institution or organization email speech what should i do?,258,train,referee>umpire want>desire address>speech
+Help needed: a umpire i wish does not institution or organization email speech should i do?,258,dev,referee>umpire want>wish address>speech
+Quick question: what if it s genuinely problematic me to come an scholarly or professional missive of mention?,259,train,really>genuinely difficult>problematic get>come academic>scholarly letter>missive reference>mention
+what if it s actually tough for me to make an scholarly professional missive of mention? Any idea?,259,train,really>actually difficult>tough get>make academic>scholarly letter>missive reference>mention
+"Hi, what it s actually tough for me to make an scholarly or professional missive of mention?",259,dev,really>actually difficult>tough get>make academic>scholarly letter>missive reference>mention
+can present more than two missive of quotation?,260,train,submit>present letters>missive reference>quotation
+Quick question: can i present more than two missive of quotation?,260,train,submit>present letters>missive reference>quotation
+Quick question: can i present more than two missive of mention?,260,dev,submit>present letters>missive reference>mention
+should i present my gre tally? Thanks.,261,train,submit>present score>tally
+should i present my gre tally? Any idea?,261,train,submit>present score>tally
+Could you tell me should i present gre tally?,261,dev,submit>present score>tally
+how do i recognize if i necessitate a toefl score? Thanks.,262,train,know>recognize require>necessitate
+"Hi, how do i love if expect toefl score?",262,train,know>love require>expect
+"Hi, how do i recognize if i expect a toefl score?",262,dev,know>recognize require>expect
+Help needed: if i want to offer validation of english language proficiency will make provide of admission?,263,train,need>want provide>offer proof>validation get>make offer>provide
+Help needed: if i ask to offer validation of english language proficiency make an provide of admission?,263,train,need>ask provide>offer proof>validation get>make offer>provide
+"Hi, if i ask to offer validation english language proficiency will i take provide of admission?",263,dev,need>ask provide>offer proof>validation get>take offer>provide
+Help needed: how do i love if i m permissible?,264,train,know>love admissible>permissible
+"Hi, how i love if i m permissible?",264,train,know>love admissible>permissible
+how i love i m permissible? Thanks.,264,dev,know>love admissible>permissible
+Help needed: what do you think an proper degree?,265,train,mean>think appropriate>proper
+Help needed: what do you signify by an proper degree?,265,train,mean>signify appropriate>proper
+Could you tell me what do imply an proper degree?,265,dev,mean>imply appropriate>proper
+Quick question: my previous plan is ungraded what i do?,266,train,program>plan
+my previous curriculum is ungraded what should i do? Any idea?,266,train,program>curriculum
+my previous plan ungraded what should i do?,266,dev,program>plan
+when will i recognize the outcome my application? Thanks.,267,train,know>recognize results>outcome
+Quick question: when acknowledge the outcome of application?,267,train,know>acknowledge results>outcome
+when will i recognize the outcome of my application? Thanks.,267,dev,know>recognize results>outcome
+if i m provide admission can wait begin plan?,268,train,offered>provide delay>wait starting>begin program>plan
+Could you tell me if m provide admission i postponement begin my plan?,268,train,offered>provide delay>postponement starting>begin program>plan
+if i m provide admission can i wait begin my plan? Any idea?,268,dev,offered>provide delay>wait starting>begin program>plan
+Could you tell me i was provide admission one plan but now i wish to transfer to another i?,269,train,offered>provide program>plan want>wish
+i provide admission to one plan but now i need to transfer to another can i? Thanks.,269,train,offered>provide program>plan want>need
+Could you tell me i was provide admission to one plan but now i wishing to transfer to another i?,269,dev,offered>provide program>plan want>wishing
+"Hi, i was deny admission can appeal?",270,train,refused>deny
+Could you tell me i was deny admission can i appeal?,270,train,refused>deny
+Quick question: i was deny admission can i appeal?,270,dev,refused>deny
+Help needed: how can decide specifically why i was deny admission find feedback?,271,train,determine>decide refused>deny get>find
+Quick question: how can decide specifically i was deny admission find feedback?,271,train,determine>decide refused>deny get>find
+how can i specify specifically why i was deny admission find feedback? Any idea?,271,dev,determine>specify refused>deny get>find
+can i get handbag into convocation hall? Thanks.,272,train,bring>get bags>handbag
+Could you tell me can i add suitcase into convocation hall?,272,train,bring>add bags>suitcase
+can impart handbag into convocation hall? Thanks.,272,dev,bring>impart bags>handbag
+if i have gigantic own items where can i store them? Any idea?,273,train,larger>gigantic personal>own
+if i bigger own items where can i store them? Thanks.,273,train,larger>bigger personal>own
+Quick question: if have big individual items where can i store them?,273,dev,larger>big personal>individual
+Help needed: once i m within convocation hall will i be able to give enter again?,274,train,inside>within leave>give
+"Hi, once i m within convocation hall will i able give and enter again?",274,train,inside>within leave>give
+once i m within convocation hall i able give and enter again? Thanks.,274,dev,inside>within leave>give
+where do i compile graduation scrubs?,275,train,collect>compile gown>scrubs
+"Hi, where i accumulate my graduation scrubs?",275,train,collect>accumulate gown>scrubs
+where do i compile my graduation scrubs?,275,dev,collect>compile gown>scrubs
+will i want to demonstrate id to gather my scrubs? Thanks.,276,train,need>want show>demonstrate collect>gather gown>scrubs
+"Hi, will i want display id to amass my scrubs?",276,train,need>want show>display collect>amass gown>scrubs
+Could you tell me will ask to demonstrate id to amass my scrubs?,276,dev,need>ask show>demonstrate collect>amass gown>scrubs
+do i want to clothing an scholarly hood?,277,train,need>want wear>clothing academic>scholarly
+Quick question: do i ask clothing an scholarly hood?,277,train,need>ask wear>clothing academic>scholarly
+Could you tell me do i want to clothing scholarly hood?,277,dev,need>want wear>clothing academic>scholarly
+can i contribute exceptional steal jewelry or badges to graduation robe? Any idea?,278,train,add>contribute special>exceptional stole>steal gown>robe
+can i bring extra steal jewelry or badges my graduation scrubs? Any idea?,278,train,add>bring special>extra stole>steal gown>scrubs
+can i contribute a particular steal jewelry badges to my graduation scrubs? Thanks.,278,dev,add>contribute special>particular stole>steal gown>scrubs
+i an indigenous graduating scholar so can i clothing traditional indigenous regalia? Any idea?,279,train,student>scholar wear>clothing
+Help needed: i an indigenous graduating scholar so i clothing traditional indigenous regalia?,279,train,student>scholar wear>clothing
+i am an indigenous graduating scholar so can i clothing traditional indigenous regalia?,279,dev,student>scholar wear>clothing
+"Hi, can i clap or cheer during the convocation ceremony?",280,train,
+Help needed: can i clap or cheer during the convocation ceremony?,280,train,
+can i clap or cheer during convocation ceremony?,280,dev,
+Quick question: where can we get pic after the observance?,281,train,take>get photos>pic ceremony>observance
+where can we get pic the observance? Thanks.,281,train,take>get photos>pic ceremony>observance
+"Hi, where we bring pic after observance?",281,dev,take>bring photos>pic ceremony>observance
+Could you tell me will be a communal gathering location after the observance?,282,train,ceremony>observance
+Help needed: will there a communal gathering location the observance?,282,train,ceremony>observance
+will there a communal gathering location observance? Thanks.,282,dev,ceremony>observance
+what is utalert? Thanks.,283,train,
+Help needed: what utalert?,283,train,
+"Hi, what is utalert?",283,dev,
+who receives utalert notifications? Any idea?,284,train,
+who receives utalert notifications? Thanks.,284,train,
+Quick question: who receives utalert notifications?,284,dev,
+Could you tell me how do i sign up for utalert?,285,train,
+"Hi, how do i sign for utalert?",285,train,
+how i sign for utalert? Thanks.,285,dev,
+Quick question: how do recognize m already the utalert scheme?,286,train,know>recognize system>scheme
+Quick question: how do i recognize if i m already utalert scheme?,286,train,know>recognize system>scheme
+how do i recognize if i m already in the utalert scheme?,286,dev,know>recognize system>scheme
+can i obtain utalerts if i do not operate survey at u t? Thanks.,287,train,receive>obtain work>operate study>survey
+can i welcome utalerts if i do not operate survey at u of t? Any idea?,287,train,receive>welcome work>operate study>survey
+can i obtain utalerts if i do not operate survey at u of t? Thanks.,287,dev,receive>obtain work>operate study>survey
+how will i obtain alerts? Any idea?,288,train,receive>obtain
+Help needed: how will i obtain alerts?,288,train,receive>obtain
+Help needed: how will welcome alerts?,288,dev,receive>welcome
+Quick question: which method is the quickest?,289,train,fastest>quickest
+"Hi, which method is the quickest?",289,train,fastest>quickest
+"Hi, which method is quickest?",289,dev,fastest>quickest
+can i obtain utalert notifications from all three campuses?,290,train,receive>obtain
+can i incur utalert notifications all three campuses? Any idea?,290,train,receive>incur
+can i incur utalert notifications three campuses? Thanks.,290,dev,receive>incur
+"Hi, can scheme touch me by call?",291,train,system>scheme contact>touch phone>call
+can the scheme touch me by telephone? Any idea?,291,train,system>scheme contact>touch phone>telephone
+Help needed: can the scheme touch me by call?,291,dev,system>scheme contact>touch phone>call
+"Hi, what number will alarm follow from?",292,train,alerts>alarm come>follow
+Quick question: what number will alarm arrive from?,292,train,alerts>alarm come>arrive
+what number will alarm follow from?,292,dev,alerts>alarm come>follow
+how frequently will i obtain alerts?,293,train,often>frequently receive>obtain
+how frequently will incur alerts? Thanks.,293,train,often>frequently receive>incur
+how frequently will i incur alerts? Any idea?,293,dev,often>frequently receive>incur
+how do i check utalert settings and update my touch information?,294,train,contact>touch
+Quick question: how do i check my utalert settings update my touch information?,294,train,contact>touch
+Help needed: how do i check utalert settings and update my touch information?,294,dev,contact>touch
+why do i ask to download alertable i already the campus safety app? Any idea?,295,train,need>ask
+"Hi, why do ask to download alertable if i already the campus safety app?",295,train,need>ask
+"Hi, why do ask download alertable if i already have the campus safety app?",295,dev,need>ask
+how do i enable app notifications for alertable? Any idea?,296,train,
+how i enable app notifications for alertable? Thanks.,296,train,
+Help needed: how i enable app notifications alertable?,296,dev,
+Quick question: why not i incur a notification through app?,297,train,receive>incur
+"Hi, why not incur a notification through the app?",297,train,receive>incur
+why did not i obtain notification through app? Any idea?,297,dev,receive>obtain
+"Hi, why did incur an email or app alarm but not a text message?",298,train,receive>incur alert>alarm
+Quick question: why did incur email or app alarm but not a text message?,298,train,receive>incur alert>alarm
+why did i welcome an email or app alarm but not text message?,298,dev,receive>welcome alert>alarm
+why did not i obtain the alarm good out all? Thanks.,299,train,receive>obtain alert>alarm right>good away>out
+"Hi, why did not i obtain the vigilant good off or at all?",299,train,receive>obtain alert>vigilant right>good away>off
+Help needed: why did not welcome alarm correct off or at all?,299,dev,receive>welcome alert>alarm right>correct away>off
+what should do if i overlook a visit or vigilant?,300,train,miss>overlook call>visit alert>vigilant
+Could you tell me what do i overlook visit or watchful?,300,train,miss>overlook call>visit alert>watchful
+Help needed: what should i i lose a visit or awake?,300,dev,miss>lose call>visit alert>awake
+what if i unintentionally unsubscribed can re enrol?,301,train,accidentally>unintentionally
+what i unintentionally unsubscribed how can i re enrol? Any idea?,301,train,accidentally>unintentionally
+Quick question: what if i unintentionally unsubscribed how i re enrol?,301,dev,accidentally>unintentionally
+Help needed: what individual data the scheme depot?,302,train,personal>individual information>data system>scheme store>depot
+Quick question: what individual data the scheme depot?,302,train,personal>individual information>data system>scheme store>depot
+what own data does the scheme depot? Any idea?,302,dev,personal>own information>data system>scheme store>depot
+why is university toronto smoke free? Thanks.,303,train,
+Quick question: why is university toronto smoke free?,303,train,
+Help needed: why is university of toronto smoke free?,303,dev,
+Could you tell me what does smoke free signify does include marijuana?,304,train,mean>signify cannabis>marijuana
+what smoke free entail does include hemp? Any idea?,304,train,mean>entail cannabis>hemp
+Quick question: what does smoke free signify does this include marijuana?,304,dev,mean>signify cannabis>marijuana
+Could you tell me who does policy enforce?,305,train,apply>enforce
+"Hi, who policy enforce to?",305,train,apply>enforce
+who does this policy enforce to?,305,dev,apply>enforce
+Quick question: does policy employ to all three campuses?,306,train,apply>employ
+does this policy implement to all three campuses? Any idea?,306,train,apply>implement
+"Hi, does this policy implement all three campuses?",306,dev,apply>implement
+does this policy use the federated theological colleges? Any idea?,307,train,apply>use
+Quick question: does policy implement to the federated theological colleges?,307,train,apply>implement
+Could you tell me does this policy employ federated theological colleges?,307,dev,apply>employ
+"Hi, where i go to smoke?",308,train,
+"Hi, where can i go to smoke?",308,train,
+Quick question: where can go to smoke?,308,dev,
+"Hi, can i smoke or vape tobacco or marijuana my personal vehicle while university belongings?",309,train,cannabis>marijuana own>personal property>belongings
+Help needed: can smoke vape tobacco or marijuana my personal vehicle while on university belongings?,309,train,cannabis>marijuana own>personal property>belongings
+Could you tell me can i smoke vape tobacco or marijuana in my personal vehicle while university belongings?,309,dev,cannabis>marijuana own>personal property>belongings
+Quick question: are staff faculty and students able to smoke or vape tobacco or marijuana hit university belongings and go to work grade?,310,train,cannabis>marijuana off>hit property>belongings class>grade
+Quick question: are staff faculty students able to smoke or vape tobacco or marijuana away university belongings and then go to work grade?,310,train,cannabis>marijuana off>away property>belongings class>grade
+are staff faculty and students able to smoke vape tobacco or marijuana hit university belongings and then go work grade? Any idea?,310,dev,cannabis>marijuana off>hit property>belongings class>grade
+what residence members who smoke night did you believe safety have go away campus?,311,train,consider>believe having>have off>away
+what about residence members who smoke at night did you weigh safety have to go away campus? Any idea?,311,train,consider>weigh having>have off>away
+Could you tell me what residence members who smoke at night did you regard their safety have go away campus?,311,dev,consider>regard having>have off>away
+is grade time adjusted to fit masses need to go away for a crack to smoke or vape? Any idea?,312,train,class>grade accommodate>fit people>masses want>need out>away break>crack
+is grade time adjusted to adapt masses who need to go away for a crack to smoke or vape? Any idea?,312,train,class>grade accommodate>adapt people>masses want>need out>away break>crack
+is grade time adjusted to fit masses need to go down crack to smoke or vape?,312,dev,class>grade accommodate>fit people>masses want>need out>down break>crack
+how is this policy implement there any punishment?,313,train,enforced>implement penalties>punishment
+how is this policy implement are there any punishment?,313,train,enforced>implement penalties>punishment
+how is this policy implement are there punishment?,313,dev,enforced>implement penalties>punishment
+"Hi, what do i do hear person smoking on campus?",314,train,see>hear someone>person
+Help needed: what do i i realize person smoking on campus?,314,train,see>realize someone>person
+what do i do if i realize person smoking on campus? Thanks.,314,dev,see>realize someone>person
+Help needed: where i receive signs for smoke and vape free spaces?,315,train,obtain>receive
+Could you tell me where can i find signs for smoke and vape free spaces?,315,train,obtain>find
+"Hi, where i receive signs for smoke and vape free spaces?",315,dev,obtain>receive
+Could you tell me i know someone who would wish to cease smoking or vaping there resources useable u t to help?,316,train,like>wish quit>cease available>useable
+Could you tell me i know someone would wish stop smoking or vaping are there resources useable at u of t help?,316,train,like>wish quit>stop available>useable
+i know someone who wish discontinue smoking or vaping are there resources useable at u t to help them? Thanks.,316,dev,like>wish quit>discontinue available>useable
+Help needed: who do i touch if have questions about smoke free policy?,317,train,contact>touch
+who do touch if i have questions about smoke free policy? Any idea?,317,train,contact>touch
+Help needed: who do i touch if i have questions about smoke free policy?,317,dev,contact>touch
+can i enter in jump start plan? Any idea?,318,train,participate>enter program>plan
+"Hi, can enter in jump start plan?",318,train,participate>enter program>plan
+can i enter in the jump start plan?,318,dev,participate>enter program>plan
+"Hi, can i register for jump start before i come my winter session housing bid?",319,train,get>come offer>bid
+Quick question: can register jump start i come my winter session housing bid?,319,train,get>come offer>bid
+can i register for jump start before i take my winter session housing provide? Any idea?,319,dev,get>take offer>provide
+Help needed: i am an indigenous scholar what do want to recognize about registering for jump start?,320,train,student>scholar need>want know>recognize
+Quick question: i am an indigenous scholar what i ask to recognize about registering for jump start?,320,train,student>scholar need>ask know>recognize
+Could you tell me i am an indigenous scholar what do i ask to recognize about registering for jump start?,320,dev,student>scholar need>ask know>recognize
+i m ready for an update on the status visa application can i register for jump start?,321,train,waiting>ready
+i m await for an update on the status of my visa application i register for jump start? Any idea?,321,train,waiting>await
+Quick question: i m ready for an update status of my visa application can i register for jump start?,321,dev,waiting>ready
+Quick question: can transfer students enter in the jump start curriculum?,322,train,participate>enter program>curriculum
+can transfer students enter in jump start curriculum? Thanks.,322,train,participate>enter program>curriculum
+can transfer students enter in the jump start plan? Any idea?,322,dev,participate>enter program>plan
+are there any fiscal funding choice for me? Any idea?,323,train,financial>fiscal support>funding options>choice
+are there fiscal funding alternative for?,323,train,financial>fiscal support>funding options>alternative
+Quick question: are there any fiscal funding choice for me?,323,dev,financial>fiscal support>funding options>choice
+how prolonged jump start run each day? Any idea?,324,train,long>prolonged
+Help needed: how lasting does jump start run each day?,324,train,long>lasting
+how lasting does jump start run each day?,324,dev,long>lasting
+is it alright miss an event during jump start? Thanks.,325,train,okay>alright
+Could you tell me is it alright i miss event during jump start?,325,train,okay>alright
+is it alright if i miss an event during jump start? Any idea?,325,dev,okay>alright
+when is the move in date do i ask employ for an early move in? Any idea?,326,train,need>ask apply>employ
+when is the move date do i want to use for an early move in?,326,train,need>want apply>use
+when is the move in date do i want to use an early move?,326,dev,need>want apply>use
+Help needed: what should i do i am unable to move into abode on september 1st as jump start mansion pupil?,327,train,residence>abode residence>mansion student>pupil
+what should if i am unable to move into abode on september 1st as a jump start mansion pupil? Any idea?,327,train,residence>abode residence>mansion student>pupil
+Help needed: what should i if i unable move into mansion on september 1st as a jump start abode pupil?,327,dev,residence>mansion residence>abode student>pupil
+"Hi, will i be able living in the same room after jump start?",328,train,live>living
+Help needed: will be able to living in the same room after jump start?,328,train,live>living
+Could you tell me will i be able living in same room after jump start?,328,dev,live>living
+which stream am portion if living at university village or wesbrook village?,329,train,part>portion live>living
+which stream am i portion of if living university village or wesbrook village? Any idea?,329,train,part>portion live>living
+which stream am i component of living at university village or wesbrook village?,329,dev,part>component live>living
+Help needed: do tier 11 marks tally?,330,train,grade>tier count>tally
+do tier 11 marks tally? Any idea?,330,train,grade>tier count>tally
+do tier 11 marks tally? Thanks.,330,dev,grade>tier count>tally
+Could you tell me can i utilize to two different curriculum at utm?,331,train,apply>utilize programs>curriculum
+Help needed: can i utilize two different curriculum at utm?,331,train,apply>utilize programs>curriculum
+can i implement to two different curriculum at utm?,331,dev,apply>implement programs>curriculum
+Help needed: will want to submit quotation missive individual statements or supplementary applications?,332,train,need>want reference>quotation letters>missive personal>individual
+will ask to submit quotation missive individual statements or supplementary applications?,332,train,need>ask reference>quotation letters>missive personal>individual
+will ask submit quotation missive own statements or supplementary applications? Any idea?,332,dev,need>ask reference>quotation letters>missive personal>own
+Could you tell me i am concerned in pursuing two majors during my undergraduate studies that drop within two different admission categories at u of t mississauga ie biology and history how do love admission category i should apply to on ouac?,333,train,interested>concerned fall>drop know>love
+Quick question: i am involved in pursuing two majors during undergraduate studies that drop within two different admission categories at u of t mississauga ie biology history how do i love which admission category i apply ouac?,333,train,interested>involved fall>drop know>love
+i am involved in pursuing two majors during my undergraduate studies that drop within two different admission categories u of t mississauga ie biology and history how i acknowledge which admission category i apply on ouac? Thanks.,333,dev,interested>involved fall>drop know>acknowledge
+"Hi, i concerned in applying a curriculum university of toronto mississauga i apply to this curriculum on ouac will i be considered for this curriculum all three campuses?",334,train,interested>concerned program>curriculum program>curriculum program>curriculum
+Could you tell me i am involved in applying a curriculum university of toronto mississauga i apply to this curriculum on ouac will i considered for curriculum at all three campuses?,334,train,interested>involved program>curriculum program>curriculum program>curriculum
+i am involved applying to a curriculum at the university toronto mississauga if i apply this curriculum ouac i be considered for this curriculum at three campuses? Thanks.,334,dev,interested>involved program>curriculum program>curriculum program>curriculum
+Help needed: what is the difference between an admission category a plan and post can i use directly plan or specialist major insignificant?,335,train,program>plan apply>use program>plan minor>insignificant
+Quick question: what is difference between an admission category a plan and post can use directly to my curriculum or specialist major insignificant?,335,train,program>plan apply>use program>curriculum minor>insignificant
+Help needed: what the difference between an admission category plan and post can i use directly to my curriculum or specialist major insignificant?,335,dev,program>plan apply>use program>curriculum minor>insignificant
+how will reiterate course involve my admission? Thanks.,336,train,repeated>reiterate affect>involve
+how will a reiterate course involve my admission?,336,train,repeated>reiterate affect>involve
+Help needed: how will a continual course impact my admission?,336,dev,repeated>continual affect>impact
+Could you tell me will i be considered for the curriculum applied to at the same time or only in the decree ranked them?,337,train,programs>curriculum order>decree
+will i be considered for of the curriculum applied to same time or only in decree i ranked them?,337,train,programs>curriculum order>decree
+Help needed: will i be considered for all of the curriculum i applied to the same time only in decree i ranked them?,337,dev,programs>curriculum order>decree
+Could you tell me i an extenuating context that impact my academic performance how can i include this in my application?,338,train,circumstance>context affected>impact
+i extenuating context impact my academic performance how can include my application? Any idea?,338,train,circumstance>context affected>impact
+Help needed: i have an extenuating context that impact my academic performance how can i include in my application?,338,dev,circumstance>context affected>impact
+Quick question: if i am not eligible my plan selection at u of t mississauga will i considered for an alternate provide?,339,train,program>plan choice>selection offer>provide
+if i am not eligible for plan alternative at u t mississauga will be considered alternate provide?,339,train,program>plan choice>alternative offer>provide
+"Hi, if i am not eligible for my plan selection at u of t mississauga will considered an alternate provide?",339,dev,program>plan choice>selection offer>provide
+Could you tell me when i learn back after submitting application?,340,train,hear>learn
+"Hi, when will i learn back after submitting application?",340,train,hear>learn
+when will i learn back after submitting my application? Thanks.,340,dev,hear>learn
+Quick question: i m have difficulty logging join u of t what i do?,341,train,having>have trouble>difficulty
+i m have worry logging in to join u t what should do? Thanks.,341,train,having>have trouble>worry
+i m have worry logging to join u t what should i do? Thanks.,341,dev,having>have trouble>worry
+"Hi, join u of t is request me a makeshift pin what is this?",342,train,asking>request temporary>makeshift
+Could you tell me join u of t request for a interim pin what is this?,342,train,asking>request temporary>interim
+"Hi, join u of t request for makeshift pin what is?",342,dev,asking>request temporary>makeshift
+i have submitted application wish to get switch do i do that? Thanks.,343,train,want>wish make>get change>switch
+i have submitted application but need produce a switch how do that? Any idea?,343,train,want>need make>produce change>switch
+i have submitted my application but wish give a switch how i do? Any idea?,343,dev,want>wish make>give change>switch
+do i want to need my high school mail in my copy today? Thanks.,344,train,need>want ask>need transcript>copy now>today
+"Hi, do i ask to expect my high school to mail in my copy today?",344,train,need>ask ask>expect transcript>copy now>today
+Help needed: do i ask to need high school to mail my copy today?,344,dev,need>ask ask>need transcript>copy now>today
+Help needed: how should i submit my copy?,345,train,transcript>copy
+"Hi, how i submit my copy?",345,train,transcript>copy
+Could you tell me how should i submit my copy?,345,dev,transcript>copy
+it tell that uploading my copy is informal so should i yet upload my copy?,346,train,says>tell transcript>copy unofficial>informal still>yet transcript>copy
+Quick question: it tell uploading my copy is unconfirmed so i even upload my copy?,346,train,says>tell transcript>copy unofficial>unconfirmed still>even transcript>copy
+it tell that uploading copy is unconfirmed so should i yet upload my copy?,346,dev,says>tell transcript>copy unofficial>unconfirmed still>yet transcript>copy
+Could you tell me my mid term class will not be publish until december january february how should i ego report my class?,347,train,grades>class released>publish self>ego grades>class
+Help needed: my mid term class will not be publish until december january february should i ego report class?,347,train,grades>class released>publish self>ego grades>class
+"Hi, my mid term class will not be publish until december january february how should i ego report my class?",347,dev,grades>class released>publish self>ego grades>class
+what should i take if i do not mid term copy even what if i do not make mid term class or a mid term copy? Thanks.,348,train,submit>take transcript>copy yet>even get>make grades>class transcript>copy
+what should i present if i not have my mid term copy nonetheless what i not take mid term class or a mid term copy? Thanks.,348,train,submit>present transcript>copy yet>nonetheless get>take grades>class transcript>copy
+Could you tell me what i present if i not have my mid term copy still what not make mid term class or a mid term copy?,348,dev,submit>present transcript>copy yet>still get>make grades>class transcript>copy
+Help needed: my temporary copy will not be available until december january february will this affect admission because the papers deadline for early consideration is in december?,349,train,interim>temporary transcript>copy impact>affect document>papers
+Could you tell me my temporary copy not be available until december january february will this affect my admission because papers deadline for early consideration is in december?,349,train,interim>temporary transcript>copy impact>affect document>papers
+"Hi, my temporary copy not be available until december january february will this affect my admission because the papers deadline for early consideration is in december?",349,dev,interim>temporary transcript>copy impact>affect document>papers
+Quick question: my school send my copy last week how do i love you received?,350,train,sent>send transcript>copy know>love
+Help needed: my school send my copy last week how do i love if you have received it?,350,train,sent>send transcript>copy know>love
+my school send my copy last week do i love if you have received it? Any idea?,350,dev,sent>send transcript>copy know>love
+"Hi, i take a course away of my regular day high school in summer school night school online private school will this impact my admission?",351,train,taking>take outside>away affect>impact
+Could you tell me i am take course away my regular day high school in summer school night school online or private school will this involve my admission?,351,train,taking>take outside>away affect>involve
+i am take a course away of my regular day high school in summer school night school online private school will this impact my admission? Thanks.,351,dev,taking>take outside>away affect>impact
+Quick question: i am preparation take a obligatory the summer before begin my undergraduate survey will this impact my admission?,352,train,planning>preparation taking>take prerequisite>obligatory starting>begin studies>survey affect>impact
+i am preparation on take a requirement the summer begin my undergraduate survey will this involve my admission?,352,train,planning>preparation taking>take prerequisite>requirement starting>begin studies>survey affect>involve
+Help needed: i am preparation on take a requirement in the summer before begin my undergraduate survey will this impact admission?,352,dev,planning>preparation taking>take prerequisite>requirement starting>begin studies>survey affect>impact
+Could you tell me i obtain an provide curriculum or u of t campus i did not use what does this think?,353,train,received>obtain offer>provide program>curriculum apply>use mean>think
+i obtain an provide to plan u t campus i not use to does this imply? Any idea?,353,train,received>obtain offer>provide program>plan apply>use mean>imply
+i obtain an provide to a curriculum or u of t campus that i not use to does this imply? Thanks.,353,dev,received>obtain offer>provide program>curriculum apply>use mean>imply
+Could you tell me what are terms conditions of my provide of admission the university of toronto mississauga?,354,train,offer>provide
+Help needed: what are the terms conditions of provide of admission to the university of toronto mississauga?,354,train,offer>provide
+what are the terms conditions of bid of admission to the university of toronto mississauga?,354,dev,offer>bid
+am i able shelve my provide of admission? Any idea?,355,train,defer>shelve offer>provide
+Help needed: am i able to postpone my provide admission?,355,train,defer>postpone offer>provide
+Help needed: am i able to accede provide of admission?,355,dev,defer>accede offer>provide
+Quick question: if i ve come advanced placement ap gce french baccalaureate international baccalaureate ib will i be eligible for transfer credit?,356,train,done>come
+if i ve come advanced placement ap gce french baccalaureate or international baccalaureate ib will i be eligible for transfer credit? Thanks.,356,train,done>come
+"Hi, if i ve come advanced placement ap gce french baccalaureate international baccalaureate ib will i eligible for transfer credit?",356,dev,done>come
+Help needed: do i ask to take validation english proficiency?,357,train,need>ask submit>take proof>validation
+Could you tell me do i want to take validation of english proficiency?,357,train,need>want submit>take proof>validation
+Could you tell me do i want present validation of english proficiency?,357,dev,need>want submit>present proof>validation
+Help needed: can you blend sections from multiple english proficiency exam in order satisfy english proficiency prerequisite ie combining the ielts publish section from one exam with an ielts reading section from another exam?,358,train,combine>blend tests>exam meet>satisfy requirements>prerequisite writing>publish test>exam test>exam
+can you meld sections from multiple english proficiency exam in order to satisfy english proficiency prerequisite ie combining the ielts publish section from one exam with an ielts reading section from another exam? Thanks.,358,train,combine>meld tests>exam meet>satisfy requirements>prerequisite writing>publish test>exam test>exam
+can you merge sections from multiple english proficiency exam in order to satisfy english proficiency prerequisite ie combining ielts compose section from one quiz with an ielts reading section from another quiz? Thanks.,358,dev,combine>merge tests>exam meet>satisfy requirements>prerequisite writing>compose test>quiz test>quiz
+Quick question: i but send new english proficiency quiz score how protracted does it hold for the university to come it?,359,train,just>but sent>send test>quiz long>protracted take>hold get>come
+i good send my new english proficiency quiz score how lasting does it bring the university to come? Any idea?,359,train,just>good sent>send test>quiz long>lasting take>bring get>come
+i but send my new english proficiency quiz score how lengthy it bring for university to come it? Thanks.,359,dev,just>but sent>send test>quiz long>lengthy take>bring get>come
+i send my ielts toefl scores last week do i acknowledge you received it?,360,train,sent>send know>acknowledge
+Quick question: i send ielts toefl scores last week do i acknowledge if have received?,360,train,sent>send know>acknowledge
+i send my ielts toefl scores last week do i recognize you have received? Thanks.,360,dev,sent>send know>recognize
+can i welcome an admission conclusion before sending in my english language examination outcome i have all mandatory requirement? Any idea?,361,train,receive>welcome decision>conclusion test>examination results>outcome required>mandatory prerequisites>requirement
+Quick question: can i incur admission conclusion before sending in my english language examination outcome have all mandatory requirement?,361,train,receive>incur decision>conclusion test>examination results>outcome required>mandatory prerequisites>requirement
+Could you tell me can welcome an admission conclusion sending in my english language exam outcome i have all necessary requirement?,361,dev,receive>welcome decision>conclusion test>exam results>outcome required>necessary prerequisites>requirement
+"Hi, what does signify when provide admission tell that ace utm is a condition?",362,train,mean>signify offer>provide says>tell
+what does it think my provide of admission tell that ace utm is a condition? Thanks.,362,train,mean>think offer>provide says>tell
+Help needed: what does it imply when my provide of admission tell ace utm condition?,362,dev,mean>imply offer>provide says>tell
+Could you tell me i eligible for both the summer and the fall winter plan streams which one should i prefer?,363,train,program>plan choose>prefer
+i am eligible both summer and the fall winter plan streams which one i prefer? Any idea?,363,train,program>plan choose>prefer
+i eligible for both the summer the fall winter plan streams which one should i prefer? Any idea?,363,dev,program>plan choose>prefer
+Help needed: if i pass an english proficiency exam finish the ace utm curriculum i do?,364,train,test>exam completing>finish program>curriculum
+if i pass english proficiency exam before finish the ace utm curriculum what should i do?,364,train,test>exam completing>finish program>curriculum
+if i pass an english proficiency quiz before finish the ace utm curriculum what should i do? Any idea?,364,dev,test>quiz completing>finish program>curriculum
+where i see more about ace utm?,365,train,learn>see
+"Hi, where teach more about ace utm?",365,train,learn>teach
+Could you tell me where can i see more about ace utm?,365,dev,learn>see
+how do prepare convinced i m considered scholarships what scholarships useable to me? Thanks.,366,train,make>prepare sure>convinced available>useable
+Quick question: how i get confident m considered scholarships what scholarships are useable to me?,366,train,make>get sure>confident available>useable
+how do i give confident i m considered for scholarships what scholarships are accessible me? Thanks.,366,dev,make>give sure>confident available>accessible
+"Hi, what if my final high school class alteration after i receive my scholarship provide?",367,train,grades>class change>alteration offer>provide
+what if my final high school class switch i receive my scholarship extend? Any idea?,367,train,grades>class change>switch offer>extend
+Could you tell me what if my final high school class alteration after i receive my scholarship provide?,367,dev,grades>class change>alteration offer>provide
+Could you tell me when discover away about scholarships?,368,train,find>discover out>away
+when will i get down about scholarships? Thanks.,368,train,find>get out>down
+Help needed: when will i see away scholarships?,368,dev,find>see out>away
+"Hi, i was grant the university of toronto international scholar award but there lately a shift to my legitimate position and today i stipulate domestic tuition what do i do?",369,train,awarded>grant recently>lately change>shift legal>legitimate status>position now>today qualify>stipulate
+Quick question: i was grant the university of toronto international scholar award but there has lately been a shift to my legitimate position and today stipulate for domestic tuition what do?,369,train,awarded>grant recently>lately change>shift legal>legitimate status>position now>today qualify>stipulate
+i was grant the university of toronto international scholar award but has lately a alter to my legitimate position and today i stipulate for domestic tuition what i? Any idea?,369,dev,awarded>grant recently>lately change>alter legal>legitimate status>position now>today qualify>stipulate
+i obtain two provide of admission from university of toronto from two different faculties campuses will my scholarship provide be transferrable? Any idea?,370,train,received>obtain offers>provide offers>provide
+i obtain two provide of admission from the university of toronto two different faculties campuses will scholarship provide be transferrable?,370,train,received>obtain offers>provide offers>provide
+Help needed: i obtain two provide of admission from the university of toronto two different faculties campuses will scholarship provide transferrable?,370,dev,received>obtain offers>provide offers>provide
+what is a renewable accolade? Thanks.,371,train,award>accolade
+what is renewable accolade? Any idea?,371,train,award>accolade
+Quick question: what is a renewable prize?,371,dev,award>prize
+Could you tell me if the honor is renewable tier should i keep?,372,train,award>honor grade>tier maintain>keep
+Help needed: if honor is renewable what tier preserve?,372,train,award>honor grade>tier maintain>preserve
+"Hi, if the honor is renewable what class uphold?",372,dev,award>honor grade>class maintain>uphold
+"Hi, if i fail to fulfill renewable weather one year fulfill them the next can i receive the honor?",373,train,meet>fulfill conditions>weather meet>fulfill award>honor
+Quick question: if i fail to fulfill renewable circumstance one year fulfill the next can i receive honor?,373,train,meet>fulfill conditions>circumstance meet>fulfill award>honor
+Quick question: if i fail fulfill renewable circumstance one year but fulfill them next can i receive prize?,373,dev,meet>fulfill conditions>circumstance meet>fulfill award>prize
+Help needed: if dilute path burden to portion time position this involve my eligibility for an honor?,374,train,reduce>dilute course>path load>burden part>portion status>position affect>involve award>honor
+Help needed: if trim my path burden to role time position will this impact my eligibility for an accolade?,374,train,reduce>trim course>path load>burden part>role status>position affect>impact award>accolade
+Quick question: if i cut my path burden portion time position will this involve my eligibility for an honor?,374,dev,reduce>cut course>path load>burden part>portion status>position affect>involve award>honor
+Help needed: i was grant the university of toronto international scholar award is this scholarship bid reasonable with other scholarships?,375,train,awarded>grant offer>bid tenable>reasonable
+Could you tell me i was grant the university of toronto international scholar award is scholarship bid reasonable with other scholarships?,375,train,awarded>grant offer>bid tenable>reasonable
+"Hi, i was grant university of toronto international scholar award is this scholarship provide reasonable with other scholarships?",375,dev,awarded>grant offer>provide tenable>reasonable
+Could you tell me i was mandatory to pay admission deposit is this refundable?,376,train,required>mandatory
+"Hi, i was mandatory pay an admission deposit this refundable?",376,train,required>mandatory
+i was mandatory to pay an admission deposit this refundable? Thanks.,376,dev,required>mandatory
+Could you tell me how and when will i receive scholarship prize payment?,377,train,award>prize
+how and when will i receive scholarship prize payment? Any idea?,377,train,award>prize
+"Hi, how will i receive my scholarship prize payment?",377,dev,award>prize
+"Hi, can defer my tuition and fee payments until my honor is credited to scholar account?",378,train,award>honor student>scholar
+"Hi, can i defer tuition fee payments until my prize is credited to my pupil account?",378,train,award>prize student>pupil
+Quick question: can i defer my tuition fee payments until my honor is credited my scholar account?,378,dev,award>honor student>scholar
+Quick question: can postpone my scholarship s to the following september?,379,train,defer>postpone
+Quick question: can i postpone my scholarship s the following september?,379,train,defer>postpone
+Could you tell me can i accede my scholarship s the following september?,379,dev,defer>accede
+Could you tell me i even questions my u t mississauga admission accolade who touch?,380,train,still>even award>accolade contact>touch
+i nonetheless questions about my u of t mississauga admission honor who do touch?,380,train,still>nonetheless award>honor contact>touch
+"Hi, i yet have questions u of t mississauga admission accolade who do i liaison?",380,dev,still>yet award>accolade contact>liaison
+Quick question: how lasting will appraisal hold?,381,train,long>lasting assessment>appraisal take>hold
+how lengthy appraisal hold? Thanks.,381,train,long>lengthy assessment>appraisal take>hold
+how lengthy will an appraisal hold? Any idea?,381,dev,long>lengthy assessment>appraisal take>hold
+how does u of t mississauga evaluate courses for equivalency? Thanks.,382,train,assess>evaluate
+how does u t mississauga evaluate courses for equivalency? Thanks.,382,train,assess>evaluate
+Could you tell me how u of t mississauga evaluate courses for equivalency?,382,dev,assess>evaluate
+Help needed: can i appeal a transfer credit decision?,383,train,
+Quick question: can i appeal transfer credit decision?,383,train,
+Quick question: can i appeal a transfer credit decision?,383,dev,
+Quick question: is there a deadline submit my transfer credit application documentation?,384,train,
+Quick question: is a deadline to submit my transfer credit application and documentation?,384,train,
+Quick question: is deadline to submit my transfer credit application and documentation?,384,dev,
+how i submit my final confirmed copy or other mandatory papers? Thanks.,385,train,official>confirmed transcript>copy required>mandatory documents>papers
+how can i submit my final confirmed copy other necessary papers? Thanks.,385,train,official>confirmed transcript>copy required>necessary documents>papers
+"Hi, how can i submit final confirmed copy or other mandatory papers?",385,dev,official>confirmed transcript>copy required>mandatory documents>papers
+Quick question: what deadline request alter my transfer credit appraisal?,386,train,changes>alter assessment>appraisal
+Could you tell me what deadline to request modify to transfer credit appraisal?,386,train,changes>modify assessment>appraisal
+what is the deadline to request modify to my transfer credit appraisal? Thanks.,386,dev,changes>modify assessment>appraisal
+"Hi, how will i get away many transfer credits i have obtain?",387,train,find>get out>away received>obtain
+Quick question: how will i determine away how many transfer credits i have obtain?,387,train,find>determine out>away received>obtain
+how i see away how many transfer credits obtain?,387,dev,find>see out>away received>obtain
+Quick question: what is a specified credit?,388,train,
+Could you tell me what is a specified credit?,388,train,
+what is a specified credit? Any idea?,388,dev,
+what an unspecified credit what does the 1 h 2 y etc entail?,389,train,mean>entail
+Help needed: what an unspecified credit what the 1 h 2 y etc imply?,389,train,mean>imply
+Could you tell me what an unspecified credit does the 1 h 2 y etc imply?,389,dev,mean>imply
+Quick question: what is a generic credit?,390,train,
+Help needed: what is a generic credit?,390,train,
+what is a generic credit? Any idea?,390,dev,
+what is an exclusion? Thanks.,391,train,
+"Hi, what is exclusion?",391,train,
+"Hi, what is an exclusion?",391,dev,
+Could you tell me what an extra?,392,train,
+what is extra?,392,train,
+Quick question: what is an extra?,392,dev,
+Could you tell me can i forego grant transfer credit?,393,train,forfeit>forego awarded>grant
+can i forego grant transfer credit? Any idea?,393,train,forfeit>forego awarded>grant
+can i waive grant transfer credit? Thanks.,393,dev,forfeit>waive awarded>grant
+Quick question: when i register courses at u of t mississauga?,394,train,
+Could you tell me when should i register for courses at u t mississauga?,394,train,
+Quick question: when should i register for courses at u of t mississauga?,394,dev,
+i take courses previous university in the summer session before attending u of t mississauga can i obtain transfer credit these courses? Any idea?,395,train,taking>take receive>obtain
+Could you tell me i am take courses my previous university in the summer session before attending u t mississauga i obtain transfer credit for these courses?,395,train,taking>take receive>obtain
+i am take courses at my previous university in the summer session before attending u of t mississauga i obtain transfer credit for these courses?,395,dev,taking>take receive>obtain
+will my transfer credits impact my fees?,396,train,affect>impact
+will my transfer credits impact fees? Thanks.,396,train,affect>impact
+will my transfer credits involve fees?,396,dev,affect>involve
+Quick question: i have been omit a full credit course because i only obtain half credit transfer assume the full credit expulsion?,397,train,excluded>omit received>obtain take>assume exclusion>expulsion
+i have been omit from a full credit course because i only obtain a half credit transfer i get full credit expulsion? Any idea?,397,train,excluded>omit received>obtain take>get exclusion>expulsion
+i have been omit a full credit course because only obtain a half credit transfer can i carry the full credit expulsion? Any idea?,397,dev,excluded>omit received>obtain take>carry exclusion>expulsion
+Quick question: how u of t mississauga s degree prerequisite affect my transfer credits?,398,train,requirements>prerequisite impact>affect
+how u of t mississauga s degree prerequisite affect my transfer credits? Any idea?,398,train,requirements>prerequisite impact>affect
+how do u t mississauga s degree prerequisite affect my transfer credits?,398,dev,requirements>prerequisite impact>affect
+Help needed: does my tier transfer with credit to u of t?,399,train,grade>tier
+Help needed: does tier transfer with the credit to u of t?,399,train,grade>tier
+does my class transfer with the credit to u of t? Thanks.,399,dev,grade>class
+Help needed: should i send the outcome from courses i get summer before i beginning u t mississauga?,400,train,results>outcome take>get start>beginning
+should i send the outcome from courses i bring in the summer begin u t mississauga?,400,train,results>outcome take>bring start>begin
+should i send the outcome courses carry in summer i begin u of t mississauga?,400,dev,results>outcome take>carry start>begin
+Quick question: will credits attained in secondary school or a different post secondary institution be eligible for requirement of the computer science curriculum?,401,train,earned>attained prerequisites>requirement program>curriculum
+Help needed: will credits attained in secondary school or a different post secondary institution eligible for requirement of the computer science curriculum?,401,train,earned>attained prerequisites>requirement program>curriculum
+will credits gain in secondary school or at different post secondary institution eligible requirement of the computer science curriculum? Thanks.,401,dev,earned>gain prerequisites>requirement program>curriculum
+Quick question: what are the admission prerequisite?,402,train,requirements>prerequisite
+Help needed: what are the admission prerequisite?,402,train,requirements>prerequisite
+Quick question: what are admission demand?,402,dev,requirements>demand
+Could you tell me what is proper bachelor s degree?,403,train,appropriate>proper
+what is an proper bachelor s degree? Any idea?,403,train,appropriate>proper
+Help needed: what is an proper bachelor s degree?,403,dev,appropriate>proper
+Could you tell me are three year bologna compliant degrees standard?,404,train,acceptable>standard
+are three year bologna compliant degrees standard?,404,train,acceptable>standard
+Help needed: are three year bologna compliant degrees standard?,404,dev,acceptable>standard
+"Hi, i a four year bachelor s degree a college will it be standard?",405,train,acceptable>standard
+i have a four year bachelor s degree from a college will it standard? Any idea?,405,train,acceptable>standard
+i have four year bachelor s degree from a college will it be standard?,405,dev,acceptable>standard
+Could you tell me can i implement phd curriculum directly from bachelor s degree?,406,train,apply>implement program>curriculum
+can i implement to a phd curriculum directly a bachelor s degree? Any idea?,406,train,apply>implement program>curriculum
+can i implement to a phd curriculum directly bachelor s degree? Any idea?,406,dev,apply>implement program>curriculum
+i am an international applicant how do recognize you know my degree? Thanks.,407,train,know>recognize recognize>know
+i am an international applicant how i recognize realize my degree? Thanks.,407,train,know>recognize recognize>realize
+i am an international applicant how do i acknowledge you know my degree? Any idea?,407,dev,know>acknowledge recognize>know
+"Hi, when implement?",408,train,apply>implement
+when should i enforce? Any idea?,408,train,apply>enforce
+Could you tell me when should i use?,408,dev,apply>use
+Could you tell me i might lose the application deadline can i have extension?,409,train,miss>lose
+i might overlook application deadline i have an extension?,409,train,miss>overlook
+"Hi, i might overlook the application deadline i have an extension?",409,dev,miss>overlook
+Help needed: i would wish to apply a postgraduate plan the university toronto where should i come the application shape?,410,train,like>wish graduate>postgraduate program>plan get>come form>shape
+"Hi, i would wish to apply to a postgraduate curriculum the university of toronto i come application shape?",410,train,like>wish graduate>postgraduate program>curriculum get>come form>shape
+"Hi, i would wish apply to a postgraduate plan the university of toronto where should i find application shape?",410,dev,like>wish graduate>postgraduate program>plan get>find form>shape
+Help needed: will you accept application and encouraging papers inclined and submitted an broker or advisor?,411,train,supporting>encouraging documents>papers prepared>inclined agent>broker consultant>advisor
+Could you tell me will you accept my application and encouraging papers inclined and submitted by broker or advisor?,411,train,supporting>encouraging documents>papers prepared>inclined agent>broker consultant>advisor
+Quick question: will you accept my application and encouraging papers willing and submitted by an broker adviser?,411,dev,supporting>encouraging documents>papers prepared>willing agent>broker consultant>adviser
+Help needed: i do not have access to the internet can i find a newspaper application form?,412,train,get>find paper>newspaper
+i do not access to the internet can i make a newspaper application form? Any idea?,412,train,get>make paper>newspaper
+Help needed: i do not have access to the internet find a newspaper application form?,412,dev,get>find paper>newspaper
+do i to list all the schools and institutions i attended? Any idea?,413,train,
+do i have to list all the schools institutions i have attended?,413,train,
+do i to list all the schools and institutions i have attended?,413,dev,
+"Hi, i wish employ more one plan i have to take more than one application?",414,train,want>wish apply>employ program>plan submit>take
+Could you tell me i wishing to employ to more than one plan do to present more than one application?,414,train,want>wishing apply>employ program>plan submit>present
+Quick question: i need to use more than one plan do i have to take more than one application?,414,dev,want>need apply>use program>plan submit>take
+"Hi, i recently become a canadian permanent resident how can i update my statutory status on my application?",415,train,became>become legal>statutory
+i recently become a canadian permanent resident how can update my lawful status on my application?,415,train,became>become legal>lawful
+"Hi, i recently become canadian permanent resident i update my statutory status on my application?",415,dev,became>become legal>statutory
+can i prepare modify to my application after i paid the application fee? Any idea?,416,train,make>prepare changes>modify
+"Hi, can prepare modify to my application i paid the application fee?",416,train,make>prepare changes>modify
+can get alteration to my application after i paid the application fee?,416,dev,make>get changes>alteration
+how much is the application fee? Any idea?,417,train,
+Quick question: how much is the application fee?,417,train,
+Help needed: how much is the application fee?,417,dev,
+"Hi, how should i salary the application fee?",418,train,pay>salary
+Could you tell me how should i salary application fee?,418,train,pay>salary
+Quick question: how should i salary application fee?,418,dev,pay>salary
+Quick question: i alter my idea and do not need to go to postgraduate school anymore i come repayment of application fee?,419,train,changed>alter mind>idea want>need graduate>postgraduate get>come refund>repayment
+Quick question: i altered my idea and do not need to go to postgraduate school anymore can come a repayment of the application fee?,419,train,changed>altered mind>idea want>need graduate>postgraduate get>come refund>repayment
+i shift idea and do not need to go to postgraduate school anymore can i come repayment of the application fee?,419,dev,changed>shift mind>idea want>need graduate>postgraduate get>come refund>repayment
+Help needed: how should scholarly transcripts be submitted?,420,train,academic>scholarly
+how my scholarly transcripts be submitted? Any idea?,420,train,academic>scholarly
+Quick question: how my scholarly transcripts be submitted?,420,dev,academic>scholarly
+"Hi, my establishment will publish transcripts me but not establishment which i am applying you admit transcripts submitted by me?",421,train,institution>establishment release>publish institution>establishment accept>admit
+my establishment publish transcripts to but not establishment to which i applying admit transcripts submitted by? Any idea?,421,train,institution>establishment release>publish institution>establishment accept>admit
+Quick question: my establishment publish transcripts to me but not to the establishment to am applying will you admit transcripts submitted by?,421,dev,institution>establishment release>publish institution>establishment accept>admit
+Quick question: my university sends transcripts electronically will the university of toronto admit electronic transcripts?,422,train,accept>admit
+my university sends transcripts electronically will university toronto take electronic transcripts?,422,train,accept>take
+my university sends transcripts electronically the university of toronto take electronic transcripts? Thanks.,422,dev,accept>take
+"Hi, my copy does not include course championship or class what should i do?",423,train,transcript>copy title>championship grades>class
+Help needed: my copy does not include course championship or class should i do?,423,train,transcript>copy title>championship grades>class
+Quick question: my copy does not include course championship or class what should i do?,423,dev,transcript>copy title>championship grades>class
+Quick question: what do i do if educational establishment shut?,424,train,institution>establishment closed>shut
+what do do if my educational establishment has shut? Any idea?,424,train,institution>establishment closed>shut
+what do i do if educational establishment shut?,424,dev,institution>establishment closed>shut
+"Hi, i not consummated my ongoing degree nonetheless should?",425,train,completed>consummated current>ongoing yet>nonetheless
+"Hi, i not accomplished my ongoing degree even i do?",425,train,completed>accomplished current>ongoing yet>even
+i have not accomplished my ongoing degree still should i do? Thanks.,425,dev,completed>accomplished current>ongoing yet>still
+"Hi, my name my confirmed transcripts is different passport other transcripts shall i allow papers explaining the disagreement?",426,train,official>confirmed provide>allow document>papers discrepancy>disagreement
+my name in my confirmed transcripts different from my passport other transcripts shall offer a papers explaining disagreement? Any idea?,426,train,official>confirmed provide>offer document>papers discrepancy>disagreement
+Could you tell me my name my confirmed transcripts is different from passport other transcripts shall i allow a papers explaining the divergence?,426,dev,official>confirmed provide>allow document>papers discrepancy>divergence
+Help needed: my scholarly records are in a language other than english shall i also present english translations of papers?,427,train,academic>scholarly submit>present documents>papers
+my scholarly records are in a language other than english shall also present english translations of papers? Any idea?,427,train,academic>scholarly submit>present documents>papers
+my scholarly records are a language other english shall i present english translations of my papers?,427,dev,academic>scholarly submit>present documents>papers
+Help needed: my transcripts are in french shall i present english translations?,428,train,submit>present
+my transcripts in french shall i present english translations? Any idea?,428,train,submit>present
+Could you tell me my transcripts are in french shall i present english translations?,428,dev,submit>present
+can i come my transcripts back?,429,train,get>come
+can i come my transcripts back? Thanks.,429,train,get>come
+Quick question: can i come my transcripts back?,429,dev,get>come
+Quick question: how many quotation missive are mandatory admission?,430,train,reference>quotation letters>missive required>mandatory
+how many mention missive are necessitate for admission? Thanks.,430,train,reference>mention letters>missive required>necessitate
+Quick question: how many mention missive are necessary for admission?,430,dev,reference>mention letters>missive required>necessary
+Could you tell me what process for umpire?,431,train,referees>umpire
+Quick question: what the process for umpire?,431,train,referees>umpire
+Could you tell me what is the process umpire?,431,dev,referees>umpire
+my umpire did not obtain email from the school of graduate studies could you please resend? Thanks.,432,train,referee>umpire receive>obtain
+Could you tell me my umpire not obtain the email the school of graduate studies could you please resend it?,432,train,referee>umpire receive>obtain
+Could you tell me my umpire did not obtain the email from the school of graduate studies could you please resend?,432,dev,referee>umpire receive>obtain
+when are mention attributable? Thanks.,433,train,references>mention due>attributable
+Could you tell me when are mention attributable?,433,train,references>mention due>attributable
+when mention attributable?,433,dev,references>mention due>attributable
+the contact information my umpire alter as already submitted the online application how can i delete the umpire s contact information? Any idea?,434,train,referee>umpire changed>alter edit>delete referee>umpire
+the contact information of my umpire has modify i have already submitted the online application how can i delete the umpire s contact information? Any idea?,434,train,referee>umpire changed>modify edit>delete referee>umpire
+"Hi, the contact information umpire has alter i have already submitted the online application can i delete the umpire s contact information?",434,dev,referee>umpire changed>alter edit>delete referee>umpire
+how do love the alum unit obtain my supplemental materials? Thanks.,435,train,know>love graduate>alum received>obtain
+how i love when the postgraduate unit obtain my supplemental materials? Thanks.,435,train,know>love graduate>postgraduate received>obtain
+how do i love when alum unit obtain my supplemental materials? Any idea?,435,dev,know>love graduate>alum received>obtain
+where do i transmit my application endorse papers?,436,train,send>transmit supporting>endorse documents>papers
+where do transmit my application endorse papers? Any idea?,436,train,send>transmit supporting>endorse documents>papers
+Help needed: where do transmit my application endorse papers?,436,dev,send>transmit supporting>endorse documents>papers
+do i want to bring the gre test?,437,train,need>want take>bring exam>test
+Could you tell me do i ask to get the gre test?,437,train,need>ask take>get exam>test
+"Hi, do want to bring the gre test?",437,dev,need>want take>bring exam>test
+english is not my first language do want to bring the toefl test? Thanks.,438,train,need>want take>bring exam>test
+"Hi, english is not my first language do i want to carry the toefl test?",438,train,need>want take>carry exam>test
+english is not my first language do i want hold the toefl test? Thanks.,438,dev,need>want take>hold exam>test
+how employ for fiscal help? Thanks.,439,train,apply>employ financial>fiscal aid>help
+Could you tell me how i implement for fiscal assistance?,439,train,apply>implement financial>fiscal aid>assistance
+how do i enforce for fiscal assistance? Thanks.,439,dev,apply>enforce financial>fiscal aid>assistance
+"Hi, will postgraduate unit bid me a support package?",440,train,graduate>postgraduate offer>bid funding>support
+Could you tell me will my alumna unit bid me a support package?,440,train,graduate>alumna offer>bid funding>support
+Quick question: will alum unit bid me a financing package?,440,dev,graduate>alum offer>bid funding>financing
+Help needed: where can i find data the position of application?,441,train,get>find information>data status>position
+where can i bring data on the position of my application? Thanks.,441,train,get>bring information>data status>position
+where i come data on position of my application? Any idea?,441,dev,get>come information>data status>position
+Quick question: when will i listen a decision on my application?,442,train,hear>listen
+when will i listen decision on my application?,442,train,hear>listen
+Quick question: when will i listen decision on my application?,442,dev,hear>listen
+i send my application but i not heard back from the alum unit how do i acknowledge application and endorse papers have been obtain?,443,train,sent>send graduate>alum know>acknowledge supporting>endorse documents>papers received>obtain
+"Hi, i send application but i have not heard back from the alumna unit how i acknowledge my application and encouraging papers have obtain?",443,train,sent>send graduate>alumna know>acknowledge supporting>encouraging documents>papers received>obtain
+Quick question: i send application but i have not heard back from the alumna unit how i love application endorse papers have been obtain?,443,dev,sent>send graduate>alumna know>love supporting>endorse documents>papers received>obtain
+the application deadline has passed but i even have admittance my application can i proceed? Thanks.,444,train,still>even access>admittance
+Could you tell me the application deadline passed but i yet admittance to my application proceed?,444,train,still>yet access>admittance
+"Hi, the application deadline passed i yet have admittance to my application i proceed?",444,dev,still>yet access>admittance
+Quick question: will the school of graduate studies offer feedback students who been spurned?,445,train,provide>offer rejected>spurned
+Help needed: will school of graduate studies allow feedback students who have been refuse?,445,train,provide>allow rejected>refuse
+Could you tell me will the school graduate studies offer feedback for students have been refuse?,445,dev,provide>offer rejected>refuse
+Could you tell me what is offer of admission?,446,train,
+"Hi, what is an offer admission?",446,train,
+what an offer of admission? Thanks.,446,dev,
+Quick question: i been admitted nonetheless i a few query i get the concluding conclusion who do want to liaison?,447,train,however>nonetheless questions>query make>get final>concluding decision>conclusion need>want contact>liaison
+"Hi, i have been admitted nonetheless i have few query i give concluding determination who do i ask liaison?",447,train,however>nonetheless questions>query make>give final>concluding decision>determination need>ask contact>liaison
+Help needed: i have been admitted nonetheless i have a few query before i get the concluding determination who do i want to touch?,447,dev,however>nonetheless questions>query make>get final>concluding decision>determination need>want contact>touch
+may i postpone admission to the university of toronto?,448,train,defer>postpone
+"Hi, may i accede admission the university of toronto?",448,train,defer>accede
+may i accede admission university of toronto?,448,dev,defer>accede
+"Hi, do ask a survey license to survey in canada an international scholar?",449,train,need>ask study>survey permit>license study>survey student>scholar
+Help needed: do i want a report license to report in canada as international scholar?,449,train,need>want study>report permit>license study>report student>scholar
+do want a survey license report in canada as international scholar?,449,dev,need>want study>survey permit>license study>report student>scholar
+Help needed: do i ask a visa in addition to my report allow to trip to canada?,450,train,need>ask study>report permit>allow travel>trip
+Quick question: do i ask a visa in addition to report allow to trip to canada?,450,train,need>ask study>report permit>allow travel>trip
+Quick question: do i want a visa addition my report allow to trip to canada?,450,dev,need>want study>report permit>allow travel>trip
+"Hi, can i attend university a high school study allow?",451,train,permit>allow
+can attend university with a high school study allow? Thanks.,451,train,permit>allow
+can attend university with a high school study license? Any idea?,451,dev,permit>license
+am i entitled to work in canada while examine?,452,train,eligible>entitled studying>examine
+am i entitled to work canada while examine? Thanks.,452,train,eligible>entitled studying>examine
+am i entitled to work in canada while examine? Any idea?,452,dev,eligible>entitled studying>examine
+"Hi, how lengthy does it bring cic to process my application?",453,train,long>lengthy take>bring
+how lasting it carry cic to process my application? Any idea?,453,train,long>lasting take>carry
+Could you tell me how prolonged does it get cic to process my application?,453,dev,long>prolonged take>get
+my allow is about to expire how and when should i apply to extend it?,454,train,permit>allow
+Help needed: my allow is about to expire how and when should i apply to extend?,454,train,permit>allow
+my licence about to expire and when should i apply to extend? Any idea?,454,dev,permit>licence
+Quick question: my visa or eta is about to expire or already invalid i trip rejoin to canada valid report licence?,455,train,expired>invalid travel>trip return>rejoin study>report permit>licence
+my visa or eta to expire already invalid can i trip rejoin to canada with my valid report licence? Thanks.,455,train,expired>invalid travel>trip return>rejoin study>report permit>licence
+Quick question: my visa or eta is about to expire or already invalid trip revert canada with valid report license?,455,dev,expired>invalid travel>trip return>revert study>report permit>license
+am i eligible to bide in canada after finish my degree plan? Thanks.,456,train,stay>bide completing>finish program>plan
+"Hi, am eligible remain in canada finish my degree plan?",456,train,stay>remain completing>finish program>plan
+"Hi, am i eligible to stick in canada after finish degree plan?",456,dev,stay>stick completing>finish program>plan
+can work on and or hit campus? Any idea?,457,train,off>hit
+Could you tell me can i work on and away campus?,457,train,off>away
+Quick question: can i work on and or away campus?,457,dev,off>away
+can i apply my report allow to utilize for a sin? Any idea?,458,train,use>apply study>report permit>allow apply>utilize
+Quick question: can i apply my survey license to utilize for a sin?,458,train,use>apply study>survey permit>license apply>utilize
+"Hi, can i apply survey license utilize a sin?",458,dev,use>apply study>survey permit>license apply>utilize
+how do i widen survey allow? Any idea?,459,train,extend>widen study>survey permit>allow
+how widen my survey licence? Thanks.,459,train,extend>widen study>survey permit>licence
+how prolong my survey allow? Any idea?,459,dev,extend>prolong study>survey permit>allow
+where can i find data applying for a post postgraduate operate license pgwp? Thanks.,460,train,get>find information>data graduate>postgraduate work>operate permit>license
+Could you tell me where i find data on applying for a post postgraduate operate license pgwp?,460,train,get>find information>data graduate>postgraduate work>operate permit>license
+where can i take data on applying a post postgraduate operate license pgwp?,460,dev,get>take information>data graduate>postgraduate work>operate permit>license
+does fell a course or take a gap year impact my judicial position? Thanks.,461,train,dropping>fell taking>take affect>impact legal>judicial status>position
+Quick question: does falling a course or take a gap year impact my legitimate position?,461,train,dropping>falling taking>take affect>impact legal>legitimate status>position
+Help needed: does fell a course or take a gap year involve legitimate position?,461,dev,dropping>fell taking>take affect>involve legal>legitimate status>position
+"Hi, who i speak to i have questions or want help with my statutory position survey operate co op license s?",462,train,talk>speak need>want legal>statutory status>position study>survey work>operate permit>license
+who do i speak to if i have questions or want help with my lawful position and or report operate co op license s? Thanks.,462,train,talk>speak need>want legal>lawful status>position study>report work>operate permit>license
+Could you tell me who speak to if i questions or ask help with statutory position and report operate co op license s?,462,dev,talk>speak need>ask legal>statutory status>position study>report work>operate permit>license
+how find my u t scholar scorecard?,463,train,get>find student>scholar card>scorecard
+"Hi, how can i find u of t scholar scorecard?",463,train,get>find student>scholar card>scorecard
+Help needed: how can i come u of t pupil scorecard?,463,dev,get>come student>pupil card>scorecard
+Quick question: how do i enroll in my first year courses?,464,train,
+Help needed: how i enroll in my first year courses?,464,train,
+how do i enroll in my first year courses? Thanks.,464,dev,
+can i switch path timetable? Any idea?,465,train,change>switch course>path
+can i alter my path timetable?,465,train,change>alter course>path
+Help needed: can i alteration my path timetable?,465,dev,change>alteration course>path
+are any courses provide online? Thanks.,466,train,offered>provide
+Help needed: are courses provide online?,466,train,offered>provide
+Help needed: are any courses provide online?,466,dev,offered>provide
+can i fell a course or report component time?,467,train,drop>fell study>report part>component
+"Hi, can i flatten a course or survey portion time?",467,train,drop>flatten study>survey part>portion
+can i fall a course survey component time? Thanks.,467,dev,drop>fall study>survey part>component
+Could you tell me what sort of computer or laptop i bargain?,468,train,kind>sort buy>bargain
+what sort computer or laptop should i bargain? Thanks.,468,train,kind>sort buy>bargain
+Could you tell me what sort computer or laptop should bargain?,468,dev,kind>sort buy>bargain
+how can i salary my tuition fees?,469,train,pay>salary
+Could you tell me how can i salary tuition fees?,469,train,pay>salary
+how can salary my tuition fees?,469,dev,pay>salary
+Could you tell me it tell engineering applicant portal that i will be obtain scholarship for first year do i have to something obtain this?,470,train,says>tell receiving>obtain receive>obtain
+it tell in engineering applicant portal that i will obtain a scholarship for first year do i have to do something to obtain this? Thanks.,470,train,says>tell receiving>obtain receive>obtain
+"Hi, it tell my engineering applicant portal that will be obtain a scholarship first year do i have to do something to obtain?",470,dev,says>tell receiving>obtain receive>obtain
+where can i get help with housing? Any idea?,471,train,find>get
+Quick question: where get help housing?,471,train,find>get
+Quick question: where can i obtain help housing?,471,dev,find>obtain
+i m an international scholar this will be my first time analyze in canada can i devise for arrival?,472,train,student>scholar studying>analyze prepare>devise
+i m an international scholar and this will be my first time analyze in canada how i devise for arrival?,472,train,student>scholar studying>analyze prepare>devise
+"Hi, i m an international scholar and this will my first time analyze in canada how can i ready arrival?",472,dev,student>scholar studying>analyze prepare>ready
+"Hi, i m an international scholar where can determine data report license operate license?",473,train,student>scholar find>determine information>data study>report permits>license work>operate permits>license
+i m an international scholar can get data on report license and operate license? Any idea?,473,train,student>scholar find>get information>data study>report permits>license work>operate permits>license
+Help needed: i m an international scholar where can i see data on report license and operate license?,473,dev,student>scholar find>see information>data study>report permits>license work>operate permits>license
+i a wellness subject or impairment that may affect my academic performance what accommodations are useable? Thanks.,474,train,health>wellness issue>subject disability>impairment impact>affect available>useable
+Quick question: i wellness matter or impairment that may affect my academic performance what accommodations are accessible?,474,train,health>wellness issue>matter disability>impairment impact>affect available>accessible
+i have a wellness subject or impairment may affect my academic performance what accommodations are accessible?,474,dev,health>wellness issue>subject disability>impairment impact>affect available>accessible
+i m not sense good can i look a physician psychological wellness professional campus? Any idea?,475,train,feeling>sense well>good see>look doctor>physician mental>psychological health>wellness
+Could you tell me i m not sense good can i realize physician psychological wellness professional on campus?,475,train,feeling>sense well>good see>realize doctor>physician mental>psychological health>wellness
+Could you tell me i m not sense good can i realize a physician or psychological wellness professional campus?,475,dev,feeling>sense well>good see>realize doctor>physician mental>psychological health>wellness
+Help needed: do i have health or dental insurance coverage through u of t?,476,train,
+do have health or dental insurance coverage through u of t? Any idea?,476,train,
+do i have health or dental insurance coverage through u of t? Any idea?,476,dev,
+i obtain a fishy see email from a u of t account how can i say it s lawful?,477,train,received>obtain suspicious>fishy looking>see tell>say legitimate>lawful
+Could you tell me i obtain a fishy see email from a u of t account can i assure if it s valid?,477,train,received>obtain suspicious>fishy looking>see tell>assure legitimate>valid
+Could you tell me i obtain a fishy expect email from a u of t account how can i assure if it s true?,477,dev,received>obtain suspicious>fishy looking>expect tell>assure legitimate>true
+Help needed: how am i paired a practicum?,478,train,matched>paired
+how am i paired to a practicum?,478,train,matched>paired
+how am paired to practicum? Any idea?,478,dev,matched>paired
+Quick question: what is the practicum administration system pas?,479,train,
+Could you tell me what is the practicum administration system pas?,479,train,
+"Hi, what is practicum administration system pas?",479,dev,
+"Hi, where do i determine data the practicum courses swk4701h practicum 1 and swk4702y practicum 2?",480,train,find>determine information>data
+where do i get data about the practicum courses swk4701h practicum 1 and swk4702y practicum 2? Any idea?,480,train,find>get information>data
+where do i see data about the practicum courses swk4701h practicum 1 and swk4702y practicum 2? Thanks.,480,dev,find>see information>data
+do you always have a practicum for every student? Any idea?,481,train,
+do you always practicum for every student?,481,train,
+Help needed: do you always have a practicum for every student?,481,dev,
+can i discover my own practicum? Thanks.,482,train,find>discover
+"Hi, can i discover own practicum?",482,train,find>discover
+can i determine own practicum?,482,dev,find>determine
+Quick question: is essential practicum complies my asserted field of survey?,483,train,necessary>essential declared>asserted study>survey
+Quick question: is it essential that practicum complies announced field of survey?,483,train,necessary>essential declared>announced study>survey
+Quick question: is essential that my practicum complies with my announced field of report?,483,dev,necessary>essential declared>announced study>report
+"Hi, am need to have patrol check come for my practicum?",484,train,required>need police>patrol done>come
+Help needed: am need to have a patrol check come for practicum?,484,train,required>need police>patrol done>come
+Quick question: am i necessary to a patrol check come for my practicum?,484,dev,required>necessary police>patrol done>come
+"Hi, are all practicums reserved for fifsw students?",485,train,
+are all practicums reserved for fifsw students? Any idea?,485,train,
+Quick question: are all practicums reserved fifsw students?,485,dev,
+"Hi, where do take my vulnerable sector check clearance missive?",486,train,submit>take letter>missive
+Help needed: where do i take my vulnerable sector check clearance missive?,486,train,submit>take letter>missive
+where take my vulnerable sector check clearance missive?,486,dev,submit>take letter>missive
+do you extend practicums outer toronto? Any idea?,487,train,offer>extend outside>outer
+"Hi, do extend practicums away toronto?",487,train,offer>extend outside>away
+do you extend practicums outer of toronto? Thanks.,487,dev,offer>extend outside>outer
+"Hi, where can get practicum data for international students?",488,train,find>get information>data
+"Hi, where can discover practicum data for international students?",488,train,find>discover information>data
+Could you tell me where i see practicum data for international students?,488,dev,find>see information>data
+how do i guarantee that be assigned to a unique practicum organization?,489,train,ensure>guarantee specific>unique
+Help needed: how do i secure will assigned to a particular practicum organization?,489,train,ensure>secure specific>particular
+Help needed: how ascertain i will be assigned a unique practicum organization?,489,dev,ensure>ascertain specific>unique
+i reviewed your partner organizations on the fifsw site why is that i do not look a special practicum in year s alternative? Thanks.,490,train,website>site see>look particular>special options>alternative
+Help needed: i reviewed your partner organizations on the fifsw site why that not realize a special practicum in this year s alternative?,490,train,website>site see>realize particular>special options>alternative
+i reviewed your partner organizations on fifsw site why is it that i do not find a specific practicum this year s alternative?,490,dev,website>site see>find particular>specific options>alternative
+Quick question: can i ascertain that i am put in a hospital setting?,491,train,ensure>ascertain placed>put
+Quick question: can i ascertain that i am put a hospital setting?,491,train,ensure>ascertain placed>put
+can i insure that i am put in hospital setting?,491,dev,ensure>insure placed>put
+Quick question: can exhaustive both of my practicums at hospitals in toronto?,492,train,complete>exhaustive
+Could you tell me can i thorough both of my practicums at hospitals in toronto?,492,train,complete>thorough
+Quick question: can i exhaustive both of my practicums hospitals toronto?,492,dev,complete>exhaustive
+Could you tell me what happens i do not take an interview at one of selection?,493,train,get>take choices>selection
+what happens if do not find an interview at one of my selection? Any idea?,493,train,get>find choices>selection
+what happens if i do not find an interview one of my selection?,493,dev,get>find choices>selection
+Quick question: why work volunteer experience not considered when paired for interview?,494,train,matched>paired
+Could you tell me why is my work volunteer experience not considered i am paired interview?,494,train,matched>paired
+"Hi, why my work volunteer experience not considered when am paired for an interview?",494,dev,matched>paired
+can i barter practicums a classmate after been assigned?,495,train,trade>barter
+Quick question: can i barter practicums with classmate after have been assigned?,495,train,trade>barter
+can swap practicums with classmate after i have assigned? Thanks.,495,dev,trade>swap
+i was official to beginning practicum at a peculiar organization and it now cancelled what occur? Thanks.,496,train,confirmed>official start>beginning particular>peculiar happened>occur
+Could you tell me i was official commence practicum a special organization and it is now cancelled occur?,496,train,confirmed>official start>commence particular>special happened>occur
+i was official commence practicum a specific organization and it is now cancelled what occur?,496,dev,confirmed>official start>commence particular>specific happened>occur
+Could you tell me what is an ffl?,497,train,
+"Hi, what ffl?",497,train,
+Help needed: what is an ffl?,497,dev,
+Help needed: how can have feedback about practicum correlate topic?,498,train,give>have related>correlate issues>topic
+how can i have feedback about practicum correlate topic? Thanks.,498,train,give>have related>correlate issues>topic
+how can i impart feedback practicum connected topic? Any idea?,498,dev,give>impart related>connected issues>topic
+Help needed: i finished my practicum why do even have ipr tier copy?,499,train,still>even grade>tier transcript>copy
+Help needed: i finished my practicum why do i nonetheless ipr on my class copy?,499,train,still>nonetheless grade>class transcript>copy
+Help needed: i finished practicum why do i even have ipr my class copy?,499,dev,still>even grade>class transcript>copy
+how do become a field instructor? Thanks.,500,train,
+how i become field instructor? Thanks.,500,train,
+how become a field instructor? Any idea?,500,dev,

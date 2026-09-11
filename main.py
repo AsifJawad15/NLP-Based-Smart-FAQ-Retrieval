@@ -102,6 +102,23 @@ def build_answerer(
 
         return answer, threshold, str(config.get("preprocessing_config", "basic"))
 
+    if MODEL_FAMILIES[model] == "sequence":
+        # PyTorch is imported only when a sequence encoder is actually chosen.
+        from src.sequence_retrieval import answer_sequence, build_sequence_index
+        from src.sequence_training import load_sequence_model, load_sequence_threshold
+
+        pretrained = load_pretrained_vectors(MODELS_ROOT)
+        encoder, vocabulary_index, metadata = load_sequence_model(
+            corpus_dir, model, pretrained, MODELS_ROOT
+        )
+        threshold = load_sequence_threshold(corpus_dir, metadata, model)
+        sequence_index = build_sequence_index(faq_data, encoder, vocabulary_index, metadata["max_len"])
+
+        def answer(query: str) -> dict[str, Any]:
+            return answer_sequence(query, faq_data, sequence_index, threshold, top_k=3)
+
+        return answer, threshold, "basic"
+
     if MODEL_FAMILIES[model] == "pretrained_w2v":
         vectors, metadata = load_pretrained_vectors(MODELS_ROOT)
         threshold = load_pretrained_threshold(corpus_dir, metadata, model)

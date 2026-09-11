@@ -1,0 +1,8 @@
+{
+  "artifact_id": "72fe5d67d95e502895d6bf274a11153eb1607571eee77ad4b8bd31e892dcec43",
+  "preprocessing_config": "basic",
+  "rnn": {
+    "similarity_threshold": 0.69,
+    "validation_score": 0.8333333333333333
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "accepted_wrong_count": 15,
+  "answerable_acceptance_rate": 0.9133333333333333,
+  "answerable_queries": 150,
+  "corpus": "university",
+  "correct_answer_rate": 0.8133333333333334,
+  "display_name": "University FAQ",
+  "evaluation_set": "synthetic_benchmark",
+  "false_acceptance_count": 6,
+  "false_rejection_count": 13,
+  "faq_count": 500,
+  "incorrect_retrieval_examples": [
+    {
+      "accepted": true,
+      "expected_faq_id": 64,
+      "query": "Which areas of learning belong to Ecology and Evolutionary Biology?",
+      "retrieved_faq_id": 48,
+      "retrieved_question": "can you explain the structure of Ecology and Evolutionary Biology at UOFT?",
+      "similarity": 0.9265027639421954
+    },
+    {
+      "accepted": true,
+      "expected_faq_id": 83,
+      "query": "What shape does Counselling & Clinical Psychology take?",
+      "retrieved_faq_id": 39,
+      "retrieved_question": "what makes the Counselling and Clinical Psychology - Field in Clinical and Counselling Psychology (OISE) program at UOFT unique?",
+      "similarity": 0.8741115643066076
+    },
+    {
+      "accepted": true,
+      "expected_faq_id": 1,
+      "query": "Which classes can be taken within Master of Visual Studies in Studio Art?",
+      "retrieved_faq_id": 57,
+      "retrieved_question": "where do Master of Visual Studies in Studio Art graduates from UOFT typically work?",
+      "similarity": 0.8935585531844359
+    },
+    {
+      "accepted": false,
+      "expected_faq_id": 210,
+      "query": "Which professions follow on from Global Affairs?",
+      "retrieved_faq_id": 96,
+      "retrieved_question": "can you explain the structure of Global Affairs at UOFT?",
+      "similarity": 0.7901921185188888
+    },
+    {
+      "accepted": false,
+      "expected_faq_id": 94,
+      "query": "How do people who finish Social Work progress professionally?",
+      "retrieved_faq_id": 125,
+      "retrieved_question": "what subjects will I study in Social Work at UOFT?",
+      "similarity": 0.7178433841623414
+    }
+  ],
+  "mean_similarity_correct_top1": 0.9139620247084633,
+  "model": "pw2v_tfidf",
+  "model_label": "Pretrained Word2Vec TF-IDF weighted",
+  "preprocessing_config": "basic",
+  "preprocessing_options": {
+    "lemmatize": false,
+    "remove_stopwords": false
+  },
+  "threshold": 0.8,
+  "top1_accuracy": 0.8666666666666667,
+  "top3_accuracy": 0.9866666666666667,
+  "unanswerable_queries": 50,
+  "unanswerable_rejection_rate": 0.88
+}
