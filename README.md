@@ -31,17 +31,17 @@ their own development paraphrases. See [Phase 3](#phase-3-siamese-rnn-and-bilstm
 | Status | Item |
 | --- | --- |
 | Done | All seven models, thresholds, seven-model comparison reports, terminal demo for every model |
-| Done | Reviewed 110-FAQ KUET corpus, frozen TF-IDF configuration and separate development checks |
+| Done | Reviewed 200-FAQ KUET corpus, frozen TF-IDF configuration and separate development checks |
 | Done | Streamlit FAQ Assistant and separate seven-model Model Comparison page |
 | Done | 144 tests passing, including Streamlit AppTest and model/corpus isolation checks |
 | Pending | Human-written evaluation queries (templates are still empty) |
 
 | Dataset count | University research | E-commerce research | KUET demo |
 | --- | ---: | ---: | ---: |
-| FAQs | 500 | 500 | 110 |
-| Categories | 14 | 10 | 11 |
-| Validation queries | 50 (30/20) | 50 (30/20) | 50 (30/20) |
-| Final test / development smoke | 200 (150/50) | 200 (150/50) | 20 (15/5) |
+| FAQs | 500 | 500 | 200 |
+| Categories | 14 | 10 | 20 |
+| Validation queries | 50 (30/20) | 50 (30/20) | 100 (70/30) |
+| Final test / development smoke | 200 (150/50) | 200 (150/50) | 60 (45/15) |
 | Phase 3 training / dev paraphrases | 1,000 / 500 | 1,000 / 500 | Not applicable |
 
 Counts in parentheses are answerable/unanswerable. KUET's validation and smoke
@@ -456,8 +456,8 @@ corpus comes from [NebulaByte/E-Commerce_FAQs](https://huggingface.co/datasets/N
 rejected during review and why, the seven flagged duplicate pairs, and the
 measured quality of the generated paraphrases.
 
-The KUET demo contains 110 distinct English FAQs supported by official KUET,
-Central Library, Admission Portal and Academic System pages. Its companion
+The KUET demo contains 200 distinct English FAQs supported by official KUET,
+Central Library, Admission Portal, Academic System, BHTPA and club-owned pages. The expansion adds 20 department overviews, CSE details, department milestones, IT park information and 10 club/activity FAQs. Conflicting leadership claims are excluded; four corroborated departmental heads are dated. Some club descriptions explicitly use historical official records. Its companion
 [source review](data/kuet/SOURCE_REVIEW.md) records the verification date,
 official URL and reviewed section for every FAQ ID. Runtime retrieval reads the
 local CSV and does not browse the web.
@@ -494,7 +494,7 @@ python scripts/prepare_datasets.py validate
   is region-specific (rupees, PhonePe, SuperCoins).
 - **KUET information can change.** Admission-session facts are dated to the
   source review. Users should follow the linked current notice for deadlines,
-  fees and eligibility. The demo covers its 110 documented intents.
+  fees and eligibility. The demo covers its 200 documented intents.
 
 ## Scope
 
@@ -503,3 +503,11 @@ stored-answer retrieval, the official-source KUET demo, reproducible evaluation,
 and a localhost Streamlit interface. Deferred: general e-commerce demo data and
 formal human evaluation. The project does not train on answers, generate answers,
 or include Transformer/BERT models, authentication, deployment or a feedback database.
+
+## KUET human evaluation (14 September 2026)
+
+Run `.venv/Scripts/python.exe -m streamlit run app.py --server.port 8501 --server.headless true` and open http://localhost:8501. Type questions naturally, assess each response, and use **Save evaluation**. Download the evaluation CSV before closing or reloading: ratings are held only in that browser session. No FAQ IDs are required from the evaluator.
+
+The 100 validation queries and 60 smoke queries are developer-authored. The expanded smoke check retrieved the intended FAQ first for 42/45 answerable questions, gave accepted correct answers for 41/45, and falsely accepted 7/15 unsupported questions. These are development results, not human validation. Similarity-based retrieval can confuse departments, leadership roles, unknown clubs and schedules; verify against the displayed source and record incorrect answers. See [development report](reports/demo/evaluation_report.md).
+
+Source snapshots can be refreshed with `scripts/snapshot_kuet_sources.py` using explicit official paths. This script only collects evidence; it never automatically edits FAQs. Review source changes before editing the CSV. The two dated expansion scripts reproduce this development snapshot and should not be rerun over later manual curation.

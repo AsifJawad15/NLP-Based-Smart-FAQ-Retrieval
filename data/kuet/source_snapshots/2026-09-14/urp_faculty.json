@@ -1,0 +1,255 @@
+{
+  "url": "https://www.kuet.ac.bd/urp/faculty",
+  "final_url": "https://www.kuet.ac.bd/urp/faculty",
+  "retrieved_on": "2026-09-14",
+  "links": [
+    {
+      "label": "MyKUET",
+      "url": "/mykuet"
+    },
+    {
+      "label": "KUET",
+      "url": "/"
+    },
+    {
+      "label": "Alumni",
+      "url": "https://portal.kuet.ac.bd/kuetaa/"
+    },
+    {
+      "label": "",
+      "url": "https://www.kuet.ac.bd/urp"
+    },
+    {
+      "label": "About",
+      "url": "#"
+    },
+    {
+      "label": "About urp",
+      "url": "https://www.kuet.ac.bd/urp/about"
+    },
+    {
+      "label": "Message from\n                                    the Head",
+      "url": "https://www.kuet.ac.bd/urp/messagefromhod"
+    },
+    {
+      "label": "Information Booklet",
+      "url": "https://www.kuet.ac.bd/urp/info_booklet"
+    },
+    {
+      "label": "Academic",
+      "url": "#"
+    },
+    {
+      "label": "Curriculum UG",
+      "url": "https://www.kuet.ac.bd/urp/ugcurriculum"
+    },
+    {
+      "label": "Academic ordinance UG",
+      "url": "https://www.kuet.ac.bd/urp/ugordinance"
+    },
+    {
+      "label": "Curriculum PG",
+      "url": "https://www.kuet.ac.bd/urp/pgcurriculum"
+    },
+    {
+      "label": "Academic ordinance PG",
+      "url": "https://www.kuet.ac.bd/urp/pgordinance"
+    },
+    {
+      "label": "People",
+      "url": "#"
+    },
+    {
+      "label": "Faculty",
+      "url": "https://www.kuet.ac.bd/urp/faculty"
+    },
+    {
+      "label": "Officer & Staff",
+      "url": "https://www.kuet.ac.bd/urp/officer"
+    },
+    {
+      "label": "Former Head",
+      "url": "#"
+    },
+    {
+      "label": "Research",
+      "url": "#"
+    },
+    {
+      "label": "Research Area",
+      "url": "https://www.kuet.ac.bd/urp/researcharea"
+    },
+    {
+      "label": "Publications",
+      "url": "https://www.kuet.ac.bd/urp/publications"
+    },
+    {
+      "label": "Facilities",
+      "url": "https://www.kuet.ac.bd/urp/listoflab"
+    },
+    {
+      "label": "Dr. Md. Manjur Morshed Professor mmorshed@urp.kuet.ac.bd",
+      "url": "https://www.kuet.ac.bd/urp/morshed"
+    },
+    {
+      "label": "Dr.Tusar Kanti Roy Professor tusarkroy@urp.kuet.ac.bd",
+      "url": "https://www.kuet.ac.bd/urp/tusarkroy"
+    },
+    {
+      "label": "Dr. Md. Manjur Morshed Professor mmorshed@urp.kuet.ac.bd",
+      "url": "https://www.kuet.ac.bd/urp/morshed"
+    },
+    {
+      "label": "Saima Rahman Assistant Professor rahman.saima@urp.kuet.ac.bd",
+      "url": "https://www.kuet.ac.bd/urp/saima"
+    },
+    {
+      "label": "Showmitra Kumar Sarkar Assistant Professor showmitrasarkar@urp.kuet.ac.bd",
+      "url": "https://www.kuet.ac.bd/urp/showmitra"
+    },
+    {
+      "label": "Dr. Md. Nazmul Haque Assistant Professor nhaque13@urp.kuet.ac.bd",
+      "url": "https://www.kuet.ac.bd/urp/nhaque13"
+    },
+    {
+      "label": "Sharfan Upaul Assistant Professor s.upaul@urp.kuet.ac.bd",
+      "url": "https://www.kuet.ac.bd/urp/upaul"
+    },
+    {
+      "label": "Nowrin Rahman Khanam Assistant Professor nowrin.rahman@urp.kuet.ac.bd",
+      "url": "https://www.kuet.ac.bd/urp/nowrinrahman"
+    },
+    {
+      "label": "Tanmoy Mazumder Assistant Professor tanmoy@urp.kuet.ac.bd",
+      "url": "https://www.kuet.ac.bd/urp/tanmoym"
+    },
+    {
+      "label": "Irtija Alam Assistant Professor irtija.alam16@urp.kuet.ac.bd",
+      "url": "https://www.kuet.ac.bd/urp/irtiza"
+    },
+    {
+      "label": "Mafrid Haydar Assistant Professor mafrid@urp.kuet.ac.bd",
+      "url": "https://www.kuet.ac.bd/urp/mafrid"
+    },
+    {
+      "label": "Kaniz Fatema Assistant Professor kanizfatema@urp.kuet.ac.bd",
+      "url": "https://www.kuet.ac.bd/urp/kanizfatema"
+    },
+    {
+      "label": "Arpita Bakshi Assistant Professor arpita@urp.kuet.ac.bd",
+      "url": "https://www.kuet.ac.bd/urp/arpita"
+    },
+    {
+      "label": "Tahdia Tahmid Lecturer tahdiatahmid@urp.kuet.ac.bd",
+      "url": "https://www.kuet.ac.bd/urp/tahdia"
+    },
+    {
+      "label": "Abdullah Al Mujtabe Lecturer mujtabe@urp.kuet.ac.bd",
+      "url": "https://www.kuet.ac.bd/urp/mujtabe"
+    },
+    {
+      "label": "Mst. Tasnia Nowrin Lecturer tasnia.nowrin@urp.kuet.ac.bd",
+      "url": "https://www.kuet.ac.bd/urp/tasnia"
+    },
+    {
+      "label": "Palash Chandra Das Assistant Professor pcdas@urp.kuet.ac.bd",
+      "url": "https://www.kuet.ac.bd/urp/pcdas"
+    },
+    {
+      "label": "Tanmoy Chakraborty Assistant Professor tanmoy.chakraborty@urp.kuet.ac.bd",
+      "url": "https://www.kuet.ac.bd/urp/tanmoy"
+    },
+    {
+      "label": "Khondaker Mohammed Mohiuddin Ekram Assistant Professor mohiuddinekram@urp.kuet.ac.bd",
+      "url": "https://www.kuet.ac.bd/urp/mohiuddinekram"
+    },
+    {
+      "label": "",
+      "url": "https://www.facebook.com/KUET.official"
+    },
+    {
+      "label": "",
+      "url": "https://bd.linkedin.com/school/khulna-university-of-engineering-and-technology-kuet-/"
+    },
+    {
+      "label": "",
+      "url": "https://www.facebook.com/KUET.official"
+    },
+    {
+      "label": "",
+      "url": "https://www.facebook.com/KUET.official"
+    },
+    {
+      "label": "Undergraduate Studies",
+      "url": "#"
+    },
+    {
+      "label": "Post Graduate Studies",
+      "url": "#"
+    },
+    {
+      "label": "Research Area",
+      "url": "https://www.kuet.ac.bd/urp/researcharea"
+    },
+    {
+      "label": "Publications",
+      "url": "https://www.kuet.ac.bd/urp/publications"
+    },
+    {
+      "label": "Mission and Vision",
+      "url": "#"
+    },
+    {
+      "label": "History",
+      "url": "#"
+    },
+    {
+      "label": "News & Events",
+      "url": ""
+    },
+    {
+      "label": "Alumni",
+      "url": ""
+    },
+    {
+      "label": "Maps",
+      "url": "#"
+    },
+    {
+      "label": "Gallery",
+      "url": "#"
+    },
+    {
+      "label": "A-Z Index",
+      "url": ""
+    },
+    {
+      "label": "KUET Home",
+      "url": "/"
+    },
+    {
+      "label": "KUET Library",
+      "url": "https://library.kuet.ac.bd/index.php"
+    },
+    {
+      "label": "Forms & Download",
+      "url": "/mykuet"
+    },
+    {
+      "label": "About",
+      "url": "https://www.kuet.ac.bd"
+    },
+    {
+      "label": "Contact",
+      "url": "#"
+    },
+    {
+      "label": "Services",
+      "url": "#"
+    },
+    {
+      "label": "Other",
+      "url": "#"
+    }
+  ]
+}

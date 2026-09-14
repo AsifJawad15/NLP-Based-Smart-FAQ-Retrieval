@@ -59,11 +59,13 @@ class KuetDataTests(unittest.TestCase):
         faq = load_faq_dataset(KUET)
         validation = load_query_dataset(KUET / "validation_queries.csv", set(faq["id"]))
         smoke = load_query_dataset(KUET / "smoke_queries.csv", set(faq["id"]))
-        self.assertEqual(len(faq), 110)
+        self.assertEqual(len(faq), 200)
         self.assertGreaterEqual(faq["category"].nunique(), 8)
         self.assertEqual(set(faq["source_type"]), {"official_web"})
-        self.assertEqual((len(validation), int(validation["is_answerable"].sum())), (50, 30))
-        self.assertEqual((len(smoke), int(smoke["is_answerable"].sum())), (20, 15))
+        self.assertEqual((len(validation), int(validation["is_answerable"].sum())), (100, 70))
+        self.assertEqual((len(smoke), int(smoke["is_answerable"].sum())), (60, 45))
+        self.assertEqual(int((faq["category"] == "department_overviews").sum()), 20)
+        self.assertEqual(int((faq["category"] == "student_clubs").sum()), 10)
         self.assertTrue((KUET / "SOURCE_REVIEW.md").is_file())
 
     def test_file_signature_changes_when_a_resource_changes(self) -> None:
@@ -120,6 +122,21 @@ class StreamlitAppTests(unittest.TestCase):
             "No sufficiently relevant FAQ found", [item.value for item in app.warning]
         )
         self.assertNotIn("**Answer:**", "\n".join(item.value for item in app.markdown))
+
+    def test_club_overview_can_be_evaluated_without_knowing_faq_ids(self) -> None:
+        app = self.app()
+        app.text_input(key="assistant_query").set_value("Tell me about KUET Career Club")
+        app.button(key="assistant_search").click().run(timeout=30)
+        self.assertEqual(len(app.exception), 0)
+        self.assertIn("BizBattle", "\n".join(item.value for item in app.markdown))
+        next(item for item in app.selectbox if item.label == "Your assessment").select("Correct")
+        next(item for item in app.button if item.label == "Save evaluation").click().run(timeout=30)
+        self.assertEqual(len(app.exception), 0)
+        feedback = app.session_state["human_evaluations"]
+        self.assertEqual(len(feedback), 1)
+        self.assertEqual(feedback[0]["query"], "Tell me about KUET Career Club")
+        self.assertEqual(feedback[0]["assessment"], "Correct")
+        self.assertEqual(feedback[0]["faq_id"], 114)
 
 
 if __name__ == "__main__":

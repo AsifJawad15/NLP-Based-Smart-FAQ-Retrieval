@@ -8,5 +8,5 @@
   "supported_models": [
     "tfidf"
   ],
-  "validation_score": 0.975
+  "validation_score": 0.8214285714285714
 }

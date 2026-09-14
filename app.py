@@ -90,6 +90,7 @@ def render_details(
 def render_assistant() -> None:
     st.subheader("FAQ Assistant")
     st.caption("Ask a natural English question. The assistant returns only a stored, sourced answer.")
+    st.caption("KUET: 200 FAQs covering departments, CSE, history, clubs, the IT park, and campus services. Expanded 14 September 2026.")
     corpora = corpora_for_purpose(DATA_ROOT, "demo")
     if not corpora:
         st.error("No demo corpus is available.")
@@ -104,7 +105,7 @@ def render_assistant() -> None:
     clear_if_selection_changed("assistant_previous_corpus", corpus_key, "assistant_result")
     query = st.text_input(
         "Ask a question",
-        placeholder="For example: How many books can an undergraduate borrow?",
+        placeholder="For example: Tell me about KUET CSE or KUET Career Club",
         key="assistant_query",
     )
     if st.button("Search FAQ", type="primary", key="assistant_search"):
@@ -154,6 +155,27 @@ def render_assistant() -> None:
         saved["preprocessing"],
         saved["config"],
     )
+    with st.form("human_evaluation"):
+        st.write("**Evaluate this response**")
+        rating = st.selectbox("Your assessment", ["Choose an assessment", "Correct", "Partly correct", "Incorrect", "Correct rejection", "Should have answered", "Cannot judge"])
+        notes = st.text_input("Notes (optional)")
+        if st.form_submit_button("Save evaluation"):
+            if rating == "Choose an assessment":
+                st.warning("Choose an assessment before saving.")
+            else:
+                best = result.get("best_match") or {}
+                st.session_state.setdefault("human_evaluations", []).append({
+                    "query": saved["query"], "corpus": saved["corpus_key"],
+                    "found": result["found"], "faq_id": best.get("faq_id", ""),
+                    "answer": best.get("answer", ""), "source": best.get("source", ""),
+                    "similarity": best.get("similarity", ""), "threshold": result["threshold"],
+                    "assessment": rating, "notes": notes,
+                })
+                st.success("Evaluation saved for this browser session.")
+    evaluations = st.session_state.get("human_evaluations", [])
+    if evaluations:
+        st.caption(f"{len(evaluations)} evaluations in this session. Download before closing or reloading the page.")
+        st.download_button("Download evaluations (CSV)", pd.DataFrame(evaluations).to_csv(index=False).encode("utf-8-sig"), "kuet_human_evaluations.csv", "text/csv")
 
 
 def render_comparison() -> None:

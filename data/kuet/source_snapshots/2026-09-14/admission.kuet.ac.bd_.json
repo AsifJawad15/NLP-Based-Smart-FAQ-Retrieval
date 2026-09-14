@@ -1,0 +1,31 @@
+{
+  "url": "https://admission.kuet.ac.bd/",
+  "final_url": "https://admission.kuet.ac.bd/",
+  "retrieved_on": "2026-09-14",
+  "links": [
+    {
+      "label": "Home",
+      "url": "#home"
+    },
+    {
+      "label": "Notice",
+      "url": "#notice"
+    },
+    {
+      "label": "Form",
+      "url": "#downloadform"
+    },
+    {
+      "label": "Contact",
+      "url": "#contact"
+    },
+    {
+      "label": "Login",
+      "url": "#"
+    },
+    {
+      "label": "Download",
+      "url": "#"
+    }
+  ]
+}
