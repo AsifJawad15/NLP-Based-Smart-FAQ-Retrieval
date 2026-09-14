@@ -336,11 +336,13 @@ class ComparisonNarrativeTests(unittest.TestCase):
 
 
 class RepositoryTemplateTests(unittest.TestCase):
-    def test_committed_manual_templates_remain_header_only(self) -> None:
+    def test_manual_files_allow_collected_queries(self) -> None:
         for name in ["university", "ecommerce"]:
             path = ROOT / "data" / "manual_evaluation" / f"{name}_queries.csv"
             with self.subTest(corpus=name):
-                self.assertEqual(path.read_text(encoding="utf-8").strip(), HEADER.strip())
+                faq = pd.read_csv(ROOT / "data" / name / "faq_dataset.csv")
+                data = load_query_dataset(path, set(faq["id"]), allow_empty=True)
+                self.assertTrue(set(HEADER.strip().split(",")).issubset(data.columns))
 
 
 if __name__ == "__main__":

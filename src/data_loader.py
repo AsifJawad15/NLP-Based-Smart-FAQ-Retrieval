@@ -11,8 +11,20 @@ import pandas as pd
 
 FAQ_COLUMNS = ["id", "question", "answer", "category", "source", "source_type"]
 QUERY_COLUMNS = ["query", "expected_faq_id", "is_answerable"]
+SUPPORTED_PURPOSES = {"research", "demo"}
+DEFAULT_SUPPORTED_MODELS = [
+    "tfidf",
+    "w2v_mean",
+    "w2v_tfidf",
+    "pw2v_mean",
+    "pw2v_tfidf",
+    "rnn",
+    "bilstm",
+]
 DEFAULT_CONFIG = {
     "display_name": "FAQ Corpus",
+    "purpose": "research",
+    "supported_models": DEFAULT_SUPPORTED_MODELS,
     "remove_stopwords": False,
     "lemmatize": False,
     "similarity_threshold": 0.30,
@@ -153,6 +165,7 @@ def load_corpus_config(corpus_dir: str | Path) -> dict[str, object]:
 
     directory = Path(corpus_dir)
     config = DEFAULT_CONFIG.copy()
+    config["supported_models"] = list(DEFAULT_SUPPORTED_MODELS)
     config["display_name"] = directory.name.replace("_", " ").title()
     path = directory / "corpus_config.json"
     if path.is_file():
@@ -165,6 +178,22 @@ def load_corpus_config(corpus_dir: str | Path) -> dict[str, object]:
     config["similarity_threshold"] = threshold
     config["remove_stopwords"] = _parse_flag(config["remove_stopwords"], "remove_stopwords")
     config["lemmatize"] = _parse_flag(config["lemmatize"], "lemmatize")
+    purpose = str(config["purpose"]).strip().lower()
+    if purpose not in SUPPORTED_PURPOSES:
+        raise ValueError(
+            f"purpose must be one of {sorted(SUPPORTED_PURPOSES)}, got {purpose!r}"
+        )
+    config["purpose"] = purpose
+
+    supported = config["supported_models"]
+    if not isinstance(supported, list) or not supported:
+        raise ValueError("supported_models must be a non-empty list")
+    unknown = [item for item in supported if item not in DEFAULT_SUPPORTED_MODELS]
+    if unknown:
+        raise ValueError(f"supported_models contains unknown models: {unknown}")
+    if len(set(supported)) != len(supported):
+        raise ValueError("supported_models must not contain duplicates")
+    config["supported_models"] = list(supported)
     return config
 
 

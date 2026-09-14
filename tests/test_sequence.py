@@ -22,6 +22,7 @@ import torch
 
 import evaluate
 import main
+import src.sequence_training as sequence_training
 from src.data_loader import load_corpus_config, load_faq_dataset, load_query_dataset, validate_faq_data
 from src.evaluation import rank_queries
 from src.pretrained_embeddings import build_pretrained_subset, load_pretrained_vectors
@@ -451,6 +452,13 @@ class SequenceTrainingTests(unittest.TestCase):
     def metadata(self, architecture: str, models_root: Path | None = None) -> dict:
         path = (models_root or self.models) / "university" / f"{architecture}_metadata.json"
         return json.loads(path.read_text(encoding="utf-8"))
+
+    def test_training_file_hash_is_stable_across_line_endings(self) -> None:
+        lf = self.root / "lf.csv"
+        crlf = self.root / "crlf.csv"
+        lf.write_bytes(b"a,b\n1,2\n")
+        crlf.write_bytes(b"a,b\r\n1,2\r\n")
+        self.assertEqual(sequence_training._file_hash(lf), sequence_training._file_hash(crlf))
 
     def test_training_selects_the_best_dev_epoch_and_saves_history(self) -> None:
         for architecture in ["rnn", "bilstm"]:

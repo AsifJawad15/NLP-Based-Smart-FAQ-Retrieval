@@ -1,0 +1,21 @@
+query,expected_faq_id,is_answerable
+Which departments did KUET have when teaching began?,2,True
+Is KUET a public engineering university?,5,True
+How many institutes operate at KUET?,7,True
+How many residential halls does KUET list?,10,True
+Can an undergraduate study urban planning here?,16,True
+How many years is KUET's Bachelor of Architecture?,21,True
+Is an MPhil qualification available?,30,True
+What is the maximum time allowed for a KUET PhD?,36,True
+Which undergraduate admission session is currently shown on the portal?,48,True
+What is the master's student borrowing allowance?,51,True
+I misplaced a library book; what should I do?,56,True
+Is there a journal section in KUET's library?,62,True
+How many central computer labs are provided?,79,True
+Where can I check the current KUET bus schedule?,89,True
+Which KUET hall accommodates female students?,100,True
+Explain Neptune's orbital satellites.,,False
+Write a recipe for chocolate ice cream.,,False
+Which camera lens is best for wildlife photography?,,False
+How can I mine cryptocurrency at home?,,False
+Who will win the next international cricket tournament?,,False

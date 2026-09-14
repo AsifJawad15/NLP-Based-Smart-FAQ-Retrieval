@@ -65,7 +65,11 @@ TRAINING_SETTINGS = {
 
 
 def _file_hash(path: Path) -> str:
-    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+    # Git may check CSVs out with CRLF on Windows although training generated
+    # them with LF. Their tabular content is unchanged, so normalize line ends
+    # before comparing with the metadata recorded at training time.
+    content = Path(path).read_bytes().replace(b"\r\n", b"\n")
+    return hashlib.sha256(content).hexdigest()
 
 
 def _vocabulary_hash(vocabulary: list[str]) -> str:

@@ -7,7 +7,9 @@ Examples:
     python evaluate.py all --model all
     python evaluate.py all --model phase2b
     python evaluate.py all --model phase3
-    python evaluate.py manual --corpus ecommerce --model all
+    python evaluate.py manual --corpus university
+    python evaluate.py manual --corpus university --query "Your question"
+    python evaluate.py human-benchmark --corpus ecommerce --model all
 
 `--model all` is the Phase 2 comparison of TF-IDF with both custom Word2Vec
 models. `--model phase2b` adds both pretrained Word2Vec models, and
@@ -90,16 +92,39 @@ def phase2_dir() -> Path:
 
 
 def selected_corpora(corpus: str) -> dict[str, Path]:
-    """Return every discovered corpus, or only the requested one."""
+    """Return research corpora by default, or one explicitly requested corpus."""
 
     corpora = discover_corpora(DATA_ROOT)
     if not corpora:
         raise SystemExit(f"No corpora found under {DATA_ROOT}")
     if corpus == "all":
-        return corpora
+        return {
+            name: directory for name, directory in corpora.items()
+            if load_corpus_config(directory)["purpose"] == "research"
+        }
     if corpus not in corpora:
         raise SystemExit(f"Unknown corpus '{corpus}'; found {sorted(corpora)}")
     return {corpus: corpora[corpus]}
+
+
+def ensure_supported_models(
+    name: str, config: dict[str, Any], models: list[str]
+) -> None:
+    """Reject model/corpus combinations before loading any model artifacts."""
+
+    supported = list(config["supported_models"])
+    unsupported = [item for item in models if item not in supported]
+    if unsupported:
+        raise ValueError(
+            f"{config['display_name']} ({name}) does not support "
+            f"{', '.join(unsupported)}; supported models: {', '.join(supported)}"
+        )
+
+
+def corpus_report_dir(config: dict[str, Any]) -> Path:
+    """Keep practical demo checks separate from frozen research reports."""
+
+    return phase_dir("demo") if config["purpose"] == "demo" else REPORTS_DIR
 
 
 def selected_models(model: str) -> list[str]:
@@ -155,7 +180,7 @@ def tune_tfidf(name: str, directory: Path, faq_data, validation) -> None:
     write_json(directory / "corpus_config.json", config)
 
     write_json(
-        REPORTS_DIR / f"{name}_tuning.json",
+        corpus_report_dir(load_corpus_config(directory)) / f"{name}_tuning.json",
         {
             "corpus": name,
             "validation_queries": len(validation),
@@ -296,7 +321,8 @@ def tune_sequence(
 def run_tuning(corpus: str, model: str = "tfidf") -> None:
     """Tune only the requested models, using validation queries only."""
 
-    models = selected_models(model)
+    requested_models = selected_models(model)
+    models = list(requested_models)
     if model in MODEL_GROUPS:
         # A comparison group reuses every earlier model's frozen settings.
         family = newest_family(models)
@@ -309,6 +335,8 @@ def run_tuning(corpus: str, model: str = "tfidf") -> None:
 
     pretrained = None
     for name, directory in selected_corpora(corpus).items():
+        config = load_corpus_config(directory)
+        ensure_supported_models(name, config, requested_models)
         faq_data = load_faq_dataset(directory)
         validation = load_query_dataset(
             directory / "validation_queries.csv", set(faq_data["id"])
@@ -373,7 +401,12 @@ def run_testing(
     models = selected_models(model)
     subdir = report_subdir(models)
     baseline_only = subdir is None
-    destination = REPORTS_DIR if baseline_only else phase_dir(subdir)
+    selected = selected_corpora(corpus)
+    purposes = {load_corpus_config(path)["purpose"] for path in selected.values()}
+    demo_run = purposes == {"demo"}
+    destination = phase_dir("demo") if demo_run else (
+        REPORTS_DIR if baseline_only else phase_dir(subdir)
+    )
     prefix = "manual_" if manual else ""
 
     reports: dict[str, dict[str, dict[str, Any]]] = {}
@@ -384,15 +417,18 @@ def run_testing(
     folded = None
     needs_pretrained = any(MODEL_FAMILIES[item] in {"pretrained_w2v", "sequence"} for item in models)
 
-    for name, directory in selected_corpora(corpus).items():
+    for name, directory in selected.items():
         config = load_corpus_config(directory)
+        ensure_supported_models(name, config, models)
         if "preprocessing_config" not in config:
             raise SystemExit(f"Run 'python evaluate.py tune' before testing {name}")
 
         faq_data = load_faq_dataset(directory)
         query_path = (
             DATA_ROOT / "manual_evaluation" / f"{name}_queries.csv"
-            if manual else directory / "test_queries.csv"
+            if manual else directory / (
+                "smoke_queries.csv" if config["purpose"] == "demo" else "test_queries.csv"
+            )
         )
         test = load_query_dataset(query_path, set(faq_data["id"]), allow_empty=manual)
         if test.empty:
@@ -449,10 +485,18 @@ def run_testing(
             report["display_name"] = str(config["display_name"])
             report["preprocessing_config"] = preprocessing
             report["faq_count"] = len(faq_data)
-            report["evaluation_set"] = "manual" if manual else "synthetic_benchmark"
+            report["evaluation_set"] = (
+                "manual" if manual else
+                "developer_authored_smoke" if config["purpose"] == "demo" else
+                "synthetic_benchmark"
+            )
             reports[name][item] = report
 
-            label = "manual evaluation" if manual else "synthetic benchmark"
+            label = (
+                "manual evaluation" if manual else
+                "development smoke check" if config["purpose"] == "demo" else
+                "synthetic benchmark"
+            )
             print_report(
                 f"{config['display_name']} {MODEL_LABELS[item]} {label} results", report
             )
@@ -497,6 +541,8 @@ def run_testing(
             {key: value["tfidf"] for key, value in reports.items()},
             manual=manual,
             pending=pending,
+            destination=destination,
+            demo=demo_run,
         )
     else:
         write_comparison_report(reports, predictions, models, manual=manual, pending=pending)
@@ -526,6 +572,8 @@ def write_markdown_report(
     *,
     manual: bool = False,
     pending: list[str] | None = None,
+    destination: Path | None = None,
+    demo: bool = False,
 ) -> None:
     """Write one shared Markdown summary of every evaluated corpus."""
 
@@ -534,7 +582,11 @@ def write_markdown_report(
 
     names = sorted(reports)
     lines = [
-        "# Manual TF-IDF Evaluation" if manual else "# Cross-Domain TF-IDF Synthetic Benchmark",
+        (
+            "# Manual TF-IDF Evaluation" if manual else
+            "# KUET TF-IDF Development Smoke Check" if demo else
+            "# Cross-Domain TF-IDF Synthetic Benchmark"
+        ),
         "",
         "Thresholds and preprocessing were selected on validation queries only,",
         "frozen into `corpus_config.json`, and applied here without retuning.",
@@ -543,6 +595,9 @@ def write_markdown_report(
             "These queries are supplied separately by the project team. "
             "The evaluation command cannot verify human authorship."
             if manual else
+            "These developer-authored smoke queries are separate from threshold tuning. "
+            "Their results are development checks, not an untouched human evaluation."
+            if demo else
             "The synthetic query sets have already been inspected during development "
             "and review; these are reproducible benchmark results, not an untouched final assessment."
         ),
@@ -576,8 +631,9 @@ def write_markdown_report(
                 f"  - Retrieved question: {example['retrieved_question']}",
             ]
 
-    REPORTS_DIR.mkdir(parents=True, exist_ok=True)
-    path = REPORTS_DIR / ("manual_evaluation_report.md" if manual else "evaluation_report.md")
+    destination = destination or REPORTS_DIR
+    destination.mkdir(parents=True, exist_ok=True)
+    path = destination / ("manual_evaluation_report.md" if manual else "evaluation_report.md")
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(f"\nSaved {path}")
 
@@ -860,18 +916,43 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
     )
-    parser.add_argument("mode", choices=["tune", "test", "all", "manual"])
-    parser.add_argument("--corpus", default="all")
+    parser.add_argument("mode", choices=["tune", "test", "all", "manual", "human-benchmark"],
+                        help="manual: type questions; human-benchmark: score labeled CSV queries")
+    parser.add_argument("--corpus", help="Manual: choose one corpus (menu if omitted); benchmarks: defaults to all")
     parser.add_argument("--model", default="tfidf", choices=MODELS + list(MODEL_GROUPS))
-    return parser.parse_args()
+    parser.add_argument("--query", help="Manual mode only: answer one question and exit")
+    arguments = parser.parse_args()
+    if arguments.mode == "manual":
+        if arguments.model in MODEL_GROUPS:
+            parser.error("manual requires one model, not a model group; use human-benchmark for comparisons")
+        if arguments.corpus == "all":
+            parser.error("manual requires one corpus; omit --corpus to choose from the menu")
+        if arguments.query is not None and not arguments.query.strip():
+            parser.error("--query must contain a non-empty question")
+    else:
+        if arguments.query is not None:
+            parser.error("--query is only supported in manual mode")
+        arguments.corpus = arguments.corpus or "all"
+    return arguments
+
+
+def main() -> None:
+    """Dispatch interactive questions separately from labeled benchmark scoring."""
+
+    arguments = parse_args()
+    if arguments.mode == "manual":
+        from main import run_session
+
+        run_session(arguments.corpus, arguments.model, arguments.query)
+        return
+    if arguments.mode in {"tune", "all"}:
+        run_tuning(arguments.corpus, arguments.model)
+    if arguments.mode in {"test", "all", "human-benchmark"}:
+        run_testing(arguments.corpus, arguments.model, manual=arguments.mode == "human-benchmark")
 
 
 if __name__ == "__main__":
-    arguments = parse_args()
     try:
-        if arguments.mode in {"tune", "all"}:
-            run_tuning(arguments.corpus, arguments.model)
-        if arguments.mode in {"test", "all", "manual"}:
-            run_testing(arguments.corpus, arguments.model, manual=arguments.mode == "manual")
+        main()
     except (ValueError, RuntimeError, FileNotFoundError) as error:
         raise SystemExit(str(error)) from error

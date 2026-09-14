@@ -1,0 +1,26 @@
+{
+  "accepted_wrong_count": 0,
+  "answerable_acceptance_rate": 1.0,
+  "answerable_queries": 15,
+  "corpus": "kuet",
+  "correct_answer_rate": 1.0,
+  "display_name": "KUET University",
+  "evaluation_set": "developer_authored_smoke",
+  "false_acceptance_count": 0,
+  "false_rejection_count": 0,
+  "faq_count": 110,
+  "incorrect_retrieval_examples": [],
+  "mean_similarity_correct_top1": 0.7812412738512123,
+  "model": "tfidf",
+  "model_label": "TF-IDF",
+  "preprocessing_config": "stopwords_removed",
+  "preprocessing_options": {
+    "lemmatize": false,
+    "remove_stopwords": true
+  },
+  "threshold": 0.47,
+  "top1_accuracy": 1.0,
+  "top3_accuracy": 1.0,
+  "unanswerable_queries": 5,
+  "unanswerable_rejection_rate": 1.0
+}

@@ -66,14 +66,15 @@ def choose_corpus(corpora: dict[str, Path]) -> tuple[str, Path]:
     return items[choose_from_menu(labels, "Available corpora:", "Select a corpus number: ")]
 
 
-def choose_model() -> str:
+def choose_model(supported_models: list[str] | None = None) -> str:
     """Show a numbered retrieval-model menu and return the selected key."""
 
-    labels = [description for _key, description in MODELS]
+    available = [item for item in MODELS if supported_models is None or item[0] in supported_models]
+    labels = [description for _key, description in available]
     position = choose_from_menu(
         labels, "\nAvailable retrieval models:", "Select a model number: "
     )
-    return MODELS[position][0]
+    return available[position][0]
 
 
 def build_answerer(
@@ -85,6 +86,13 @@ def build_answerer(
     command that rebuilds it, rather than training or downloading silently
     during a demonstration.
     """
+
+    supported = list(config.get("supported_models", [key for key, _ in MODELS]))
+    if model not in supported:
+        raise ValueError(
+            f"Model '{model}' is not supported by {config.get('display_name', corpus_dir.name)}; "
+            f"supported models: {', '.join(supported)}"
+        )
 
     if model == "tfidf":
         options = {
@@ -140,17 +148,21 @@ def print_result(result: dict[str, object]) -> None:
     if not result["found"]:
         matches = result["top_matches"]
         best_score = matches[0]["similarity"] if matches else 0.0
-        print(f"\n{result['message']}")
-        print(f"Best similarity score: {best_score:.4f}\n")
-        return
-
-    best = result["best_match"]
-    print(f"\nMatched FAQ: {best['question']}")
-    print(f"Similarity Score: {best['similarity']:.4f}")
-    print(f"Answer: {best['answer']}")
-    print("\nTop matches:")
+        print("\nResult: None")
+        print(result['message'])
+        print(f"Best similarity score: {best_score:.4f}")
+    else:
+        best = result["best_match"]
+        print(f"\nMatched FAQ: {best['question']}")
+        print(f"Similarity Score: {best['similarity']:.4f}")
+        print(f"Answer: {best['answer']}")
+    print(f"Acceptance threshold: {result['threshold']:.4f}")
+    print("\nTop matches:" if result["found"] else "\nNearest candidates (unaccepted):")
+    if not result["top_matches"]:
+        print("  No candidates: the question has no usable features in this model.")
     for rank, match in enumerate(result["top_matches"], start=1):
-        print(f"  {rank}. {match['question']} - {match['similarity']:.4f}")
+        status = "" if result["found"] else " (unaccepted)"
+        print(f"  {rank}. {match['question']} - {match['similarity']:.4f}{status}")
     print()
 
 
@@ -172,6 +184,14 @@ def main() -> None:
     """Load one corpus, build its index once, and answer terminal queries."""
 
     arguments = parse_args()
+    run_session(arguments.corpus, arguments.model, arguments.query)
+
+
+def run_session(corpus: str | None = None, model: str | None = None, query: str | None = None) -> None:
+    """Share corpus selection, model loading, and question handling across CLIs."""
+
+    if query is not None and not query.strip():
+        raise ValueError("Please enter a non-empty question for --query.")
 
     print("=" * 44)
     print("          SMART FAQ RETRIEVAL SYSTEM")
@@ -181,20 +201,21 @@ def main() -> None:
     if not corpora:
         raise SystemExit(f"No corpora found under {DATA_ROOT}")
 
-    if arguments.corpus:
-        if arguments.corpus not in corpora:
+    if corpus:
+        if corpus not in corpora:
             raise SystemExit(
-                f"Unknown corpus '{arguments.corpus}'; found {sorted(corpora)}"
+                f"Unknown corpus '{corpus}'; found {sorted(corpora)}"
             )
-        corpus_dir = corpora[arguments.corpus]
+        corpus_dir = corpora[corpus]
     else:
         _corpus_key, corpus_dir = choose_corpus(corpora)
 
-    # A single-shot query keeps the Phase 1 default; the menu is interactive only.
-    model = arguments.model or ("tfidf" if arguments.query else choose_model())
-
     faq_data = load_faq_dataset(corpus_dir)
     config = load_corpus_config(corpus_dir)
+    # A single-shot query keeps the Phase 1 default; the menu is interactive only.
+    model = model or (
+        "tfidf" if query is not None else choose_model(list(config["supported_models"]))
+    )
     answer, threshold, preprocessing = build_answerer(corpus_dir, faq_data, config, model)
     description = dict(MODELS)[model]
 
@@ -202,9 +223,9 @@ def main() -> None:
     print(f"Model: {description}")
     print(f"Preprocessing: {preprocessing}, threshold: {threshold:.2f}")
 
-    if arguments.query:
-        print(f"\nAsk your question: {arguments.query}")
-        print_result(answer(arguments.query))
+    if query is not None:
+        print(f"\nAsk your question: {query}")
+        print_result(answer(query.strip()))
         return
 
     print("Type 'exit' to close the program.\n")

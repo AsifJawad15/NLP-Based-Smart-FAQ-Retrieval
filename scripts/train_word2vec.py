@@ -33,7 +33,7 @@ def main() -> None:
         raise SystemExit(completed.returncode)
 
     sys.path.insert(0, str(ROOT))
-    from src.data_loader import discover_corpora
+    from src.data_loader import discover_corpora, load_corpus_config
     from src.word2vec_training import train_domain
 
     corpora = discover_corpora(args.data_root)
@@ -43,7 +43,14 @@ def main() -> None:
         if args.corpus not in corpora:
             raise SystemExit(f"Unknown corpus '{args.corpus}'; found {sorted(corpora)}")
         corpora = {args.corpus: corpora[args.corpus]}
+    else:
+        corpora = {
+            name: directory for name, directory in corpora.items()
+            if load_corpus_config(directory)["purpose"] == "research"
+        }
     for name, directory in corpora.items():
+        if "w2v_mean" not in load_corpus_config(directory)["supported_models"]:
+            raise ValueError(f"{name} does not support custom Word2Vec training")
         metadata = train_domain(directory, args.models_root)
         print(f"TRAINED {name}: {metadata['faq_count']} questions, "
               f"{metadata['token_count']} tokens, {metadata['vocabulary_size']} words, "

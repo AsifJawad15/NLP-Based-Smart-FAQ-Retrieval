@@ -41,7 +41,7 @@ class DataLoaderTests(unittest.TestCase):
 
     def test_corpora_are_discovered_from_data_directory(self) -> None:
         corpora = discover_corpora(ROOT / "data")
-        self.assertEqual(set(corpora), {"ecommerce", "university"})
+        self.assertEqual(set(corpora), {"ecommerce", "kuet", "university"})
 
 
 class RetrievalTests(unittest.TestCase):

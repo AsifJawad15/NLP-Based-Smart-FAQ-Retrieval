@@ -36,7 +36,7 @@ def main() -> None:
         raise SystemExit(completed.returncode)
 
     sys.path.insert(0, str(ROOT))
-    from src.data_loader import discover_corpora
+    from src.data_loader import discover_corpora, load_corpus_config
     from src.pretrained_embeddings import load_pretrained_vectors
     from src.sequence_models import ARCHITECTURES
     from src.sequence_training import train_sequence_model
@@ -48,10 +48,19 @@ def main() -> None:
         if args.corpus not in corpora:
             raise SystemExit(f"Unknown corpus '{args.corpus}'; found {sorted(corpora)}")
         corpora = {args.corpus: corpora[args.corpus]}
+    else:
+        corpora = {
+            name: directory for name, directory in corpora.items()
+            if load_corpus_config(directory)["purpose"] == "research"
+        }
     architectures = list(ARCHITECTURES) if args.arch == "all" else [args.arch]
 
     pretrained = load_pretrained_vectors(args.models_root, verify_vectors=True)
     for name, directory in corpora.items():
+        supported = load_corpus_config(directory)["supported_models"]
+        unsupported = [item for item in architectures if item not in supported]
+        if unsupported:
+            raise ValueError(f"{name} does not support: {', '.join(unsupported)}")
         for architecture in architectures:
             started = time.perf_counter()
             metadata = train_sequence_model(

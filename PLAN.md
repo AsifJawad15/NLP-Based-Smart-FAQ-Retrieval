@@ -153,7 +153,7 @@ from intent descriptions without seeing FAQ wording and independently verify
 labels. Target 20 answerable + 10 unanswerable queries per corpus; actual human
 authorship and completion remain team responsibilities.
 
-`python evaluate.py manual [--corpus university|ecommerce]` uses frozen settings
+`python evaluate.py human-benchmark [--corpus university|ecommerce]` uses frozen settings
 without tuning. Header-only templates report human evaluation pending and
 produce no current metrics. Populated files validate labels and domain-specific
 FAQ ids, then write separate `manual_<corpus>_evaluation.json` files and
