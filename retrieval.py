@@ -2,17 +2,17 @@ from functools import lru_cache
 
 import numpy as np
 import pandas as pd
-from gensim.models import Word2Vec
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 from preprocessing import load_english_words, spell_correct, tokenize
+from word2vec import SkipGramWord2Vec
 
 
 MODELS = ["TF-IDF", "Word2Vec", "Word2Vec (TF-IDF weighted)", "Sentence-BERT"]
 THRESHOLDS = {
     "TF-IDF": 0.56,
-    "Word2Vec": 0.87,
+    "Word2Vec": 0.80,
     "Word2Vec (TF-IDF weighted)": 0.79,
     "Sentence-BERT": 0.40,
 }
@@ -34,18 +34,17 @@ def build_tfidf(faq_df, clean=False):
 
 
 def build_word2vec(faq_df, clean=False):
-    """Train a small Word2Vec model and build one vector per FAQ question."""
+    """Train our from-scratch skip-gram Word2Vec and build one vector per FAQ question."""
     training_texts = list(faq_df["question"]) + list(faq_df["answer"])
     sentences = [tokenize(text, clean) for text in training_texts]
 
-    model = Word2Vec(
-        sentences=sentences,
+    model = SkipGramWord2Vec(
+        sentences,
         vector_size=100,
-        window=5,
-        min_count=1,
-        workers=1,
-        sg=1,
-        epochs=300,
+        window=3,
+        epochs=40,
+        learning_rate=1.0,
+        batch_size=256,
         seed=42,
     )
 
@@ -68,12 +67,12 @@ def sentence_vector(text, model, clean=False, weights=None):
     common ones such as "what" or "does" (Lab 3, TF-IDF weighted embeddings).
     Words missing from `weights` get the highest IDF, since they are rare.
     """
-    words = [word for word in tokenize(text, clean) if word in model.wv]
+    words = [word for word in tokenize(text, clean) if word in model]
 
     if not words:
         return np.zeros(model.vector_size)
 
-    vectors = [model.wv[word] for word in words]
+    vectors = [model[word] for word in words]
 
     if weights is None:
         return np.mean(vectors, axis=0)

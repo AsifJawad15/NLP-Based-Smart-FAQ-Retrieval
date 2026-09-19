@@ -36,6 +36,7 @@ Answer      Try another
 - `data/final_test_queries.csv` — held-out final test (15 in-scope + 5 out-of-scope), never used for tuning
 - `.streamlit/config.toml` — disables the file watcher so the terminal stays free of `torchvision` warnings
 - `preprocessing.py` — text cleaning, stop words, stemming, edit-distance spelling correction
+- `word2vec.py` — skip-gram Word2Vec built from scratch with numpy (Lab 3): one-hot input, `W1`/`W2` matrices, softmax, cross-entropy, gradient descent
 - `retrieval.py` — TF-IDF, Word2Vec, TF-IDF weighted Word2Vec, Sentence-BERT (`load_sbert`, `build_sbert`, `search_sbert`), cosine similarity, ranking, threshold
 - `evaluate.py` — compares all models on the development set and the held-out final test
 - `app.py` — Streamlit interface (4 models + "Compare all models" table)
@@ -61,7 +62,9 @@ To save disk space, install CPU-only PyTorch first: `python -m pip install torch
 Converts FAQ questions and the user query into TF-IDF vectors, then compares them with cosine similarity.
 
 ### Word2Vec
-Trains a small local Word2Vec model from the FAQ questions and answers. Each FAQ question/query is represented by the average of its known word vectors. Retrieval still compares the user query only with FAQ questions.
+**Built from scratch** in `word2vec.py`, following Lab 3's skip-gram model (no gensim). For every (centre word, context word) pair within a 3-word window: `h = W1ᵀx`, `u = W2ᵀh`, `ŷ = softmax(u)`, cross-entropy loss, `e = ŷ − y`, `dW2 = h eᵀ`, `dW1 = x (W2 e)ᵀ`, then gradient descent. It is trained on the FAQ questions and answers (100-dimensional vectors, 40 epochs). The only change from Lab 3 is that pairs are processed in mini-batches of 256 instead of one at a time, because the FAQ corpus has ~15,000 pairs instead of Lab 3's 10-word sentence. Each FAQ question/query is represented by the average of its known word vectors (Lab 3's mean word embedding). Retrieval still compares the user query only with FAQ questions.
+
+TF-IDF uses scikit-learn's `TfidfVectorizer`, exactly as Lab 2 does.
 
 ### Word2Vec (TF-IDF weighted)
 Same Word2Vec model, but each word vector is weighted by its IDF value before averaging (Lab 3). Rare, informative words such as "scholarship" count more than common words such as "what" or "does".
@@ -88,8 +91,8 @@ Both sets are small, so treat the numbers as trends, not precise results. With s
 | Model | Dev Top-1 | Dev Top-3 | Dev OOS rejected | **Final Top-1** | **Final Top-3** | **Final OOS rejected** |
 |---|---|---|---|---|---|---|
 | TF-IDF | 42% | 53% | 88% | 53% | 67% | 100% |
-| Word2Vec | 47% | 57% | 75% | 33% | 53% | 100% |
-| Word2Vec (TF-IDF weighted) | 43% | 64% | 75% | 40% | 60% | 60% |
+| Word2Vec (from scratch) | 45% | 58% | 62% | 40% | 60% | 60% |
+| Word2Vec (TF-IDF weighted) | 43% | 58% | 88% | 40% | 67% | 60% |
 | **Sentence-BERT** | **79%** | **91%** | **100%** | **93%** | **93%** | 60% |
 
 Sentence-BERT has the best retrieval accuracy on both sets. A likely reason: the queries are paraphrases that share few words with the FAQ, and a model pretrained on large amounts of text already knows that e.g. "doctorate" and "PhD" mean the same thing, while our Word2Vec only saw 215 FAQs.
@@ -99,10 +102,10 @@ Sentence-BERT has the best retrieval accuracy on both sets. A likely reason: the
 ## Thresholds
 
 - TF-IDF: `0.56`
-- Word2Vec: `0.87`
+- Word2Vec: `0.80`
 - Word2Vec (TF-IDF weighted): `0.79`
 - Sentence-BERT: `0.40`
 
-If the best similarity score is below the selected model's threshold, the system returns no answer instead of forcing an unrelated FAQ. The first three were tuned on the development set `data/dev_queries.csv` by maximising the average of "answered right" and "out-of-scope rejected" (`evaluate.py`'s `Balanced-best thr` column).
+If the best similarity score is below the selected model's threshold, the system returns no answer instead of forcing an unrelated FAQ. The first three were tuned on the development set `data/dev_queries.csv` by maximising the average of "answered right" and "out-of-scope rejected" (`evaluate.py`'s `Balanced-best thr` column). The one exception is Word2Vec: its balanced-best threshold (0.95) would answer only 9% of development questions correctly, so `0.80` was chosen instead. It answers more questions correctly than 0.85–0.90 and rejects the same share of out-of-scope questions.
 
 For Sentence-BERT, the sweep showed every threshold from 0.30 to 0.45 gives the same best balance. On the development set, the highest out-of-scope score is 0.29 ("tuition fee at Dhaka University") and the lowest correct answer scores 0.45, so `0.40` was chosen near the middle of that gap rather than at its edge. With only 8 out-of-scope queries, this is a starting point, not a guarantee.
