@@ -1,7 +1,0 @@
-CSE | KUET Program Educational Objectives (PEOs) Within 3 to 5 years of graduation, graduates of the department will be able: To establish themselves as leading IT professionals with high moral value to address evolving
-                challenges in Computer Science and Engineering by strengthening mathematical, scientific, and
-                engineering knowledge. To promote teamwork and life-long learning through analysis and design of multidisciplinary
-                    projects for industrial, research, and academic careers. To inculcate professionalism with the highest ethical standard for the well-being of a society
-                    using Computer Science and Engineering principles, tools, and techniques. To prepare themself by choosing a diverse career path with high problem-solving ability,
-                    effective communication skill, critical thinking ability, entrepreneurship, and leadership
-                    skill.

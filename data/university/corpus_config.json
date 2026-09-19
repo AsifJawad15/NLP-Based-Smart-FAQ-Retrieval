@@ -1,8 +1,0 @@
-{
-  "display_name": "University FAQ",
-  "lemmatize": false,
-  "preprocessing_config": "basic",
-  "remove_stopwords": false,
-  "similarity_threshold": 0.46,
-  "validation_score": 0.9166666666666667
-}

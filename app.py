@@ -1,254 +1,123 @@
-"""Local Streamlit interface for the KUET demo and research comparisons."""
-
-from __future__ import annotations
-
+from datetime import datetime
 from pathlib import Path
-from typing import Any
 
-import pandas as pd
 import streamlit as st
 
-from main import build_answerer
-from src.data_loader import load_corpus_config, load_faq_dataset
-from src.gui_support import corpora_for_purpose, file_change_signature, saved_benchmark_rows
-from src.preprocessing import preprocess_text
-from src.retrieval_models import MODEL_LABELS
+from retrieval import MODELS, build_system, load_data, search
 
 
-BASE_DIR = Path(__file__).resolve().parent
-DATA_ROOT = BASE_DIR / "data"
-MODELS_ROOT = BASE_DIR / "models"
-REPORTS_ROOT = BASE_DIR / "reports"
+DATA_PATH = Path(__file__).parent / "data" / "faq.csv"
 
 
-@st.cache_resource(show_spinner=False)
-def cached_answerer(
-    corpus_key: str, model: str, signature: str
-) -> tuple[Any, float, str, Any, dict[str, Any]]:
-    """Load a frozen inference resource; signature invalidates stale entries."""
-
-    del signature
-    directory = DATA_ROOT / corpus_key
-    faq_data = load_faq_dataset(directory)
-    config = load_corpus_config(directory)
-    answer, threshold, preprocessing = build_answerer(directory, faq_data, config, model)
-    return answer, threshold, preprocessing, faq_data, config
+def as_of(item):
+    return datetime.strptime(item["last_verified"], "%Y-%m-%d").strftime("%d %B %Y").lstrip("0")
 
 
-def get_answerer(corpus_key: str, model: str):
-    directory = DATA_ROOT / corpus_key
-    signature = file_change_signature(directory, model, MODELS_ROOT)
-    return cached_answerer(corpus_key, model, signature)
+def provenance(item):
+    return f"📅 Information as of {as_of(item)}  |  Source: {item['source']}"
 
 
-def clear_if_selection_changed(state_key: str, selection: str, result_key: str) -> None:
-    previous = st.session_state.get(state_key)
-    if previous is not None and previous != selection:
-        st.session_state.pop(result_key, None)
-    st.session_state[state_key] = selection
+@st.cache_resource
+def load_system(clean):
+    return build_system(load_data(DATA_PATH), clean)
 
 
-def render_details(
-    result: dict[str, Any], query: str, corpus_name: str,
-    model: str, preprocessing_name: str, config: dict[str, Any],
-) -> None:
-    with st.expander("Show NLP Details"):
-        options = {
-            "remove_stopwords": bool(config["remove_stopwords"]) if model == "tfidf" else False,
-            "lemmatize": bool(config["lemmatize"]) if model == "tfidf" else False,
-        }
-        st.write(f"**Corpus:** {corpus_name}")
-        st.write(f"**Model:** {MODEL_LABELS[model]}")
-        st.write(f"**Preprocessing:** {preprocessing_name}")
-        st.code(preprocess_text(query, **options) or "(no usable tokens)")
-        matches = result["top_matches"]
-        best = matches[0] if matches else None
-        st.write(f"**Nearest FAQ ID:** {best['faq_id'] if best else '—'}")
-        st.write(f"**Nearest FAQ:** {best['question'] if best else 'No candidate'}")
-        st.write(f"**Similarity:** {best['similarity'] if best else 0.0:.4f}")
-        st.write(f"**Threshold:** {result['threshold']:.4f}")
-        rows = [
-            {
-                "Rank": rank,
-                "FAQ ID": match["faq_id"],
-                "Candidate question": match["question"],
-                "Similarity": round(match["similarity"], 4),
-                "Status": "accepted" if result["found"] and rank == 1 else "unaccepted",
-            }
-            for rank, match in enumerate(matches, start=1)
-        ]
-        st.dataframe(
-            pd.DataFrame(
-                rows,
-                columns=["Rank", "FAQ ID", "Candidate question", "Similarity", "Status"],
-            ),
-            hide_index=True,
-            width="stretch",
-        )
+st.set_page_config(page_title="Smart FAQ Retrieval", page_icon="🔎")
+st.title("🔎 NLP-Based Smart FAQ Retrieval")
+st.caption("Ask a question about KUET and retrieve the most relevant FAQ.")
 
+model_name = st.radio("Retrieval model", MODELS, horizontal=True)
 
-def render_assistant() -> None:
-    st.subheader("FAQ Assistant")
-    st.caption("Ask a natural English question. The assistant returns only a stored, sourced answer.")
-    st.caption("KUET: 200 FAQs covering departments, CSE, history, clubs, the IT park, and campus services. Expanded 14 September 2026.")
-    corpora = corpora_for_purpose(DATA_ROOT, "demo")
-    if not corpora:
-        st.error("No demo corpus is available.")
-        return
-    ordered = sorted(corpora, key=lambda key: (key != "kuet", key))
-    corpus_key = st.selectbox(
-        "FAQ corpus",
-        ordered,
-        format_func=lambda key: str(load_corpus_config(corpora[key])["display_name"]),
-        key="assistant_corpus",
+col1, col2 = st.columns(2)
+clean = col1.toggle(
+    "Remove stop words + stemming",
+    value=True,
+    help="Lab 1 preprocessing applied to FAQs and query.",
+)
+correct_spelling = col2.toggle(
+    "Spelling correction",
+    value=True,
+    help="Lab 1 edit distance: fixes typos such as 'admisson'.",
+)
+
+compare_all = st.checkbox(
+    "Compare all models on this query",
+    help="Shows each model's best FAQ match side by side.",
+)
+
+if model_name == "Sentence-BERT":
+    st.caption(
+        "Sentence-BERT (pretrained all-MiniLM-L6-v2) reads the full sentence, "
+        "so stop-word removal and stemming are not applied to it."
     )
-    clear_if_selection_changed("assistant_previous_corpus", corpus_key, "assistant_result")
-    query = st.text_input(
-        "Ask a question",
-        placeholder="For example: Tell me about KUET CSE or KUET Career Club",
-        key="assistant_query",
-    )
-    if st.button("Search FAQ", type="primary", key="assistant_search"):
-        if not query.strip():
-            st.session_state.pop("assistant_result", None)
-            st.warning("Enter a question before searching.")
-        else:
-            try:
-                answer, threshold, preprocessing_name, _faq, config = get_answerer(
-                    corpus_key, "tfidf"
-                )
-                st.session_state["assistant_result"] = {
-                    "query": query,
-                    "result": answer(query),
-                    "threshold": threshold,
-                    "preprocessing": preprocessing_name,
-                    "config": config,
-                    "corpus_key": corpus_key,
-                }
-            except (ValueError, RuntimeError, FileNotFoundError) as error:
-                st.error(str(error))
 
-    saved = st.session_state.get("assistant_result")
-    if not saved:
-        return
-    result = saved["result"]
-    status_slot = st.empty()
-    question_slot = st.empty()
-    answer_slot = st.empty()
-    source_slot = st.empty()
-    if result["found"]:
-        best = result["best_match"]
-        status_slot.success("Relevant FAQ found")
-        question_slot.markdown(f"**Matched FAQ:** {best['question']}")
-        answer_slot.markdown(f"**Answer:** {best['answer']}")
-        source_slot.markdown(f"[Open official source]({best['source']})")
+with st.spinner("Loading models..."):
+    system = load_system(clean)
+
+if system["sbert"] is None:
+    st.warning(
+        "Sentence-BERT could not be loaded (install sentence-transformers and "
+        "connect to the internet once to download the model)."
+    )
+
+query = st.text_input(
+    "Your question",
+    placeholder="Example: When was KUET founded?",
+)
+
+if st.button("Search", type="primary"):
+    if not query.strip():
+        st.warning("Please enter a question.")
     else:
-        status_slot.warning("No sufficiently relevant FAQ found")
-        question_slot.caption(
-            "Nearest candidates are available below for diagnosis, but no candidate answer was accepted."
+        results, threshold, changes = search(
+            model_name, query, system, correct_spelling
         )
-    render_details(
-        result,
-        saved["query"],
-        str(saved["config"]["display_name"]),
-        "tfidf",
-        saved["preprocessing"],
-        saved["config"],
-    )
-    with st.form("human_evaluation"):
-        st.write("**Evaluate this response**")
-        rating = st.selectbox("Your assessment", ["Choose an assessment", "Correct", "Partly correct", "Incorrect", "Correct rejection", "Should have answered", "Cannot judge"])
-        notes = st.text_input("Notes (optional)")
-        if st.form_submit_button("Save evaluation"):
-            if rating == "Choose an assessment":
-                st.warning("Choose an assessment before saving.")
-            else:
-                best = result.get("best_match") or {}
-                st.session_state.setdefault("human_evaluations", []).append({
-                    "query": saved["query"], "corpus": saved["corpus_key"],
-                    "found": result["found"], "faq_id": best.get("faq_id", ""),
-                    "answer": best.get("answer", ""), "source": best.get("source", ""),
-                    "similarity": best.get("similarity", ""), "threshold": result["threshold"],
-                    "assessment": rating, "notes": notes,
-                })
-                st.success("Evaluation saved for this browser session.")
-    evaluations = st.session_state.get("human_evaluations", [])
-    if evaluations:
-        st.caption(f"{len(evaluations)} evaluations in this session. Download before closing or reloading the page.")
-        st.download_button("Download evaluations (CSV)", pd.DataFrame(evaluations).to_csv(index=False).encode("utf-8-sig"), "kuet_human_evaluations.csv", "text/csv")
 
+        if changes:
+            fixes = ", ".join(f"{wrong} → {right}" for wrong, right in changes)
+            st.info(f"Did you mean: {fixes}")
 
-def render_comparison() -> None:
-    st.subheader("Model Comparison")
-    st.caption("Run the seven existing research models on one query and one frozen research corpus.")
-    corpora = corpora_for_purpose(DATA_ROOT, "research")
-    if not corpora:
-        st.error("No research corpus is available.")
-        return
-    corpus_key = st.selectbox(
-        "Research corpus",
-        sorted(corpora),
-        format_func=lambda key: str(load_corpus_config(corpora[key])["display_name"]),
-        key="comparison_corpus",
-    )
-    clear_if_selection_changed("comparison_previous_corpus", corpus_key, "comparison_result")
-    query = st.text_input(
-        "Comparison question",
-        placeholder="Ask the same question of all seven models",
-        key="comparison_query",
-    )
-    if st.button("Compare models", type="primary", key="comparison_search"):
-        if not query.strip():
-            st.session_state.pop("comparison_result", None)
-            st.warning("Enter a question before comparing models.")
+        if not results or results[0]["similarity"] < threshold:
+            st.error("No sufficiently relevant FAQ was found. Try another question.")
         else:
+            best = results[0]
+            st.success("Relevant FAQ found")
+            st.subheader(best["question"])
+            st.caption(provenance(best))
+            st.write(best["answer"])
+            st.caption(
+                f"Category: {best['category']}  |  "
+                f"Similarity: {best['similarity']:.2%}  |  "
+                f"Threshold: {threshold:.2f}"
+            )
+
+        if results:
+            st.divider()
+            st.subheader("Top 3 FAQ Matches")
+
+            for rank, item in enumerate(results, start=1):
+                with st.expander(
+                    f"{rank}. {item['question']} — {item['similarity']:.2%}"
+                ):
+                    st.caption(provenance(item))
+                    st.write(item["answer"])
+                    st.caption(f"Category: {item['category']} | FAQ ID: {item['id']}")
+
+        if compare_all:
+            st.divider()
+            st.subheader("Model Comparison")
             rows = []
-            errors = []
-            with st.spinner("Loading requested research models..."):
-                for model, label in MODEL_LABELS.items():
-                    display = label + (" (experimental)" if model in {"rnn", "bilstm"} else "")
-                    try:
-                        answer, threshold, _preprocessing, _faq, _config = get_answerer(
-                            corpus_key, model
-                        )
-                        result = answer(query)
-                        matches = result["top_matches"]
-                        rows.append(
-                            {
-                                "Model": display,
-                                "Predicted FAQ": matches[0]["question"] if matches else "—",
-                                "Similarity": round(matches[0]["similarity"], 4) if matches else 0.0,
-                                "Threshold": round(threshold, 4),
-                                "Decision": "Answer" if result["found"] else "Reject",
-                            }
-                        )
-                    except (ValueError, RuntimeError, FileNotFoundError, KeyError) as error:
-                        errors.append(f"{display}: {error}")
-            st.session_state["comparison_result"] = {"rows": rows, "errors": errors}
-
-    saved = st.session_state.get("comparison_result")
-    if saved:
-        if saved["rows"]:
-            st.dataframe(pd.DataFrame(saved["rows"]), hide_index=True, width="stretch")
-        for error in saved["errors"]:
-            st.error(error)
-    st.info(
-        "Similarity values come from different vector spaces and are not directly comparable. "
-        "Each decision uses that model's own validation-tuned threshold."
-    )
-    with st.expander("Saved benchmark metrics"):
-        rows = saved_benchmark_rows(REPORTS_ROOT, corpus_key)
-        if rows:
-            st.dataframe(pd.DataFrame(rows), hide_index=True, width="stretch")
-        else:
-            st.caption("No saved benchmark reports were found for this corpus.")
-
-
-st.set_page_config(page_title="Smart FAQ", page_icon="🎓", layout="wide")
-st.title("Smart FAQ Retrieval System")
-st.write("A local, stored-answer FAQ assistant and a separate seven-model research comparison.")
-assistant_tab, comparison_tab = st.tabs(["FAQ Assistant", "Model Comparison"])
-with assistant_tab:
-    render_assistant()
-with comparison_tab:
-    render_comparison()
+            for name in MODELS:
+                other_results, other_threshold, _ = search(
+                    name, query, system, correct_spelling
+                )
+                top = other_results[0] if other_results else None
+                accepted = bool(top) and top["similarity"] >= other_threshold
+                rows.append({
+                    "Model": name,
+                    "Best FAQ match": top["question"] if top else "—",
+                    "Similarity": f"{top['similarity']:.2f}" if top else "—",
+                    "Threshold": f"{other_threshold:.2f}",
+                    "Decision": "Answer" if accepted else "Reject",
+                })
+            st.dataframe(rows, hide_index=True, width="stretch")

@@ -1,0 +1,62 @@
+query,expected_id,type
+What year was the university established?,1,paraphrase
+Count of academic faculties at this university,6,paraphrase
+What is the area of the campus in acres?,9,paraphrase
+How many years does it take to finish a BSc in engineering?,14,paraphrase
+Book borrowing limit for bachelor students,50,paraphrase
+Is it possible to extend my borrowed book's due date through the internet?,53,paraphrase
+Penalty for returning a book late,55,paraphrase
+I misplaced a book I borrowed from the library. What now?,56,paraphrase
+Can I make photocopies in the library?,69,paraphrase
+How do I get the wifi password?,74,paraphrase
+Do students get a university email account?,76,paraphrase
+Is there an ambulance for emergencies?,85,paraphrase
+Where can I consult a physician on campus?,84,paraphrase
+Are blood tests done at the campus clinic?,86,paraphrase
+bus timetable,89,paraphrase
+Where can I eat on campus?,92,paraphrase
+Is there a gym for students?,93,paraphrase
+Are there financial aid options for students?,96,paraphrase
+Where do girls live on campus?,100,paraphrase
+What is the first hall built at the university?,99,paraphrase
+biggest dormitory,101,paraphrase
+When does the application window for masters admission open?,37,paraphrase
+How do I apply to get into the bachelor's program?,43,paraphrase
+Where is the admission notice for undergrad?,44,paraphrase
+What kind of questions are in the entrance exam?,212,paraphrase
+When is the entrance exam date?,215,paraphrase
+Can I do a doctorate here?,31,paraphrase
+Shortest time to complete a master's in engineering,33,paraphrase
+email of the computer science department,154,paraphrase
+phone number of the computer science office,155,paraphrase
+Who leads the computer science department now?,192,paraphrase
+Does the computer science department have an NLP lab?,170,paraphrase
+What does KUET stand for?,200,paraphrase
+mailing address of the university,208,paraphrase
+How many faculty members teach at the university?,201,paraphrase
+total number of students,202,paraphrase
+How many students were in the first batch in 1974?,113,paraphrase
+What was KUET called before?,111,paraphrase
+What is the Durbar Bangla monument about?,119,paraphrase
+list the four faculties,188,paraphrase
+registrar office phone,210,paraphrase
+How can I email the registrar?,211,paraphrase
+Can I access online journals from campus?,65,paraphrase
+What time is the library reference desk open?,60,paraphrase
+When did the CSE department start?,141,paraphrase
+admisson circuler for undergraduate,44,typo
+libary overdue fine,55,typo
+when was kuet fonded,1,typo
+docter at the medical centre,84,typo
+schlarship forms,98,typo
+ambulence service,85,typo
+how many residental halls,10,typo
+does kuet have a gymnasiam,93,typo
+What is the capital of France?,,out_of_scope
+How do I cook rice?,,out_of_scope
+Who won the football world cup?,,out_of_scope
+What is the weather today?,,out_of_scope
+Can you recommend a good movie?,,out_of_scope
+How much does a laptop cost?,,out_of_scope
+What is the tuition fee at Dhaka University?,,out_of_scope
+How do I reset my Facebook password?,,out_of_scope

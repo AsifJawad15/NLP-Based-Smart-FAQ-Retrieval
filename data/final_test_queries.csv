@@ -1,0 +1,21 @@
+query,expected_id,type
+Total count of departments at the university,8,paraphrase
+Is an MPhil available here?,30,paraphrase
+Longest time I can take to finish a doctorate,36,paraphrase
+Can I reserve a library book through the website?,54,paraphrase
+Are daily papers available to read in the library?,63,paraphrase
+Is the internet service up 24/7?,73,paraphrase
+How do I get a fitness certificate from the campus doctor?,87,paraphrase
+Where can students play table tennis or chess?,95,paraphrase
+What is the most recently built dormitory?,102,paraphrase
+How many students can Amar Ekushey Hall accommodate?,109,paraphrase
+What district of Bangladesh is the university in?,209,paraphrase
+contact email for admission queries,214,paraphrase
+wired netwrok connection for my laptop,75,typo
+debating socity,116,typo
+first batch of textle engineering,147,typo
+What is the admission fee at BUET?,,out_of_scope
+How do I apply for a UK student visa?,,out_of_scope
+Who is the prime minister of Bangladesh?,,out_of_scope
+Best laptop for programming,,out_of_scope
+How do I renew my passport?,,out_of_scope

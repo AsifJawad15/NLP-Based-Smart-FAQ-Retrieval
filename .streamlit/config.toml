@@ -1,5 +1,4 @@
-[browser]
-gatherUsageStats = false
-
+# The file watcher imports every loaded module (including transformers'
+# optional torchvision parts), which floods the terminal with warnings.
 [server]
-address = "localhost"
+fileWatcherType = "none"
